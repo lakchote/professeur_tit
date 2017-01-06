@@ -1,6 +1,6 @@
 # professeur_tit
 
-Le professeur_tit est le nom éphémère d'un projet en équipe d'**OpenClassroom**.
+Le professeur_tit est le nom d'un projet en équipe d'**OpenClassroom**.
 
 ## Equipe
 | Spécialitée  |  Nom     | Prénom  | Email                          | GitHub                                  |
