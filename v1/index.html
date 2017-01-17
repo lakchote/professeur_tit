@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <!--[if IE]>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <![endif]-->
+    <!-- TODO: changer UA-XXXXX-X avec l'ID du site -->
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-XXXXX-Y', 'auto');
+        ga('send', 'pageview');
+    </script>
+    <title>Nos Amis les Oiseaux</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#98fb98">
+    <meta name="keywords"
+          content="ornithologie, association, climat, urbanisation, agriculture, biodiversité, découvrir, application, oiseaux">
+    <meta name="description" content="Application participative gratuite visant à étudier les effets du climat,
+                                      de l’urbanisation et de l’agriculture sur la biodiversité.">
+    <meta property="og:title" content="Association Nos Amis les Oiseaux">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="assets/logo.png">
+    <meta property="og:description" content="Application participative gratuite visant à étudier les effets du climat,
+                                      de l’urbanisation et de l’agriculture sur la biodiversité.">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/landing_page.css">
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <noscript>
+            <style>
+                #intro-visual-loader, #intro-visual-content {
+                    visibility:hidden;
+                }
+            </style>
+            <h1 style="text-align:center;"><a href="http://www.enable-javascript.com/fr/">Activez JavaScript sur votre navigateur pour profiter pleinement du site !</a></h1>
+        </noscript>
+        <div id="intro-visual-loader"></div>
+        <div id="intro-visual-content">
+            <div id="video-container"></div>
+            <img src="img/logos/tit_blanc.png" alt="Professeur Tit" id="intro-logo-mobile">
+            <div id="intro-visual-slogan">
+                <div id="slogan-catchphrase"><h1>PARTICIPEZ A UNE ETUDE DE GRANDE AMPLEUR</h1></div>
+                <div id="slogan-catchphrase-followup">et rendez à la nature ce qu'elle vous offre</div>
+            </div>
+            <div id="intro-visual-timer">
+                <span id="intro-timer-text">Disponible dans</span>
+                <span id="intro-timer-month"></span>
+                <span id="intro-timer-days"></span>
+                <span id="intro-timer-hours" class="hide"></span>
+                <div id="intro-timer-mail">
+                    <span>Soyez les premiers à découvrir le site</span>
+                </div>
+                <div id="intro-cta-container">
+                    <input type="email" placeholder="Votre e-mail" id="intro-mail-input" required />
+                    <div id="intro-mail-button">ENVOYER</div>
+                </div>
+                <a href="#steps-title"><img src="img/chevron.png" alt="" id="intro-visual-chevron" class="visible-xs"></a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div id="steps">
+            <div class="text-center" id="steps-title"><h2>COMMENT &#199;A MARCHE ?</h2></div>
+            <div class="col-xs-6 col-md-3 col-sm-3">
+                <img src="img/schemas/partie_1/photographiez.png" alt="Photographiez" class="steps-image">
+                <div class="text-center steps-text">
+                    <div class="steps-text-bold">Photographiez</div>
+                    <div>les oiseaux que vous rencontrez</div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-3">
+                <img src="img/schemas/partie_1/publiez.png" alt="Publiez" class="steps-image">
+                <div class="text-center steps-text">
+                    <div class="steps-text-bold">Publiez</div>
+                    <div>vos observations</div>
+                </div>
+            </div>
+            <div id="steps-spacing-top"></div>
+            <div class="col-xs-6 col-md-3 col-sm-3">
+                <img src="img/schemas/partie_1/validez.png" alt="Validez" class="steps-image">
+                <div class="text-center steps-text">
+                    <div class="steps-text-bold">Faites valider</div>
+                    <div>vos observations par des pros</div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-3">
+                <img src="img/schemas/partie_1/discutez.png" alt="Discutez" class="steps-image">
+                <div class="text-center steps-text">
+                    <div class="steps-text-bold">Discutez</div>
+                    <div>et échangez avec d'autres membres</div>
+                </div>
+                <div id="steps-spacing-bottom"></div>
+            </div>
+            <a href="#association-tit"><img src="img/chevron.png" alt="" id="steps-chevron"></a>
+        </div>
+    </div>
+    <div class="row">
+        <div id="association">
+            <img src="img/logos/tit_logo_dark.png" alt="Professeur Tit" id="association-image">
+            <div id="association-tit">
+                <div id="association-tit-title"><h2>LE PROFESSEUR TIT VOUS ACCOMPAGNE</h2></div>
+                <div id="association-tit-followup">au cours de vos observations</div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div id="app-functions-list">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="functions-circle">
+                    <img src="img/schemas/partie_2/recherches.png" alt="Contribuer à la recherche"
+                         class="functions-circle-image">
+                    <div class="functions-circle-textleft hidden-xs">Contribuer à la recherche</div>
+                    <div class="functions-circle-text visible-xs" style="top:0;">Contribuer à la recherche</div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="functions-circle functions-circle-space">
+                    <img src="img/schemas/partie_2/echanger.png" alt="Rencontrer et discuter avec des professionnels"
+                         class="functions-circle-image">
+                    <div class="functions-circle-text hidden-xs hidden-sm">Rencontrer et discuter avec des
+                        professionnels
+                    </div>
+                    <div class="functions-circle-text visible-xs visible-sm position-fix">Rencontrer et discuter avec
+                    </div>
+                    <span class="text-visible-xs text-visible-sm">des professionnels</span>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="functions-circle functions-circle-space">
+                    <img src="img/schemas/partie_2/connaissances.png" alt="Être guidé et améliorer ses connaissances"
+                         class="functions-circle-image">
+                    <div class="functions-circle-textleft hidden-xs hidden-sm">Être guidé et améliorer ses
+                        connaissances
+                    </div>
+                    <div class="functions-circle-textleft visible-sm">Être guidé et améliorer ses</div>
+                    <span class="text-visible-sm-left visible-sm">connaissances</span>
+                    <div class="functions-circle-text visible-xs position-fix">Être guidé et améliorer ses</div>
+                    <span class="text-visible-xs">connaissances</span>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="functions-circle functions-circle-space">
+                    <img src="img/schemas/partie_2/partager.png"
+                         alt="Accéder à un espace personnalisé et partager ses découvertes"
+                         class="functions-circle-image">
+                    <div class="functions-circle-text hidden-xs hidden-sm">Accéder à un espace personnalisé et partager
+                        ses
+                    </div>
+                    <span class="position-fix-desktop hidden-xs hidden-sm">découvertes</span>
+                    <div class="functions-circle-text visible-xs visible-sm position-fix">Accéder à un espace
+                        personnalisé et
+                    </div>
+                    <span class="text-visible-xs text-visible-sm">partager ses découvertes</span>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div id="app-cta-text">Soyez les premiers à découvrir le site</div>
+            </div>
+            <div id="app-cta-container">
+                <div class="col-xs-6">
+                    <input type="text" id="app-cta-userinput" placeholder="Votre e-mail">
+                </div>
+                <div class="col-xs-6">
+                    <div id="app-cta-button">ENVOYER</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="footer">
+            <a href="#"><img src="img/logos/facebook.png" alt="Rejoignez nous sur facebook"
+                             id="footer-logo-facebook"></a>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="modal-errors" tabindex="-1" role="dialog" aria-labelledby="modal-title-text">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="modal-title-text"></h4>
+                </div>
+                <div class="modal-body">
+                    <p id="modal-body-text"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- END Modal -->
+</div>
+<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+</body>
+</html>

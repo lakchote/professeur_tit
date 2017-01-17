@@ -1,0 +1,718 @@
+body {
+    font-family: Helvetica, sans-serif !important;
+}
+
+::-webkit-input-placeholder {
+    font-style: italic;
+}
+
+::-moz-placeholder {
+    font-style: italic;
+}
+
+:-ms-input-placeholder {
+    font-style: italic;
+}
+
+input:-moz-placeholder {
+    font-style: italic;
+}
+
+input {
+    border: 0;
+    padding-left:10px;
+}
+
+.hide {
+    display: none;
+}
+
+#intro-visual-loader {
+    position: absolute;
+    left: 48%;
+    top: 2%;
+}
+
+.loader {
+    border: 16px solid #f3f3f3;
+    border-top: 16px solid #98fb98;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+video {
+    width: 100%;
+    filter: brightness(0.6);
+    -webkit-filter: brightness(0.6);
+}
+
+#video-container {
+    max-height: 600px;
+    overflow: hidden;
+}
+
+#intro-visual-content {
+    position: relative;
+}
+
+#intro-logo-mobile {
+    top: 9%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+
+#intro-visual-slogan {
+    text-align: center;
+    position: absolute;
+    top: 26%;
+    left: 0;
+    right: 0;
+    color: #fff;
+    font-weight: normal;
+}
+
+.loader-text-color > * {
+    color: #000 !important;
+}
+
+#slogan-catchphrase h1 {
+    font-size:43px;
+}
+
+#slogan-catchphrase-followup {
+    font-size: 28px;
+    margin-top: -10px;
+}
+
+#intro-visual-timer {
+    position: absolute;
+    top: 60%;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
+#intro-timer-text {
+    color: #fff;
+}
+
+#intro-timer-month, #intro-timer-days, #intro-timer-hours {
+    display: inline-block;
+    height: 50px;
+    width: 60px;
+    border: 2px solid #98fb98;
+    color: #98fb98;
+    line-height: 50px;
+}
+
+#intro-timer-hours {
+    width: 100px;
+}
+
+#intro-timer-days {
+    margin-left: 5px;
+}
+
+#intro-timer-mail {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: 1.1em;
+    color: #fff;
+}
+
+#intro-mail-button {
+    display: inline-block;
+    position: relative;
+    left: 0;
+    right: 0;
+    margin: 10px auto 0 auto;
+    height: 40px;
+    line-height: 38px;
+    width: 125px;
+    border: 2px solid #98fb98;
+    color: #98fb98;
+    cursor: pointer;
+}
+
+#intro-mail-button:hover {
+    background-color: #98fb98;
+    color:#000;
+}
+
+#steps {
+    margin-top: 10px;
+}
+
+#steps-title {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.steps-text-bold {
+    font-weight: bold;
+}
+
+#association-tit {
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
+    top: 35%;
+    color: #fff;
+}
+
+.functions-circle {
+    position: relative;
+}
+
+.functions-circle-text, .functions-circle-textleft {
+    display: inline-block;
+    position: absolute;
+    line-height: 100px;
+    white-space: nowrap;
+}
+
+.functions-circle-text {
+    left: 85%;
+}
+
+.functions-circle-textleft {
+    right: 85%;
+}
+
+#association {
+    margin: 20px 0 10px 0;
+    background-color: rgba(102, 107, 114, 0.8);
+    position: relative;
+}
+
+#association-image {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+
+#app-cta-button {
+    background-color: #98fb98;
+    cursor: pointer;
+    text-align: center;
+    font-weight: bold;
+}
+
+#app-cta-button:hover {
+    border: 2px solid #98fb98;
+    background-color: #fff;
+}
+
+#app-cta-button, #app-cta-userinput {
+    margin-bottom: 20px;
+}
+
+#app-cta-text {
+    margin: 15px 0 3px 0;
+    font-size: 1.4em;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.footer {
+    position: relative;
+    margin-top: 10px;
+    background-color: #98fb98;
+    cursor: pointer;
+}
+
+/*** Mobile ***/
+@media screen and (max-width: 640px) {
+
+    #intro-visual-content {
+        background-image: url('../img/tit_mobile_dark.jpg');
+        background-size: cover;
+        height: 480px;
+        width: 100%;
+    }
+
+    #intro-timer-text {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    #intro-visual-timer {
+        top: 45%;
+    }
+
+    #intro-timer-month, #intro-timer-days {
+        height: 50px;
+        width: 60px;
+        line-height: 50px;
+    }
+
+    #intro-mail-input {
+        width: 95%;
+        height: 40px;
+        border: 0;
+    }
+
+    #intro-mail-button {
+        width: 120px;
+    }
+
+    #intro-visual-chevron {
+        display: inline-block;
+        position: relative;
+        left: 0;
+        right: 0;
+        margin: 30px auto 0 auto;
+    }
+
+    #intro-visual-slogan {
+        top: 23%;
+    }
+
+    #slogan-catchphrase {
+        position: relative;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        width: 280px;
+        word-wrap: break-word;
+        font-size: 1.4em;
+    }
+
+    #slogan-catchphrase h1 {
+        font-size: inherit;
+    }
+
+    #slogan-catchphrase-followup {
+        font-size: 0.9em;
+    }
+
+    #steps-title {
+        margin-bottom: 30px;
+        font-size: 1.4em;
+    }
+
+    #steps-title h2 {
+        font-size: inherit;
+    }
+
+    .steps-image {
+        height: 150px;
+        width: 150px;
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+    }
+
+    .steps-text {
+        position: relative;
+        top: 155px;
+    }
+
+    #steps-spacing-top {
+        margin-top: 270px;
+    }
+
+    #steps-spacing-bottom {
+        margin-bottom: 30px;
+    }
+
+    #steps-chevron {
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: 242px auto 0 auto;
+    }
+
+    #association {
+        height: 100px;
+        margin-top: 180px;
+    }
+
+    #association-image {
+        height: 90px;
+        width: 90px;
+        top: 5px;
+    }
+
+    #association-tit-title {
+        font-size: 1.2em;
+    }
+
+    #association-tit h2 {
+        font-size: inherit;
+        margin: 0;
+    }
+
+    .functions-circle-image {
+        width: 70px;
+        height: 70px;
+    }
+
+    .functions-circle-text {
+        line-height: 70px;
+        left: 85px;
+    }
+
+    .functions-circle-space {
+        margin-top: 15px;
+    }
+
+    .position-fix {
+        top: -20%;
+    }
+
+    .text-visible-xs {
+        display: inline-block;
+        position: absolute;
+        left: 85px;
+        top: 40%;
+    }
+
+    #app-functions-list {
+        font-size: 0.8em;
+        margin-top: 5px;
+    }
+
+    #app-cta-userinput, #app-cta-button {
+        height: 30px;
+        width: 100%;
+    }
+
+    #app-cta-userinput {
+        border: 2px solid #98fb98;
+    }
+
+    #app-cta-button {
+        line-height: 30px;
+    }
+
+    .footer {
+        height: 50px;
+    }
+
+    #footer-logo-facebook {
+        position: absolute;
+        margin: 0 auto;
+        top: 5px;
+        left: 0;
+        right: 0;
+        height: 40px;
+    }
+}
+
+/*** Desktop ***/
+@media screen and (min-width: 640px) {
+
+    #intro-mail-input {
+        height: 40px;
+        width: 300px;
+    }
+
+    #intro-mail-button {
+        text-align: center;
+        margin: 0 0 0 10px;
+    }
+
+    #intro-timer-month, #intro-timer-days {
+        width: 130px;
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+    }
+
+    #intro-mail-button {
+        width: 136px;
+    }
+
+    #intro-timer-month {
+        margin-left: 37px;
+    }
+
+    #intro-timer-mail {
+        margin-top: 30px;
+    }
+
+    #intro-timer-text {
+        display: inline-block;
+        font-size: 1.4em;
+        vertical-align: middle;
+    }
+
+    #intro-timer-hours {
+        margin-left: 15px;
+    }
+
+    #intro-timer-mail {
+        font-size: 1.4em;
+    }
+
+    .steps-image {
+        width: 170px;
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+    }
+
+    .steps-text {
+        position: relative;
+        top: 175px;
+    }
+
+    #steps-title {
+        margin-bottom: 40px;
+    }
+
+    #steps-chevron {
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: 260px auto 0 auto;
+    }
+
+    #association {
+        height: 350px;
+        margin-top: 250px;
+    }
+
+    #association-image {
+        top:15%;
+    }
+
+    #association-tit-title h2{
+        font-size: 40px;
+    }
+
+    #association-tit-followup {
+        font-size: 25px;
+        margin-top: -15px;
+    }
+
+    .text-visible-xs, .text-visible-sm {
+        display: none;
+    }
+
+    #app-functions-list {
+        margin-left: 35%;
+        margin-right: 35%;
+        margin-top: 25px;
+    }
+
+    .functions-circle-image {
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        right: 0;
+        left: 0;
+        margin: 0 auto;
+    }
+
+    .position-fix-desktop {
+        display: inline-block;
+        position: absolute;
+        left: 85%;
+        top: 55px;
+        font-size:1.2em;
+    }
+
+    .functions-circle-space {
+        margin-bottom: 150px;
+    }
+
+    .functions-circle-text, .functions-circle-textleft {
+        font-size:1.2em;
+    }
+
+    #app-cta-text {
+        font-size: 1.6em;
+    }
+
+    #app-cta-userinput, #app-cta-button {
+        height: 40px;
+    }
+
+    #app-cta-userinput {
+        border: 1px solid #98fb98;
+        margin-left: 5%;
+        width: 250px
+    }
+
+    #app-cta-button {
+        line-height: 40px;
+        margin-left: 60px;
+    }
+
+    #slogan-catchphrase-followup {
+        margin-top:-20px;
+    }
+
+    .footer {
+        height: 100px;
+    }
+
+    #footer-logo-facebook {
+        position: absolute;
+        margin: 0 auto;
+        top: 10px;
+        bottom: 10px;
+        left: 0;
+        right: 0;
+        height: 80px;
+    }
+}
+
+/*** IPAD ***/
+@media screen and (min-width: 640px) and (max-width: 960px) {
+
+    #slogan-catchphrase {
+        font-size: 1.8em;
+    }
+
+    #slogan-catchphrase h1 {
+        font-size: 30px;
+    }
+
+    #slogan-catchphrase-followup {
+        font-size:20px;
+        margin-top:-15px;
+    }
+
+    #steps-title {
+        font-size: 1.7em;
+    }
+
+    #steps-title h2 {
+        font-size: inherit;
+    }
+
+    #association-tit-title h2{
+        font-size: 2.4em;
+    }
+
+    #association-tit-followup {
+        font-size: 1.6em;
+    }
+
+    #app-cta-text {
+        width: 350px;
+        font-size: 1.4em;
+    }
+
+    #app-cta-button {
+        width: 100%;
+    }
+
+    #app-cta-userinput {
+        width: 150%;
+    }
+
+    #app-functions-list {
+        margin-left: 30%;
+        margin-right: 30%;
+    }
+
+    .functions-circle-text, .functions-circle-textleft {
+        font-size:inherit;
+    }
+
+    .functions-circle-text {
+        left: 120px;
+    }
+
+    .functions-circle-textleft {
+        right: 120px;
+    }
+
+    #steps-chevron {
+        margin-top: 280px;
+    }
+
+    .text-visible-sm, .text-visible-sm-left {
+        display: inline-block;
+        position: absolute;
+        top: 55px;
+        white-space: nowrap;
+    }
+
+    .text-visible-sm {
+        left: 120px;
+    }
+
+    .text-visible-sm-left {
+        right: 120px;
+    }
+}
+
+/*** IPAD PRO ***/
+@media screen and (min-device-height: 1366px) and (max-device-height: 1366px) and (min-device-width: 1024px) and (max-device-width: 1024px) {
+
+    #slogan-catchphrase h1 {
+        font-size: 40px;
+    }
+
+    #slogan-catchphrase-followup {
+        font-size:25px;
+        margin-top:-15px;
+    }
+
+   #app-cta-text {
+        width: 350px;
+        font-size: 1.4em;
+    }
+
+    #app-cta-button {
+        width: 100%;
+    }
+
+    #app-cta-userinput {
+        width: 150%;
+    }
+
+    .functions-circle-text, .functions-circle-textleft {
+        font-size:inherit;
+    }
+
+    .functions-circle-text {
+        left: 120px;
+    }
+
+    .functions-circle-textleft {
+        right: 120px;
+    }
+
+    .position-fix-desktop {
+        left: 120px;
+    }
+
+    #steps-chevron {
+        margin-top:280px;
+    }
+
+}
+
+
