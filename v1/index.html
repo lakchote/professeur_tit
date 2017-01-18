@@ -30,25 +30,18 @@
                                       de l’urbanisation et de l’agriculture sur la biodiversité.">
     <meta property="og:title" content="Association Nos Amis les Oiseaux">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="assets/logo.png">
+    <meta property="og:image" content="//professeur_tit/img/logos/tit_logo.png">
     <meta property="og:description" content="Application participative gratuite visant à étudier les effets du climat,
                                       de l’urbanisation et de l’agriculture sur la biodiversité.">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/landing_page.css">
+    <link rel="icon" href="assets/favicon.ico">
 </head>
 <body>
 <div class="container-fluid">
     <div class="row">
-        <noscript>
-            <style>
-                #intro-visual-loader, #intro-visual-content {
-                    visibility:hidden;
-                }
-            </style>
-            <h1 style="text-align:center;"><a href="http://www.enable-javascript.com/fr/">Activez JavaScript sur votre navigateur pour profiter pleinement du site !</a></h1>
-        </noscript>
-        <div id="intro-visual-loader"></div>
-        <div id="intro-visual-content">
+        <div id="intro-visual-loader" class="hide"></div>
+        <div id="intro-visual-content" class="hide">
             <div id="video-container"></div>
             <img src="img/logos/tit_blanc.png" alt="Professeur Tit" id="intro-logo-mobile">
             <div id="intro-visual-slogan">
@@ -64,10 +57,11 @@
                     <span>Soyez les premiers à découvrir le site</span>
                 </div>
                 <div id="intro-cta-container">
-                    <input type="email" placeholder="Votre e-mail" id="intro-mail-input" required />
+                    <input type="email" placeholder="Votre e-mail" id="intro-mail-input" required/>
                     <div id="intro-mail-button">ENVOYER</div>
                 </div>
-                <a href="#steps-title"><img src="img/chevron.png" alt="" id="intro-visual-chevron" class="visible-xs"></a>
+                <a href="#steps-title"><img src="img/chevron.png" alt="" id="intro-visual-chevron"
+                                            class="visible-xs"></a>
             </div>
         </div>
     </div>
@@ -166,15 +160,17 @@
                     <span class="text-visible-xs text-visible-sm">partager ses découvertes</span>
                 </div>
             </div>
-            <div class="col-xs-12">
-                <div id="app-cta-text">Soyez les premiers à découvrir le site</div>
-            </div>
-            <div id="app-cta-container">
-                <div class="col-xs-6">
-                    <input type="text" id="app-cta-userinput" placeholder="Votre e-mail">
+            <div id="app-cta" class="hide">
+                <div class="col-xs-12">
+                    <div id="app-cta-text">Soyez les premiers à découvrir le site</div>
                 </div>
-                <div class="col-xs-6">
-                    <div id="app-cta-button">ENVOYER</div>
+                <div id="app-cta-container">
+                    <div class="col-xs-6">
+                        <input type="text" id="app-cta-userinput" placeholder="Votre e-mail">
+                    </div>
+                    <div class="col-xs-6">
+                        <div id="app-cta-button">ENVOYER</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -190,7 +186,8 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="modal-title-text"></h4>
                 </div>
                 <div class="modal-body">

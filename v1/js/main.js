@@ -1,6 +1,10 @@
 (function () {
     'use strict';
 
+    //If Javascript is allowed, show content
+    document.getElementById('intro-visual-content').classList.remove('hide');
+    document.getElementById('app-cta').classList.remove('hide');
+
     /**
      * Check if not on mobile and adds a video instead of an image
      */
@@ -15,6 +19,7 @@
         video.addEventListener('loadstart', function () {
             document.getElementById('intro-visual-slogan').classList.add('loader-text-color');
             document.getElementById('intro-visual-timer').classList.add('loader-text-color');
+            document.getElementById('intro-visual-loader').classList.remove('hide');
             document.getElementById('intro-visual-loader').classList.add('loader');
         });
         video.addEventListener('canplaythrough', function () {
