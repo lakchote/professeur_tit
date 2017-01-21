@@ -195,11 +195,11 @@ video {
 }
 
 .functions-circle-text {
-    left: 85%;
+    left: 100%;
 }
 
 .functions-circle-textleft {
-    right: 85%;
+    right: 100%;
 }
 
 #association {
@@ -281,11 +281,7 @@ video {
     }
 
     #intro-visual-chevron {
-        display: inline-block;
-        position: relative;
-        left: 0;
-        right: 0;
-        margin: 30px auto 0 auto;
+        margin-top:30px;
     }
 
     #intro-visual-slogan {
@@ -321,16 +317,6 @@ video {
 
     .steps-image {
         height: 150px;
-        width: 150px;
-        position: absolute;
-        left: 0;
-        right: 0;
-        margin: 0 auto;
-    }
-
-    .steps-text {
-        position: relative;
-        top: 155px;
     }
 
     #steps-spacing-top {
@@ -341,16 +327,8 @@ video {
         margin-bottom: 30px;
     }
 
-    #steps-chevron {
-        position: absolute;
-        left: 0;
-        right: 0;
-        margin: 242px auto 0 auto;
-    }
-
     #association {
         height: 100px;
-        margin-top: 180px;
     }
 
     #association-image {
@@ -471,33 +449,12 @@ video {
         font-size: 1.4em;
     }
 
-    .steps-image {
-        width: 170px;
-        position: absolute;
-        left: 0;
-        right: 0;
-        margin: 0 auto;
-    }
-
-    .steps-text {
-        position: relative;
-        top: 175px;
-    }
-
     #steps-title {
         margin-bottom: 40px;
     }
 
-    #steps-chevron {
-        position: absolute;
-        left: 0;
-        right: 0;
-        margin: 260px auto 0 auto;
-    }
-
     #association {
         height: 350px;
-        margin-top: 250px;
     }
 
     #association-image {
@@ -535,7 +492,7 @@ video {
     .position-fix-desktop {
         display: inline-block;
         position: absolute;
-        left: 85%;
+        left: 100%;
         top: 55px;
         font-size:1.2em;
     }
@@ -587,7 +544,7 @@ video {
 }
 
 /*** IPAD ***/
-@media screen and (min-width: 640px) and (max-width: 960px) {
+@media screen and (min-width: 640px) and (max-width: 990px) {
 
     #slogan-catchphrase {
         font-size: 1.8em;
@@ -641,15 +598,11 @@ video {
     }
 
     .functions-circle-text {
-        left: 120px;
+        left:100%;
     }
 
     .functions-circle-textleft {
-        right: 120px;
-    }
-
-    #steps-chevron {
-        margin-top: 280px;
+        right: 100%;
     }
 
     .text-visible-sm, .text-visible-sm-left {
@@ -660,11 +613,11 @@ video {
     }
 
     .text-visible-sm {
-        left: 120px;
+        left: 100%;
     }
 
     .text-visible-sm-left {
-        right: 120px;
+        right: 100%;
     }
 }
 
@@ -709,10 +662,102 @@ video {
         left: 120px;
     }
 
-    #steps-chevron {
-        margin-top:280px;
+}
+
+/* Large screens */
+@media screen and (min-width: 1400px) {
+
+    .functions-circle-text, .position-fix-desktop {
+        left: 85%;
     }
 
+    .functions-circle-textleft {
+        right: 85%;
+    }
+}
+
+/* Breakpoint fix */
+@media screen and (min-width: 640px) and (max-width: 770px) {
+
+    .steps-image {
+        height:150px;
+    }
+
+    #app-functions-list, #app-cta-text {
+        margin:0 auto 10px auto ;
+    }
+
+    #app-cta-button {
+        width: 200px;
+    }
+
+    #app-cta-userinput {
+        display:inline-block;
+        margin-left:100px;
+        width:250px;
+    }
+
+    #association-tit-title h2 {
+        font-size:2.3em;
+    }
+
+    .functions-circle-image {
+        position:inherit;
+    }
+
+    .functions-circle-space, #breakpoint-fix {
+        margin-bottom: 20px;
+    }
+
+    .functions-circle-text {
+        position:absolute;
+        top:0;
+        left:110px;
+    }
+
+    .text-visible-sm {
+        left:110px;
+    }
+
+    .text-visible-xs {
+        display: inline-block;
+        position: absolute;
+        left: 110px;
+        top: 55%;
+    }
+
+    .breakpoint-steps {
+        margin-bottom:30px;
+    }
+
+    #intro-visual-chevron {
+        display:none !important;
+    }
+
+    #intro-mail-input, #intro-mail-button {
+        height:30px;
+    }
+
+    #intro-mail-input {
+        vertical-align: bottom;
+    }
+
+    #intro-mail-button {
+        line-height: 30px;
+    }
+}
+
+/* Breakpoint fix for CTA in app's functions block */
+@media screen and (min-width: 914px) and (max-width: 1280px) {
+
+    #app-cta-button {
+        width:150px;
+        margin-left:120px;
+    }
+
+    #app-cta-userinput {
+        margin-left:inherit;
+    }
 }
 
 
