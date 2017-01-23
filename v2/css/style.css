@@ -1,0 +1,351 @@
+[class*="col-"] {
+ /*border: 2px solid black;*/
+    text-align: center;
+    padding:0;
+}
+
+
+#logo {
+   margin-top: 3vh;
+}
+
+.formulaire {
+    margin-top: 60vh;
+}
+#sixth .white {
+    font-size: x-large;
+    color: white;
+}
+
+
+
+
+.reduit {
+    font-size: medium !important;
+}
+@media only screen and (max-width : 767px) {
+    h2{
+        font-size: 1.5em;
+    }
+
+    #first .white {
+        color: white;
+        font-size: 2em;
+    }
+    .firstTo {
+        margin-top: 30px;
+    }
+    input {
+        height: 50px;
+        margin-bottom: 10px;
+    }
+    input.timer {
+        background-color: transparent;
+    }
+    input.timer:hover {
+        background-color: #ffe44c;
+        color: black;
+    }
+
+    #disponibilite {
+        position: absolute;
+        top:15vh;
+    }
+
+
+    #first {
+        height: 100vh;
+        min-height: 480px;
+        background: url("../img/jpg/parrot_mobile_vb_320x480.jpg") no-repeat 100% center;
+        background-size: cover;
+
+    }
+
+    #videoContent {
+        height: 95vh;
+    }
+
+    #second {
+        height: 95vh;
+    }
+
+    .circle {
+        height: 42.5vh;
+        padding:0;
+    }
+
+    .howItWorks {
+        height: 10vh;
+    }
+
+    .howCircle {
+        width: 85%;
+        max-height: 30vh;
+        max-width: 30vh;
+    }
+
+    .chevron {
+        height: 5vh;
+    }
+
+    #iphone_foret{
+        height: 47.5vh;
+        background: url("../img/jpg/iphone_foret_320x240.jpg") no-repeat center;
+        background-size: cover;
+    }
+
+    #profTit {
+        height: 47.5vh;
+    }
+    .logoTit {
+        height: 25vh;
+        width: 25vh;
+    }
+#profTit p {
+    font-size: large;
+    margin-top: 5vh;
+}
+
+    .carre {
+        font-size: 12pt;
+        margin-top: 30vh;
+    }
+
+    .square_black_text {
+        font-weight: bold;
+        font-size: large;
+        margin-top: 5vh;
+    }
+
+    #fourth, .fourth {
+        height: 47.5vh;
+    }
+
+    #fourth .white, #fifth .white {
+        color: white;
+    }
+
+    .oiseau_fruit {
+        background: url("../img/jpg/oiseaux_fruit_320x240.jpg") no-repeat center;
+        background-size: cover;
+    }
+
+    #fourth_carre3 {
+        background: url("../img/jpg/pigeon_320x240.jpg") no-repeat center;
+        background-size: cover;
+    }
+    #fifth, .fifth {
+        height: 47.5vh;
+    }
+
+    #sixth {
+        height: 90vh;
+        background: url("../img/jpg/homme_jumelle_1280x800.jpg") no-repeat center;
+        background-size: cover;
+    }
+
+    #binoculars {
+        height: 85vh;
+
+    }
+
+    #seventh {
+        height: 10vh;
+        background-color: #ffe44c;
+    }
+
+    #facebook {
+        height: 10vh;
+    }
+
+    .facebook {
+        height: 7vh;
+        margin-top: 1.5vh;
+    }
+
+    .timer {
+        display: inline-block;
+        border: 1px solid;
+        border-color: #ffe44c;
+        color:#ffe44c;
+        width: 75px;
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+    }
+}
+
+@media only screen and (min-width : 768px) {
+    #first {
+        height: 55vh;
+        min-height: 450px;
+    }
+
+    #logo {
+        margin-top: 3vh;
+        position: absolute;
+        top:0;
+    }
+
+    #videoContent {
+        background: url("../img/jpg/parrot_mobile_vb_320x480.jpg") no-repeat 100% center;
+        background-size: cover;
+        height: inherit;
+        overflow: hidden;
+        padding: 0;
+        min-height: 450px;
+    }
+
+    #introVideo {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        min-height: 500px;
+        -webkit-filter: brightness(0.4);
+    }
+
+    #second {
+        height: 40vh;
+    }
+
+    .circle {
+        height: 32.5vh;
+        padding: 0;
+    }
+
+    .howCircle {
+        width: 90%;
+        max-height: 25vh;
+        max-width: 25vh;
+        margin-top: 2.5vh;
+    }
+
+    .howItWorks {
+        height: 7.5vh;
+    }
+
+    .chevron {
+        height: 5vh;
+        padding-top: 2vh;
+    }
+
+    #third {
+        height: 100vh;
+        background: url("../img/jpg/main_iphone_1280x600.jpg") no-repeat center;
+        background-size: cover;
+    }
+
+    #profTit {
+        height: 95vh;
+        display: flex;
+        flex-direction:column;
+        justify-content:center;
+    }
+
+    .logoTit {
+        width: 200px;
+        height: 200px;
+        margin-bottom: 10vh;
+    }
+
+    .white {
+        color: white;
+        font-size: 1.5em;
+    }
+
+    .carre {
+        margin-top: 30vh;
+    }
+
+    .square_black_text {
+        font-weight: bold;
+        font-size: 1.5em;
+        margin-top: 8vh;
+    }
+
+
+    .tit {
+        width: 50vw;
+        text-align: center;
+        margin-top: 5vh;
+    }
+
+    #fourth, .fourth {
+        height: 47.5vh;
+    }
+
+    .oiseau_fruit {
+        background: url("../img/jpg/oiseau_fruit_640x400.jpg") no-repeat center;
+        background-size: cover;
+
+    }
+
+    #fourth_carre3 {
+        background: url("../img/jpg/pigeon_640x400.jpg") no-repeat center;
+        background-size: cover;
+
+    }
+
+    #fifth, .fifth {
+        height: 47.5vh;
+    }
+
+    #sixth {
+        height: 90vh;
+        background: url("../img/jpg/homme_jumelle_1280x800.jpg") no-repeat center;
+        background-size: cover;
+    }
+
+    #binoculars {
+        height: 85vh;
+
+    }
+
+    #seventh {
+        height: 10vh;
+        background-color: #ffe44c;
+    }
+
+    #facebook {
+        height: 10vh;
+    }
+
+    .facebook {
+        height: 7vh;
+        margin-top: 1.5vh;
+    }
+
+    .firstTo {
+        margin-top: 30px;
+    }
+    input {
+        height: 50px;
+
+    }
+    input.timer {
+        background-color: transparent;
+
+    }
+    input.timer:hover {
+        background-color: #ffe44c;
+        color: black;
+    }
+
+    #disponibilite {
+        position: absolute;
+        top:10vh;
+    }
+
+    .timer {
+        display: inline-block;
+        border: 1px solid;
+        border-color: #ffe44c;
+        color:#ffe44c;
+        width: 130px;
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+        margin-left: 30px;
+        margin-top: 30px;
+    }
+}
