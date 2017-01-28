@@ -45,7 +45,10 @@
     h2{
         font-size: 1em;
     }
-
+    .titButton {
+        font-size: 1em;
+        padding: 5px;
+    }
     #first .white {
         color: white;
         font-size: 2em;
@@ -277,6 +280,11 @@
     .white {
         color: white;
         font-size: 3em;
+    }
+
+    .white.carre {
+        color: white;
+        font-size: 2em;
     }
 
     .carre {
