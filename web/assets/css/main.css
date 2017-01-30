@@ -1,0 +1,79 @@
+h1,
+h2,
+h3,
+p,
+a,
+bouton_header,
+bouton_footer,
+bouton_facebook,
+bouton_google {
+    font-family: Helvetica;
+}
+
+h1,
+h2,
+h3,
+p,
+a {
+    color: rgb(35,74,129);
+}
+
+.navbar {
+    height: 84px;
+    padding-top: 10px;
+}
+
+.navbar,
+.footer1 > .container {
+    background-color: rgb(22,33,53);
+}
+.container {
+    display: block;
+}
+.input-group-btn {
+    display: inline;
+}
+
+.btn {
+    margin-top: 8px;
+    padding-top: 6px;
+    background-color: rgb(22,33,53);
+    border-color: #ccc;
+}
+
+.btn-default {
+    margin-top: 0px;
+}
+
+#search {
+    background-color: #e6e6e6;
+}
+
+.footer1 {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 210px;
+    background-color: rgb(22, 33, 53);
+    margin: 0;
+}
+
+.footer1 > .container {
+    margin-top: 50px;
+}
+
+.footer-bottom > .container {
+    padding: 0;
+}
+
+#social {
+    background-color: rgb(22,33,53);
+}
+.copyright {
+    color: white;
+}
+
+.info-spirit {
+    text-align: right;
+    color: white;
+}
