@@ -23,10 +23,23 @@ a {
     padding-top: 10px;
 }
 
+.navbar-collapse {
+    background-color: rgb(22,33,53);
+}
+
+ul > .nav {
+    display: inline-block;
+}
+
+.navbar-right {
+    align-items: flex-end;
+}
+
 .navbar,
 .footer1 > .container {
     background-color: rgb(22,33,53);
 }
+
 .container {
     display: block;
 }
@@ -76,4 +89,13 @@ a {
 .info-spirit {
     text-align: right;
     color: white;
+}
+
+@media(max-width: 769px) {
+    .form-group > input {
+        width: 50%;
+    }
+    .form-control {
+        display: inline;
+    }
 }
