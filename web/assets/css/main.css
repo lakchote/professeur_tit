@@ -98,4 +98,8 @@ ul > .nav {
     .form-control {
         display: inline;
     }
+
+    .navbar-form {
+        border: none;
+    }
 }
