@@ -103,3 +103,21 @@ ul > .nav {
         border: none;
     }
 }
+
+@media(min-width: 768px) and (max-width: 1175px) {
+
+    .navbar-right {
+        float: left!important;
+        align-items: flex-start;
+
+    }
+
+    .navbar-form {
+        padding-left: 0px;
+    }
+
+    .container-fluid {
+        width: 100%;
+        padding: 0;
+    }
+}
