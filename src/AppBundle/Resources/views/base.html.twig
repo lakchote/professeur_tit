@@ -6,11 +6,11 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    { % block stylesheet % }
+    {% block stylesheet %}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="https://opensource.keycdn.com/fontawesome/4.7.0/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style2.css">
-    { % endblock % }
+    <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
+    {% endblock %}
 
     <title>{% block title %}{% endblock %}</title>
 </head>
