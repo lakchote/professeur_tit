@@ -8,17 +8,10 @@ HEADER
     background-color: rgb(22,33,53);
 }
 
-h1,
-h2,
-h3,
-p,
-a {
-    color: rgb(35,74,129);
-    font-family: Helvetica;
-}
-
-form {
-    display: inline-block;
+body {
+    background-color: #FFFADB;
+    color:#234A81;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .nav {
@@ -43,9 +36,7 @@ li > a {
 }
 
 #btn-menu, #btn-menu-collapsed {
-    font-family: Helvetica;
     font-size: 10pt;
-    font-weight: regular;
     text-align: center;
     color: rgb(255,250,219);
     background: transparent;
@@ -69,6 +60,7 @@ li > a {
     width: 70px;
 }
 
+/*
 .form-control {
     width: 208px;
     font-style: italic;
@@ -77,6 +69,7 @@ li > a {
     background-color : RGB(255,255,255);
     box-shadow: 0px 0px 18px 15px rgba(35,74,129,0.15) inset;
 }
+*/
 
 #collapse-1 {
     background-color: rgb(22,33,53);
@@ -104,11 +97,17 @@ FOOTER
 
 }
 
-
 .navbar-fixed-bottom li > a {
     border: 0;
-    color: #777;
-    font-family: Helvetica;
+}
+
+.navbar-fixed-bottom li > a, .navbar-default .navbar-nav>li>a {
+    color: #FFFADB;
+}
+
+.navbar-fixed-bottom li > a:hover, .navbar-default .navbar-nav>li>a:hover {
+    color:#fff;
+    text-decoration: none;
 }
 
 .footer-bottom {
@@ -148,21 +147,16 @@ MEDIA QUERIES
 */
 
 @media(min-width: 767px) {
+
     .div {
         display: inline-block;
     }
+
 
     .container-fluid {
         width: 100%;
         font-size: 12px;
     }
-
-    .form-control {
-        font-size: 12px;
-        height: 28px;
-        padding-bottom: 0;
-    }
-
 
     .nav {
         display: flex;
