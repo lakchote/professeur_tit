@@ -16,9 +16,9 @@ a {
     font-family: Helvetica;
 }
 
-form {
+/*form {
     display: inline-block;
-}
+}*/
 
 .nav {
     display: inline;
@@ -65,21 +65,11 @@ MEDIA QUERIES
 */
 
 @media(min-width: 767px) {
-    div {
-        display: inline-block;
-    }
 
     .container-fluid {
         width: 100%;
         font-size: 12px;
     }
-
-    .form-control {
-        font-size: 12px;
-        height: 28px;
-        padding-bottom: 0;
-    }
-
 
     .nav {
         display: flex;

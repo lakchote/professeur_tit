@@ -1,13 +1,207 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    {% block stylesheet %}
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link href="https://opensource.keycdn.com/fontawesome/4.7.0/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
+        {% if not app.user %}
+            <link rel="stylesheet" href="{{ asset('assets/css/modalLogin.css') }}">
+        {% endif %}
+    {% endblock %}
+
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+
+<!-- navbar mobile -->
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapse-1"
+                    aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">
+                <img src="" alt="TIT">
+            </a>
+        </div>
+
+        <!-- navbar -->
+        <div class="collapse navbar-collapse" id="collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="#">Débuter l'Ornithologie</a></li>
+                <li><a href="">Observations</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <form class="navbar-form" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Rechercher">
+                    </div>
+                    <button type="submit" class="btn-default">
+                        <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                </form>
+                {% if app.user %}
+                    <li><a href="{{ path('logout') }}">Déconnexion</a></li>
+                {% else %}
+                    <li><a href="" id="login-load-desktop" class="hide modal-desktop" data-toggle="modal" data-target="#modal-login-desktop">Inscription / Identification</a></li>
+                    <li><a href="" id="login-load-mobile" class="hide modal-mobile" data-toggle="modal" data-target="#modal-login-mobile">Inscription / Identification</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<!-- footer -->
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapse-2"
+                aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="collapse-1">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                <ul class="list-unstyled clear-margins">
+                    <li class="widget-container widget_nav_menu">
+                    <li><a href="#"><i class="fa fa-angle-double-right"></i> Débuter l'ornithologie</a></li>
+                    <li><a href="#"><i class="fa fa-angle-double-right"></i> Plan du site</a></li>
+                    <li><a href="#"><i class="fa fa-angle-double-right"></i> Contact</a></li>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                <ul class="list-unstyled clear-margins">
+                    <li class="widget-container widget_nav_menu">
+                    <li><a href="#"><i class="fa fa-angle-double-right"></i> Observations</a></li>
+                    <li><a href="#"><i class="fa fa-angle-double-right"></i> Carte interactive</a></li>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                <ul class="list-unstyled clear-margins">
+                    <li class="widget-container widget_nav_menu">
+                    <li><a href="https://www.facebook.com/..."><i class="fa fa-facebook-square fa-2x" id="social"></i>
+                            Facebook</a></li>
+                    <li><a href="#"><i class="fa fa-angle-double-right"></i> Mentions legales</a></li>
+                    <li><a href="#"><i class="fa fa-angle-double-right"></i> Copyright</a></li>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                <a class="navbar-brand" href="#">
+                    <img src="" alt="TIT">
+                </a>  <!-- définit la source du logo et vérifier l'alt--><!-- logo -->
+            </div>
+
+            <div class="footer-bottom">
+                <div class="container">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <div class="copyright">
+                            @ 2017, OpenSpirit, All rights reserved
+                        </div>
+                    </div>
+
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <div class="info-spirit">
+                            OpenSpirit | Agence digitale media
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</nav>
+
+<!-- START Modal Desktop -->
+<div class="modal fade" id="modal-login-desktop" tabindex="-1" role="dialog" aria-labelled-by="#modal-label-desktop">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-4">
+                            <h4 class="modal-title text-bold" id="modal-label-desktop">Vous avez déjà un compte</h4>
+                        </div>
+                        <div class="col-md-5 col-md-offset-3">
+                            <h4 class="modal-title text-bold">Vous n'avez pas encore de
+                                compte<span data-dismiss="modal" aria-label="close" class="pull-right"
+                                            style="cursor:pointer;"><span aria-hidden="true">&times;</span></span></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div id="modal-load-desktop"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- START Modal Mobile -->
+<div class="modal fade" id="modal-login-mobile" tabindex="-1" role="dialog" aria-labelled-by="#modal-label-mobile">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title text-center text-bold" id="modal-label-mobile">Vous avez déjà un compte</h4>
+            </div>
+            <div class="modal-body">
+                <div id="modal-load-mobile"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /END Modal Mobile -->
+
+{% block javascript %}
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+        integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+        crossorigin="anonymous"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+<script type="text/javascript">
+    $(function () {
+        $('#login-load-desktop').click(function () {
+            $.ajax({
+                url: "{{ path('modal_form_desktop') }}",
+                method: "GET"
+            }).done(function (msg) {
+                $('#modal-load-desktop').html(msg);
+            });
+        });
+        $('#login-load-mobile').click(function () {
+            $.ajax({
+                url: "{{ path('modal_form_mobile') }}",
+                method: "GET"
+            }).done(function (msg) {
+                $('#modal-load-mobile').html(msg);
+            });
+        });
+    }());
+</script>
+{% endblock %}
+</body>
 </html>

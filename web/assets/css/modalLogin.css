@@ -1,0 +1,147 @@
+.text-bold {
+    font-weight: bold;
+}
+
+.modal-lg {
+    width:1080px;
+}
+
+.label-position {
+    line-height: 35px;
+}
+
+.vertical-align-top {
+    vertical-align: top;
+}
+
+#button-close {
+    display:inline-block;
+    font-size:25px;
+}
+
+#password-forgotten-desktop {
+    display:inline-block;
+    margin-bottom:5px;
+    text-decoration: underline;
+}
+
+#password-forgotten-mobile {
+    font-weight:bold;
+    font-size:0.9em;
+    text-decoration:underline;
+}
+
+#checkbox-remember {
+    display:block;
+    position:relative;
+    top:-15px;
+}
+
+#checkbox-remember-text {
+    display:inline-block;
+    position:absolute;
+    top:-15px;
+    left:10%;
+}
+
+.google-button, .facebook-button {
+    height:46px;
+    position:relative;
+    color:#fff;
+}
+
+.google-button {
+    background-color: #d34836;
+}
+
+.facebook-button {
+    background-color: #3b5998;
+}
+
+.social-logo {
+    height:35px;
+    position:absolute;
+    left:5px;
+    top:0;
+    bottom:0;
+    margin:auto;
+}
+
+.register-text-align {
+    vertical-align: top;
+}
+.modal-body a {
+    color:#fff;
+    text-decoration: none;
+}
+
+.facebook-button a:hover {
+    color:#00b3ee;
+}
+
+.google-button a:hover {
+    color:#000;
+}
+
+/*** MOBILE ***/
+@media screen and (max-width:640px) {
+    .input-lg, .btn {
+        height: 40px;
+    }
+    .modal-mobile {
+        display:block !important;
+    }
+}
+
+/*** IPHONE 5 ***/
+@media screen and (max-width: 568px) {
+    .social-logo {
+        height:30px;
+        left:0;
+    }
+    .social-text {
+        margin-left: 8%;
+    }
+}
+
+/*** DESKTOP ***/
+@media screen and (min-width:640px) {
+    .modal-desktop {
+        display:block !important;
+    }
+}
+
+/*** IPAD ***/
+@media screen and (min-width:768px) and (max-width:768px) and (min-height:1024px) and (max-width:1024px) {
+
+    .modal-desktop {
+        display:none !important;
+    }
+    .modal-mobile {
+        display:block !important;
+    }
+
+    #checkbox-remember, #checkbox-remember-text {
+        top:-10px;
+    }
+    #checkbox-remember-text {
+        left:5.5%;
+    }
+}
+
+/*** IPAD Pro ***/
+@media screen and (min-width:1024px) and (max-width:1024px) and (min-height:1366px) and (max-width:1366px) {
+
+    .modal-desktop {
+        display:none !important;
+    }
+    .modal-mobile {
+        display:block !important;
+    }
+    #checkbox-remember, #checkbox-remember-text {
+        top:-10px;
+    }
+    #checkbox-remember-text {
+        left:5.5%;
+    }
+}

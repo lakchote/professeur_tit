@@ -27,7 +27,10 @@
         "symfony/polyfill-apcu": "^1.0",
         "sensio/distribution-bundle": "^5.0",
         "sensio/framework-extra-bundle": "^3.0.2",
-        "incenteev/composer-parameter-handler": "^2.0"
+        "incenteev/composer-parameter-handler": "^2.0",
+        "doctrine/doctrine-migrations-bundle": "^1.2",
+        "league/oauth2-facebook": "^2.0",
+        "league/oauth2-google": "^2.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
