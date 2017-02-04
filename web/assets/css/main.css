@@ -3,6 +3,7 @@ HEADER
 */
 
 .container-fluid {
+    height: 84px;
     width: 100%;
     background-color: rgb(22,33,53);
 }
@@ -30,15 +31,69 @@ form {
     display: block;
 }
 
+.btn {
+    font-size: 10pt;
+}
+
 li > a {
+    height: 40px;
     border: 0.1em solid;
     border-color: white;
     border-radius: 10px;
 }
 
+#btn-menu {
+    font-family: Helvetica;
+    font-size: 10pt;
+    font-weight: regular;
+    text-align: center;
+    color: rgb(255,250,219);
+    background: transparent;
+    margin-top: 20px;
+    margin-left: 40px;
+}
+
+#btn-menu:hover {
+    color: rgb(255,255,255);
+    background-color: rgb(35,74,129);
+    box-shadow: 0px 0px 18px 15px rgba(255,250,219,0.15) inset;
+}
+
+#btn-submit {
+    font-size: 10px;
+    margin-top: 20px;
+}
+
+.navbar-brand > img {
+    height: 70px;
+    width: 70px;
+}
+
+.form-control {
+    width: 208px;
+    font-style: italic;
+    text-align: left;
+    text-color : RGB(189,201,218);
+    background-color : RGB(255,255,255);
+    box-shadow: 0px 0px 18px 15px rgba(35,74,129,0.15) inset;
+
+
+}
+
 /*
 FOOTER
 */
+#footer-col {
+    height: 150px;
+}
+
+#footer-menu-article,
+#social {
+    margin-top: 20px;
+
+}
+
+
 .navbar-fixed-bottom li > a {
     border: 0;
     color: #777;
@@ -46,7 +101,11 @@ FOOTER
 }
 
 .footer-bottom {
-    width: auto;
+    width: 100%;
+}
+
+#footer-container {
+    height: 210px;
 }
 
 .copyright,
@@ -59,13 +118,26 @@ FOOTER
 }
 
 
+#footer-img {
+    height: 155px;
+    width: 110px;
+}
+
+#info-spirit-footer-bottom {
+    text-align: right;
+}
+
+.container {
+    width: 100%;
+}
+
 
 /*
 MEDIA QUERIES
 */
 
 @media(min-width: 767px) {
-    div {
+    .div {
         display: inline-block;
     }
 
@@ -88,7 +160,7 @@ MEDIA QUERIES
 
     .navbar-right {
         display: flex;
-        width: 380px;
+        width: 450px;
         margin-right: 0;
         text-align: right;
     }
@@ -103,10 +175,10 @@ MEDIA QUERIES
         display: inline-flex;
     }
 
-    .navbar-form {
+    .form-inline { /* .navbar-form */
         display: block;
         padding-left: 0;
-        margin-top: 10px;
+        margin-top: 20px;
     }
 
     .nav > li > a {
@@ -120,8 +192,8 @@ MEDIA QUERIES
     }
 }
 
-@media(max-width: 767px) {
-    .navbar-form {
+@media(max-width: 950px) {
+    .form-inline { /* .navbar-form */
         display: none;
     }
 
