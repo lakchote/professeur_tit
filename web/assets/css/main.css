@@ -93,6 +93,11 @@ FOOTER
     height: 150px;
 }
 
+#footer-col-1,
+#footer-col-2 {
+    margin-top: 20px;
+}
+
 #footer-menu-article,
 #social {
     margin-top: 20px;
@@ -272,4 +277,12 @@ MEDIA QUERIES
         border-radius: 0;
     }
     */
+}
+
+@media (max-width: 625px) {
+    a,
+    .copyright,
+    .info-spirit{
+        font-size: 10px;
+    }
 }
