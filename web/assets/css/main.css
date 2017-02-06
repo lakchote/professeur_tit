@@ -42,7 +42,7 @@ li > a {
     border-radius: 10px;
 }
 
-#btn-menu {
+#btn-menu, #btn-menu-collapsed {
     font-family: Helvetica;
     font-size: 10pt;
     font-weight: regular;
@@ -76,8 +76,14 @@ li > a {
     text-color : RGB(189,201,218);
     background-color : RGB(255,255,255);
     box-shadow: 0px 0px 18px 15px rgba(35,74,129,0.15) inset;
+}
 
+#collapse-1 {
+    background-color: rgb(22,33,53);
+}
 
+#btn-menu-collapsed {
+    display: none;
 }
 
 /*
@@ -228,6 +234,25 @@ MEDIA QUERIES
     }
     .collapse.in{
         display:block !important;
+    }
+
+    #btn-menu {
+        margin: 0;
+        border: 0;
+    }
+
+    .navbar-right {
+        display: none;
+    }
+
+    #btn-menu-collapsed {
+        display: inline-block;
+        margin: 0;
+        border: 0;
+    }
+
+    #btn-menu:nth-child(1) {
+        border-top: 10px;
     }
 }
 
