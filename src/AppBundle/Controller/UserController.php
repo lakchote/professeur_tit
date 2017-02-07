@@ -26,8 +26,8 @@ class UserController extends Controller
             {
                 $user = $this->get('app.register_user')->registerUser($form);
                 ($form['remember_me']->getData() == null) ?
-                $response = $this->get('security.authentication.guard_handler')->authenticateUserAndHandleSuccess($user, $request, $this->get('app.security.login_form_authenticator'), 'main') :
-                $response = $this->get('app.register_user')->rememberMe($user, $request);
+                    $response = $this->get('security.authentication.guard_handler')->authenticateUserAndHandleSuccess($user, $request, $this->get('app.security.login_form_authenticator'), 'main') :
+                    $response = $this->get('app.register_user')->rememberMe($user, $request);
                 return $response;
             }
             else

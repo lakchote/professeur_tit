@@ -12,8 +12,27 @@ body {
     background-color: #FFFADB;
     color:#234A81;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+<<<<<<< HEAD
 }
 
+=======
+}
+
+/*
+h1,
+h2,
+h3,
+p,
+a {
+    color: rgb(35,74,129);
+    font-family: Helvetica;
+}
+
+form {
+    display: inline-block;
+}*/
+
+>>>>>>> Closes #9, Closes #10
 .nav {
     display: inline;
     width: 100%;

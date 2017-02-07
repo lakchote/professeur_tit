@@ -200,6 +200,7 @@ class User implements UserInterface
         $this->reset_password = $reset_password;
     }
 
+
      public function getObservations()
      {
          return $this->observations;
