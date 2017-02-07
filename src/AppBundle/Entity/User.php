@@ -58,6 +58,11 @@ class User implements UserInterface
      */
     private $roles = [];
 
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $reset_password;
+
     /*
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Observation", mappedBy="user", cascade={"persist", "remove"})
@@ -73,8 +78,8 @@ class User implements UserInterface
     public function getRoles()
     {
         $roles = $this->roles;
-        if(!(in_array('ROLE_VISITEUR', $roles)) && (in_array('ROLE_FROZEN', $roles))) {
-            $roles[] = 'ROLE_VISITEUR';
+        if(!in_array('ROLE_FROZEN', $roles)) {
+            $roles[] = 'ROLE_OBSERVATEUR';
         }
         return $roles;
     }
@@ -176,8 +181,26 @@ class User implements UserInterface
      */
     public function setRoles($roles)
     {
-        $this->roles = $roles;
+        $this->roles[] = $roles;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getResetPassword()
+    {
+        return $this->reset_password;
+    }
+
+    /**
+     * @param mixed $reset_password
+     */
+    public function setResetPassword($reset_password)
+    {
+        $this->reset_password = $reset_password;
+    }
+
+
 
    /*
     public function getObservations()

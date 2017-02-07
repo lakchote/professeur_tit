@@ -30,3 +30,6 @@ security:
             logout:
                 path: /logout
             switch_user: ~
+            remember_me:
+                secret: "%secret%"
+                lifetime: 604800

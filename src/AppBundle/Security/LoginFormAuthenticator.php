@@ -74,10 +74,10 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
           $form = $this->container->get('form.factory')->create(ModalFormType::class,[
               '_username' => $username
           ]);
-          $this->media == 'Desktop' ? $response->setContent($this->container->get('templating')->render('modal/modal_desktop.html.twig', [
+          $this->media == 'Desktop' ? $response->setContent($this->container->get('templating')->render('modal/modal_login_desktop.html.twig', [
               'form' => $form->createView(),
               'error' => $error
-          ])) : $response->setContent($this->container->get('templating')->render('modal/modal_mobile.html.twig', [
+          ])) : $response->setContent($this->container->get('templating')->render('modal/modal_login_mobile.html.twig', [
               'form' => $form->createView(),
               'error' => $error
           ]));

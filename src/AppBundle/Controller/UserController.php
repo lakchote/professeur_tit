@@ -3,42 +3,18 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
+use AppBundle\Form\ForgottenPasswordFormType;
 use AppBundle\Form\ModalFormType;
+use AppBundle\Form\NewPasswordFormType;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Authentication\Token\RememberMeToken;
 
 class UserController extends Controller
 {
-
-    /**
-     * @Route("/modal/login/form-desktop", name="modal_form_desktop")
-     */
-    public function getModalDesktopAction(Request $request)
-    {
-        if($request->isXmlHttpRequest()) {
-            $modal= $this->createForm(ModalFormType::class);
-            return $this->render('modal/modal_desktop.html.twig', [
-                'form' => $modal->createView()
-            ]);
-        }
-        return new Response('Type de requête invalide');
-    }
-
-    /**
-     * @Route("/modal/login/form-mobile", name="modal_form_mobile")
-     */
-    public function getModalMobileAction(Request $request)
-    {
-        if($request->isXmlHttpRequest()) {
-            $modal = $this->createForm(ModalFormType::class);
-            return $this->render('modal/modal_mobile.html.twig', [
-                'form' => $modal->createView()
-            ]);
-        }
-        return new Response('Type de requête invalide');
-    }
 
     /**
      * @Route("/register", name="register")
@@ -48,19 +24,81 @@ class UserController extends Controller
         if($request->isXmlHttpRequest()) {
             $form = $this->createForm(ModalFormType::class);
             $form->handleRequest($request);
-            if ($form->isValid()) {
+            if ($form->isValid())
+            {
                 $user = $this->get('app.register_user')->registerUser($form);
+                //if($form['remember_me']->getData() == null) {
                 return $this->get('security.authentication.guard_handler')->authenticateUserAndHandleSuccess($user, $request, $this->get('app.security.login_form_authenticator'), 'main');
-            } else {
+                //}
+                /*$secretKey = $this->getParameter('secret');
+                $token = new RememberMeToken($user, 'main', $secretKey);
+                $this->get('security.authentication.guard_handler')->authenticateWithToken($token, $request);
+                return $this->get('security.authentication.guard_handler')->handleAuthenticationSuccess($token, $request, $this->get('app.security.login_form_authenticator'), 'main');*/
+            }
+            else
+            {
                 $response = new Response();
                 $response->setStatusCode(201);
                 $form['media']->getData() == 'Desktop' ?
-                    $response->setContent($this->get('templating')->render('modal/modal_desktop.html.twig', ['form' => $form->createView()]))
-                    : $response->setContent($this->get('templating')->render('modal/modal_mobile.html.twig', ['form' => $form->createView()]));
+                    $response->setContent($this->get('templating')->render('modal/modal_login_desktop.html.twig', ['form' => $form->createView()]))
+                    : $response->setContent($this->get('templating')->render('modal/modal_login_mobile.html.twig', ['form' => $form->createView()]));
                 return $response;
             }
         }
         return new Response('Type de requête invalide');
+    }
+
+    /**
+     * @Route("/reset/password", name="reset_password")
+     */
+    public function resetPasswordAction(Request $request)
+    {
+        if($request->isXmlHttpRequest()) {
+            $form = $this->createForm(ForgottenPasswordFormType::class);
+            $form->handleRequest($request);
+            if($form->isValid()) {
+                $this->get('app.send_mail')->sendResetPasswordMail($form['email']->getData());
+                return new Response('Un email vous a été envoyé à l\'adresse <strong>' . $form['email']->getData() . '</strong>.');
+            }
+            else {
+                $response = new Response();
+                $response->setStatusCode(201);
+                $response->setContent($this->get('templating')->render('modal/modal_reset_password.html.twig', [
+                    'form' => $form->createView()
+                ]));
+                return $response;
+            }
+        }
+        return new Response('Type de requête invalide');
+    }
+
+    /**
+     * @Route("/reset/new_password", name="reset_new_password_form")
+     */
+    public function resetNewPasswordAction(Request $request)
+    {
+        $form = $this->createForm(NewPasswordFormType::class);
+        $form->handleRequest($request);
+        if($form->isValid()) {
+            $data = $form->getData();
+            $em = $this->getDoctrine()->getManager();
+            $user = $em->getRepository('AppBundle:User')->findOneBy(['email' => $data['email']]);
+            if($user->getResetPassword() !== $data['resetPassword']) {
+                $error = new FormError('Identifiant incorrect.');
+                $form->get('resetPassword')->addError($error);
+                return $this->render('form/new_password.html.twig', [
+                    'form' => $form->createView()
+                ]);
+            }
+            $user->setPlainPassword($data['plainPassword']);
+            $user->setResetPassword(null);
+            $em->persist($user);
+            $em->flush();
+            return $this->get('security.authentication.guard_handler')->authenticateUserAndHandleSuccess($user, $request, $this->get('app.security.login_form_authenticator'), 'main');
+        }
+        return $this->render('form/new_password.html.twig', [
+            'form' => $form->createView()
+        ]);
     }
 
     /**

@@ -1,0 +1,207 @@
+{{ form_start(form, {
+    'attr' : { 'class' : 'form-horizontal'}
+}) }}
+<div class="row form-group">
+    <div class="col-md-12">
+        <div class="col-md-6">
+            <label for="connexion-email" class="col-md-4 control-label label-position">Votre
+                email</label>
+            <div class="col-md-8">
+                {{ form_widget(form._username, {
+                    'attr': {'class' : 'input-lg', 'placeholder' : 'Email'}
+                }) }}
+            </div>
+        </div>
+        <div class="col-md-6">
+            <label for="inscription-nom" class="col-md-4 control-label label-position">Votre
+                nom</label>
+            <div class="col-md-8">
+                {{ form_widget(form.register.nom, {
+                    'attr' : {'class': 'input-lg', 'placeholder' : 'Votre nom'}
+                }) }}
+                {{ form_errors(form.register.nom) }}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row form-group">
+    <div class="col-md-12">
+        <div class="col-md-6">
+            <label for="connexion-mdp" class="col-md-4 control-label" id="label-connexion-mdp">Votre
+                mot
+                de passe</label>
+            <div class="col-md-8">
+                {{ form_widget(form._password, {
+                    'attr' : {'class' : 'input-lg', 'placeholder' : 'Mot de passe'}
+                }) }}
+                {% if error is defined %}
+                    <div class="alert alert-danger">{{ error.messageKey|trans({}, 'security') }}</div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-md-6">
+            <label for="inscription-prenom" class="col-md-4 control-label label-position">Votre
+                prénom</label>
+            <div class="col-md-8">
+                {{ form_widget(form.register.prenom, {
+                    'attr' : {'class' : 'input-lg', 'placeholder' : 'Votre prénom'}
+                }) }}
+                {{ form_errors(form.register.prenom) }}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row form-group">
+    <div class="col-md-12">
+        <div class="col-md-6">
+            <div class="col-md-8 col-md-offset-4">
+                <a href="#" data-toggle="modal" data-target="#modal-password"
+                   id="password-forgotten" style="display:inline-block; margin-bottom:5px;text-decoration: underline;color:#000;">Mot de passe oublié ?</a><br/>
+                <div class="checkbox">
+                    <label for="remember_me_login">
+                    <input type="checkbox" id="remember_me_login" name="_remember_me"> Se souvenir de moi
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <label for="inscription-email" class="col-md-4 control-label label-position">Votre
+                email</label>
+            <div class="col-md-8">
+                {{ form_widget(form.register.email, {
+                    'attr' : {'class' : 'input-lg', 'placeholder' : 'Votre email'}
+                }) }}
+                {{ form_errors(form.register.email) }}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row form-group">
+    <div class="col-md-12">
+        <div class="col-md-6">
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-primary btn-lg pull-right" id="btn-login" formnovalidate>Se
+                    connecter
+                </button>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <label for="inscription-mdp" id="label-inscription-mdp" class="col-md-4 control-label">Votre
+                mot de passe</label>
+            <div class="col-md-8">
+                {{ form_widget(form.register.plainPassword.first, {
+                    'attr' : {'class' : 'input-lg', 'placeholder' : 'Votre mot de passe'}
+                }) }}
+                {{ form_errors(form.register.plainPassword.first) }}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row form-group">
+    <div class="col-md-12">
+        <div class="col-md-6">
+            <div class="col-md-8 col-md-offset-4">
+                <button type="button" class="btn btn-lg pull-right form-control google-button">
+                    <img src="{{ asset('assets/img/google-plus-icon.png') }}" class="social-logo"><a
+                            href="{{ path('connect_google') }}">Se
+                        connecter via
+                        Google</a>
+                </button>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <label for="inscription-repeat-mdp" class="col-md-4 control-label">Confirmation du
+                mot de passe</label>
+            <div class="col-md-8">
+                {{ form_widget(form.register.plainPassword.second, {
+                    'attr' : {'class' : 'input-lg', 'placeholder' : 'Confirmation'}
+                }) }}
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row form-group">
+    <div class="col-md-12">
+        <div class="col-md-6">
+            <div class="col-md-8 col-md-offset-4">
+                <button type="button" class="btn btn-lg center-block form-control facebook-button">
+                    <img src="{{ asset('assets/img/facebook-icon.png') }}"
+                         alt="Se connecter via Facebook" class="social-logo"><a href="{{ path('connect_facebook') }}">Se
+                        connecter via
+                        Facebook</a>
+                </button>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="col-md-8 col-md-offset-4">
+                {{ form_widget(form.naturaliste) }}
+                {{ form_widget(form.remember_me) }}
+                {{ form_widget(form.newsletter) }}
+                {{ form_widget(form.cgu) }}
+                {{ form_errors(form.cgu) }}
+                {{ form_widget(form.media, {
+                    'attr': {'value' : 'Desktop'}
+                }) }}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row form-group">
+    <div class="col-md-12">
+        <div class="col-md-6 col-md-offset-6">
+            <div class="col-md-8 col-md-offset-4">
+                <button type="submit" class="btn btn-primary btn-lg pull-right" id="btn-register" formnovalidate>
+                    Valider
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{{ form_end(form) }}
+<script type="text/javascript">
+    $(function () {
+        $('#btn-register').click(function (e) {
+            e.preventDefault();
+            var $formData = $('form').serializeArray();
+            $.ajax({
+                url: "{{ path('register') }}",
+                method: "POST",
+                data: $formData,
+                statusCode: {
+                    201: function (msg) {
+                        $('#modal-load-desktop').html(msg);
+                    },
+                    200: function () {
+                        document.location.href='{{ path('home') }}';
+                    }
+                }
+            });
+        });
+        $('#btn-login').click(function(e) {
+            e.preventDefault();
+            var $formData = $('form').serializeArray();
+            $.ajax({
+                url: "{{ path('login_desktop') }}",
+                method: "POST",
+                data: $formData,
+                statusCode: {
+                    201: function (msg) {
+                        $('#modal-load-desktop').html(msg);
+                    },
+                    200: function () {
+                        document.location.href='{{ app.request.server.get('http-referer')|default('/') }}';
+                    }
+                }
+            });
+        });
+        $('#password-forgotten').click(function () {
+            $.ajax({
+                url: "{{ path('modal_reset_password') }}",
+                method: "GET"
+            }).done(function (msg) {
+                $('#modal-reset-password').html(msg);
+            });
+        });
+    }());
+</script>

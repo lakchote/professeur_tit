@@ -42,3 +42,13 @@ services:
     app.register_user:
         class: AppBundle\Service\RegisterUser
         autowire: true
+
+    app.validator.username_exists:
+        class: AppBundle\Validator\Constraints\UsernameExistsValidator
+        autowire: true
+        tags:
+            - { name: validator.constraint_validator }
+
+    app.send_mail:
+        class: AppBundle\Service\SendMail
+        autowire: true

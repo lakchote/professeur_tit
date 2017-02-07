@@ -7,6 +7,13 @@ HEADER
     background-color: rgb(22,33,53);
 }
 
+body {
+    background-color: #FFFADB;
+    color:#234A81;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/*
 h1,
 h2,
 h3,
@@ -16,7 +23,7 @@ a {
     font-family: Helvetica;
 }
 
-/*form {
+form {
     display: inline-block;
 }*/
 
@@ -41,8 +48,15 @@ FOOTER
 */
 .navbar-fixed-bottom li > a {
     border: 0;
-    color: #777;
-    font-family: Helvetica;
+}
+
+.navbar-fixed-bottom li > a, .navbar-default .navbar-nav>li>a {
+    color: #FFFADB;
+}
+
+.navbar-fixed-bottom li > a:hover, .navbar-default .navbar-nav>li>a:hover {
+    color:#fff;
+    text-decoration: none;
 }
 
 .footer-bottom {

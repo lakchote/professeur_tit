@@ -10,25 +10,9 @@
     line-height: 35px;
 }
 
-.vertical-align-top {
-    vertical-align: top;
-}
-
 #button-close {
     display:inline-block;
     font-size:25px;
-}
-
-#password-forgotten-desktop {
-    display:inline-block;
-    margin-bottom:5px;
-    text-decoration: underline;
-}
-
-#password-forgotten-mobile {
-    font-weight:bold;
-    font-size:0.9em;
-    text-decoration:underline;
 }
 
 #checkbox-remember {
@@ -67,9 +51,6 @@
     margin:auto;
 }
 
-.register-text-align {
-    vertical-align: top;
-}
 .modal-body a {
     color:#fff;
     text-decoration: none;
