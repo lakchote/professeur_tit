@@ -57,8 +57,7 @@ class UserController extends Controller
             }
             else {
                 $response = new Response();
-                $response->setStatusCode(201);
-                $response->setContent($this->get('templating')->render('modal/modal_reset_password.html.twig', [
+                $response->setStatusCode(201)->setContent($this->get('templating')->render('modal/modal_reset_password.html.twig', [
                     'form' => $form->createView()
                 ]));
                 return $response;

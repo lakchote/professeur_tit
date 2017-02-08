@@ -23,7 +23,7 @@ class NewPasswordFormType extends AbstractType
             ])
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
-                'invalid_message' => 'Les deux mots de passe ne sont pas identiques',
+                'invalid_message' => 'Les deux mots de passe ne sont pas identiques.',
                 'constraints' => array(new NotBlank(), new CheckLength())
             ])
             ->add('resetPassword', TextType::class,[
