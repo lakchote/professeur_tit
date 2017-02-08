@@ -2,7 +2,6 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\User;
 use AppBundle\Form\ForgottenPasswordFormType;
 use AppBundle\Form\ModalFormType;
 use AppBundle\Form\NewPasswordFormType;
@@ -11,7 +10,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\Authentication\Token\RememberMeToken;
 
 class UserController extends Controller
 {
@@ -27,13 +25,10 @@ class UserController extends Controller
             if ($form->isValid())
             {
                 $user = $this->get('app.register_user')->registerUser($form);
-                //if($form['remember_me']->getData() == null) {
-                return $this->get('security.authentication.guard_handler')->authenticateUserAndHandleSuccess($user, $request, $this->get('app.security.login_form_authenticator'), 'main');
-                //}
-                /*$secretKey = $this->getParameter('secret');
-                $token = new RememberMeToken($user, 'main', $secretKey);
-                $this->get('security.authentication.guard_handler')->authenticateWithToken($token, $request);
-                return $this->get('security.authentication.guard_handler')->handleAuthenticationSuccess($token, $request, $this->get('app.security.login_form_authenticator'), 'main');*/
+                ($form['remember_me']->getData() == null) ?
+                $response = $this->get('security.authentication.guard_handler')->authenticateUserAndHandleSuccess($user, $request, $this->get('app.security.login_form_authenticator'), 'main') :
+                $response = $this->get('app.register_user')->rememberMe($user, $request);
+                return $response;
             }
             else
             {

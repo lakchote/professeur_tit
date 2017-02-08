@@ -2,12 +2,10 @@
 
 namespace AppBundle\Form;
 
-use AppBundle\Entity\User;
 use AppBundle\Validator\Constraints\UsernameExists;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 class ForgottenPasswordFormType extends AbstractType
@@ -19,10 +17,5 @@ class ForgottenPasswordFormType extends AbstractType
                 'label' => 'Votre e-mail',
                 'constraints' => array(new UsernameExists(), new NotBlank())
             ]);
-    }
-
-    public function configureOptions(OptionsResolver $resolver)
-    {
-
     }
 }
