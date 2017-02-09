@@ -2,7 +2,15 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\Auteur;
+use AppBundle\Entity\Famille;
+use AppBundle\Entity\Habitat;
+use AppBundle\Entity\Observation;
+use AppBundle\Entity\Ordre;
+use AppBundle\Entity\Rang;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Taxon
@@ -88,18 +96,21 @@ class Taxon
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Ordre", inversedBy="taxons", cascade={"persist"})
      * @ORM\JoinColumn(nullable=true)
+     * @Assert\Valid()
      */
     private $ordre;
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Famille", inversedBy="taxons", cascade={"persist"})
      * @ORM\JoinColumn(nullable=true)
+     * @Assert\Valid()
      */
     private $famille;
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Rang", inversedBy="taxons", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\Valid()
      */
     private $rang;
 
@@ -107,17 +118,21 @@ class Taxon
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Habitat", inversedBy="taxons", cascade={"persist"})
      * @ORM\JoinColumn(nullable=true)
+     * @Assert\Valid()
      */
     private $habitat;
 
     /**
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Auteur", cascade={"persist"})
      * @ORM\JoinColumn(nullable=true)
+     * @Assert\Valid()
      */
     private $auteurs;
 
     /**
+     * @var ArrayCollection;
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Observation", mappedBy="taxon", cascade={"persist", "remove"})
+     * @Assert\Valid()
      */
     private $observations;
 
@@ -126,7 +141,7 @@ class Taxon
      */
     public function __construct()
     {
-        $this->auteurs = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->auteurs = new ArrayCollection();
     }
 
     /**
@@ -358,11 +373,11 @@ class Taxon
     /**
      * Set ordre
      *
-     * @param \AppBundle\Entity\Ordre $ordre
+     * @param Ordre $ordre
      *
      * @return Taxon
      */
-    public function setOrdre(\AppBundle\Entity\Ordre $ordre = null)
+    public function setOrdre(Ordre $ordre = null)
     {
         $this->ordre = $ordre;
     
@@ -372,7 +387,7 @@ class Taxon
     /**
      * Get ordre
      *
-     * @return \AppBundle\Entity\Ordre
+     * @return Ordre
      */
     public function getOrdre()
     {
@@ -382,11 +397,11 @@ class Taxon
     /**
      * Set famille
      *
-     * @param \AppBundle\Entity\Famille $famille
+     * @param Famille $famille
      *
      * @return Taxon
      */
-    public function setFamille(\AppBundle\Entity\Famille $famille = null)
+    public function setFamille(Famille $famille = null)
     {
         $this->famille = $famille;
     
@@ -396,7 +411,7 @@ class Taxon
     /**
      * Get famille
      *
-     * @return \AppBundle\Entity\Famille
+     * @return Famille
      */
     public function getFamille()
     {
@@ -406,11 +421,11 @@ class Taxon
     /**
      * Set rang
      *
-     * @param \AppBundle\Entity\Rang $rang
+     * @param Rang $rang
      *
      * @return Taxon
      */
-    public function setRang(\AppBundle\Entity\Rang $rang)
+    public function setRang(Rang $rang)
     {
         $this->rang = $rang;
     
@@ -420,7 +435,7 @@ class Taxon
     /**
      * Get rang
      *
-     * @return \AppBundle\Entity\Rang
+     * @return Rang
      */
     public function getRang()
     {
@@ -430,11 +445,11 @@ class Taxon
     /**
      * Set habitat
      *
-     * @param \AppBundle\Entity\Habitat $habitat
+     * @param Habitat $habitat
      *
      * @return Taxon
      */
-    public function setHabitat(\AppBundle\Entity\Habitat $habitat = null)
+    public function setHabitat(Habitat $habitat = null)
     {
         $this->habitat = $habitat;
     
@@ -444,7 +459,7 @@ class Taxon
     /**
      * Get habitat
      *
-     * @return \AppBundle\Entity\Habitat
+     * @return Habitat
      */
     public function getHabitat()
     {
@@ -454,11 +469,11 @@ class Taxon
     /**
      * Add auteur
      *
-     * @param \AppBundle\Entity\Auteur $auteur
+     * @param Auteur $auteur
      *
      * @return Taxon
      */
-    public function addAuteur(\AppBundle\Entity\Auteur $auteur)
+    public function addAuteur(Auteur $auteur)
     {
         $this->auteurs[] = $auteur;
     
@@ -468,9 +483,9 @@ class Taxon
     /**
      * Remove auteur
      *
-     * @param \AppBundle\Entity\Auteur $auteur
+     * @param Auteur $auteur
      */
-    public function removeAuteur(\AppBundle\Entity\Auteur $auteur)
+    public function removeAuteur(Auteur $auteur)
     {
         $this->auteurs->removeElement($auteur);
     }
@@ -488,11 +503,11 @@ class Taxon
     /**
      * Add observation
      *
-     * @param \AppBundle\Entity\Observation $observation
+     * @param Observation $observation
      *
      * @return Taxon
      */
-    public function addObservation(\AppBundle\Entity\Observation $observation)
+    public function addObservation(Observation $observation)
     {
         $this->observations[] = $observation;
     
@@ -502,9 +517,9 @@ class Taxon
     /**
      * Remove observation
      *
-     * @param \AppBundle\Entity\Observation $observation
+     * @param Observation $observation
      */
-    public function removeObservation(\AppBundle\Entity\Observation $observation)
+    public function removeObservation(Observation $observation)
     {
         $this->observations->removeElement($observation);
     }

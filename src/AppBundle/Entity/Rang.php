@@ -2,7 +2,10 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\Taxon;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Rang
@@ -25,11 +28,17 @@ class Rang
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, unique=true)
+     * @Assert\Length(
+     *     min = 2,
+     *     minMessage="rang.error.minName"
+     * )
      */
     private $name;
 
     /**
+     * @var ArrayCollection;
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Taxon", mappedBy="rang", cascade={"persist", "remove"})
+     * @Assert\Valid()
      */
     private $taxons;
 
@@ -39,7 +48,7 @@ class Rang
      */
     public function __construct()
     {
-        $this->taxons = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->taxons = new ArrayCollection();
     }
 
     /**
@@ -79,11 +88,11 @@ class Rang
     /**
      * Add taxon
      *
-     * @param \AppBundle\Entity\Taxon $taxon
+     * @param Taxon $taxon
      *
      * @return Rang
      */
-    public function addTaxon(\AppBundle\Entity\Taxon $taxon)
+    public function addTaxon(Taxon $taxon)
     {
         $this->taxons[] = $taxon;
     
@@ -93,9 +102,9 @@ class Rang
     /**
      * Remove taxon
      *
-     * @param \AppBundle\Entity\Taxon $taxon
+     * @param Taxon $taxon
      */
-    public function removeTaxon(\AppBundle\Entity\Taxon $taxon)
+    public function removeTaxon(Taxon $taxon)
     {
         $this->taxons->removeElement($taxon);
     }
