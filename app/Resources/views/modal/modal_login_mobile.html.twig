@@ -1,0 +1,175 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title text-center text-bold" id="modal-label-mobile">Vous avez déjà un compte</h4>
+</div>
+<div class="modal-body">
+{{ form_start(form, {
+    'attr' : { 'class' : 'form-horizontal'}
+}) }}
+<div class="row form-group">
+    <div class="col-xs-12">
+        {{ form_widget(form._username, {
+            'attr': {'class' : 'input-lg', 'placeholder' : 'Email'}
+        }) }}
+    </div>
+</div>
+<div class="row form-group">
+    <div class="col-xs-12">
+        {{ form_widget(form._password, {
+            'attr' : {'class' : 'input-lg', 'placeholder' : 'Mot de passe'}
+        }) }}
+        {% if error is defined %}
+            <div class="alert alert-danger">{{ error.messageKey|trans({}, 'security') }}</div>
+        {% endif %}
+    </div>
+</div>
+<div class="row form-group">
+    <div class="col-xs-7">
+        <a href="#" data-toggle="modal" data-target="#modal-password"
+           id="password-forgotten" style="color:#000;font-weight:bold; font-size:0.9em;text-decoration:underline;">Mot de passe oublié ?</a>
+    </div>
+    <div class="col-xs-5">
+        <button type="submit" class="btn btn-primary btn-md" id="btn-login">Se connecter</button>
+    </div>
+    <div class="col-xs-12">
+        <div class="checkbox">
+            <label for="remember_me_login">
+                <input type="checkbox" id="remember_me_login" name="_remember_me"> Se souvenir de moi
+            </label>
+        </div>
+    </div>
+</div>
+<div class="row form-group">
+    <div class="col-xs-12">
+        <button type="button" class="btn btn-lg form-control google-button">
+            <img src="{{ asset('assets/img/google-plus-icon.png') }}" class="social-logo"><a
+                    href="{{ path('connect_google') }}"><span class="social-text">Se connecter via Google</span></a>
+        </button>
+    </div>
+</div>
+<div class="row form-group">
+    <div class="col-xs-12">
+        <button type="button" class="btn btn-lg form-control facebook-button">
+            <img src="{{ asset('assets/img/facebook-icon.png') }}"
+                 alt="Se connecter via Facebook" class="social-logo"><a href="{{ path('connect_facebook') }}"><span class="social-text">Se connecter via Facebook</span></a>
+        </button>
+    </div>
+</div>
+<div class="row form-group">
+    <div class="col-xs-12">
+        <h4 class="text-center text-bold">Vous n'avez pas encore de compte</h4>
+    </div>
+</div>
+<div class="row form-group">
+    <div class="col-xs-12">
+        {{ form_widget(form.register.nom, {
+            'attr' : {'class': 'input-lg', 'placeholder' : 'Votre nom'}
+        }) }}
+        {{ form_errors(form.register.nom) }}
+    </div>
+</div>
+<div class="row form-group">
+    <div class="col-xs-12">
+        {{ form_widget(form.register.prenom, {
+            'attr' : {'class' : 'input-lg', 'placeholder' : 'Votre prénom'}
+        }) }}
+        {{ form_errors(form.register.prenom) }}
+    </div>
+</div>
+<div class="row form-group">
+    <div class="col-xs-12">
+        {{ form_widget(form.register.email, {
+            'attr' : {'class' : 'input-lg', 'placeholder' : 'Votre email'}
+        }) }}
+        {{ form_errors(form.register.email) }}
+    </div>
+</div>
+<div class="row form-group">
+    <div class="col-xs-12">
+        {{ form_widget(form.register.plainPassword.first, {
+            'attr' : {'class' : 'input-lg', 'placeholder' : 'Votre mot de passe'}
+        }) }}
+        {{ form_errors(form.register.plainPassword.first) }}
+    </div>
+</div>
+<div class="row form-group">
+    <div class="col-xs-12">
+        {{ form_widget(form.register.plainPassword.second, {
+            'attr' : {'class' : 'input-lg', 'placeholder' : 'Confirmation'}
+        }) }}
+    </div>
+</div>
+<div class="row form-group">
+    <div class="col-xs-12">
+        {{ form_widget(form.naturaliste) }}
+    </div>
+    <div class="col-xs-12">
+        {{ form_widget(form.remember_me) }}
+    </div>
+    <div class="col-xs-12">
+        {{ form_widget(form.newsletter) }}
+    </div>
+    <div class="col-xs-12">
+        {{ form_widget(form.cgu) }}
+        {{ form_errors(form.cgu) }}
+        {{ form_widget(form.media, {
+            'attr': {'value' : 'Mobile'}
+        }) }}
+    </div>
+</div>
+<div class="row form-group">
+    <div class="col-xs-12">
+        <button type="submit" class="btn btn-primary btn-lg center-block" style="line-height:20px;" id="btn-register" formnovalidate>
+            Valider
+        </button>
+    </div>
+</div>
+{{ form_end(form) }}
+<script type="text/javascript">
+    $(function () {
+        $('#btn-register').click(function (e) {
+            e.preventDefault();
+            var $formData = $('form').serializeArray();
+            $.ajax({
+                url: "{{ path('register') }}",
+                method: "POST",
+                data: $formData,
+                statusCode: {
+                    201: function (msg) {
+                        $('#modal-load-mobile').html(msg);
+                    },
+                    200: function () {
+                        document.location.href='{{ path('home') }}';
+                    }
+                }
+            })
+        });
+        $('#btn-login').click(function(e) {
+            e.preventDefault();
+            var $formData = $('form').serializeArray();
+            $.ajax({
+                url: "{{ path('login_mobile') }}",
+                method: "POST",
+                data: $formData,
+                statusCode: {
+                    201: function (msg) {
+                        $('#modal-load-mobile').html(msg);
+                    },
+                    200: function () {
+                        document.location.href='{{ app.request.server.get('http-referer')|default('/') }}';
+                    }
+                }
+            });
+        });
+        $('#password-forgotten').click(function () {
+            $.ajax({
+                url: "{{ path('modal_reset_password') }}",
+                method: "GET"
+            }).done(function (msg) {
+                $('#modal-reset-password').html(msg);
+            });
+        });
+    }());
+</script>
+</div>

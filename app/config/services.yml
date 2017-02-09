@@ -4,6 +4,51 @@ parameters:
 #    parameter_name: value
 
 services:
-#    service_name:
-#        class: AppBundle\Directory\ClassName
-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    app.doctrine.hash_password_listener:
+        class: AppBundle\Doctrine\HashPasswordListener
+        autowire: true
+        tags:
+            - { name: doctrine.event_subscriber }
+
+    app.facebook_provider:
+        class: League\OAuth2\Client\Provider\Facebook
+        arguments:
+            -
+                clientId: 272372656515794
+                clientSecret: afeb75fcb89b2ca310ae61ce209d2b12
+                graphApiVersion: v2.8
+                redirectUri: "http://localhost:8000/connect/facebook-check"
+
+    app.facebook_authenticator:
+        class: AppBundle\Security\FacebookAuthenticator
+        autowire: true
+
+    app.google_provider:
+        class: League\OAuth2\Client\Provider\Google
+        arguments:
+            -
+                clientId: 880361180991-6h7jq6pv0ott4idiv1nl3dr17o2d4c6v.apps.googleusercontent.com
+                clientSecret: 21iDvndTgckLgb70EN36-kvv
+                redirectUri: "http://localhost:8000/connect/google-check"
+
+    app.google_authenticator:
+        class: AppBundle\Security\GoogleAuthenticator
+        autowire: true
+
+    app.security.login_form_authenticator:
+        class: AppBundle\Security\LoginFormAuthenticator
+        autowire: true
+
+    app.register_user:
+        class: AppBundle\Service\RegisterUser
+        autowire: true
+
+    app.validator.username_exists:
+        class: AppBundle\Validator\Constraints\UsernameExistsValidator
+        autowire: true
+        tags:
+            - { name: validator.constraint_validator }
+
+    app.send_mail:
+        class: AppBundle\Service\SendMail
+        autowire: true
