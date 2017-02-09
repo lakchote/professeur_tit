@@ -69,7 +69,7 @@ li > a {
     width: 70px;
 }
 
-.form-control {
+#form-controller {
     width: 208px;
     font-style: italic;
     text-align: left;
@@ -157,7 +157,7 @@ MEDIA QUERIES
         font-size: 12px;
     }
 
-    .form-control {
+    #form-control {
         font-size: 12px;
         height: 28px;
         padding-bottom: 0;
