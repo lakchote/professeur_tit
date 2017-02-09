@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheet %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('assets/css/modalObs.css') }}">
+{% endblock %}
+
+
+{% block content %}
+    <a href="" id="obs-load-desktop" class="hide modal-desktop" data-toggle="modal" data-target="#modal-login-desktop">Test</a>
+{% endblock %}
+
+
+
+{% block javascript %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $(function () {
+            $('#obs-load-desktop').click(function () {
+                $.ajax({
+                    url: "{{ path('modal_add_observation') }}",
+                    method: "GET"
+                }).done(function (msg) {
+                    var titre = '';
+                    $('#modal-load-desktop').html(msg);
+                    $('#modal-title-desktop').html(titre);
+                });
+            });
+        }());
+    </script>
+{% endblock %}
