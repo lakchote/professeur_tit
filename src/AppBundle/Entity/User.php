@@ -10,11 +10,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 
 /**
-<<<<<<< HEAD
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
-=======
- * @ORM\Entity
->>>>>>> origin/user
  * @ORM\Table(name="user")
  * @UniqueEntity(fields={"email"}, message="Cet email est déjà utilisé !")
  */
@@ -67,20 +63,12 @@ class User implements UserInterface
      */
     private $reset_password;
 
-<<<<<<< HEAD
-=======
-    /*
->>>>>>> origin/user
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Observation", mappedBy="user", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=true)
      * @Assert\Valid()
-<<<<<<< HEAD
      */
     private $observations;
-=======
-    private $observations;*/
->>>>>>> origin/user
 
     public function __construct()
     {
@@ -212,8 +200,6 @@ class User implements UserInterface
         $this->reset_password = $reset_password;
     }
 
-
-<<<<<<< HEAD
      public function getObservations()
      {
          return $this->observations;
@@ -229,24 +215,4 @@ class User implements UserInterface
      {
          $this->observations->removeElement($observation);
      }
-=======
-
-   /*
-    public function getObservations()
-    {
-        return $this->observations;
-    }
-
-    public function addObservations(Observation $observation)
-    {
-        $this->observations->add($observation);
-        $observation->setUser($this);
-    }
-
-    public function removeObservation(Observation $observation)
-    {
-        $this->observations->removeElement($observation);
-    }
-   */
->>>>>>> origin/user
 }
