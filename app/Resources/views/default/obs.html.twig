@@ -1,6 +1,5 @@
 {% extends 'base.html.twig' %}
 
-
 {% block stylesheet %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('assets/css/modalObs.css') }}">
@@ -23,24 +22,21 @@
 {% endblock %}
 
 
+
 {% block javascript %}
     {{ parent() }}
-
     <script type="text/javascript">
         $(function () {
-
             $('#obs-load-desktop').click(function () {
                 $.ajax({
                     url: "{{ path('modal_add_observation') }}",
                     method: "GET"
                 }).done(function (msg) {
-                    if ($( window ).width() < '992') {
-                        $('#modal-load').removeClass('modal-lg');
-                    }
+                    var titre = '';
                     $('#modal-load-desktop').html(msg);
+                    $('#modal-title-desktop').html(titre);
                 });
             });
         }());
     </script>
-
 {% endblock %}
