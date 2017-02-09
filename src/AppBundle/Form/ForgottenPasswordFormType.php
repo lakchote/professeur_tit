@@ -3,17 +3,23 @@
 namespace AppBundle\Form;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 use AppBundle\Entity\User;
 >>>>>>> Closes #9, Closes #10
+=======
+>>>>>>> origin/user
 use AppBundle\Validator\Constraints\UsernameExists;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\FormBuilderInterface;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 use Symfony\Component\OptionsResolver\OptionsResolver;
 >>>>>>> Closes #9, Closes #10
+=======
+>>>>>>> origin/user
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 class ForgottenPasswordFormType extends AbstractType
@@ -27,6 +33,7 @@ class ForgottenPasswordFormType extends AbstractType
             ]);
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
     public function configureOptions(OptionsResolver $resolver)
@@ -34,4 +41,6 @@ class ForgottenPasswordFormType extends AbstractType
 
     }
 >>>>>>> Closes #9, Closes #10
+=======
+>>>>>>> origin/user
 }
