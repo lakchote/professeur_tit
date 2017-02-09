@@ -17,10 +17,6 @@ a {
     font-family: Helvetica;
 }
 
-form {
-    display: inline-block;
-}
-
 .nav {
     display: inline;
     width: 100%;
