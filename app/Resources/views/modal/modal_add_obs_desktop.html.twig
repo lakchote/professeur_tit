@@ -1,6 +1,6 @@
 <div class="modal-header">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-sm-12">
             <h4 class="modal-title text-bold" id="modal-label-desktop">Ajout d'une nouvelle observation
                 <span data-dismiss="modal" aria-label="close" class="pull-right" style="cursor:pointer;">
                         <span aria-hidden="true">
@@ -13,73 +13,95 @@
 </div>
 <div class="modal-body">
     <div class="row form-group">
-    <div class="col-md-12">
-        <div class="col-md-6">
-            <div class="col-md-12 modal-load-desktop__row">
-                <label for="" class="col-md-12 control-label modal-load-desktop__label">{{ "Qu'avez vous vu ?"|trans }}</label>
+    <div class="col-xs-12">
+        <div class="col-xs-12 col-md-6">
+            <div class="col-xs-12 modal-load-desktop__row">
+                <label for="" class="col-xs-12 control-label modal-load-desktop__label">{{ "Qu'avez vous vu ?"|trans }}</label>
                 <div class="row">
-                    <div class="col-md-2">
+                    <div class="col-xs-2">
                         <img src="{{ asset('assets/img/search_blue.png') }}" alt="{{ "Qu'avez vous vu ?"|trans }}" class="modal-load-desktop__icon">
                     </div>
-                    <div class="col-md-10">
+                    <div class="col-xs-10">
                         <input type="text" class="form-control modal-load-desktop__input" placeholder="{{ "Nom de l'espece"|trans }}"/>
                     </div>
                 </div>
             </div>
-            <div class="col-md-12 modal-load-desktop__row">
-                <label for="" class="col-md-12 control-label modal-load-desktop__label">{{ "Où l'avez vous vu ?"|trans }}</label>
+            <div class="col-xs-12 modal-load-desktop__row">
+                <label for="" class="col-xs-12 control-label modal-load-desktop__label">{{ "Où l'avez vous vu ?"|trans }}</label>
                 <div class="row">
-                    <div class="col-md-2">
+                    <div class="col-xs-2">
                         <img src="{{ asset('assets/img/where.png') }}" alt="{{ "Où l'avez vous vu ?"|trans }}" class="modal-load-desktop__icon">
                     </div>
-                    <div class="col-md-10">
-                        <input type="text" class="form-control modal-load-desktop__input" placeholder="{{ "Ville, coordonnées GPS"|trans }}"/>
+                    <div class="col-xs-10">
+                        <input id="pac-input" type="text" class="form-control modal-load-desktop__input" placeholder="{{ "Ville, coordonnées GPS"|trans }}"/>
                     </div>
                 </div>
             </div>
-            <div class="col-md-12 modal-load-desktop__row">
-                <label for="" class="col-md-12 control-label modal-load-desktop__label">{{ "Quand l'avez vous vu ?"|trans }}</label>
+            <div class="col-xs-12 modal-load-desktop__row">
+                <label for="" class="col-xs-12 control-label modal-load-desktop__label">{{ "Quand l'avez vous vu ?"|trans }}</label>
                 <div class="row">
-                    <div class="col-md-2">
+                    <div class="col-xs-2">
                         <img src="{{ asset('assets/img/when.png') }}" alt="{{ "Quand l'avez vous vu ?"|trans }}" class="modal-load-desktop__icon">
                     </div>
-                    <div class="col-md-10">
+                    <div class="col-xs-10">
                         <input type="text" class="form-control modal-load-desktop__input" placeholder="{{ "Date, heure"|trans }}"/>
                     </div>
                 </div>
             </div>
-            <div class="col-md-12 modal-load-desktop__row">
-                <label for="description" class="col-md-12 control-label modal-load-desktop__label">{{ "Ajoutez une description"|trans }}</label>
+            <div class="col-xs-12 modal-load-desktop__row">
+                <label for="description" class="col-xs-12 control-label modal-load-desktop__label">{{ "Ajoutez une description"|trans }}</label>
                 <div class="row">
-                    <div class="col-md-2">
+                    <div class="col-xs-2">
                         <img src="{{ asset('assets/img/logo-droite.png') }}" alt="{{ "Professeur TIT"|trans }}" class="modal-load-desktop__icon--logo">
                     </div>
-                    <div class="col-md-10  modal-load-desktop__bubble">
+                    <div class="col-xs-10  modal-load-desktop__bubble">
                         <p>{{ "Info du professeur TIT"|trans }}</p>
                     </div>
                 </div>
-                <div class="col-md-12">
-                    <textarea class="form-control modal-load-desktop__textarea" rows="5">{{ "Decrivez l'oiseau que vous avez observé"|trans }}</textarea>
+                <div class="col-xs-12">
+                    <textarea id="description" class="form-control modal-load-desktop__textarea" rows="5">{{ "Decrivez l'oiseau que vous avez observé"|trans }}</textarea>
                 </div>
             </div>
 
 
 
         </div>
-        <div class="col-md-6">
-            <div class="col-md-12 modal-load-desktop__row">
-                <label for="" class="col-md-12 control-label modal-load-desktop__label">{{ "Ajoutez une photo à votre observation"|trans }}</label>
-                    <div class="col-md-12  modal-load-desktop__image">
+        <div class="col-xs-12 col-md-6">
+            <div class="col-xs-12 modal-load-desktop__row">
+                <label for="" class="col-xs-12 control-label modal-load-desktop__label">{{ "Ajoutez une photo à votre observation"|trans }}</label>
+                    <div class="col-xs-12 modal-load-desktop__image">
                     </div>
                 <img src="{{ asset('assets/img/trash.png') }}" alt="{{ "Supprimer photo"|trans }}" class="modal-load-desktop__icon--small">
             </div>
-            <div class="col-md-6 modal-load-desktop__row">
-                <button type="button" class="btn btn-danger btn-block">{{ "Supprimer"|trans }}</button>
+            <div class="col-md-offset-6 col-xs-6 modal-load-desktop__row">
+                <button type="button" class="btn-block modal-load-desktop__btn modal-load-desktop__btn--red">{{ "Supprimer"|trans }}</button>
             </div>
-            <div class="col-md-6 modal-load-desktop__row">
-                <button type="button" class="btn btn-primary btn-block">{{ "Publier"|trans }}</button>
+            <div class="col-md-offset-6 col-xs-6 modal-load-desktop__row">
+                <button type="button" class="btn-block modal-load-desktop__btn modal-load-desktop__btn--blue">{{ "Publier"|trans }}</button>
             </div>
         </div>
     </div>
 </div>
 </div>
+
+<script>
+    function initMap() {
+        var input = (document.getElementById('pac-input'));
+        var options = {
+            componentRestrictions: {country: 'fr'}
+        };
+        var autocomplete = new google.maps.places.Autocomplete(input, options);
+
+        autocomplete.addListener('place_changed', function() {
+            var place = autocomplete.getPlace();
+            if (!place.geometry) {
+                window.alert("{{ "Selectionnez un lieu dans la liste SVP"|trans }}");
+                return;
+            }
+            console.log(place.geometry.location.lat());
+            console.log(place.geometry.location.lng());
+        });
+    }
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACO55kGEkd8YeNffAaErhE02wa_UigduQ&libraries=places&callback=initMap" async defer></script>
