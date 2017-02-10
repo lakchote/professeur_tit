@@ -2,6 +2,8 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\Taxon;
+use AppBundle\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -35,14 +37,14 @@ class Observation
     private $date;
 
     /**
-     * @var string
+     * @var float
      *
      * @ORM\Column(name="longitude", type="decimal", precision=10, scale=8)
      */
     private $longitude;
 
     /**
-     * @var string
+     * @var float
      *
      * @ORM\Column(name="latitude", type="decimal", precision=11, scale=8)
      */
@@ -61,6 +63,13 @@ class Observation
      * @ORM\Column(name="photo_path", type="string", length=255, nullable=true)
      */
     private $photoPath;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text", nullable=true)
+     */
+    private $description;
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="observations", cascade={"persist"})
@@ -207,11 +216,11 @@ class Observation
     /**
      * Set user
      *
-     * @param \AppBundle\Entity\User $user
+     * @param User $user
      *
      * @return Observation
      */
-    public function setUser(\AppBundle\Entity\User $user)
+    public function setUser(User $user)
     {
         $this->user = $user;
     
@@ -221,7 +230,7 @@ class Observation
     /**
      * Get user
      *
-     * @return \AppBundle\Entity\User
+     * @return User
      */
     public function getUser()
     {
@@ -231,11 +240,11 @@ class Observation
     /**
      * Set taxon
      *
-     * @param \AppBundle\Entity\Taxon $taxon
+     * @param Taxon $taxon
      *
      * @return Observation
      */
-    public function setTaxon(\AppBundle\Entity\Taxon $taxon)
+    public function setTaxon(Taxon $taxon)
     {
         $this->taxon = $taxon;
     
@@ -245,10 +254,34 @@ class Observation
     /**
      * Get taxon
      *
-     * @return \AppBundle\Entity\Taxon
+     * @return Taxon
      */
     public function getTaxon()
     {
         return $this->taxon;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Observation
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
 }

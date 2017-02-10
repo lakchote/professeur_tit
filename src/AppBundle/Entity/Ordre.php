@@ -2,8 +2,11 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\Famille;
+use AppBundle\Entity\Taxon;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Ordre
@@ -26,16 +29,23 @@ class Ordre
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, unique=true)
+     * @Assert\Length(
+     *     min = 2,
+     *     minMessage="ordre.error.minName"
+     * )
      */
     private $name;
 
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Taxon", mappedBy="ordre", cascade={"persist", "remove"})
+     * @Assert\Valid()
      */
     private $taxons;
 
     /**
+     * @var ArrayCollection
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Famille", mappedBy="ordre", cascade={"persist", "remove"})
+     * @Assert\Valid()
      */
     private $familles;
 
@@ -44,7 +54,7 @@ class Ordre
      */
     public function __construct()
     {
-        $this->taxons = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->taxons = new ArrayCollection();
     }
 
     /**
@@ -84,11 +94,11 @@ class Ordre
     /**
      * Add taxon
      *
-     * @param \AppBundle\Entity\Taxon $taxon
+     * @param Taxon $taxon
      *
      * @return Ordre
      */
-    public function addTaxon(\AppBundle\Entity\Taxon $taxon)
+    public function addTaxon(Taxon $taxon)
     {
         $this->taxons[] = $taxon;
     
@@ -98,9 +108,9 @@ class Ordre
     /**
      * Remove taxon
      *
-     * @param \AppBundle\Entity\Taxon $taxon
+     * @param Taxon $taxon
      */
-    public function removeTaxon(\AppBundle\Entity\Taxon $taxon)
+    public function removeTaxon(Taxon $taxon)
     {
         $this->taxons->removeElement($taxon);
     }
@@ -118,11 +128,11 @@ class Ordre
     /**
      * Add famille
      *
-     * @param \AppBundle\Entity\Famille $famille
+     * @param Famille $famille
      *
      * @return Ordre
      */
-    public function addFamille(\AppBundle\Entity\Famille $famille)
+    public function addFamille(Famille $famille)
     {
         $this->familles[] = $famille;
     
@@ -132,9 +142,9 @@ class Ordre
     /**
      * Remove famille
      *
-     * @param \AppBundle\Entity\Famille $famille
+     * @param Famille $famille
      */
-    public function removeFamille(\AppBundle\Entity\Famille $famille)
+    public function removeFamille(Famille $famille)
     {
         $this->familles->removeElement($famille);
     }

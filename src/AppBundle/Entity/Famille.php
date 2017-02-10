@@ -2,7 +2,11 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\Ordre;
+use AppBundle\Entity\Taxon;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Famille
@@ -25,17 +29,24 @@ class Famille
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, unique=true)
+     * @Assert\Length(
+     *     min = 2,
+     *     minMessage="famille.error.minName"
+     * )
      */
     private $name;
 
     /**
+     * @var ArrayCollection;
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Taxon", mappedBy="famille", cascade={"persist", "remove"})
+     * @Assert\Valid()
      */
     private $taxons;
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Ordre", inversedBy="familles", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\Valid()
      */
     private $ordre;
 
@@ -44,7 +55,7 @@ class Famille
      */
     public function __construct()
     {
-        $this->taxons = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->taxons = new ArrayCollection();
     }
 
     /**
@@ -84,11 +95,11 @@ class Famille
     /**
      * Add taxon
      *
-     * @param \AppBundle\Entity\Taxon $taxon
+     * @param Taxon $taxon
      *
      * @return Famille
      */
-    public function addTaxon(\AppBundle\Entity\Taxon $taxon)
+    public function addTaxon(Taxon $taxon)
     {
         $this->taxons[] = $taxon;
     
@@ -98,9 +109,9 @@ class Famille
     /**
      * Remove taxon
      *
-     * @param \AppBundle\Entity\Taxon $taxon
+     * @param Taxon $taxon
      */
-    public function removeTaxon(\AppBundle\Entity\Taxon $taxon)
+    public function removeTaxon(Taxon $taxon)
     {
         $this->taxons->removeElement($taxon);
     }
@@ -118,11 +129,11 @@ class Famille
     /**
      * Set ordre
      *
-     * @param \AppBundle\Entity\Ordre $ordre
+     * @param Ordre $ordre
      *
      * @return Famille
      */
-    public function setOrdre(\AppBundle\Entity\Ordre $ordre)
+    public function setOrdre(Ordre $ordre)
     {
         $ordre->addFamille($this);
         $this->ordre = $ordre;
@@ -133,7 +144,7 @@ class Famille
     /**
      * Get ordre
      *
-     * @return \AppBundle\Entity\Ordre
+     * @return Ordre
      */
     public function getOrdre()
     {

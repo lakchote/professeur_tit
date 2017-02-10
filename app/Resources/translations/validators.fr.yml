@@ -1,0 +1,15 @@
+auteur:
+  error:
+    minName: "Le nom de l'auteur doit comporter 2 caractères minimum"
+famille:
+  error:
+    minName: "Le nom de la famille doit comporter 2 caractères minimum"
+habitat:
+  error:
+    minName: "Le nom de l'habitat doit comporter 2 caractères minimum"
+ordre:
+  error:
+    minName: "Le nom de l'ordre doit comporter 2 caractères minimum"
+rang:
+  error:
+    minName: "Le nom du rang doit comporter 2 caractères minimum"
