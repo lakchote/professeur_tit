@@ -22,8 +22,8 @@
 
 <!-- navbar mobile -->
 <nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <div class="navbar-header">
+    <div class="container-fluid navbar__container">
+        <div class="navbar-header navbar__header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapse-1"
                     aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
@@ -31,32 +31,32 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand navbar__brand-img" href="#">
                 <img src="" alt="TIT">
             </a>
         </div>
 
         <!-- navbar -->
         <div class="collapse navbar-collapse" id="collapse-1">
-            <ul class="nav navbar-nav">
-                <li><a href="#">Débuter l'Ornithologie</a></li>
-                <li><a href="">Observations</a></li>
+            <ul class="nav navbar-nav navbar">
+                <li><button type="button" class="btn btn-default navbar__button">Débuter l'Ornithologie</button></li>
+                <li><button type="button" class="btn btn-default navbar__button">Observations</button></li>
             </ul>
 
-            <ul class="nav navbar-nav navbar-right">
-                <form class="navbar-form" role="search">
+            <ul class="nav navbar-nav navbar-right" id="navbar-right">
+                <form class="navbar-form navbar__form" role="search">
                     <div class="form-group">
-                        <input type="text" class="form-control" id="form-controller" name="search-data" placeholder="Rechercher une espèce">
+                        <input type="text" class="form-control form__controller" name="search-data" placeholder="Rechercher une espèce">
                     </div>
-                    <button type="submit" class="btn-default">
+                    <button type="submit" class="btn-default form__btn-submit">
                         <i class="glyphicon glyphicon-search"></i>
                     </button>
                 </form>
                 {% if app.user %}
-                    <li><a href="{{ path('logout') }}">Déconnexion</a></li>
+                    <li><a href="{{ path('logout') }}" class="btn btn-default navbar__button" role="button">Déconnexion</a></li>
                 {% else %}
-                    <li><a href="" id="login-load-desktop" class="hide modal-desktop" data-toggle="modal" data-target="#modal-login-desktop">Inscription / Identification</a></li>
-                    <li><a href="" id="login-load-mobile" class="hide modal-mobile" data-toggle="modal" data-target="#modal-login-mobile">Inscription / Identification</a></li>
+                    <li><button href="" id="login-load-desktop" class="hide modal-desktop btn btn-default navbar__button" role="button" data-toggle="modal" data-target="#modal-login-desktop">Inscription / Identification</button></li>
+                    <li><button href="" id="login-load-mobile" class="hide modal-mobile btn btn-default navbar__button" role="button" data-toggle="modal" data-target="#modal-login-mobile">Inscription / Identification</button></li>
                 {% endif %}
             </ul>
         </div>
@@ -68,73 +68,62 @@
 
 
 <!-- footer -->
+<div class="container footer__container">
+    <div class="fixed-footer-bottom">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+            <ul class="list-unstyled clear-margins">
+                <li class="widget-container widget_nav_menu">
+                <li><a href="#">Débuter l'ornithologie</a></li>
+                <li><a href="#">Plan du site</a></li>
+                <li><a href="#">Contact</a></li>
+                </li>
+            </ul>
+        </div>
 
-<nav class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container-fluid">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapse-2"
-                aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+            <ul class="list-unstyled clear-margins">
+                <li class="widget-container widget_nav_menu">
+                <li><a href="#">Observations</a></li>
+                <li><a href="#">Carte interactive</a></li>
+                </li>
+            </ul>
+        </div>
 
-        <div class="collapse navbar-collapse" id="collapse-1">
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                <ul class="list-unstyled clear-margins">
-                    <li class="widget-container widget_nav_menu">
-                    <li><a href="#"><i class="fa fa-angle-double-right"></i> Débuter l'ornithologie</a></li>
-                    <li><a href="#"><i class="fa fa-angle-double-right"></i> Plan du site</a></li>
-                    <li><a href="#"><i class="fa fa-angle-double-right"></i> Contact</a></li>
-                    </li>
-                </ul>
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+            <ul class="list-unstyled clear-margins">
+                <li class="widget-container widget_nav_menu">
+                <li><a href="https://www.facebook.com/..."><i class="fa fa-facebook-square fa-2x" id="social"></i>
+                        Facebook</a></li>
+                <li><a href="#">Mentions legales</a></li>
+                <li><a href="#">Copyright</a></li>
+                </li>
+            </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+            <a class="navbar-brand" href="#">
+                <img src="" alt="TIT">
+            </a>  <!-- définit la source du logo et vérifier l'alt--><!-- logo -->
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <div class="copyright">
+                    @ 2017, OpenSpirit, All rights reserved
+                </div>
             </div>
 
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                <ul class="list-unstyled clear-margins">
-                    <li class="widget-container widget_nav_menu">
-                    <li><a href="#"><i class="fa fa-angle-double-right"></i> Observations</a></li>
-                    <li><a href="#"><i class="fa fa-angle-double-right"></i> Carte interactive</a></li>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                <ul class="list-unstyled clear-margins">
-                    <li class="widget-container widget_nav_menu">
-                    <li><a href="https://www.facebook.com/..."><i class="fa fa-facebook-square fa-2x" id="social"></i>
-                            Facebook</a></li>
-                    <li><a href="#"><i class="fa fa-angle-double-right"></i> Mentions legales</a></li>
-                    <li><a href="#"><i class="fa fa-angle-double-right"></i> Copyright</a></li>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                <a class="navbar-brand" href="#">
-                    <img src="" alt="TIT">
-                </a>  <!-- définit la source du logo et vérifier l'alt--><!-- logo -->
-            </div>
-
-            <div class="footer-bottom">
-                <div class="container">
-                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                        <div class="copyright">
-                            @ 2017, OpenSpirit, All rights reserved
-                        </div>
-                    </div>
-
-                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                        <div class="info-spirit">
-                            OpenSpirit | Agence digitale media
-                        </div>
-                    </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <div class="info-spirit">
+                    OpenSpirit | Agence digitale media
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-</nav>
 
 <!-- START Modal Desktop -->
 <div class="modal fade" id="modal-login-desktop" tabindex="-1" role="dialog" aria-labelled-by="#modal-label-desktop">
