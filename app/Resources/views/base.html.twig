@@ -31,9 +31,9 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand navbar__brand-img" href="#">
-                <img class="brand__tit" src="{{ asset('assets/img/tit_logo.png') }}" alt="TIT">
-            </a>
+            <div class="navbar-brand navbar__brand-img" href="#">
+                <img class="brand__tit-header" src="{{ asset('assets/img/tit_logo.png') }}" alt="TIT">
+            </div>
         </div>
 
         <!-- navbar -->
@@ -41,16 +41,17 @@
             <ul class="nav navbar-nav navbar">
                 <li><button type="button" class="btn btn-default navbar__button">Débuter l'Ornithologie</button></li>
                 <li><button type="button" class="btn btn-default navbar__button">Observations</button></li>
+                <li><button type="button" class="btn btn-default navbar__button">Carte interactive</button></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right" id="navbar-right">
                 <form class="navbar-form navbar__form" role="search">
-                    <div class="form-group">
-                        <input type="text" class="form-control form__controller" name="search-data" placeholder="Rechercher une espèce">
+                    <div class="input-group add-on">
+                        <input class="form-control form__controller" placeholder="Rechercher une espèce" name="srch-term" id="srch-term" type="text">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default search__button" type="submit"><i class="glyphicon glyphicon-search search__magnifer"></i></button>
+                        </div>
                     </div>
-                    <button type="submit" class="btn-default form__btn-submit">
-                        <i class="glyphicon glyphicon-search"></i>
-                    </button>
                 </form>
                 {% if app.user %}
                     <li><a href="{{ path('logout') }}" class="btn btn-default navbar__button" role="button">Déconnexion</a></li>
@@ -102,7 +103,7 @@
 
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
             <a class="navbar-brand" href="#">
-                <img class="brand__tit" src="{{ asset('assets/img/tit_logo.png') }}" alt="TIT">
+                <img class="brand__tit-footer" src="{{ asset('assets/img/tit_logo.png') }}" alt="TIT">
             </a>  <!-- définit la source du logo et vérifier l'alt--><!-- logo -->
         </div>
     </div>
