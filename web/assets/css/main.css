@@ -1,3 +1,15 @@
+/** IMG **/
+.brand__tit {
+    height: 70px;
+    width: 70px;
+}
+
+.brand__tit:hover {
+    box-shadow: 0px 0px 18px 15px rgb(35,74,129,0.15) inset;
+    transform: scale(0.9);
+    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
 /*** HEADER ***/
 html {
     height: 100%;
@@ -88,10 +100,7 @@ li > a {
     margin-top: 20px;
 }
 
-.navbar-brand > img {
-    height: 70px;
-    width: 70px;
-}
+
 
 .form__controller {
     width: 208px;
