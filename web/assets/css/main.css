@@ -1,6 +1,34 @@
-/*
-HEADER
-*/
+/*** HEADER ***/
+html {
+    height: 100%;
+}
+
+body {
+    background-color: rgb(255,250,219);
+    height: 100%;
+}
+
+.footer__container {
+    padding: 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.navbar {}
+
+.navbar__button {
+    height: 40px;
+    background-color: rgb(22,33,53);
+    color: rgb(255,250,219);
+    border: 0;
+}
+
+.navbar__button:hover {
+    background: rgb(35,74,129);
+    color: rgb(255,255,255);
+}
+
 
 .container-fluid {
     height: 84px;
@@ -13,7 +41,7 @@ h2,
 h3,
 p,
 a {
-    color: rgb(35,74,129);
+    /* color: rgb(35,74,129); */
     font-family: Helvetica;
 }
 
@@ -65,7 +93,7 @@ li > a {
     width: 70px;
 }
 
-#form-controller {
+.form__controller {
     width: 208px;
     font-style: italic;
     text-align: left;
@@ -82,9 +110,27 @@ li > a {
     display: none;
 }
 
-/*
-FOOTER
-*/
+/*** FOOTER ***/
+.fixed-footer-bottom {
+    height: 190px;
+    background-color: rgb(22,33,53);
+}
+
+.fixed-footer-bottom li > a {
+    border: 0;
+    color: #777;
+    font-family: Helvetica;
+}
+
+.footer-bottom {
+    width: 100%;
+    background-color: rgb(22,33,53);;
+}
+
+
+
+
+
 #footer-col {
     height: 150px;
 }
@@ -101,19 +147,6 @@ FOOTER
 }
 
 
-.navbar-fixed-bottom li > a {
-    border: 0;
-    color: #777;
-    font-family: Helvetica;
-}
-
-.footer-bottom {
-    width: 100%;
-}
-
-#footer-container {
-    height: 210px;
-}
 
 .copyright,
 .info-spirit {
@@ -139,9 +172,7 @@ FOOTER
 }
 
 
-/*
-MEDIA QUERIES
-*/
+/*** MEDIA QUERIES ***/
 
 @media(min-width: 767px) {
     .div {
@@ -200,7 +231,7 @@ MEDIA QUERIES
     }
 }
 
-/* GESTION DU BREAKPOINT NAVBAR */
+/*** GESTION DU BREAKPOINT NAVBAR ***/
 @media (max-width: 991px) {
     .navbar-header {
         float: none;
@@ -259,20 +290,13 @@ MEDIA QUERIES
 
 
 @media(max-width: 952px) {
-    .form-inline { /* .navbar-form */
+    .form-inline {
         display: none;
     }
 
     li > a {
         border: 0;
     }
-
-    /*
-    li > a:nth-last-child(1) {
-        border-top: 0.1em solid;
-        border-radius: 0;
-    }
-    */
 }
 
 @media (max-width: 625px) {
