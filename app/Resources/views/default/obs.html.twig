@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
 
+
 {% block stylesheet %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('assets/css/modalObs.css') }}">
@@ -8,8 +9,9 @@
 
 {% block content %}
     <a href="" id="obs-load-desktop" class="hide modal-desktop" data-toggle="modal" data-target="#modal-login-desktop">Test</a>
-{% endblock %}
 
+
+{% endblock %}
 
 
 {% block javascript %}
@@ -21,11 +23,14 @@
                     url: "{{ path('modal_add_observation') }}",
                     method: "GET"
                 }).done(function (msg) {
-                    var titre = '';
+                    if ($( window ).width() < '992') {
+                        $('#modal-load').removeClass('modal-lg');
+                    }
                     $('#modal-load-desktop').html(msg);
-                    $('#modal-title-desktop').html(titre);
                 });
             });
         }());
     </script>
 {% endblock %}
+
+
