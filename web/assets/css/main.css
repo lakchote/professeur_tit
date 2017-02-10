@@ -182,7 +182,6 @@ li > a {
 .footer__column {
     display: flex;
     justify-content: space-between;
-
     height: 100%;
     padding: 25px 0 0 100px;
 }
@@ -211,7 +210,24 @@ li > a {
     color: rgb(255,255,255);
 }
 
+.navbar__brand {
+    display: inline-flex;
+    flex-direction: column;
+}
 
+.footer__column-tit {
+    padding-top: 25px;
+}
+
+.brand__tit-footer {
+    align-items: center;
+    margin-left: 30px;
+}
+
+.brand__tit__name-footer {
+    height: 30px;
+    width: 170px;
+}
 #footer-col {
     height: 150px;
 }
