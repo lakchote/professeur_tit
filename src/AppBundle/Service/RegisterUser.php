@@ -8,20 +8,6 @@
 
 namespace AppBundle\Service;
 
-
-<<<<<<< HEAD
-use Doctrine\ORM\EntityManager;
-use AppBundle\Entity\User;
-use Symfony\Component\Form\Form;
-
-class RegisterUser
-{
-    private $em;
-
-    public function __construct(EntityManager $em)
-    {
-        $this->em = $em;
-=======
 use AppBundle\Entity\User;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\Form;
@@ -38,16 +24,12 @@ class RegisterUser
     public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
->>>>>>> origin/user
     }
 
     public function registerUser(Form $form)
     {
             $user = new User();
-<<<<<<< HEAD
-=======
             $em = $this->container->get('doctrine.orm.default_entity_manager');
->>>>>>> origin/user
             $user->setNom($form['register']['nom']->getData());
             $user->setPrenom($form['register']['prenom']->getData());
             $user->setEmail($form['register']['email']->getData());
@@ -58,13 +40,7 @@ class RegisterUser
             else if ($form['newsletter']->getData() == 1) {
                 $this->subscribeToMailChimp($form['register']['email']->getData());
             }
-<<<<<<< HEAD
-            $this->em->persist($user);
-            $this->em->flush();
-            return $user;
-    }
 
-=======
             $em->persist($user);
             $em->flush();
             return $user;
@@ -90,7 +66,6 @@ class RegisterUser
         return $response;
     }
 
->>>>>>> origin/user
     public function subscribeToMailChimp($userMail) {
         $url = curl_init('https://us14.api.mailchimp.com/2.0/lists/subscribe.json?apikey=9d1b0a206258b3dc70c7090fb792c89c-us14&id=0e2fad9074&email[email]='
             . $userMail . '&double_optin=false&send_welcome=false');
