@@ -1,10 +1,18 @@
 /** IMG **/
-.brand__tit {
+.brand__tit-header {
     height: 70px;
     width: 70px;
+    padding-bottom: 10px;
+    border-top: 10px;
 }
 
-.brand__tit:hover {
+.brand__tit-footer {
+    height: 110px;
+    width: 110px;
+}
+
+.brand__tit-header:hover,
+.brand__tit-footer:hover {
     box-shadow: 0px 0px 18px 15px rgb(35,74,129,0.15) inset;
     transform: scale(0.9);
     transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -27,18 +35,41 @@ body {
     width: 100%;
 }
 
-.navbar {}
+.navbar__header {
+    padding-left: 100px;
+}
 
 .navbar__button {
     height: 40px;
     background-color: rgb(22,33,53);
     color: rgb(255,250,219);
     border: 0;
+    margin: 21px 40px 21px 0;
 }
 
 .navbar__button:hover {
     background: rgb(35,74,129);
     color: rgb(255,255,255);
+}
+
+.navbar__form {
+    margin: 21px 0 21px 0;
+    padding: 0 30px 0 0;
+}
+
+.search__button {
+    border-left: 0;
+}
+
+.add-on {
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow:none;
+}
+
+.search__magnifer {
+    color: rgb(59,89,152);
+    font-size: 18px;
 }
 
 
@@ -104,11 +135,19 @@ li > a {
 
 .form__controller {
     width: 208px;
+    height: 37px;
     font-style: italic;
     text-align: left;
     text-color : RGB(189,201,218);
     background-color : RGB(255,255,255);
     box-shadow: 0px 0px 18px 15px rgba(35,74,129,0.15) inset;
+}
+
+/* retire le focus bleu */
+.form__controller:focus {
+    box-shadow:none;
+    -webkit-box-shadow:none;
+    border-color:#cccccc;
 }
 
 #collapse-1 {
@@ -208,7 +247,7 @@ li > a {
     .navbar-right {
         display: flex;
         width: 450px;
-        margin-right: 0;
+        margin-right: 70px;
         text-align: right;
     }
 
