@@ -61,6 +61,10 @@ services:
         class: AppBundle\Service\SendMail
         autowire: true
 
+    app.createliste:
+        class: AppBundle\Service\TaxonList
+        autowire: true
+
     app.profil_user:
         class: AppBundle\Service\ProfilUser
         autowire: true
