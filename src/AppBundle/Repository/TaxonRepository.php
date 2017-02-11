@@ -11,10 +11,9 @@ use Doctrine\ORM\EntityRepository;
  */
 class TaxonRepository extends EntityRepository
 {
-    public function populateMyList($term)
+    public function populateMyList()
     {
-        $query = $this->_em->createQuery('SELECT a.id, a.nomVernaculaire, a.nomLatin FROM AppBundle:Taxon a WHERE a.nomVernaculaire LIKE :term OR a.nomLatin LIKE :term');
-        $query->setParameter('term', '%'.$term.'%');
+        $query = $this->_em->createQuery('SELECT a.id, a.nomVernaculaire, a.nomLatin FROM AppBundle:Taxon a');
         $results = $query->getResult();
         return $results;
     }
