@@ -4,20 +4,21 @@
 {% block stylesheet %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('assets/css/modalObs.css') }}">
+    {#<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css" integrity="sha384-Nlo8b0yiGl7Dn+BgLn4mxhIIBU6We7aeeiulNCjHdUv/eKHx59s3anfSUjExbDxn" crossorigin="anonymous">#}
 {% endblock %}
 
 
 {% block content %}
     <a href="" id="obs-load-desktop" class="hide modal-desktop" data-toggle="modal" data-target="#modal-login-desktop">Test</a>
-
-
 {% endblock %}
 
 
 {% block javascript %}
     {{ parent() }}
+
     <script type="text/javascript">
         $(function () {
+
             $('#obs-load-desktop').click(function () {
                 $.ajax({
                     url: "{{ path('modal_add_observation') }}",
@@ -27,10 +28,10 @@
                         $('#modal-load').removeClass('modal-lg');
                     }
                     $('#modal-load-desktop').html(msg);
+
                 });
             });
         }());
     </script>
+
 {% endblock %}
-
-
