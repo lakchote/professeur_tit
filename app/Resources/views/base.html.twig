@@ -241,6 +241,16 @@
         $('#header__form--mobile').click(function () {
             $('#header_form--hidden').toggle('slow');
         });
+
+        $('#srch-term').autocomplete({
+            source : '{{ path('getListing') }}',
+            minLength: 3,
+            create: function () {
+                $(this).data('ui-autocomplete')._renderItem = function (ul, item) {
+                    return $('<li><strong>' + item.value + '</strong> / <i>' + item.label + '</i></li>').appendTo(ul);
+                };
+            },
+        });
     </script>
 {% endblock %}
 </body>

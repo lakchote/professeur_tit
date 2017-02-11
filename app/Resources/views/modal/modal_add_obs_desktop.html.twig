@@ -104,9 +104,15 @@
     }
 
 
+
     $('#recherche').autocomplete({
-        source: laListe,
+        source : '{{ path('getListing') }}',
         minLength: 3,
+        create: function () {
+            $(this).data('ui-autocomplete')._renderItem = function (ul, item) {
+                return $('<li><strong>' + item.value + '</strong> / <i>' + item.label + '</i></li>').appendTo(ul);
+            };
+        },
         select: function (event, ui) {
             $("#recherche").val(ui.item.label);
             // $("#project-id").val(ui.item.value);
@@ -114,11 +120,6 @@
             //   $("#project-icon").attr("src", "images/" + ui.item.icon);
             return false;
         },
-        create: function () {
-            $(this).data('ui-autocomplete')._renderItem = function (ul, item) {
-                return $('<li><strong>' + item.value + '</strong> / <i>' + item.label + '</i></li>').appendTo(ul);
-            };
-        },
-    })
+    });
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACO55kGEkd8YeNffAaErhE02wa_UigduQ&libraries=places&callback=initMap" async defer></script>
