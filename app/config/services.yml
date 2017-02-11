@@ -72,3 +72,7 @@ services:
     app.uploader:
         class: AppBundle\Service\FileUploader
         arguments: ['%user_photo_dir%']
+
+    app.createliste:
+        class: AppBundle\Service\TaxonList
+        autowire: true
