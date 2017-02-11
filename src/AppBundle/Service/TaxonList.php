@@ -19,12 +19,18 @@ class TaxonList {
         $this->em = $em;
     }
 
-    public function createList()
+    public function createList($term)
     {
         $repository = $this->em->getRepository('AppBundle:Taxon');
-        $laListe = $repository->populateMyList();
-
-        return $laListe;
+        $tags = $repository->populateMyList($term);
+        $tags = array_map(function($tag) {
+            return array(
+                'value' => $tag['nomVernaculaire'],
+                'label' => $tag['nomLatin'],
+                'desc' => $tag['id']
+            );
+        }, $tags);
+        return $tags;
     }
 
 }
