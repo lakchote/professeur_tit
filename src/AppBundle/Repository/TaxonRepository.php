@@ -11,4 +11,10 @@ use Doctrine\ORM\EntityRepository;
  */
 class TaxonRepository extends EntityRepository
 {
+    public function populateMyList()
+    {
+        $query = $this->_em->createQuery('SELECT a.id, a.nomVernaculaire, a.nomLatin FROM AppBundle:Taxon a');
+        $results = $query->getResult();
+        return $results;
+    }
 }

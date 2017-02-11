@@ -22,7 +22,7 @@
                         <img src="{{ asset('assets/img/search_blue.png') }}" alt="{{ "Qu'avez vous vu ?"|trans }}" class="modal-load-desktop__icon">
                     </div>
                     <div class="col-xs-10">
-                        <input type="text" class="form-control modal-load-desktop__input" placeholder="{{ "Nom de l'espece"|trans }}"/>
+                        <input id="recherche" type="text" class="form-control modal-load-desktop__input" placeholder="{{ "Nom de l'espece"|trans }}"/>
                     </div>
                 </div>
             </div>
@@ -103,5 +103,22 @@
         });
     }
 
+
+    $('#recherche').autocomplete({
+        source: laListe,
+        minLength: 3,
+        select: function (event, ui) {
+            $("#recherche").val(ui.item.label);
+            // $("#project-id").val(ui.item.value);
+            //   $("#project-description").html(ui.item.desc);
+            //   $("#project-icon").attr("src", "images/" + ui.item.icon);
+            return false;
+        },
+        create: function () {
+            $(this).data('ui-autocomplete')._renderItem = function (ul, item) {
+                return $('<li><strong>' + item.value + '</strong> / <i>' + item.label + '</i></li>').appendTo(ul);
+            };
+        },
+    })
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACO55kGEkd8YeNffAaErhE02wa_UigduQ&libraries=places&callback=initMap" async defer></script>
