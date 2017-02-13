@@ -41,7 +41,7 @@ services:
 
     app.register_user:
         class: AppBundle\Service\RegisterUser
-        autowire: true
+        arguments: ['@service_container']
 
     app.validator.username_exists:
         class: AppBundle\Validator\Constraints\UsernameExistsValidator

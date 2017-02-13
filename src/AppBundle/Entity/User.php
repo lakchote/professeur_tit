@@ -26,12 +26,14 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string")
      * @Assert\NotBlank(message="Vous devez indiquer votre nom.")
+     * @Assert\Length(max="50", maxMessage="Le nom ne peut excéder 50 caractères.")
      */
     private $nom;
 
     /**
      * @ORM\Column(type="string")
      * @Assert\NotBlank(message="Vous devez indiquer votre prénom.")
+     * @Assert\Length(max="50", maxMessage="Le prénom ne peut excéder 50 caractères.")
      */
     private $prenom;
 
