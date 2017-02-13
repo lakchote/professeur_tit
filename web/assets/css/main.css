@@ -59,6 +59,8 @@ body {
 
 .search__button {
     border-left: 0;
+    height:37px;
+    margin-left: -3px;
 }
 
 .add-on {
@@ -130,12 +132,13 @@ li > a {
     font-size: 10px;
     margin-top: 20px;
 }
-
-
-
+.add-on {
+    width: 214px;
+}
 .form__controller {
-    width: 208px;
+    width: 190px;
     height: 37px;
+    border: 0;
     font-style: italic;
     text-align: left;
     text-color : RGB(189,201,218);
@@ -261,10 +264,9 @@ li > a {
     text-align: right;
 }
 
-/*
-.container {
+.footer-bottom__container {
     width: 100%;
-} */
+}
 
 
 /*** MEDIA QUERIES ***/
@@ -274,7 +276,7 @@ li > a {
         display: inline-block;
     }
 
-    .container-fluid {
+    .navbar__container {
         width: 100%;
         font-size: 12px;
     }
