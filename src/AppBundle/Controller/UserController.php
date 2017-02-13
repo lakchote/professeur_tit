@@ -2,10 +2,14 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\User;
 use AppBundle\Form\ForgottenPasswordFormType;
 use AppBundle\Form\ModalFormType;
 use AppBundle\Form\NewPasswordFormType;
+use AppBundle\Form\ProfilFormType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Form\FormError;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -19,19 +23,16 @@ class UserController extends Controller
      */
     public function registerAction(Request $request)
     {
-        if($request->isXmlHttpRequest()) {
+        if ($request->isXmlHttpRequest()) {
             $form = $this->createForm(ModalFormType::class);
             $form->handleRequest($request);
-            if ($form->isValid())
-            {
+            if ($form->isValid()) {
                 $user = $this->get('app.register_user')->registerUser($form);
                 ($form['remember_me']->getData() == null) ?
                     $response = $this->get('security.authentication.guard_handler')->authenticateUserAndHandleSuccess($user, $request, $this->get('app.security.login_form_authenticator'), 'main') :
                     $response = $this->get('app.register_user')->rememberMe($user, $request);
                 return $response;
-            }
-            else
-            {
+            } else {
                 $response = new Response();
                 $response->setStatusCode(201);
                 $form['media']->getData() == 'Desktop' ?
@@ -48,14 +49,13 @@ class UserController extends Controller
      */
     public function resetPasswordAction(Request $request)
     {
-        if($request->isXmlHttpRequest()) {
+        if ($request->isXmlHttpRequest()) {
             $form = $this->createForm(ForgottenPasswordFormType::class);
             $form->handleRequest($request);
-            if($form->isValid()) {
+            if ($form->isValid()) {
                 $this->get('app.send_mail')->sendResetPasswordMail($form['email']->getData());
                 return new Response('Un email vous a été envoyé à l\'adresse <strong>' . $form['email']->getData() . '</strong>.');
-            }
-            else {
+            } else {
                 $response = new Response();
                 $response->setStatusCode(201)->setContent($this->get('templating')->render('modal/modal_reset_password.html.twig', [
                     'form' => $form->createView()
@@ -73,11 +73,11 @@ class UserController extends Controller
     {
         $form = $this->createForm(NewPasswordFormType::class);
         $form->handleRequest($request);
-        if($form->isValid()) {
+        if ($form->isValid()) {
             $data = $form->getData();
             $em = $this->getDoctrine()->getManager();
             $user = $em->getRepository('AppBundle:User')->findOneBy(['email' => $data['email']]);
-            if($user->getResetPassword() !== $data['resetPassword']) {
+            if ($user->getResetPassword() !== $data['resetPassword']) {
                 $error = new FormError('Identifiant incorrect.');
                 $form->get('resetPassword')->addError($error);
                 return $this->render('form/new_password.html.twig', [
@@ -117,5 +117,40 @@ class UserController extends Controller
     public function logoutAction()
     {
 
+    }
+
+    /**
+     * @Route("/manage/profil/{id}", name="manage_profil_membre")
+     * @Security("is_granted('ROLE_MANAGE_PROFILE')")
+     */
+    public function profilUserAction(User $user, Request $request)
+    {
+        if (!$this->get('app.profil_user')->checkIfAccessGranted($user)) return new RedirectResponse($this->get('router')->generate('home'));
+        $registerDate = $this->get('app.profil_user')->getRegisterDate($user);
+        $form = $this->createForm(ProfilFormType::class, $user);
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $this->getDoctrine()->getManager()->persist($user);
+            $this->getDoctrine()->getManager()->flush();
+        }
+        $nbObservations = $this->get('app.profil_user')->getUserObservations($user);
+        $observationsValidees = $this->get('app.profil_user')->getUserValidatedObservations($user);
+        return $this->render('user/profil.html.twig', [
+            'registerDate' => $registerDate,
+            'form' => $form->createView(),
+            'nbObservations' => $nbObservations,
+            'obsValidees' => $observationsValidees
+        ]);
+    }
+
+    /**
+     * @Route("/user/delete/profil/{id}", name="user_delete")
+     * @Security("is_granted('ROLE_MANAGE_PROFILE')")
+     */
+    public function userDeleteAccountAction(User $user)
+    {
+        if (!$this->get('app.profil_user')->checkIfAccessGranted($user)) return new RedirectResponse($this->get('router')->generate('home'));
+        $this->get('app.profil_user')->deleteUser($user);
+        return new RedirectResponse($this->get('router')->generate('home'));
     }
 }

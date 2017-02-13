@@ -24,7 +24,7 @@ class LoadTaxref implements FixtureInterface
     public function load(ObjectManager $manager)
     {
         $serializer = new Serializer([new ObjectNormalizer()], [new CsvEncoder()]);
-        $data = $serializer->decode(file_get_contents('G:\wamp64\www\professeur_tit\web\assets\csv\taxrefv2.csv'), 'csv');
+        $data = $serializer->decode(file_get_contents(realpath(__DIR__ . '/../../../../web/assets/csv/taxrefv2.csv')), 'csv');
 
         /*
         * Creation de la liste des Auteurs et intégration dans la base

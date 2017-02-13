@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'foundation_5_layout.html.twig' %}
+
+{% block stylesheet %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('assets/css/profil.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-offset-2 col-xs-10 padding-left--none">
+                <h1>Mon profil</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2 col-xs-12">
+                <div id="user-observations" class="text-center">
+                    <a href="#" class="text--bold">Mes observations</a>
+                </div>
+            </div>
+            <div class="col-sm-10 user-info">
+                <div class="col-sm-12">
+                    <p id="user-info__username" class="text--bold">{{ app.user.username }}</p>
+                </div>
+                <div class="col-sm-12">
+                    <div id="user-info__photo" class="pull-left">
+                        <img src="{{ asset('assets/img/trash.png') }}" id="user-info__photo--trash"
+                             alt="Supprimer la photo">
+                    </div>
+                    <img src="{{ asset('assets/img/calendar.png') }}" class="pull-left" id="user-info__calendar"
+                         alt="Date d'inscription">
+                    <p id="user-info__dateinscription">Inscrit depuis le {{ registerDate }}
+                        <button type="button" class="button pull-right"><a
+                                    href="{{ path('user_delete', {'id' : app.user.id}) }}">Supprimer mon profil</a>
+                        </button>
+                    </p>
+                    {{ form_start(form) }}
+                    {{ form_label(form.description) }}<br/>
+                    {{ form_widget(form.description) }}
+                    <button type="submit" class="button pull-right" formnovalidate>Modifier</button>
+                    <br/>
+                    {{ form_label(form.email) }}<br/>
+                    <img src="{{ asset('assets/img/mail.png') }}" class="pull-left" id="user-info__mail"
+                         alt="Votre email">{{ form_widget(form.email, { 'attr' : {'class' : 'user-info__mail--input'}}) }}
+                    <button type="submit" class="button pull-right" formnovalidate>Modifier</button>
+                    <br/>
+                    <span style="color:red;">{{ form_errors(form.email) }}</span>
+                    {{ form_row(form.isEmailVisible) }}
+                    {{ form_end(form) }}
+                    <img src="{{ asset('assets/img/observation.png') }}" class="user-info__stats pull-left"
+                         alt="Votre nombre d'observations">
+                    <p class="user-info__stats--text">Vous avez effectué<strong>
+                            &nbsp;{{ nbObservations }} {{ nbObservations > 1 ? 'observations' : 'observation' }}</strong>
+                    </p>
+                    <img src="{{ asset('assets/img/observation_valide.png') }}" class="user-info__stats pull-left"
+                         alt="Votre nombre d'observations validées">
+                    <p class="user-info__stats--text">
+                        <strong>{{ obsValidees }}</strong>&nbsp;{{ obsValidees < 2 ? 'observation a été validée' : 'de vos observations ont été validées' }}
+                    </p>
+                    {% if is_granted('ROLE_NATURALISTE') %}
+                        <img src="{{ asset('assets/img/naturaliste.png') }}" class="user-info__stats pull-left"
+                             alt="Vous êtes naturaliste">
+                        <p class="user-info__stats--text">Vous êtes certifiés naturaliste par NAO.</p>
+                    {% elseif is_granted('ROLE_PENDING_NATURALISTE') %}
+                        <p class="user-info__stats--text">Vous êtes un naturaliste en attente de validation.</p>
+                    {% else %}
+                        <p class="user-info__stats--text">Vous êtes observateur.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

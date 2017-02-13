@@ -69,13 +69,8 @@ class GoogleAuthenticator extends AbstractGuardAuthenticator
         $nom = $googleUser->getLastName();
 
         if(!$user = $this->container->get('doctrine')->getRepository('AppBundle:User')->findOneBy(['email' => $email])) {
-            $em = $this->container->get('doctrine.orm.default_entity_manager');
             $user = new User();
-            $user->setEmail($email);
-            $user->setPrenom($prenom);
-            $user->setNom($nom);
-            $em->persist($user);
-            $em->flush();
+            $this->container->get('app.register_user')->registerUserOAuth2($user, $email,$nom,$prenom);
         }
         return $user;
     }
@@ -91,6 +86,7 @@ class GoogleAuthenticator extends AbstractGuardAuthenticator
 
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception)
     {
+        return new RedirectResponse($this->container->get('router')->generate('home'));
     }
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)

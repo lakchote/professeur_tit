@@ -66,6 +66,21 @@ class User implements UserInterface
     private $reset_password;
 
     /**
+     * @ORM\Column(type="date")
+     */
+    private $date_inscription;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $description = 'Vous n\'avez pas encore de description.';
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $is_email_visible = false;
+
+    /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Observation", mappedBy="user", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=true)
      * @Assert\Valid()
@@ -217,4 +232,61 @@ class User implements UserInterface
      {
          $this->observations->removeElement($observation);
      }
+
+    /**
+     * @return mixed
+     */
+    public function getDateInscription()
+    {
+        return $this->date_inscription;
+    }
+
+    /**
+     * @param mixed $date_inscription
+     */
+    public function setDateInscription($date_inscription)
+    {
+        $this->date_inscription = $date_inscription;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param mixed $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIsEmailVisible()
+    {
+        return $this->is_email_visible;
+    }
+
+    /**
+     * @param mixed $is_email_visible
+     */
+    public function setIsEmailVisible($is_email_visible)
+    {
+        $this->is_email_visible = $is_email_visible;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
 }

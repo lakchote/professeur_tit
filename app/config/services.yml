@@ -52,3 +52,7 @@ services:
     app.send_mail:
         class: AppBundle\Service\SendMail
         autowire: true
+
+    app.profil_user:
+        class: AppBundle\Service\ProfilUser
+        autowire: true

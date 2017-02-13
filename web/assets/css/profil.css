@@ -1,0 +1,113 @@
+.user-info {
+    height: 600px;
+}
+
+.user-info, #user-observations {
+    background-color: #fff;
+}
+
+#user-observations {
+    height: 40px;
+    width: 150px;
+}
+
+#user-observations a {
+    text-decoration: none;
+}
+
+#user-observations, #user-info__username {
+    line-height: 40px;
+}
+
+#user-info__photo {
+    height: 255px;
+    width: 255px;
+    border: 1px solid black;
+    position: relative;
+    margin-right: 20px;
+}
+
+#user-info__photo--trash {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 0 5px;
+    background-color: #fff;
+}
+
+#user-info__photo--trash, #user-info__calendar, #user-info__mail {
+    height: 30px;
+    width: 30px;
+}
+
+#user-info__calendar {
+    margin-right: 15px;
+}
+
+#user-info__dateinscription {
+    line-height: 30px;
+}
+
+#user-info__description {
+    margin-top: 20px;
+}
+
+#user-info__email {
+    margin-top: 5px;
+}
+
+.user-info__mail--input {
+    border: 0;
+    line-height: 30px;
+    margin-left: 5px;
+}
+
+.user-info__stats {
+    height: 50px;
+    width: 50px;
+    margin-right: 15px;
+}
+
+.user-info__stats, .user-info__stats--text {
+    margin-top: 5px;
+}
+
+.user-info__stats--text {
+    line-height: 50px;
+}
+
+textarea {
+    border: 0;
+    width: 300px;
+    height: 100px;
+    overflow-y: scroll;
+}
+
+label, textarea, .user-info__mail--input {
+    color: rgb(35, 74, 129);
+}
+
+.padding-left--none {
+    padding-left: 0;
+}
+
+.text--bold {
+    font-weight: bold;
+}
+
+.button {
+    height: 45px;
+    width: 150px;
+    border: 0;
+    background-color: rgb(35, 74, 129);
+    color: rgb(255, 250, 219);
+}
+
+.button a {
+    color: rgb(255, 250, 219);
+    text-decoration: none;
+}
+
+.button:hover {
+    box-shadow: 10px 10px 10px 0 rgba(255, 210, 219, .15) inset;
+}
