@@ -264,7 +264,7 @@ li > a {
     text-align: right;
 }
 
-.container {
+.footer-bottom__container {
     width: 100%;
 }
 
@@ -276,7 +276,7 @@ li > a {
         display: inline-block;
     }
 
-    .container-fluid {
+    .navbar__container {
         width: 100%;
         font-size: 12px;
     }
