@@ -10,6 +10,14 @@ services:
         tags:
             - { name: doctrine.event_subscriber }
 
+    app.doctrine.user_photo_upload_listener:
+        class: AppBundle\Doctrine\UserPhotoUploadListener
+        arguments: ['@app.uploader', '%user_photo_dir%']
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }
+            - { name: doctrine.event_listener, event: postLoad }
+
     app.facebook_provider:
         class: League\OAuth2\Client\Provider\Facebook
         arguments:
@@ -56,3 +64,7 @@ services:
     app.profil_user:
         class: AppBundle\Service\ProfilUser
         autowire: true
+
+    app.uploader:
+        class: AppBundle\Service\FileUploader
+        arguments: ['%user_photo_dir%']

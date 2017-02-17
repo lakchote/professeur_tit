@@ -2,6 +2,21 @@
     height: 600px;
 }
 
+#user-info__photo--button
+{
+    position:relative;
+    line-height: 255px;
+    text-align: center;
+}
+
+.user-info__photo--file
+{
+    cursor: pointer;
+    position: absolute;
+    top:0;
+    opacity:0;
+}
+
 .user-info, #user-observations {
     background-color: #fff;
 }
@@ -22,9 +37,13 @@
 #user-info__photo {
     height: 255px;
     width: 255px;
-    border: 1px solid black;
     position: relative;
     margin-right: 20px;
+}
+
+#user-info__photo--load {
+    height:255px;
+    width:255px;
 }
 
 #user-info__photo--trash {
@@ -33,6 +52,7 @@
     right: 0;
     padding: 0 5px;
     background-color: #fff;
+    z-index:1;
 }
 
 #user-info__photo--trash, #user-info__calendar, #user-info__mail {

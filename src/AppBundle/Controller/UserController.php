@@ -139,7 +139,8 @@ class UserController extends Controller
             'registerDate' => $registerDate,
             'form' => $form->createView(),
             'nbObservations' => $nbObservations,
-            'obsValidees' => $observationsValidees
+            'obsValidees' => $observationsValidees,
+            'user' => $user
         ]);
     }
 
@@ -152,5 +153,14 @@ class UserController extends Controller
         if (!$this->get('app.profil_user')->checkIfAccessGranted($user)) return new RedirectResponse($this->get('router')->generate('home'));
         $this->get('app.profil_user')->deleteUser($user);
         return new RedirectResponse($this->get('router')->generate('home'));
+    }
+
+    /**
+     * @Route("/user/delete/image/{id}", name="user_delete_image")
+     */
+    public function userDeleteImgAction(User $user)
+    {
+        $this->get('app.profil_user')->deleteUserImage($user);
+        return new RedirectResponse($this->get('router')->generate('manage_profil_membre', ['id' => $user->getId()]));
     }
 }

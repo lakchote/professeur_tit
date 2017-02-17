@@ -24,9 +24,21 @@
                     <p id="user-info__username" class="text--bold">{{ app.user.username }}</p>
                 </div>
                 <div class="col-sm-12">
+                    {{ form_start(form) }}
                     <div id="user-info__photo" class="pull-left">
-                        <img src="{{ asset('assets/img/trash.png') }}" id="user-info__photo--trash"
-                             alt="Supprimer la photo">
+                        <div id="user-info__photo--button">
+                            {% if user.image != '' %}
+                                <img src="{{ asset('uploads/user/' ~ user.image) }}" alt="Votre photo de profil"
+                                     id="user-info__photo--load">
+                            {% endif %}
+                            {{ form_widget(form.image, { 'attr' : {'class' : 'user-info__photo--file'}}) }}
+                            {% if user.image == '' %} Ajouter une photo {% endif %}
+                        </div>
+                        {% if user.image != '' %}
+                            <a href="{{ path('user_delete_image', {'id' : user.id}) }}"><img
+                                        src="{{ asset('assets/img/trash.png') }}" id="user-info__photo--trash"
+                                        alt="Supprimer la photo"></a>
+                        {% endif %}
                     </div>
                     <img src="{{ asset('assets/img/calendar.png') }}" class="pull-left" id="user-info__calendar"
                          alt="Date d'inscription">
@@ -35,7 +47,6 @@
                                     href="{{ path('user_delete', {'id' : app.user.id}) }}">Supprimer mon profil</a>
                         </button>
                     </p>
-                    {{ form_start(form) }}
                     {{ form_label(form.description) }}<br/>
                     {{ form_widget(form.description) }}
                     <button type="submit" class="button pull-right" formnovalidate>Modifier</button>
@@ -51,7 +62,7 @@
                     <img src="{{ asset('assets/img/observation.png') }}" class="user-info__stats pull-left"
                          alt="Votre nombre d'observations">
                     <p class="user-info__stats--text">Vous avez effectué<strong>
-                            &nbsp;{{ nbObservations }} {{ nbObservations > 1 ? 'observations' : 'observation' }}</strong>
+                            {{ nbObservations }} {{ nbObservations > 1 ? 'observations' : 'observation' }}</strong>
                     </p>
                     <img src="{{ asset('assets/img/observation_valide.png') }}" class="user-info__stats pull-left"
                          alt="Votre nombre d'observations validées">
@@ -71,4 +82,13 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $('#profil_form_image').change(function () {
+            $('form').submit();
+        });
+    </script>
 {% endblock %}

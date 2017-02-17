@@ -69,4 +69,11 @@ class ProfilUser
         $this->em->flush();
         $this->tokenStorage->setToken(null);
     }
+
+    public function deleteUserImage(User $user)
+    {
+        $user->setImage('');
+        $this->em->persist($user);
+        $this->em->flush();
+    }
 }
