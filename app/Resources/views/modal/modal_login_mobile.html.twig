@@ -113,6 +113,9 @@
     <div class="col-xs-12">
         {{ form_widget(form.cgu) }}
         {{ form_errors(form.cgu) }}
+        {{ form_widget(form.media, {
+            'attr': {'value' : 'Mobile'}
+        }) }}
     </div>
 </div>
 <div class="row form-group">

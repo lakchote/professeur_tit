@@ -31,7 +31,8 @@ class ModalFormType extends AbstractType
             ->add('cgu', CheckboxType::class, [
                 'label' => 'Je reconnais avoir pris connaissance des CGU ainsi que de la Politique de confidentialité',
                 'constraints' => array(new CguChecked())
-            ]);
+            ])
+            ->add('media', HiddenType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver)

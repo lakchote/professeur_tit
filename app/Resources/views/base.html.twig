@@ -1,11 +1,23 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#98fb98">
+    <meta name="keywords"
+          content="ornithologie, association, climat, urbanisation, agriculture, biodiversité, découvrir, application, oiseaux">
+    <meta name="description"
+          content="Application participative gratuite visant à étudier les effets du climat, de l’urbanisation et de l’agriculture sur la biodiversité.">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@AssociationNAO">
+    <meta name="twitter:creator" content="@OpenSpirit">
+    <meta property="og:title" content="Association Nos Amis les Oiseaux">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="http://itemik.com/professeur_tit/v1/img/logos/tit_logo.png">
+    <meta property="og:description" content="Application participative gratuite visant à étudier les effets du climat,
 
+                                      de l’urbanisation et de l’agriculture sur la biodiversité.">
     {% block stylesheet %}
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link href="https://opensource.keycdn.com/fontawesome/4.7.0/font-awesome.min.css" rel="stylesheet">
@@ -15,49 +27,72 @@
         {% endif %}
     {% endblock %}
     <link rel="icon" href="{{ asset('assets/img/favicon.ico') }}">
-
     <title>{% block title %}{% endblock %}</title>
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
 <body>
 
-<!-- navbar mobile -->
-<nav class="navbar navbar-default">
-    <div class="container-fluid navbar__container">
-        <div class="navbar-header navbar__header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapse-1"
-                    aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
+<nav class="navbar navbar-default header">
+    <div class="container-fluid">
+        <form action="" class="" id="header_form--hidden">
+            <div class="form-group">
+                <input type="text" name="srch-term" class="form-control border__radius--none"
+                       placeholder="Rechercher une espèce...">
+                <div class="btn btn-warning border__radius--none" style="display:block;">Envoyer</div>
+            </div>
+        </form>
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#header__rubriques" aria-expanded="false">
+                <span class="sr-only">Activer la navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <div class="navbar-brand navbar__brand-img" href="#">
-                <img class="brand__tit-header" src="{{ asset('assets/img/tit_logo.png') }}" alt="TIT">
-            </div>
+            <a href="#"><img src="{{ asset('assets/img/search.png') }}" alt="Rechercher une espèce"
+                             id="header__form--mobile"
+                             class="pull-right visible-xs header__icons--mobile" style="margin-right:8px;"></a>
+            {% if app.user %}
+                <a href="{{ path('manage_profil_membre', {'id' : app.user.id}) }}"><img src="{{ asset('assets/img/user.png') }}" alt="Accéder à votre profil"
+                                 class="pull-right visible-xs header__icons--mobile"></a>
+            {% endif %}
+            <img class="hidden-xs" id="header__logo--desktop" src="{{ asset('assets/img/tit_logo.png') }}"
+                 alt="Professeur Tit">
+            <img class="visible-xs" id="header__logo--mobile" src="{{ asset('assets/img/tit_logo.png') }}"
+                 alt="Professeur Tit">
         </div>
-
-        <!-- navbar -->
-        <div class="collapse navbar-collapse" id="collapse-1">
-            <ul class="nav navbar-nav navbar">
-                <li><button type="button" class="btn btn-default navbar__button">Débuter l'Ornithologie</button></li>
-                <li><button type="button" class="btn btn-default navbar__button">Observations</button></li>
-                <li><button type="button" class="btn btn-default navbar__button">Carte interactive</button></li>
-            </ul>
-
-            <ul class="nav navbar-nav navbar-right" id="navbar-right">
-                <form class="navbar-form navbar__form" role="search">
-                    <div class="input-group add-on">
-                        <input class="form-control form__controller" placeholder="Rechercher une espèce" name="srch-term" id="srch-term" type="text">
-                        <div class="input-group-btn">
-                            <button class="btn btn-default search__button" type="submit"><i class="glyphicon glyphicon-search search__magnifer"></i></button>
+        <div class="navbar-collapse collapse" id="header__rubriques">
+            <ul class="nav navbar-nav">
+                <li class="header__rubriques--name"><a href="#">Débuter l'ornithologie</a></li>
+                <li class="header__rubriques--name"><a href="#">Observations</a></li>
+                <li class="header__rubriques--name"><a href="#">Carte interactive</a></li>
+                <form class="navbar-form hidden-xs" action="" id="header__form">
+                    <div class="form-group">
+                        <div id="header__form--container">
+                            <input type="text" name="srch-term" id="header__form--input" class="form-control"
+                                   placeholder="Rechercher une espèce...">
+                            <img src="{{ asset('assets/img/search_blue.png') }}" id="header_form--icon" alt="">
                         </div>
                     </div>
                 </form>
                 {% if app.user %}
-                    <li><a href="{{ path('logout') }}" class="btn btn-default navbar__button" role="button">Déconnexion</a></li>
+                    <a href="{{ path('manage_profil_membre', {'id' : app.user.id}) }}"><img
+                                src="{{ asset('assets/img/user.png') }}" alt="Accéder à votre profil"
+                                id="header__icon--user" class="hidden-xs"></a>
+                    <li class="header__rubriques--name pull-right hidden-xs"><a href="{{ path('logout') }}">Déconnexion</a></li>
+                    <li class="header__rubriques--name visible-xs"><a href="{{ path('logout') }}">Déconnexion</a></li>
                 {% else %}
-                    <li><button href="" id="login-load-desktop" class="hide modal-desktop btn btn-default navbar__button" role="button" data-toggle="modal" data-target="#modal-login-desktop">Inscription / Identification</button></li>
-                    <li><button href="" id="login-load-mobile" class="hide modal-mobile btn btn-default navbar__button" role="button" data-toggle="modal" data-target="#modal-login-mobile">Inscription / Identification</button></li>
+                    <li class="header__rubriques--name pull-right hidden-xs"><a href="#" id="login-load-desktop"
+                                                                                class="hide modal-desktop hidden-xs" data-toggle="modal" data-target="#modal-login-desktop">
+                            <div class="header__rubriques--posRelative">S'inscrire
+                                <div class="header__rubriques--posAbsolute">Se connecter</div>
+                            </div>
+                        </a></li>
+                    <li class="header__rubriques--name visible-xs"><a href="#" id="login-load-mobile" data-toggle="modal" data-target="#modal-login-mobile">S'inscrire / Se
+                            connecter</a></li>
                 {% endif %}
             </ul>
         </div>
@@ -68,55 +103,71 @@
 {% endblock %}
 
 
-<!-- footer -->
-<div class="container footer__container">
-    <div class="fixed-footer-bottom">
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 footer__column">
-            <ul class="list-unstyled clear-margins">
-                <li><a class="footer__column__title" href="#">Débuter l'ornithologie</a></li>
-                <li><a class="footer__column__title"href="#">Plan du site</a></li>
-                <li><a class="footer__column__title"href="#">Contact</a></li>
-            </ul>
-        </div>
-
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 footer__column">
-            <ul class="list-unstyled clear-margins">
-                <li><a class="footer__column__title" href="#">Observations</a></li>
-                <li><a class="footer__column__title" href="#">Carte interactive</a></li>
-            </ul>
-        </div>
-
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 footer__column">
-            <ul class="list-unstyled clear-margins">
-                <li><a class="footer__column__title__facebook" href="https://www.facebook.com/..."><i class="fa fa-facebook-square fa-2x facebook-icon" id="social"></i>
-                        Facebook</a></li>
-                <li><a class="footer__column__title" href="#">Mentions legales</a></li>
-                <li><a class="footer__column__title" href="#">Copyright</a></li>
-            </ul>
-        </div>
-
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 footer__column-tit">
-            <div class="navbar-brand navbar__brand" href="#">
-                <img class="brand__tit-footer" src="{{ asset('assets/img/tit_logo.png') }}" alt="TIT">
-                <img class="brand__tit__name-footer" src="{{ asset('assets/img/tit_blanc.png') }}" alt="TIT">
+<div class="hidden-xs footer">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="col-sm-3">
+                <ul>
+                    <li><a href="#">Débuter l'ornithologie</a></li>
+                </ul>
             </div>
-
+            <div class="col-sm-3">
+                <ul>
+                    <li><a href="#">Observations</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-3">
+                <ul>
+                    <li><a href="#"><i class="fa fa-facebook-square fa-2x"></i>&nbsp;Facebook</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-sm-3">
+                <img src="{{ asset('assets/img/tit_logo.png') }}" alt="Professeur Tit" id="footer__logo--proftit" class="">
+            </div>
+        </div>
+        <div id="footer__spacing--secondcolumn">
+            <div class="col-sm-12">
+                <div class="col-sm-3">
+                    <ul>
+                        <li><a href="#">Plan du site</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <ul>
+                        <li><a href="#">Carte interactive</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <ul>
+                        <li><a href="#">Mentions légales</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="footer__spacing--thirdcolumn">
+            <div class="col-sm-12">
+                <div class="col-sm-3">
+                    <ul>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3 col-sm-offset-3">
+                    <ul>
+                        <li><a href="#">Copyright</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <img src="{{ asset('assets/img/tit_blanc.png') }}" alt="" class="">
+                </div>
+            </div>
         </div>
     </div>
-
-    <div class="footer-bottom">
-        <div class="container footer-bottom__container">
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                <div class="copyright">
-                    @ 2017, OpenSpirit, All rights reserved
-                </div>
-            </div>
-
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                <div class="info-spirit">
-                    OpenSpirit | Agence digitale media
-                </div>
-            </div>
+</div>
+<div class="visible-xs footer">
+    <div class="row">
+        <div class="col-xs-12 text-center">
+            <i class="fa fa-facebook-square fa-2x" style="color:#fff;"></i>
         </div>
     </div>
 </div>
@@ -151,15 +202,11 @@
 <!-- /END Modal Forgotten Password -->
 
 {% block javascript %}
-<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
-        integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
-        crossorigin="anonymous"></script>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
-<script type="text/javascript">
-    $(function () {
+    <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+    <script type="text/javascript">
         $('#login-load-desktop').click(function () {
             $.ajax({
                 url: "{{ path('modal_form_desktop') }}",
@@ -176,8 +223,14 @@
                 $('#modal-load-mobile').html(msg);
             });
         });
-    }());
-</script>
+        $('#header_form--icon').click(function () {
+            $('#header__form').submit();
+        });
+
+        $('#header__form--mobile').click(function () {
+            $('#header_form--hidden').toggle('slow');
+        });
+    </script>
 {% endblock %}
 </body>
 </html>

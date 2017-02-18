@@ -155,6 +155,9 @@
                 {{ form_widget(form.newsletter) }}
                 {{ form_widget(form.cgu) }}
                 {{ form_errors(form.cgu) }}
+                {{ form_widget(form.media, {
+                'attr': {'value' : 'Desktop'}
+                }) }}
             </div>
         </div>
     </div>

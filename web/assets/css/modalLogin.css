@@ -51,6 +51,11 @@
     margin:auto;
 }
 
+.social-text
+{
+    color:#fff !important;
+}
+
 .modal-body a {
     color:#fff;
     text-decoration: none;
