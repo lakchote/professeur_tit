@@ -158,12 +158,6 @@ a, span, p, h1, h2 , h3
         padding:20px 5%;
     }
 
-    #footer__logo--facebook
-    {
-        height:14px;
-        width:14px;
-    }
-
     #footer__logo--proftit
     {
         height:160px;
@@ -177,7 +171,7 @@ a, span, p, h1, h2 , h3
         line-height: 50px;
     }
 
-    .footer li a
+    .footer li a, #footer__logo--facebook
     {
         color: rgb(255, 250, 219);
     }
@@ -275,5 +269,42 @@ a, span, p, h1, h2 , h3
     {
         margin-left:0.3em;
         margin-right:0.3em;
+    }
+
+    #footer__logo--proftit
+    {
+        height:160px;
+        width:160px;
+        margin-top:-10px;
+    }
+
+    #footer__spacing--secondcolumn li
+    {
+        margin-top:-80px;
+    }
+
+    #footer__spacing--thirdcolumn li
+    {
+        margin-top:-20px;
+    }
+
+    .footer
+    {
+        padding:20px 5%;
+    }
+
+    .footer li
+    {
+        list-style-type: none;
+    }
+
+    .footer li a, #footer__logo--facebook
+    {
+        color: rgb(255, 250, 219);
+    }
+
+    #footer__logo--facebook
+    {
+        vertical-align: top;
     }
 }
