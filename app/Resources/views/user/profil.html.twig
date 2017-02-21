@@ -27,15 +27,21 @@
                     {{ form_start(form) }}
                     <div id="user-info__photo" class="pull-left">
                         <div id="user-info__photo--button">
-                            {% if user.image != '' %}
-                                <img src="{{ asset('uploads/user/' ~ user.image) }}" alt="Votre photo de profil"
-                                     id="user-info__photo--load">
+                            {% if app.user.image != '' %}
+                                {% set img = app.user.image|split('/') %}
+                                {% if img.1 is defined %}
+                                    <img src="{{ asset('uploads/user/' ~ img.1) }}" alt="Votre photo de profil"
+                                         id="user-info__photo--load">
+                                {% else %}
+                                    <img src="{{ asset('uploads/user/' ~ app.user.image) }}" alt="Votre photo de profil"
+                                         id="user-info__photo--load">
+                                {% endif %}
                             {% endif %}
                             {{ form_widget(form.image, { 'attr' : {'class' : 'user-info__photo--file'}}) }}
-                            {% if user.image == '' %} Ajouter une photo {% endif %}
+                            {% if app.user.image == '' %} Ajouter une photo {% endif %}
                         </div>
-                        {% if user.image != '' %}
-                            <a href="{{ path('user_delete_image', {'id' : user.id}) }}"><img
+                        {% if app.user.image != '' %}
+                            <a href="{{ path('user_delete_image', {'id' : app.user.id}) }}"><img
                                         src="{{ asset('assets/img/trash.png') }}" id="user-info__photo--trash"
                                         alt="Supprimer la photo"></a>
                         {% endif %}

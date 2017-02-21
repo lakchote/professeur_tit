@@ -139,8 +139,7 @@ class UserController extends Controller
             'registerDate' => $registerDate,
             'form' => $form->createView(),
             'nbObservations' => $nbObservations,
-            'obsValidees' => $observationsValidees,
-            'user' => $user
+            'obsValidees' => $observationsValidees
         ]);
     }
 
