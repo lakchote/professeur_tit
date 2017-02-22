@@ -120,12 +120,12 @@ class UserController extends Controller
     }
 
     /**
-     * @Route("/manage/profil/{id}", name="manage_profil_membre")
+     * @Route("/manage/profil", name="manage_profil_membre")
      * @Security("is_granted('ROLE_MANAGE_PROFILE')")
      */
-    public function profilUserAction(User $user, Request $request)
+    public function profilUserAction(Request $request)
     {
-        if (!$this->get('app.profil_user')->checkIfAccessGranted($user)) return new RedirectResponse($this->get('router')->generate('home'));
+        $user = $this->get('security.token_storage')->getToken()->getUser();
         $registerDate = $this->get('app.profil_user')->getRegisterDate($user);
         $form = $this->createForm(ProfilFormType::class, $user);
         $form->handleRequest($request);
@@ -135,7 +135,7 @@ class UserController extends Controller
         }
         $nbObservations = $this->get('app.profil_user')->getUserObservations($user);
         $observationsValidees = $this->get('app.profil_user')->getUserValidatedObservations($user);
-        return $this->render('user/profil.html.twig', [
+        return $this->render('user/manage_profil.html.twig', [
             'registerDate' => $registerDate,
             'form' => $form->createView(),
             'nbObservations' => $nbObservations,
@@ -144,22 +144,23 @@ class UserController extends Controller
     }
 
     /**
-     * @Route("/user/delete/profil/{id}", name="user_delete")
+     * @Route("/user/delete/profil", name="user_delete")
      * @Security("is_granted('ROLE_MANAGE_PROFILE')")
      */
-    public function userDeleteAccountAction(User $user)
+    public function userDeleteAccountAction()
     {
-        if (!$this->get('app.profil_user')->checkIfAccessGranted($user)) return new RedirectResponse($this->get('router')->generate('home'));
+        $user = $this->get('security.token_storage')->getToken()->getUser();
         $this->get('app.profil_user')->deleteUser($user);
         return new RedirectResponse($this->get('router')->generate('home'));
     }
 
     /**
-     * @Route("/user/delete/image/{id}", name="user_delete_image")
+     * @Route("/user/delete/image", name="user_delete_image")
      */
-    public function userDeleteImgAction(User $user)
+    public function userDeleteImgAction()
     {
+        $user = $this->get('security.token_storage')->getToken()->getUser();
         $this->get('app.profil_user')->deleteUserImage($user);
-        return new RedirectResponse($this->get('router')->generate('manage_profil_membre', ['id' => $user->getId()]));
+        return new RedirectResponse($this->get('router')->generate('manage_profil_membre'));
     }
 }

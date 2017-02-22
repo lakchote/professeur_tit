@@ -44,15 +44,6 @@ class ProfilUser
         return $singleDateValues[2] . ' ' . $this->months[$singleDateValues[1]] . ' ' . $singleDateValues[0];
     }
 
-    public function checkIfAccessGranted(User $user)
-    {
-        $currentUser = $this->tokenStorage->getToken()->getUser();
-        if ($currentUser->getId() !== $user->getId()) {
-            return false;
-        }
-        return true;
-    }
-
     public function getUserObservations(User $user)
     {
         return $this->em->getRepository('AppBundle:Observation')->getUserObservations($user->getId());

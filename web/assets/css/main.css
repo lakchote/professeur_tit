@@ -2,6 +2,13 @@ body
 {
     background-color: rgb(255, 250, 219);
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    margin-bottom:250px;
+}
+
+html
+{
+    position:relative;
+    min-height:100%;
 }
 
 a, span, p, h1, h2 , h3
@@ -12,6 +19,14 @@ a, span, p, h1, h2 , h3
 .header, .footer
 {
     background-color: #162135;
+}
+
+.footer
+{
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:250px;
 }
 
 .header__rubriques--name > *
@@ -27,6 +42,15 @@ a, span, p, h1, h2 , h3
 /** SM devices **/
 @media screen and (max-width: 768px)
 {
+    body
+    {
+        margin-bottom: 50px;
+    }
+
+    .footer
+    {
+        height:50px;
+    }
     .navbar-toggle
     {
         margin-top: 8px;

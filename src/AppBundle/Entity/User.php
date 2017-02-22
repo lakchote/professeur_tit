@@ -17,6 +17,9 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  */
 class User implements UserInterface, \Serializable
 {
+
+    private $img_path = '/uploads/user/';
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -336,4 +339,8 @@ class User implements UserInterface, \Serializable
             ) = unserialize($serialized);
     }
 
+    public function getImgPath()
+    {
+        return $this->img_path;
+    }
 }

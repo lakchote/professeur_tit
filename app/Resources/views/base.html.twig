@@ -36,7 +36,7 @@
 <body>
 
 <nav class="navbar navbar-default header">
-    <div class="container-fluid">
+    <div class="container">
         <form action="" class="" id="header_form--hidden">
             <div class="form-group">
                 <input type="text" name="srch-term" class="form-control border__radius--none"
@@ -56,7 +56,7 @@
                              id="header__form--mobile"
                              class="pull-right visible-xs header__icons--mobile" style="margin-right:8px;"></a>
             {% if app.user %}
-                <a href="{{ path('manage_profil_membre', {'id' : app.user.id}) }}"><img src="{{ asset('assets/img/user.png') }}" alt="Accéder à votre profil"
+                <a href="{{ path('manage_profil_membre') }}"><img src="{{ asset('assets/img/user.png') }}" alt="Accéder à votre profil"
                                  class="pull-right visible-xs header__icons--mobile"></a>
             {% endif %}
             <img class="hidden-xs" id="header__logo--desktop" src="{{ asset('assets/img/tit_logo.png') }}"
@@ -79,7 +79,7 @@
                     </div>
                 </form>
                 {% if app.user %}
-                    <a href="{{ path('manage_profil_membre', {'id' : app.user.id}) }}"><img
+                    <a href="{{ path('manage_profil_membre') }}"><img
                                 src="{{ asset('assets/img/user.png') }}" alt="Accéder à votre profil"
                                 id="header__icon--user" class="hidden-xs"></a>
                     <li class="header__rubriques--name pull-right hidden-xs"><a href="{{ path('logout') }}">Déconnexion</a></li>
@@ -99,66 +99,71 @@
     </div>
 </nav>
 
+<div class="container">
 {% block content %}
 {% endblock %}
-
+</div>
 
 <div class="hidden-xs footer">
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="col-sm-3">
-                <ul>
-                    <li><a href="#">Débuter l'ornithologie</a></li>
-                </ul>
-            </div>
-            <div class="col-sm-3">
-                <ul>
-                    <li><a href="#">Observations</a></li>
-                </ul>
-            </div>
-            <div class="col-sm-3">
-                <ul>
-                    <li><a href="#"><i class="fa fa-facebook-square fa-2x"></i>&nbsp;<span id="footer__logo--facebook">Facebook</span></a>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-sm-3">
-                <img src="{{ asset('assets/img/tit_logo.png') }}" alt="Professeur Tit" id="footer__logo--proftit" class="pull-right">
-            </div>
-        </div>
-        <div id="footer__spacing--secondcolumn">
+    <div class="container">
+        <div class="row">
             <div class="col-sm-12">
                 <div class="col-sm-3">
                     <ul>
-                        <li><a href="#">Plan du site</a></li>
+                        <li><a href="#">Débuter l'ornithologie</a></li>
                     </ul>
                 </div>
                 <div class="col-sm-3">
                     <ul>
-                        <li><a href="#">Carte interactive</a></li>
+                        <li><a href="#">Observations</a></li>
                     </ul>
                 </div>
                 <div class="col-sm-3">
                     <ul>
-                        <li><a href="#">Mentions légales</a></li>
+                        <li><a href="#"><i class="fa fa-facebook-square fa-2x"></i>&nbsp;<span
+                                        id="footer__logo--facebook">Facebook</span></a>
+                        </li>
                     </ul>
+                </div>
+                <div class="col-sm-3">
+                    <img src="{{ asset('assets/img/tit_logo.png') }}" alt="Professeur Tit" id="footer__logo--proftit"
+                         class="pull-right">
                 </div>
             </div>
-        </div>
-        <div id="footer__spacing--thirdcolumn">
-            <div class="col-sm-12">
-                <div class="col-sm-3">
-                    <ul>
-                        <li><a href="#">Contact</a></li>
-                    </ul>
+            <div id="footer__spacing--secondcolumn">
+                <div class="col-sm-12">
+                    <div class="col-sm-3">
+                        <ul>
+                            <li><a href="#">Plan du site</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-3">
+                        <ul>
+                            <li><a href="#">Carte interactive</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-3">
+                        <ul>
+                            <li><a href="#">Mentions légales</a></li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="col-sm-3 col-sm-offset-3">
-                    <ul>
-                        <li><a href="#">Copyright</a></li>
-                    </ul>
-                </div>
-                <div class="col-sm-3">
-                    <img src="{{ asset('assets/img/tit_blanc.png') }}" alt="" class="pull-right">
+            </div>
+            <div id="footer__spacing--thirdcolumn">
+                <div class="col-sm-12">
+                    <div class="col-sm-3">
+                        <ul>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-3 col-sm-offset-3">
+                        <ul>
+                            <li><a href="#">Copyright</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-3">
+                        <img src="{{ asset('assets/img/tit_blanc.png') }}" alt="" class="pull-right">
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,6 +1,6 @@
 .user-info {
-    height: 600px;
-    margin-bottom: 40px;
+    height: 500px;
+    margin-bottom: 30px;
 }
 
 #user-info__photo--button
@@ -33,6 +33,12 @@
 
 #user-observations, #user-info__username {
     line-height: 40px;
+}
+
+#user-observations--mobile
+{
+    background-color: #fff;
+    height:60px;
 }
 
 #user-info__photo {
