@@ -74,9 +74,6 @@
     .input-lg, .btn {
         height: 40px;
     }
-    .modal-mobile {
-        display:block !important;
-    }
 }
 
 /*** IPHONE 5 ***/
@@ -90,22 +87,8 @@
     }
 }
 
-/*** DESKTOP ***/
-@media screen and (min-width:640px) {
-    .modal-desktop {
-        display:block !important;
-    }
-}
-
 /*** IPAD ***/
 @media screen and (min-width:768px) and (max-width:768px) and (min-height:1024px) and (max-width:1024px) {
-
-    .modal-desktop {
-        display:none !important;
-    }
-    .modal-mobile {
-        display:block !important;
-    }
 
     #checkbox-remember, #checkbox-remember-text {
         top:-10px;
@@ -118,16 +101,15 @@
 /*** IPAD Pro ***/
 @media screen and (min-width:1024px) and (max-width:1024px) and (min-height:1366px) and (max-width:1366px) {
 
-    .modal-desktop {
-        display:none !important;
-    }
-    .modal-mobile {
-        display:block !important;
-    }
     #checkbox-remember, #checkbox-remember-text {
         top:-10px;
     }
     #checkbox-remember-text {
         left:5.5%;
+    }
+
+    .modal-lg
+    {
+        width:900px;
     }
 }

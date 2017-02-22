@@ -98,7 +98,7 @@ a, span, p, h1, h2 , h3
 {
     .header
     {
-        height: 105px;
+        height: auto;
     }
 
     #header__logo--desktop
@@ -230,6 +230,11 @@ a, span, p, h1, h2 , h3
         font-size:0.7em;
     }
 
+    .footer
+    {
+        height:250px !important;
+    }
+
     #header__logo--desktop
     {
         height:80px;
@@ -314,7 +319,7 @@ a, span, p, h1, h2 , h3
 
     .footer
     {
-        padding:20px 5%;
+        padding:20px;
     }
 
     .footer li
