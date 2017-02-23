@@ -241,11 +241,9 @@
         $('#header__form--mobile').click(function () {
             $('#header_form--hidden').toggle('slow');
         });
-    </script>
 
-    }());
 
-    $('#srch-term').autocomplete({
+    $('#header__form--input').autocomplete({
         source : '{{ path('getListing') }}',
         minLength: 3,
         create: function () {
@@ -253,8 +251,12 @@
                 return $('<li><strong>' + item.value + '</strong> / <i>' + item.label + '</i></li>').appendTo(ul);
             };
         },
+        select: function (event, ui) {
+            $("#header__form--input").val(ui.item.value + ' / ' + ui.item.label);
+            return false;
+        },
     });
-
+    }());
 </script>
 {% endblock %}
 </body>

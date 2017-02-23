@@ -38,7 +38,7 @@ class Auteur
 
     /**
      * @var ArrayCollection;
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Taxon", mappedBy="auteur", cascade={"persist", "remove"})
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Taxon", mappedBy="auteurs", cascade={"persist", "remove"})
      * @Assert\Valid()
      */
     private $taxons;

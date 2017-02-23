@@ -49,6 +49,11 @@ class ProfilUser
         return $this->em->getRepository('AppBundle:Observation')->getUserObservations($user->getId());
     }
 
+    public function getUserObservationsFlow(User $user)
+    {
+        return $this->em->getRepository('AppBundle:Observation')->getUserObservationsFlow($user->getId());
+    }
+
     public function getUserValidatedObservations(User $user)
     {
         return $this->em->getRepository('AppBundle:Observation')->getUserValidatedObservations($user->getId());

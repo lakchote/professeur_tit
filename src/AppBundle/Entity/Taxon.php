@@ -123,7 +123,7 @@ class Taxon
     private $habitat;
 
     /**
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Auteur", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Auteur", inversedBy="taxons", cascade={"persist"})
      * @ORM\JoinColumn(nullable=true)
      * @Assert\Valid()
      */

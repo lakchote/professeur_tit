@@ -12,6 +12,7 @@
     </div>
 </div>
 <div class="modal-body">
+    {{ form_start(form) }}
     <div class="row form-group">
     <div class="col-xs-12">
         <div class="col-xs-12 col-md-6">
@@ -20,8 +21,10 @@
                 <div class="row">
                     <div class="col-xs-2">
                         <img src="{{ asset('assets/img/search_blue.png') }}" alt="{{ "Qu'avez vous vu ?"|trans }}" class="modal-load-desktop__icon">
+
                     </div>
                     <div class="col-xs-10">
+                        {{ form_widget(form.taxon, {'attr': {'class' : 'form-control modal-load-desktop__input hidden', 'placeholder': "Nom de l'espece"|trans}}) }}
                         <input id="recherche" type="text" class="form-control modal-load-desktop__input" placeholder="{{ "Nom de l'espece"|trans }}"/>
                     </div>
                 </div>
@@ -34,6 +37,8 @@
                     </div>
                     <div class="col-xs-10">
                         <input id="pac-input" type="text" class="form-control modal-load-desktop__input" placeholder="{{ "Ville, coordonnées GPS"|trans }}"/>
+                       {{ form_widget(form.longitude, {'attr': {'class' : 'form-control modal-load-desktop__input hidden' }}) }}
+                        {{ form_widget(form.latitude, {'attr': {'class' : 'form-control modal-load-desktop__input hidden' }}) }}
                     </div>
                 </div>
             </div>
@@ -44,7 +49,9 @@
                         <img src="{{ asset('assets/img/when.png') }}" alt="{{ "Quand l'avez vous vu ?"|trans }}" class="modal-load-desktop__icon">
                     </div>
                     <div class="col-xs-10">
-                        <input type="text" class="form-control modal-load-desktop__input" placeholder="{{ "Date, heure"|trans }}"/>
+                        {{ form_widget(form.date) }}
+
+                        {#<input type="text" class="form-control modal-load-desktop__input" placeholder="{{ "Date, heure"|trans }}"/>#}
                     </div>
                 </div>
             </div>
@@ -59,7 +66,8 @@
                     </div>
                 </div>
                 <div class="col-xs-12">
-                    <textarea id="description" class="form-control modal-load-desktop__textarea" rows="5">{{ "Decrivez l'oiseau que vous avez observé"|trans }}</textarea>
+                    {{ form_widget(form.description, {'attr': {'class' : 'form-control modal-load-desktop__textarea', 'rows' : '12', 'placeholder': "Decrivez l'oiseau que vous avez observé"|trans}}) }}
+                  {# <textarea id="description" class="form-control modal-load-desktop__textarea" rows="5">{{ "Decrivez l'oiseau que vous avez observé"|trans }}</textarea>#}
                 </div>
             </div>
 
@@ -69,6 +77,7 @@
         <div class="col-xs-12 col-md-6">
             <div class="col-xs-12 modal-load-desktop__row">
                 <label for="" class="col-xs-12 control-label modal-load-desktop__label">{{ "Ajoutez une photo à votre observation"|trans }}</label>
+               {# {{ form_widget(form.photoPath) }}#}
                     <div class="col-xs-12 modal-load-desktop__image">
                     </div>
                 <img src="{{ asset('assets/img/trash.png') }}" alt="{{ "Supprimer photo"|trans }}" class="modal-load-desktop__icon--small">
@@ -77,11 +86,12 @@
                 <button type="button" class="btn-block modal-load-desktop__btn modal-load-desktop__btn--red">{{ "Supprimer"|trans }}</button>
             </div>
             <div class="col-md-offset-6 col-xs-6 modal-load-desktop__row">
-                <button type="button" class="btn-block modal-load-desktop__btn modal-load-desktop__btn--blue">{{ "Publier"|trans }}</button>
+                <button id="btn-publish" type="button" class="btn-block modal-load-desktop__btn modal-load-desktop__btn--blue">{{ "Publier"|trans }}</button>
             </div>
         </div>
     </div>
 </div>
+    {{ form_end(form) }}
 </div>
 
 <script>
@@ -98,8 +108,8 @@
                 window.alert("{{ "Selectionnez un lieu dans la liste SVP"|trans }}");
                 return;
             }
-            console.log(place.geometry.location.lat());
-            console.log(place.geometry.location.lng());
+            $('#obs_form_longitude').val(place.geometry.location.lng().toFixed(10));
+            $('#obs_form_latitude').val(place.geometry.location.lat().toFixed(11));
         });
     }
 
@@ -114,12 +124,31 @@
             };
         },
         select: function (event, ui) {
-            $("#recherche").val(ui.item.label);
+            $("#recherche").val(ui.item.value + ' / ' + ui.item.label);
+            $("#obs_form_taxon").val(ui.item.label);
+          //  $('#obs_form_taxon option:contains(ui.item.label)').prop('selected', true);
             // $("#project-id").val(ui.item.value);
             //   $("#project-description").html(ui.item.desc);
             //   $("#project-icon").attr("src", "images/" + ui.item.icon);
             return false;
         },
+    });
+    $('#btn-publish').click(function(e) {
+        e.preventDefault();
+        var $formData = $('form').serializeArray();
+        $.ajax({
+            url: "{{ path('obs_publish') }}",
+            method: "POST",
+            data: $formData,
+            statusCode: {
+                201: function (msg) {
+                    console.log(msg);
+                },
+                200: function (msg) {
+                    console.log(msg);
+                }
+            }
+        });
     });
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACO55kGEkd8YeNffAaErhE02wa_UigduQ&libraries=places&callback=initMap" async defer></script>
