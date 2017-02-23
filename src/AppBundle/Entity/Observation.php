@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use AppBundle\Entity\Taxon;
 use AppBundle\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Observation
@@ -32,7 +33,8 @@ class Observation
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date", type="date")
+     * @ORM\Column(name="date", type="datetime")
+     * @Assert\NotBlank(message="observation.error.dateNull")
      */
     private $date;
 
@@ -40,6 +42,7 @@ class Observation
      * @var float
      *
      * @ORM\Column(name="longitude", type="decimal", precision=10, scale=8)
+     * @Assert\NotBlank(message="observation.error.geoBlank")
      */
     private $longitude;
 
@@ -47,6 +50,7 @@ class Observation
      * @var float
      *
      * @ORM\Column(name="latitude", type="decimal", precision=11, scale=8)
+     * @Assert\NotBlank(message="observation.error.geoBlank")
      */
     private $latitude;
 
@@ -82,6 +86,15 @@ class Observation
      * @ORM\JoinColumn(nullable=false)
      */
     private $taxon;
+
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->status = self::OBS_STARTED;
+    }
 
     /**
      * Get id

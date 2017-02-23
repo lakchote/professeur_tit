@@ -9,6 +9,7 @@
 namespace AppBundle\Doctrine;
 
 
+use AppBundle\Entity\Taxon;
 use AppBundle\Entity\User;
 use AppBundle\Service\FileUploader;
 use Doctrine\ORM\Event\LifecycleEventArgs;
@@ -41,6 +42,7 @@ class UserPhotoUploadListener
     public function postLoad(LifecycleEventArgs $args)
     {
         $entity = $args->getEntity();
+        if ($entity instanceof Taxon) return;
         $filename = $entity->getImage();
         if($filename != '') $entity->setImage(new File($this->targetPath . '/' . $filename));
     }
