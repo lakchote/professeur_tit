@@ -97,3 +97,48 @@ MODALE NOUVELLE OBS
 .modal-load-desktop__input {
     height: 50px;
 }
+
+.modal-load-desktop__btn {
+    border-radius: 0px;
+    height: 45px;
+    color: rgb(255,250,219);
+}
+
+.modal-load-desktop__btn--red {
+    background-color: rgb(217,30,0);
+}
+
+.modal-load-desktop__btn--red:hover {
+    box-shadow: 10px 10px 10px 0px rgba(35,74,129,.15) inset;
+}
+
+.modal-load-desktop__btn--blue {
+    background-color: rgb(35,74,129);
+}
+
+.modal-load-desktop__btn--blue:hover {
+    box-shadow: 10px 10px 10px 0px rgba(255,210,219,.15) inset;
+}
+
+
+/*
+MODULE GOOGLE POUR AFFICHAGE DU LIEU D'OBSERVATION
+ */
+.pac-container {
+    z-index: 1051 !important;
+}
+
+.pac-icon-marker {
+    background-image: url('../img/where.png');
+    background-size: 10px 15px;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+/*
+AUTOCOMPLETE JQUERY UI
+ */
+
+.ui-autocomplete {
+    z-index: 1500;
+}

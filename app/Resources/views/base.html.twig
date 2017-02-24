@@ -85,18 +85,12 @@
                     <li class="header__rubriques--name pull-right hidden-xs"><a href="{{ path('logout') }}">Déconnexion</a></li>
                     <li class="header__rubriques--name visible-xs"><a href="{{ path('logout') }}">Déconnexion</a></li>
                 {% else %}
-                    <li class="header__rubriques--name pull-right hidden-xs">
-                        <a href="#" id="login-load-desktop" class="hidden-sm" data-toggle="modal" data-target="#modal-login-desktop">
+                    <li class="header__rubriques--name pull-right hidden-xs"><a href="#" id="login-load-desktop"
+                                                                                class="hide modal-desktop hidden-xs" data-toggle="modal" data-target="#modal-login-desktop">
                             <div class="header__rubriques--posRelative">S'inscrire
                                 <div class="header__rubriques--posAbsolute">Se connecter</div>
                             </div>
-                        </a>
-                        <a href="#" class="visible-sm" id="login-load-mobile" data-toggle="modal" data-target="#modal-login-mobile">
-                            <div class="header__rubriques--posRelative">S'inscrire
-                                <div class="header__rubriques--posAbsolute">Se connecter</div>
-                            </div>
-                        </a>
-                    </li>
+                        </a></li>
                     <li class="header__rubriques--name visible-xs"><a href="#" id="login-load-mobile" data-toggle="modal" data-target="#modal-login-mobile">S'inscrire / Se
                             connecter</a></li>
                 {% endif %}
@@ -248,20 +242,8 @@
             $('#header_form--hidden').toggle('slow');
         });
 
-        $('#srch-term').autocomplete({
-            source : '{{ path('getListing') }}',
-            minLength: 3,
-            create: function () {
-                $(this).data('ui-autocomplete')._renderItem = function (ul, item) {
-                    return $('<li><strong>' + item.value + '</strong> / <i>' + item.label + '</i></li>').appendTo(ul);
-                };
-            },
-        });
-    </script>
 
-    }());
-
-    $('#srch-term').autocomplete({
+    $('#header__form--input').autocomplete({
         source : '{{ path('getListing') }}',
         minLength: 3,
         create: function () {
@@ -269,8 +251,12 @@
                 return $('<li><strong>' + item.value + '</strong> / <i>' + item.label + '</i></li>').appendTo(ul);
             };
         },
+        select: function (event, ui) {
+            $("#header__form--input").val(ui.item.value + ' / ' + ui.item.label);
+            return false;
+        },
     });
-
+    }());
 </script>
 {% endblock %}
 </body>
