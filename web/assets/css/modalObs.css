@@ -7,7 +7,13 @@ MODALE NOUVELLE OBS
     border: 1px solid black;
 }
 */
-
+#location {
+    background-color: transparent;
+    color: rgb(35,74,129);
+}
+.modal-lg {
+    width: 1080px;
+}
 .modal-load-desktop__bubble
 {
     position: relative;

@@ -34,7 +34,13 @@ class Observation
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="datetime")
-     * @Assert\NotBlank(message="observation.error.dateNull")
+     * @Assert\Range(
+     *     min ="-2 years",
+     *     max ="+1 hour",
+     *     minMessage="observation.error.mindate",
+     *     maxMessage="observation.error.maxdate"
+     * )
+     *
      */
     private $date;
 
@@ -58,6 +64,7 @@ class Observation
      * @var string
      *
      * @ORM\Column(name="status", type="string", length=255)
+     * @Assert\NotBlank(message="observation.error.statusNull")
      */
     private $status;
 
@@ -84,6 +91,7 @@ class Observation
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Taxon", inversedBy="observations", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank(message="observation.error.taxonNull")
      */
     private $taxon;
 

@@ -24,8 +24,9 @@
 
                     </div>
                     <div class="col-xs-10">
-                        {{ form_widget(form.taxon, {'attr': {'class' : 'form-control modal-load-desktop__input hidden', 'placeholder': "Nom de l'espece"|trans}}) }}
                         <input id="recherche" type="text" class="form-control modal-load-desktop__input" placeholder="{{ "Nom de l'espece"|trans }}"/>
+                        {{ form_widget(form.taxon, {'attr': {'class' : 'form-control modal-load-desktop__input hidden', 'placeholder': "Nom de l'espece"|trans}}) }}
+                        {{ form_errors(form.taxon) }}
                     </div>
                 </div>
             </div>
@@ -36,9 +37,18 @@
                         <img src="{{ asset('assets/img/where.png') }}" alt="{{ "Où l'avez vous vu ?"|trans }}" class="modal-load-desktop__icon">
                     </div>
                     <div class="col-xs-10">
-                        <input id="pac-input" type="text" class="form-control modal-load-desktop__input" placeholder="{{ "Ville, coordonnées GPS"|trans }}"/>
-                       {{ form_widget(form.longitude, {'attr': {'class' : 'form-control modal-load-desktop__input hidden' }}) }}
+                        <div class="input-group">
+
+                            <input id="pac-input" type="text" class="form-control modal-load-desktop__input" placeholder="{{ "Ville, coordonnées GPS"|trans }}"/>
+                            <span id="location" class="input-group-addon"><i class="fa fa-compass fa-2x" aria-hidden="true"></i></span>
+                        </div>
+
+
+                      {{ form_widget(form.longitude, {'attr': {'class' : 'form-control modal-load-desktop__input hidden' }}) }}
+                         {{ form_errors(form.longitude) }}
+
                         {{ form_widget(form.latitude, {'attr': {'class' : 'form-control modal-load-desktop__input hidden' }}) }}
+                        {{ form_errors(form.latitude) }}
                     </div>
                 </div>
             </div>
@@ -50,7 +60,7 @@
                     </div>
                     <div class="col-xs-10">
                         {{ form_widget(form.date) }}
-
+                        {{ form_errors(form.date) }}
                         {#<input type="text" class="form-control modal-load-desktop__input" placeholder="{{ "Date, heure"|trans }}"/>#}
                     </div>
                 </div>
@@ -86,7 +96,7 @@
                 <button type="button" class="btn-block modal-load-desktop__btn modal-load-desktop__btn--red">{{ "Supprimer"|trans }}</button>
             </div>
             <div class="col-md-offset-6 col-xs-6 modal-load-desktop__row">
-                <button id="btn-publish" type="button" class="btn-block modal-load-desktop__btn modal-load-desktop__btn--blue">{{ "Publier"|trans }}</button>
+                <button id="btn-publish" type="submit" class="btn-block modal-load-desktop__btn modal-load-desktop__btn--blue">{{ "Publier"|trans }}</button>
             </div>
         </div>
     </div>
@@ -111,6 +121,18 @@
             $('#obs_form_longitude').val(place.geometry.location.lng().toFixed(10));
             $('#obs_form_latitude').val(place.geometry.location.lat().toFixed(11));
         });
+    }
+
+
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        }
+    }
+    function showPosition(position) {
+        $('#obs_form_longitude').val(position.coords.longitude);
+        $('#obs_form_latitude').val(position.coords.latitude);
+        $('#pac-input').val(position.coords.latitude + " " + position.coords.longitude);
     }
 
 
@@ -143,12 +165,17 @@
             statusCode: {
                 201: function (msg) {
                     console.log(msg);
+                    $('#modal-load-desktop').html(msg);
                 },
-                200: function (msg) {
-                    console.log(msg);
+                200: function () {
+                    document.location.href='{{ path('observation') }}';
                 }
             }
         });
     });
+
+    $('#location').click(function() {getLocation();});
+
+    $('#obs_form_taxon').append('<option value="" selected></option>')
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACO55kGEkd8YeNffAaErhE02wa_UigduQ&libraries=places&callback=initMap" async defer></script>

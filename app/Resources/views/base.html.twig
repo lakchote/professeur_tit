@@ -85,12 +85,18 @@
                     <li class="header__rubriques--name pull-right hidden-xs"><a href="{{ path('logout') }}">Déconnexion</a></li>
                     <li class="header__rubriques--name visible-xs"><a href="{{ path('logout') }}">Déconnexion</a></li>
                 {% else %}
-                    <li class="header__rubriques--name pull-right hidden-xs"><a href="#" id="login-load-desktop"
-                                                                                class="hide modal-desktop hidden-xs" data-toggle="modal" data-target="#modal-login-desktop">
+                    <li class="header__rubriques--name pull-right hidden-xs">
+                        <a href="#" id="login-load-desktop" class="hidden-sm" data-toggle="modal" data-target="#modal-login-desktop">
                             <div class="header__rubriques--posRelative">S'inscrire
                                 <div class="header__rubriques--posAbsolute">Se connecter</div>
                             </div>
-                        </a></li>
+                        </a>
+                        <a href="#" class="visible-sm" id="login-load-mobile" data-toggle="modal" data-target="#modal-login-mobile">
+                            <div class="header__rubriques--posRelative">S'inscrire
+                                <div class="header__rubriques--posAbsolute">Se connecter</div>
+                            </div>
+                        </a>
+                    </li>
                     <li class="header__rubriques--name visible-xs"><a href="#" id="login-load-mobile" data-toggle="modal" data-target="#modal-login-mobile">S'inscrire / Se
                             connecter</a></li>
                 {% endif %}
