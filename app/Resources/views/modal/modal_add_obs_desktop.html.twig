@@ -88,7 +88,10 @@
             <div class="col-xs-12 modal-load-desktop__row">
                 <label for="" class="col-xs-12 control-label modal-load-desktop__label">{{ "Ajoutez une photo à votre observation"|trans }}</label>
                {# {{ form_widget(form.photoPath) }}#}
-                    <div class="col-xs-12 modal-load-desktop__image">
+                    <div id="modal-load-desktop__photo--button" class="col-xs-12 modal-load-desktop__image ">
+
+                        {{ form_widget(form.image, { 'attr' : {'class' : 'modal-load-desktop__photo--'}}) }}
+                            {{ form_errors(form.image) }}
                     </div>
                 <img src="{{ asset('assets/img/trash.png') }}" alt="{{ "Supprimer photo"|trans }}" class="modal-load-desktop__icon--small">
             </div>
@@ -164,11 +167,18 @@
             data: $formData,
             statusCode: {
                 201: function (msg) {
-                    console.log(msg);
+                    //console.log(msg);
                     $('#modal-load-desktop').html(msg);
                 },
                 200: function () {
-                    document.location.href='{{ path('observation') }}';
+                    console.log('ok');
+                    $('#modal-login-desktop').modal('toggle');
+                    {% for msg in app.session.flashBag.get('notice') %}
+                    console.log('{{ msg }}');
+                    $('#flash').html('<div class="alert alert-success">' +
+                        '<button type="button" class="close" data-dismiss="alert">' +
+                        '<span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button> {{ msg }} </div>' );
+                    {% endfor %}
                 }
             }
         });

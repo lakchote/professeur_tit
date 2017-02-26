@@ -15,6 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Observation
 {
+    private $img_path = '/uploads/observations/';
 
     const OBS_STARTED = "started";
     const OBS_MODIFIED = "modified";
@@ -69,11 +70,10 @@ class Observation
     private $status;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="photo_path", type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", nullable=true)
+     * @Assert\File(mimeTypes={"image/jpeg", "image/png"})
      */
-    private $photoPath;
+    private $image;
 
     /**
      * @var string
@@ -124,7 +124,7 @@ class Observation
     public function setDate($date)
     {
         $this->date = $date;
-    
+
         return $this;
     }
 
@@ -148,7 +148,7 @@ class Observation
     public function setLongitude($longitude)
     {
         $this->longitude = $longitude;
-    
+
         return $this;
     }
 
@@ -172,7 +172,7 @@ class Observation
     public function setLatitude($latitude)
     {
         $this->latitude = $latitude;
-    
+
         return $this;
     }
 
@@ -196,7 +196,7 @@ class Observation
     public function setStatus($status)
     {
         $this->status = $status;
-    
+
         return $this;
     }
 
@@ -211,75 +211,27 @@ class Observation
     }
 
     /**
-     * Set photoPath
+     * Set image
      *
-     * @param string $photoPath
+     * @param string $image
      *
      * @return Observation
      */
-    public function setPhotoPath($photoPath)
+    public function setImage($image)
     {
-        $this->photoPath = $photoPath;
-    
+        $this->image = $image;
+
         return $this;
     }
 
     /**
-     * Get photoPath
+     * Get image
      *
      * @return string
      */
-    public function getPhotoPath()
+    public function getImage()
     {
-        return $this->photoPath;
-    }
-
-    /**
-     * Set user
-     *
-     * @param User $user
-     *
-     * @return Observation
-     */
-    public function setUser(User $user)
-    {
-        $this->user = $user;
-    
-        return $this;
-    }
-
-    /**
-     * Get user
-     *
-     * @return User
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
-
-    /**
-     * Set taxon
-     *
-     * @param Taxon $taxon
-     *
-     * @return Observation
-     */
-    public function setTaxon(Taxon $taxon)
-    {
-        $this->taxon = $taxon;
-    
-        return $this;
-    }
-
-    /**
-     * Get taxon
-     *
-     * @return Taxon
-     */
-    public function getTaxon()
-    {
-        return $this->taxon;
+        return $this->image;
     }
 
     /**
@@ -292,7 +244,7 @@ class Observation
     public function setDescription($description)
     {
         $this->description = $description;
-    
+
         return $this;
     }
 
@@ -305,4 +257,58 @@ class Observation
     {
         return $this->description;
     }
+
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return Observation
+     */
+    public function setUser(\AppBundle\Entity\User $user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set taxon
+     *
+     * @param \AppBundle\Entity\Taxon $taxon
+     *
+     * @return Observation
+     */
+    public function setTaxon(\AppBundle\Entity\Taxon $taxon)
+    {
+        $this->taxon = $taxon;
+
+        return $this;
+    }
+
+    /**
+     * Get taxon
+     *
+     * @return \AppBundle\Entity\Taxon
+     */
+    public function getTaxon()
+    {
+        return $this->taxon;
+    }
+
+    public function getImgPath()
+    {
+        return $this->img_path;
+    }
+
 }

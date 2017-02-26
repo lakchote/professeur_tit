@@ -39,7 +39,7 @@ class ObsFormType extends AbstractType
                 'data' => new \DateTime(),
             ))
             ->add('description', TextareaType::class)
-            //->add('photoPath', FileType::class)
+            ->add('image', FileType::class)
         ;
     }
 

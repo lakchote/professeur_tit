@@ -126,6 +126,24 @@ MODALE NOUVELLE OBS
     box-shadow: 10px 10px 10px 0px rgba(255,210,219,.15) inset;
 }
 
+.modal-load-desktop__photo--button
+{
+    position:relative;
+    line-height: 255px;
+    text-align: center;
+}
+
+.user-info__photo--file
+{
+    cursor: pointer;
+    position: absolute;
+    top:0;
+    opacity:0;
+    height: inherit;
+    width: inherit;
+}
+
+
 
 /*
 MODULE GOOGLE POUR AFFICHAGE DU LIEU D'OBSERVATION

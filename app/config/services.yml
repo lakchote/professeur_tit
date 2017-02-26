@@ -73,6 +73,13 @@ services:
         class: AppBundle\Service\FileUploader
         arguments: ['%user_photo_dir%']
 
-    app.createliste:
-        class: AppBundle\Service\TaxonList
-        autowire: true
+    app.observation_uploader:
+        class: AppBundle\Service\FileUploader
+        arguments: ['%observations_directory%']
+
+    app.doctrine_observation_listener:
+            class: AppBundle\Doctrine\ObservationPhotoUploadListener
+            arguments: ['@app.observation_uploader', '%observations_directory%']
+            tags:
+                - { name: doctrine.event_listener, event: prePersist }
+                - { name: doctrine.event_listener, event: preUpdate }

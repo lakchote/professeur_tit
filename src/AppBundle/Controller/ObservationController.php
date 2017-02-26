@@ -28,8 +28,6 @@ class ObservationController extends Controller
             'nbObservations' => $nbObservations,
         ]);
 
-
-        return $this->render('default/obs.html.twig');
     }
 
     /**
@@ -67,13 +65,19 @@ class ObservationController extends Controller
         $modal->handleRequest($request);
         $currentUser = $this->get('security.token_storage')->getToken()->getUser();
         $observation->setUser($currentUser);
-        dump($observation);
-
         if ($request->isXmlHttpRequest()) {
             if ($modal->isValid()) {
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($observation);
                 $em->flush();
+                $this->addFlash(
+                    'notice',
+                    'Your changes were saved!'
+                );
+
+                $response = new Response();
+                $response->setStatusCode(200)->setContent($this->renderView('default/obs.html.twig'));
+                return $response;
             } else {
                 $response = new Response();
                 $response->setStatusCode(201)->setContent($this->renderView('modal/modal_add_obs_desktop.html.twig', ['form' => $modal->createView()]));

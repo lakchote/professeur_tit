@@ -1,23 +1,23 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: BRANDON HEAT
- * Date: 16/02/2017
- * Time: 12:01
+ * User: BENY
+ * Date: 25/02/2017
+ * Time: 23:22
  */
 
 namespace AppBundle\Doctrine;
 
-
-use AppBundle\Entity\Observation;
 use AppBundle\Entity\Taxon;
 use AppBundle\Entity\User;
-use AppBundle\Service\FileUploader;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
+use AppBundle\Entity\Observation;
+use AppBundle\Service\FileUploader;
 use Symfony\Component\HttpFoundation\File\File;
 
-class UserPhotoUploadListener
+class ObservationPhotoUploadListener
 {
     private $uploader;
     private $targetPath;
@@ -26,17 +26,20 @@ class UserPhotoUploadListener
     {
         $this->uploader = $uploader;
         $this->targetPath = $targetPath;
+
     }
 
-    public  function prePersist(LifecycleEventArgs $args)
+    public function prePersist(LifecycleEventArgs $args)
     {
         $entity = $args->getEntity();
+
         $this->uploadFile($entity);
     }
 
     public function preUpdate(PreUpdateEventArgs $args)
     {
         $entity = $args->getEntity();
+
         $this->uploadFile($entity);
     }
 
@@ -46,27 +49,29 @@ class UserPhotoUploadListener
         if ($entity instanceof Taxon) {
             return;
         }
-        elseif ($entity instanceof Observation) {
+        elseif ($entity instanceof User) {
             return;
         };
-        $filename = $entity->getImage();
-        if($filename != '') $entity->setImage(new File($this->targetPath . '/' . $filename));
+        $fileName = $entity->getImage();
+
+        $entity->setImage(new File($this->targetPath.'/'.$fileName));
     }
 
-    public function uploadFile($entity)
+    private function uploadFile($entity)
     {
-        if(!$entity instanceof User)
-        {
+        // upload only works for Product entities
+        if (!$entity instanceof Observation) {
             return;
         }
+
         $file = $entity->getImage();
 
-        if(!$file instanceof File)
-        {
+        // only upload new files
+        if (!$file instanceof UploadedFile) {
             return;
         }
 
-        $filename = $this->uploader->upload($file);
-        $entity->setImage($filename);
+        $fileName = $this->uploader->upload($file);
+        $entity->setImage($fileName);
     }
 }
