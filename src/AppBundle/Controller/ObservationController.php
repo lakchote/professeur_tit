@@ -19,10 +19,12 @@ class ObservationController extends Controller
     {
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
-
         $nbObservations = $this->get('app.profil_user')->getUserObservations($user);
+
         $mesObservations = $this->get('app.profil_user')->getUserObservationsFlow($user);
 
+dump($user);
+        dump($mesObservations);
         return $this->render('default/obs.html.twig', [
             'mesObservations' => $mesObservations,
             'nbObservations' => $nbObservations,
@@ -65,8 +67,7 @@ class ObservationController extends Controller
         $modal->handleRequest($request);
         $currentUser = $this->get('security.token_storage')->getToken()->getUser();
         $observation->setUser($currentUser);
-        if ($request->isXmlHttpRequest()) {
-            if ($modal->isValid()) {
+               if ($modal->isValid()) {
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($observation);
                 $em->flush();
@@ -75,16 +76,23 @@ class ObservationController extends Controller
                     'Your changes were saved!'
                 );
 
-                $response = new Response();
+                return $this->render('default/obs.html.twig');
+
+          /*      $response = new Response();
                 $response->setStatusCode(200)->setContent($this->renderView('default/obs.html.twig'));
-                return $response;
+                dump($response);
+                return $response;*/
             } else {
-                $response = new Response();
+
+                return $this->render('modal/modal_add_obs_desktop.html.twig', ['form' => $modal->createView()]);
+
+          /*      $response = new Response();
                 $response->setStatusCode(201)->setContent($this->renderView('modal/modal_add_obs_desktop.html.twig', ['form' => $modal->createView()]));
-                return $response;
+                dump($response);
+                return $response;*/
 
             }
-        }
+
         return new Response('Type de requête invalide');
     }
 }
