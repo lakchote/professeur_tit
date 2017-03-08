@@ -1,0 +1,74 @@
+{% for monObservation in mesObservations %}
+
+
+    <div class="col-xs-12 col-md-offset-2 col-md-10 obs__general">
+
+        <div class="col-xs-12 obs__container">
+            <div class="col-xs-3 obs__photo-user obs__photo--flex">
+                <img class="obs__photo-user" src="{{ (app.user.image.filename) is defined ? asset(app.user.imgpath ~ app.user.image.filename) :  asset(app.user.imgpath ~ app.user.image) }}" alt="Votre photo de profil"
+                     id="user-info__photo--load">
+            </div>
+            <div class="col-xs-6 obs__details">
+                auteur
+            </div>
+            <div class="col-xs-3 obs__details">
+                {% if is_granted('ROLE_NATURALISTE') %}
+                    <img src="{{ asset('assets/img/naturaliste.png') }}" alt="{{ "Vous êtes naturaliste"|trans }}" class="obs__details--icon"  >
+                    <img src="{{ asset('assets/img/trash.png') }}" alt="{{ "Supprimer l'observation"|trans }}" class="obs__details--icon">
+                {% elseif is_granted('ROLE_PENDING_NATURALISTE') %}
+                    <p class="user-info__stats--text">Vous êtes un naturaliste en attente de validation.</p>
+                {% else %}
+                    <p class="user-info__stats--text">Vous êtes observateur.</p>
+                {% endif %}
+
+
+            </div>
+
+            <div class=" col-xs-3 obs__details obs__details--display">
+                <img src="{{ asset('assets/img/where.png') }}" alt="{{ "Où l'avez vous vu ?"|trans }}" class="obs__details--icon">
+
+            </div>
+            <div class="col-xs-3 obs__details obs__details--display">
+                date
+            </div>
+            <div class="col-xs-3 obs__details obs__details--display">
+                <img src="{{ asset('assets/img/when.png') }}" alt="{{ "Quand l'avez vous vu ?"|trans }}" class="obs__details--icon">
+            </div>
+        </div>
+
+        <div class="col-xs-6 obs__photo-bird obs__photo--flex">
+            {% if monObservation.obs_image != '' %}
+                <img class="obs__photo" src="../uploads/observations/{{ monObservation.obs_image }}" alt="Observation"
+                     id="obs__photo">
+            {% endif %}
+
+
+
+        </div>
+        <div class="col-xs-6 obs__description--title">
+            Description
+        </div>
+        <div class="col-xs-6 obs__description">
+            {{ monObservation.obs_description }}
+        </div>
+        <div id="map{{ monObservation.obs_id }}" class="col-xs-6 obs__map">
+
+            {{ monObservation.obs_longitude|number_format(3, '.')  }}
+            {{ monObservation.obs_latitude|number_format(3, '.')  }}
+        </div>
+
+    </div>
+    <script>
+        function initMap() {
+            var uluru = {lat: {{ monObservation.obs_latitude|number_format(3, '.')  }}, lng: {{ monObservation.obs_longitude|number_format(3, '.')  }}};
+            var map = new google.maps.Map(document.getElementById('map{{ monObservation.obs_id }}'), {
+                zoom: 4,
+                center: uluru
+            });
+            var marker = new google.maps.Marker({
+                position: uluru,
+                map: map
+            });
+        }
+    </script>
+{% endfor %}

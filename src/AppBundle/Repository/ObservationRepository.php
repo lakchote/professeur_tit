@@ -22,7 +22,8 @@ class ObservationRepository extends \Doctrine\ORM\EntityRepository
             ->leftJoin('obs.user', 'user')
             ->andWhere('user.id = :id')
             ->setParameter('id', $id)
-            ->getQuery();
+            ->getQuery()
+            ->getScalarResult();
 
     }
 
