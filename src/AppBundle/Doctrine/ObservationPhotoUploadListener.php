@@ -46,13 +46,9 @@ class ObservationPhotoUploadListener
     public function postLoad(LifecycleEventArgs $args)
     {
         $entity = $args->getEntity();
-        if ($entity instanceof Taxon) {
+        if (!$entity instanceof Observation) {
             return;
         }
-        elseif ($entity instanceof User) {
-            return;
-        };
-
         $fileName = $entity->getImage();
 
         $entity->setImage(new File($this->targetPath.'/'.$fileName));
