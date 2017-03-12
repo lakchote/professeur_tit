@@ -30,7 +30,7 @@
 }
 
 .obs__details--icon {
-    height: 100%;
+    height: inherit;
 }
 .obs__photo-bird{
     height: 448px;
