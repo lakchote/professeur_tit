@@ -83,3 +83,7 @@ services:
             tags:
                 - { name: doctrine.event_listener, event: prePersist }
                 - { name: doctrine.event_listener, event: preUpdate }
+
+    app.manage_obs:
+        class: AppBundle\Service\ObsManage
+        autowire: true

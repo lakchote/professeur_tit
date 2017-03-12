@@ -160,36 +160,6 @@
     });
 
 
-    //TODO scan formsubmit event -> preventDefault
-
-    {#
-    $('#btn-publish').click(function(e) {
-        e.preventDefault();
-        var $formData = $('form').serializeArray();
-        $.ajax({
-            url: "{{ path('obs_publish') }}",
-            method: "POST",
-            data: $formData,
-            statusCode: {
-                201: function (msg) {
-                    //console.log(msg);
-                    $('#modal-load-desktop').html(msg);
-                },
-                200: function () {
-                   // console.log('ok');
-                    $('#modal-login-desktop').modal('toggle');
-                    {% for msg in app.session.flashBag.get('notice') %}
-                   // console.log('{{ msg }}');
-                    $('#flash').html('<div class="alert alert-success">' +
-                        '<button type="button" class="close" data-dismiss="alert">' +
-                        '<span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button> {{ msg }} </div>' );
-                    {% endfor %}
-
-                }
-            }
-        });
-    });
-    #}
 
     $('#location').click(function() {getLocation();});
 

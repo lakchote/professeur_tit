@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class ObservationController extends Controller
 {
@@ -33,6 +34,17 @@ dump($user);
         ]);
 
     }
+
+    /**
+     * @Route("/observation/delete/{observation}", name="obs_delete")
+     *
+     */
+    public function obsDeleteAction(Request $request, observation $observation)
+    {
+
+        $this->get('app.manage_obs')->deleteObs($observation);
+        return $this->render('default/obs.html.twig');
+      }
 
     /**
      * @Route("/modal/observation", name="modal_add_observation")
