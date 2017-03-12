@@ -14,7 +14,8 @@
             <div class="col-xs-3 obs__details">
                 {% if is_granted('ROLE_NATURALISTE') %}
                     <img src="{{ asset('assets/img/naturaliste.png') }}" alt="{{ "Vous êtes naturaliste"|trans }}" class="obs__details--icon"  >
-                    <img src="{{ asset('assets/img/trash.png') }}" alt="{{ "Supprimer l'observation"|trans }}" class="obs__details--icon">
+                   <a href="{{ path('obs_delete', {'observation': monObservation.obs_id}) }}"><img src="{{ asset('assets/img/trash.png') }}" alt="{{ "Supprimer l'observation"|trans }}" class="obs__details--icon"></a>
+
                 {% elseif is_granted('ROLE_PENDING_NATURALISTE') %}
                     <p class="user-info__stats--text">Vous êtes un naturaliste en attente de validation.</p>
                 {% else %}
