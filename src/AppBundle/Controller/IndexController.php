@@ -16,10 +16,18 @@ class IndexController extends Controller
     }
 
     /**
-     * @Route("/debuter-ornithologie", name="debuter_ornithologie")
+     * @Route("/debuter_ornithologie", name="debuter_ornithologie")
      */
     public function debuterOrnithologieAction()
     {
         return $this->render('default/debuter_ornithologie.html.twig');
+    }
+
+    /**
+     * @Route("/mentions_legales", name="mentions_legales")
+     */
+    public function mentionsLegalesAction()
+    {
+        return $this->render('default/mentions_legales.html.twig');
     }
 }
