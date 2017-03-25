@@ -52,6 +52,7 @@ class ObservationPhotoUploadListener
         elseif ($entity instanceof User) {
             return;
         };
+
         $fileName = $entity->getImage();
 
         $entity->setImage(new File($this->targetPath.'/'.$fileName));

@@ -1,0 +1,360 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Débuter l'ornithologie
+{% endblock %}
+
+{% block stylesheet %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('assets/css/debuterOrnithologie.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12">
+            <h1 class="visible-xs text-center">Débuter l'ornithologie</h1>
+            <h1 class="hidden-xs">Débuter l'ornithologie</h1>
+        </div>
+        <!-- START Intro -->
+        <div class="col-xs-12">
+            <div class="container-background-white" id="intro">
+                <img id="intro-schema" class="pull-left" src="{{ asset('assets/img/debuter_ornithologie/debuter_ornitho.png') }}" alt="Débuter l'ornithologie">
+                <div id="intro-text-desktop" class="hidden-xs">
+                    <p>Aenean ornare justo enim, porttitor lobortis libero laoreet sed. Etiam non consequat mi, et
+                        tempus
+                        magna. Cras rutrum enim iaculis purus bibendum bibendum. Morbi placerat nulla ac lacus laoreet,
+                        sed
+                        molestie sapien consectetur. Vivamus eu nisl laoreet, hendrerit leo et.</p>
+                    <p>Duis eget justo tincidunt, volutpat erat et, aliquam lorem. Integer condimentum lacus elit, at
+                        ornare sem tincidunt blandit. Integer non justo erat. Sed eu tellus vel quam porttitor
+                        condimentum. Duis at nibh sed libero varius venenatis. Pellentesque venenatis lectus et
+                        convallis euismod. Duis ac facilisis metus. Proin pellentesque iaculis nunc. Pellentesque
+                        dapibus accumsan risus, a interdum purus.</p>
+                </div>
+                <div id="intro-links">
+                    <div class="hidden-xs">
+                        <a href="#preparez">Préparez votre expédition</a><a href="#preservez"> Préservez votre
+                            environnement</a><a
+                                href="#informez">
+                            Informez correctement</a><a href="#exemples"> Exemple de bonne et de mauvaise observation</a>
+                    </div>
+                    <div class="visible-xs">
+                        <a href="#preparez">Préparez votre expédition</a><br/><a href="#preservez"> Préservez votre
+                            environnement</a><br/><a href="#informez">
+                            Informez correctement</a><br/><a href="#exemples"> Exemple de bonne et de mauvaise
+                            observation</a>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- /END Intro -->
+
+        <!-- START Préparez votre expédition -->
+        <div class="col-xs-12">
+            <div class="container-background-white container-photo">
+                <p class="schemas-indication">Matériel suggéré</p>
+                <div class="visible-xs">
+                    <div class="schemas">
+                        <img src="{{ asset('assets/img/debuter_ornithologie/smartphone.png') }}" alt="Smartphone">
+                        <p class="text-image">Smartphone</p>
+                    </div>
+                    <div class="schemas">
+                        <img src="{{ asset('assets/img/debuter_ornithologie/camera.png') }}" alt="Appareil photo">
+                        <p class="text-image">Appareil Photo</p>
+                    </div>
+                    <div class="schemas">
+                        <img src="{{ asset('assets/img/debuter_ornithologie/binoculars.png') }}" alt="Jumelles">
+                        <p class="text-image">Jumelles</p>
+                    </div>
+                </div>
+                <div class="hidden-xs">
+                    <div class="schemas">
+                        <img src="{{ asset('assets/img/debuter_ornithologie/smartphone.png') }}" alt="Smartphone" class="pull-left">
+                        <p class="text-image text-nowrap">Smartphone</p>
+                    </div>
+                    <div class="schemas">
+                        <img src="{{ asset('assets/img/debuter_ornithologie/camera.png') }}" alt="Appareil photo" class="pull-left">
+                        <p class="text-image text-nowrap">Appareil photo</p>
+                    </div>
+                    <div class="schemas">
+                        <img src="{{ asset('assets/img/debuter_ornithologie/binoculars.png') }}" alt="Jumelles" class="pull-left">
+                        <p class="text-image text-nowrap">Jumelles</p>
+                    </div>
+                </div>
+                <div class="row" id="preparez">
+                    <div class="col-xs-12 visible-xs">
+                        <h2 class="text-center">Préparez votre expédition</h2>
+                        <img class="photo center-block" src="{{ asset('assets/img/debuter_ornithologie/preparer_expedition.jpg') }}"
+                             alt="Préparez votre expédition">
+                        <div class="text-center">
+                            <p>Choisissez du matériel adapté à vos intentions.</p>
+                            <p>Duis eget justo tincidunt, volutpat erat et, aliquam lorem. Integer condimentum lacus
+                                elit,
+                                at
+                                ornare sem tincidunt blandit. Integer non justo erat. Sed eu tellus vel quam porttitor
+                                condimentum. Duis at nibh sed libero varius venenatis. Pellentesque venenatis lectus et
+                                convallis euismod. Duis ac facilisis metus. Proin pellentesque iaculis nunc.
+                                Pellentesque
+                                dapibus accumsan risus, a interdum purus.</p>
+                        </div>
+                    </div>
+                    <div class="hidden-xs">
+                        <div class="col-sm-7">
+                            <h2>Préparez votre expédition</h2>
+                            <p>Choisissez du matériel adapté à vos intentions.</p>
+                            <p>Duis eget justo tincidunt, volutpat erat et, aliquam lorem. Integer condimentum lacus
+                                elit,
+                                at
+                                ornare sem tincidunt blandit. Integer non justo erat. Sed eu tellus vel quam porttitor
+                                condimentum. Duis at nibh sed libero varius venenatis. Pellentesque venenatis lectus et
+                                convallis euismod. Duis ac facilisis metus. Proin pellentesque iaculis nunc.
+                                Pellentesque
+                                dapibus accumsan risus, a interdum purus.</p>
+                        </div>
+                        <div class="col-sm-5">
+                            <img class="photo pull-right" src="{{ asset('assets/img/debuter_ornithologie/preparer_expedition.jpg') }}"
+                                 alt="Préparez votre expédition">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- /END Préparez votre expédition -->
+
+        <!--START Préservez votre environnement -->
+        <div class="col-xs-12">
+            <div class="container-background-white container-photo">
+                <p class="schemas-indication-right">Les situations à respecter, les gestes à ne pas faire</p>
+                <div class="visible-xs">
+                    <div class="schemas">
+                        <img src="{{ asset('assets/img/debuter_ornithologie/periodes.png') }}" alt="Respectez les périodes">
+                        <p class="text-image">Respectez les périodes</p>
+                    </div>
+                    <div class="schemas">
+                        <img src="{{ asset('assets/img/debuter_ornithologie/silence.png') }}" alt="Soyez discrets">
+                        <p class="text-image">Soyez discrets !</p>
+                    </div>
+                    <div class="schemas">
+                        <img src="{{ asset('assets/img/debuter_ornithologie/clean.png') }}" alt="Laissez les lieux intacts">
+                        <p class="text-image">Laissez les lieux intacts</p>
+                    </div>
+                </div>
+                <div class="hidden-xs">
+                    <div class="schemas-right">
+                        <img src="{{ asset('assets/img/debuter_ornithologie/periodes.png') }}" alt="Respectez les périodes" class="pull-left">
+                        <p class="text-image text-nowrap">Respectez les périodes</p>
+                    </div>
+                    <div class="schemas-right">
+                        <img src="{{ asset('assets/img/debuter_ornithologie/silence.png') }}" alt="Soyez discrets" class="pull-left">
+                        <p class="text-image text-nowrap">Soyez discrets !</p>
+                    </div>
+                    <div class="schemas-right">
+                        <img src="{{ asset('assets/img/debuter_ornithologie/clean.png') }}" alt="Laissez les lieux intacts" class="pull-left">
+                        <p class="text-image text-nowrap">Laissez les lieux intacts</p>
+                    </div>
+                </div>
+                <div class="row" id="preservez">
+                    <div class="col-xs-12 visible-xs">
+                        <h2 class="text-center">Préservez votre environnement</h2>
+                        <img class="photo center-block" src="{{ asset('assets/img/debuter_ornithologie/oiseaux_fils.jpg') }}" alt="Préservez votre environnement">
+                        <div class="text-center">
+                            <p>Adoptez les bonnes conduites lors de vos déplacements et prises de vue.</p>
+                            <p>Duis eget justo tincidunt, volutpat erat et, aliquam lorem. Integer condimentum lacus
+                                elit,
+                                at
+                                ornare sem tincidunt blandit. Integer non justo erat. Sed eu tellus vel quam porttitor
+                                condimentum. Duis at nibh sed libero varius venenatis. Pellentesque venenatis lectus et
+                                convallis euismod. Duis ac facilisis metus.</p>
+                        </div>
+                    </div>
+                    <div class="hidden-xs">
+                        <div class="col-sm-5">
+                            <img class="photo pull-left" src="{{ asset('assets/img/debuter_ornithologie/oiseaux_fils.jpg') }}"
+                                 alt="Préservez votre environnement">
+                        </div>
+                        <div class="col-sm-7">
+                            <h2>Préservez votre environnement</h2>
+                            <p>Adoptez les bonnes conduites lors de vos déplacements et prises de vue.</p>
+                            <p>Duis eget justo tincidunt, volutpat erat et, aliquam lorem. Integer condimentum lacus
+                                elit,
+                                at
+                                ornare sem tincidunt blandit. Integer non justo erat. Sed eu tellus vel quam
+                                porttitor
+                                condimentum. Duis at nibh sed libero varius venenatis. Pellentesque venenatis lectus
+                                et
+                                convallis euismod. Duis ac facilisis metus. Proin pellentesque iaculis nunc.
+                                Pellentesque
+                                dapibus accumsan risus, a interdum purus.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!--/END Préservez votre environnement -->
+
+        <!-- START Informez correctement -->
+        <div class="col-xs-12">
+            <div class="container-background-white container-photo">
+                <p class="schemas-indication">Les informations indispensables</p>
+                <div class="visible-xs">
+                    <div class="schemas">
+                        <img src="{{ asset('assets/img/debuter_ornithologie/lieu.png') }}" alt="Le lieu">
+                        <p class="text-image">Le lieu</p>
+                    </div>
+                    <div class="schemas">
+                        <img src="{{ asset('assets/img/debuter_ornithologie/robe.png') }}" alt="La robe, les couleurs">
+                        <p class="text-image">La robe, les couleurs</p>
+                    </div>
+                    <div class="schemas">
+                        <img src="{{ asset('assets/img/debuter_ornithologie/comportement.png') }}" alt="Le comportement">
+                        <p class="text-image">Le comportement</p>
+                    </div>
+                </div>
+                <div class="hidden-xs">
+                    <div class="schemas">
+                        <img src="{{ asset('assets/img/debuter_ornithologie/lieu.png') }}" alt="Le lieu" class="pull-left">
+                        <p class="text-image text-nowrap">Le lieu</p>
+                    </div>
+                    <div class="schemas">
+                        <img src="{{ asset('assets/img/debuter_ornithologie/robe.png') }}" alt="La robe, les couleurs" class="pull-left">
+                        <p class="text-image text-nowrap">La robe, les couleurs</p>
+                    </div>
+                    <div class="schemas">
+                        <img src="{{ asset('assets/img/debuter_ornithologie/comportement.png') }}" alt="Le comportement" class="pull-left">
+                        <p class="text-image text-nowrap">Le comportement</p>
+                    </div>
+                </div>
+                <div class="row" id="informez">
+                    <div class="col-xs-12 visible-xs">
+                        <h2 class="text-center">Informez correctement</h2>
+                        <img class="photo center-block" src="{{ asset('assets/img/debuter_ornithologie/informer_correctement.jpg') }}"
+                             alt="Informez correctement">
+                        <div class="text-center">
+                            <p>Choisissez du matériel adapté à vos intentions.</p>
+                            <p>Duis eget justo tincidunt, volutpat erat et, aliquam lorem. Integer condimentum lacus
+                                elit,
+                                at
+                                ornare sem tincidunt blandit. Integer non justo erat. Sed eu tellus vel quam porttitor
+                                condimentum. Duis at nibh sed libero varius venenatis. Pellentesque venenatis lectus et
+                                convallis euismod. Duis ac facilisis metus. Proin pellentesque iaculis nunc.
+                                Pellentesque
+                                dapibus accumsan risus, a interdum purus.</p>
+                        </div>
+                    </div>
+                    <div class="hidden-xs">
+                        <div class="col-sm-7">
+                            <h2>Informez correctement</h2>
+                            <p>Eléments à fournir lors d'une observation.</p>
+                            <p>Duis eget justo tincidunt, volutpat erat et, aliquam lorem. Integer condimentum lacus
+                                elit,
+                                at
+                                ornare sem tincidunt blandit. Integer non justo erat. Sed eu tellus vel quam porttitor
+                                condimentum. Duis at nibh sed libero varius venenatis. Pellentesque venenatis lectus et
+                                convallis euismod. Duis ac facilisis metus. Proin pellentesque iaculis nunc.
+                                Pellentesque
+                                dapibus accumsan risus, a interdum purus.</p>
+                        </div>
+                        <div class="col-sm-5">
+                            <img class="photo pull-right" src="{{ asset('assets/img/debuter_ornithologie/informer_correctement.jpg') }}"
+                                 alt="Informez correctement">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- /END Informez correctement -->
+
+        <!-- START Bonne et mauvaise observation -->
+        <div class="col-xs-12">
+            <div class="container-background-white container-screenshot">
+                <div class="row" id="exemples">
+                    <div class="col-xs-12 visible-xs">
+                        <h2 class="text-center">Exemple de bonne et mauvaise observation</h2>
+                        <img class="screenshot center-block" src="{{ asset('assets/img/debuter_ornithologie/bonne_observation_mobile.jpg') }}" alt="Une bonne observation">
+                        <div class="text-center" id="observation-bonne-margin">
+                            <h3>Une bonne observation</h3>
+                            <p>Duis eget justo tincidunt, volutpat erat et, aliquam lorem. Integer condimentum lacus
+                                elit,
+                                at
+                                ornare sem tincidunt blandit. Integer non justo erat. Sed eu tellus vel quam porttitor
+                                condimentum. Duis at nibh sed libero varius venenatis. Pellentesque venenatis lectus et
+                                convallis euismod. Duis ac facilisis metus. Proin pellentesque iaculis nunc.</p>
+                        </div>
+                        <img class="screenshot center-block" src="{{ asset('assets/img/debuter_ornithologie/mauvaise_observation_mobile.jpg') }}" alt="Une mauvaise observation">
+                        <div class="text-center">
+                            <h3>Une mauvaise observation</h3>
+                            <p>Duis eget justo tincidunt, volutpat erat et, aliquam lorem. Integer condimentum lacus
+                                elit,
+                                at
+                                ornare sem tincidunt blandit. Integer non justo erat. Sed eu tellus vel quam porttitor
+                                condimentum. Duis at nibh sed libero varius venenatis. Pellentesque venenatis lectus et
+                                convallis euismod. Duis ac facilisis metus. Proin pellentesque iaculis nunc.</p>
+                        </div>
+                    </div>
+                    <div class="hidden-xs hidden-sm">
+                        <div class="col-sm-12">
+                            <h2>Exemple de bonne et mauvaise observation</h2>
+                        </div>
+                        <div class="col-sm-8">
+                            <img class="screenshot img-responsive pull-left" src="{{ asset('assets/img/debuter_ornithologie/bonne_observation.jpg') }}" alt="Une bonne observation">
+                        </div>
+                        <div class="col-sm-4">
+                            <h3>Une bonne observation</h3>
+                            <p>Duis eget justo tincidunt, volutpat erat et, aliquam lorem. Integer condimentum lacus
+                                elit,
+                                at
+                                ornare sem tincidunt blandit. Integer non justo erat. Sed eu tellus vel quam porttitor
+                                condimentum. Duis at nibh sed libero varius venenatis. Pellentesque venenatis lectus et
+                                convallis euismod. Duis ac facilisis metus. Proin pellentesque iaculis nunc.
+                                Pellentesque
+                                dapibus accumsan risus, a interdum purus.</p>
+                        </div>
+                        <div class="col-sm-5">
+                            <h3>Une mauvaise observation</h3>
+                            <p id="mauvaise-observation__text">Duis eget justo tincidunt, volutpat erat et, aliquam lorem. Integer condimentum lacus
+                                elit,
+                                at
+                                ornare sem tincidunt blandit. Integer non justo erat. Sed eu tellus vel quam porttitor
+                                condimentum. Duis at nibh sed libero varius venenatis. Pellentesque venenatis lectus et
+                                convallis euismod. Duis ac facilisis metus. Proin pellentesque iaculis nunc.
+                                Pellentesque
+                                dapibus accumsan risus, a interdum purus.</p>
+                        </div>
+                        <div class="col-sm-7">
+                            <img class="screenshot pull-right" src="{{ asset('assets/img/debuter_ornithologie/mauvaise_observation.jpg') }}" alt="Une mauvaise observation">
+                        </div>
+                    </div>
+                    <div class="visible-sm">
+                        <div class="col-sm-12">
+                            <h2>Exemple de bonne et mauvaise observation</h2>
+                            <img class="screenshot center-block" src="{{ asset('assets/img/debuter_ornithologie/bonne_observation.jpg') }}" alt="Une bonne observation">
+                            <div class="text-center">
+                                <h3>Une bonne observation</h3>
+                                <p>Duis eget justo tincidunt, volutpat erat et, aliquam lorem. Integer condimentum lacus
+                                    elit,
+                                    at
+                                    ornare sem tincidunt blandit. Integer non justo erat. Sed eu tellus vel quam
+                                    porttitor
+                                    condimentum. Duis at nibh sed libero varius venenatis. Pellentesque venenatis lectus
+                                    et
+                                    convallis euismod. Duis ac facilisis metus. Proin pellentesque iaculis nunc.
+                                    Pellentesque
+                                    dapibus accumsan risus, a interdum purus.</p>
+                            </div>
+                            <img class="screenshot center-block" src="{{ asset('assets/img/debuter_ornithologie/mauvaise_observation.jpg') }}" alt="Une mauvaise observation">
+                            <div class="text-center">
+                                <h3>Une mauvaise observation</h3>
+                                <p>Duis eget justo tincidunt, volutpat erat et, aliquam lorem. Integer condimentum lacus
+                                    elit,
+                                    at
+                                    ornare sem tincidunt blandit. Integer non justo erat. Sed eu tellus vel quam
+                                    porttitor
+                                    condimentum. Duis at nibh sed libero varius venenatis. Pellentesque venenatis lectus
+                                    et
+                                    convallis euismod. Duis ac facilisis metus. Proin pellentesque iaculis nunc.
+                                    Pellentesque
+                                    dapibus accumsan risus, a interdum purus.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- /END Bonne et mauvaise observation -->
+    </div>
+{% endblock %}

@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Observation;
 use AppBundle\Form\ObsFormType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -13,6 +14,7 @@ class ObservationController extends Controller
 {
 
     /**
+     * @Security("is_granted('IS_AUTHENTICATED_REMEMBERED')")
      * @Route("/observation", name="observation")
      */
     public function indexAction()
