@@ -19,3 +19,4 @@ parameters:
     secret:            ThisTokenIsNotSoSecretChangeIt
 
     user_photo_dir: '%kernel.root_dir%\..\web\uploads\user'
+    contact_mail: your@email.com

@@ -59,7 +59,7 @@ services:
 
     app.send_mail:
         class: AppBundle\Service\SendMail
-        autowire: true
+        arguments: ['@swiftmailer.mailer', '@twig', '@doctrine.orm.entity_manager', '%contact_mail%']
 
     app.createliste:
         class: AppBundle\Service\TaxonList
