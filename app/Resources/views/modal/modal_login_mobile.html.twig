@@ -140,7 +140,7 @@
                         $('#modal-load-mobile').html(msg);
                     },
                     200: function () {
-                        document.location.href='{{ path('home') }}';
+                        location.reload();
                     }
                 }
             })
@@ -157,7 +157,7 @@
                         $('#modal-load-mobile').html(msg);
                     },
                     200: function () {
-                        document.location.href='{{ app.request.server.get('http-referer')|default('/') }}';
+                        location.reload();
                     }
                 }
             });
