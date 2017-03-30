@@ -16,11 +16,19 @@
     </div>
 
     <div class="row">
-        <div class="col-md-2">sidebar</div>
-        {% if mesObservations is defined %}
-            {% include 'blocks/observation.html.twig' %}
+        <div class="col-md-2">sidebar <br/> {{ pagination.getTotalItemCount }}</div>
 
-        {% endif %}
+
+
+            {% if pagination is defined %}
+                {% include 'blocks/observation.html.twig' %}
+            {% endif %}
+
+        {# display navigation #}
+        <div class="navigation">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+
     </div>
 
         </div>
@@ -51,13 +59,13 @@
 
 
             function initMap() {
-                {% for monObservation in mesObservations %}
+                {% for monObservation in pagination %}
                 var myOptions = {
                     zoom: 14,
-                    center: new google.maps.LatLng({{ monObservation.obs_latitude|number_format(3, '.')  }}, {{ monObservation.obs_longitude|number_format(3, '.')  }}),
+                    center: new google.maps.LatLng({{ monObservation.latitude|number_format(3, '.')  }}, {{ monObservation.longitude|number_format(3, '.')  }}),
                     mapTypeId: google.maps.MapTypeId.ROADMAP
                 }
-                map{{ monObservation.obs_id }} = new google.maps.Map(document.getElementById("map{{ monObservation.obs_id }}"), myOptions);
+                map{{ monObservation.id }} = new google.maps.Map(document.getElementById("map{{ monObservation.id }}"), myOptions);
                 {% endfor %}
             }
         </script>
