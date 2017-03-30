@@ -1,7 +1,6 @@
-{% for monObservation in mesObservations %}
+{% for monObservation in pagination %}
 
-
-    <div class="col-xs-12 col-md-offset-2 col-md-10 obs__general">
+<div class="col-xs-12 col-md-offset-2 col-md-10 obs__general">
 
         <div class="col-xs-12 obs__container">
             <div class="col-xs-3 obs__photo-user obs__photo--flex">
@@ -14,12 +13,7 @@
             <div class="col-xs-3 obs__details">
                 {% if is_granted('ROLE_NATURALISTE') %}
                     <img src="{{ asset('assets/img/naturaliste.png') }}" alt="{{ "Vous êtes naturaliste"|trans }}" class="obs__details--icon"  >
-<<<<<<< HEAD
-                   <a href="{{ path('obs_delete', {'observation': monObservation.obs_id}) }}"><img src="{{ asset('assets/img/trash.png') }}" alt="{{ "Supprimer l'observation"|trans }}" class="obs__details--icon"></a>
-
-=======
                     <img src="{{ asset('assets/img/trash.png') }}" alt="{{ "Supprimer l'observation"|trans }}" class="obs__details--icon">
->>>>>>> origin/observation_flow
                 {% elseif is_granted('ROLE_PENDING_NATURALISTE') %}
                     <p class="user-info__stats--text">Vous êtes un naturaliste en attente de validation.</p>
                 {% else %}
@@ -42,8 +36,8 @@
         </div>
 
         <div class="col-xs-6 obs__photo-bird obs__photo--flex">
-            {% if monObservation.obs_image != '' %}
-                <img class="obs__photo" src="../uploads/observations/{{ monObservation.obs_image }}" alt="Observation"
+            {% if monObservation.image != '' %}
+                <img class="obs__photo" src="../uploads/observations/{{ monObservation.image }}" alt="Observation"
                      id="obs__photo">
             {% endif %}
 
@@ -54,19 +48,19 @@
             Description
         </div>
         <div class="col-xs-6 obs__description">
-            {{ monObservation.obs_description }}
+            {{ monObservation.description }}
         </div>
-        <div id="map{{ monObservation.obs_id }}" class="col-xs-6 obs__map">
+        <div id="map{{ monObservation.id }}" class="col-xs-6 obs__map">
 
-            {{ monObservation.obs_longitude|number_format(3, '.')  }}
-            {{ monObservation.obs_latitude|number_format(3, '.')  }}
+            {{ monObservation.longitude|number_format(3, '.')  }}
+            {{ monObservation.latitude|number_format(3, '.')  }}
         </div>
 
     </div>
     <script>
         function initMap() {
-            var uluru = {lat: {{ monObservation.obs_latitude|number_format(3, '.')  }}, lng: {{ monObservation.obs_longitude|number_format(3, '.')  }}};
-            var map = new google.maps.Map(document.getElementById('map{{ monObservation.obs_id }}'), {
+            var uluru = {lat: {{ monObservation.latitude|number_format(3, '.')  }}, lng: {{ monObservation.longitude|number_format(3, '.')  }}};
+            var map = new google.maps.Map(document.getElementById('map{{ monObservation.id }}'), {
                 zoom: 4,
                 center: uluru
             });

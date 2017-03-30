@@ -16,23 +16,49 @@ class ObservationController extends Controller
     /**
      * @Route("/observation", name="observation")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
         $nbObservations = $this->get('app.profil_user')->getUserObservations($user);
 
         $mesObservations = $this->get('app.profil_user')->getUserObservationsFlow($user);
-
-dump($user);
+        dump($user);
         dump($mesObservations);
+
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $mesObservations, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            10/*limit per page*/
+        );
+
+
+        dump($pagination);
+
         return $this->render('default/obs.html.twig', [
             'mesObservations' => $mesObservations,
             'nbObservations' => $nbObservations,
+            'pagination' => $pagination
         ]);
 
     }
+    public function listAction(Request $request)
+    {
+        $em    = $this->get('doctrine.orm.entity_manager');
+        $dql   = "SELECT a FROM AcmeMainBundle:Article a";
+        $query = $em->createQuery($dql);
 
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $query, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            10/*limit per page*/
+        );
+
+        // parameters to template
+        return $this->render('AcmeMainBundle:Article:list.html.twig', array('pagination' => $pagination));
+    }
     /**
      * @Route("/observation/delete/{observation}", name="obs_delete")
      *
