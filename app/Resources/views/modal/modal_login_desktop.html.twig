@@ -23,7 +23,7 @@
                 email</label>
             <div class="col-md-8">
                 {{ form_widget(form._username, {
-                    'attr': {'class' : 'input-lg', 'placeholder' : 'Email'}
+                    'attr': {'class' : 'input-lg', 'placeholder' : 'Email', 'tabindex' : '1'}
                 }) }}
             </div>
         </div>
@@ -32,14 +32,14 @@
                 nom</label>
             <div class="col-md-8">
                 {{ form_widget(form.register.nom, {
-                    'attr' : {'class': 'input-lg', 'placeholder' : 'Votre nom'}
+                    'attr' : {'class': 'input-lg', 'placeholder' : 'Votre nom', 'tabindex' : '3'}
                 }) }}
                 {{ form_errors(form.register.nom) }}
             </div>
         </div>
     </div>
 </div>
-<div class="row form-group">
+<div class="row form-group" >
     <div class="col-md-12">
         <div class="col-md-6">
             <label for="connexion-mdp" class="col-md-4 control-label" id="label-connexion-mdp">Votre
@@ -47,7 +47,7 @@
                 de passe</label>
             <div class="col-md-8">
                 {{ form_widget(form._password, {
-                    'attr' : {'class' : 'input-lg', 'placeholder' : 'Mot de passe'}
+                    'attr' : {'class' : 'input-lg', 'placeholder' : 'Mot de passe', 'tabindex' : '2'}
                 }) }}
                 {% if error is defined %}
                     <div class="alert alert-danger">{{ error.messageKey|trans({}, 'security') }}</div>
@@ -184,8 +184,8 @@
                 method: "POST",
                 data: $formData,
                 statusCode: {
-                    201: function (msg) {
-                        $('#modal-load-desktop').html(msg);
+                    401: function (jqXHR, textStatus) {
+                        $('#modal-load-desktop').html(jqXHR.responseText);
                     },
                     200: function () {
                         location.reload();
@@ -201,8 +201,8 @@
                 method: "POST",
                 data: $formData,
                 statusCode: {
-                    201: function (msg) {
-                        $('#modal-load-desktop').html(msg);
+                    401: function (jqXHR, textStatus) {
+                        $('#modal-load-desktop').html(jqXHR.responseText);
                     },
                     200: function () {
                         location.reload();

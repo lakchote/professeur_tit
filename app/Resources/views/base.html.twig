@@ -91,13 +91,13 @@
                                 <div class="header__rubriques--posAbsolute">Se connecter</div>
                             </div>
                         </a>
-                        <a href="#" class="visible-sm" id="login-load-mobile" data-toggle="modal" data-target="#modal-login-mobile">
+                        <a href="#" class="visible-sm login-load-mobile" data-toggle="modal" data-target="#modal-login-mobile">
                             <div class="header__rubriques--posRelative">S'inscrire
                                 <div class="header__rubriques--posAbsolute">Se connecter</div>
                             </div>
                         </a>
                     </li>
-                    <li class="header__rubriques--name visible-xs"><a href="#" id="login-load-mobile" data-toggle="modal" data-target="#modal-login-mobile">S'inscrire / Se
+                    <li class="header__rubriques--name visible-xs"><a href="#" class="login-load-mobile" data-toggle="modal" data-target="#modal-login-mobile">S'inscrire / Se
                             connecter</a></li>
                 {% endif %}
             </ul>
@@ -240,7 +240,7 @@
                 $('#modal-load-desktop').html(msg);
             });
         });
-        $('#login-load-mobile').click(function () {
+        $('.login-load-mobile').click(function () {
             $.ajax({
                 url: "{{ path('modal_form_mobile') }}",
                 method: "GET"

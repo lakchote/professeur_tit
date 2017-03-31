@@ -35,7 +35,7 @@ class UserController extends Controller
                 return $response;
             } else {
                 $response = new Response();
-                $response->setStatusCode(201);
+                $response->setStatusCode(401);
                 $form['media']->getData() == 'Desktop' ?
                     $response->setContent($this->get('templating')->render('modal/modal_login_desktop.html.twig', ['form' => $form->createView()]))
                     : $response->setContent($this->get('templating')->render('modal/modal_login_mobile.html.twig', ['form' => $form->createView()]));
@@ -58,7 +58,7 @@ class UserController extends Controller
                 return new Response('Un email vous a été envoyé à l\'adresse <strong>' . $form['email']->getData() . '</strong>.');
             } else {
                 $response = new Response();
-                $response->setStatusCode(201)->setContent($this->get('templating')->render('modal/modal_reset_password.html.twig', [
+                $response->setStatusCode(401)->setContent($this->get('templating')->render('modal/modal_reset_password.html.twig', [
                     'form' => $form->createView()
                 ]));
                 return $response;

@@ -71,7 +71,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
           $error = $authUtils->getLastAuthenticationError();
           $username = $authUtils->getLastUsername();
           $response = new Response();
-          $response->setStatusCode(201);
+          $response->setStatusCode(401);
           $form = $this->container->get('form.factory')->create(ModalFormType::class,[
               '_username' => $username
           ]);

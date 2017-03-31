@@ -30,7 +30,7 @@
            id="password-forgotten" style="color:#000;font-weight:bold; font-size:0.9em;text-decoration:underline;">Mot de passe oublié ?</a>
     </div>
     <div class="col-xs-5">
-        <button type="submit" class="btn btn-primary btn-md" id="btn-login">Se connecter</button>
+        <button type="submit" class="btn btn-primary btn-md" id="btn-login" formnovalidate>Se connecter</button>
     </div>
     <div class="col-xs-12">
         <div class="checkbox">
@@ -136,8 +136,8 @@
                 method: "POST",
                 data: $formData,
                 statusCode: {
-                    201: function (msg) {
-                        $('#modal-load-mobile').html(msg);
+                    401: function (jqXHR, msg) {
+                        $('#modal-load-mobile').html(jqXHR.responseText);
                     },
                     200: function () {
                         location.reload();
@@ -153,8 +153,8 @@
                 method: "POST",
                 data: $formData,
                 statusCode: {
-                    201: function (msg) {
-                        $('#modal-load-mobile').html(msg);
+                    401: function (jqXHR, msg) {
+                        $('#modal-load-mobile').html(jqXHR.responseText);
                     },
                     200: function () {
                         location.reload();
