@@ -19,19 +19,19 @@
                 {% else %}
                     <p class="user-info__stats--text">Vous êtes observateur.</p>
                 {% endif %}
-
-
             </div>
-
             <div class=" col-xs-3 obs__details obs__details--display">
                 <img src="{{ asset('assets/img/where.png') }}" alt="{{ "Où l'avez vous vu ?"|trans }}" class="obs__details--icon">
+                {{ monObservation.ville }}
 
             </div>
             <div class="col-xs-3 obs__details obs__details--display">
-                date
+                <img src="{{ asset('assets/img/calendar.png') }}" alt="{{ "Quand l'avez vous vu ?"|trans }}" class="obs__details--icon">
+                {{ monObservation.date|localizeddate('none','none', '', null, 'd MMMM') }}
             </div>
             <div class="col-xs-3 obs__details obs__details--display">
                 <img src="{{ asset('assets/img/when.png') }}" alt="{{ "Quand l'avez vous vu ?"|trans }}" class="obs__details--icon">
+                {{ monObservation.date|date('H:i', 'Europe/Paris') }}
             </div>
         </div>
 
@@ -40,9 +40,6 @@
                 <img class="obs__photo" src="../uploads/observations/{{ monObservation.image }}" alt="Observation"
                      id="obs__photo">
             {% endif %}
-
-
-
         </div>
         <div class="col-xs-6 obs__description--title">
             Description
@@ -51,23 +48,8 @@
             {{ monObservation.description }}
         </div>
         <div id="map{{ monObservation.id }}" class="col-xs-6 obs__map">
-
-            {{ monObservation.longitude|number_format(3, '.')  }}
-            {{ monObservation.latitude|number_format(3, '.')  }}
+            <img src="https://maps.googleapis.com/maps/api/staticmap?center={{ monObservation.latitude|number_format(3, '.')  }},{{ monObservation.longitude|number_format(3, '.')  }}&zoom=14&size=450x285&maptype=roadmap&key=AIzaSyACO55kGEkd8YeNffAaErhE02wa_UigduQ" class="obs__map--img">
         </div>
 
     </div>
-    <script>
-        function initMap() {
-            var uluru = {lat: {{ monObservation.latitude|number_format(3, '.')  }}, lng: {{ monObservation.longitude|number_format(3, '.')  }}};
-            var map = new google.maps.Map(document.getElementById('map{{ monObservation.id }}'), {
-                zoom: 4,
-                center: uluru
-            });
-            var marker = new google.maps.Marker({
-                position: uluru,
-                map: map
-            });
-        }
-    </script>
 {% endfor %}

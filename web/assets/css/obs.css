@@ -3,6 +3,9 @@
    /* border: 1px solid black;*/
 }
 
+a, span, p, h1, h2, h3 {
+    color: #234a81;
+}
 .obs__general{
     margin-top: 15px;
     background-color: white;
@@ -43,6 +46,10 @@
 }
 
 .obs__map{
-    height: 284px;
-    background-color: grey;
+       height: 284px;
+       /*background-color: grey;*/
+   }
+
+.obs__map--img{
+    width:100%;
 }

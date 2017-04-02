@@ -39,16 +39,19 @@
                     <div class="col-xs-10">
                         <div class="input-group">
 
-                            <input id="pac-input" type="text" class="form-control modal-load-desktop__input" placeholder="{{ "Ville, coordonnées GPS"|trans }}"/>
+                            <input id="pac-input" type="text" class="form-control modal-load-desktop__input" placeholder="{{ "Ville, coordonnées GPS"|trans }}" required="required"/>
                             <span id="location" class="input-group-addon"><i class="fa fa-compass fa-2x" aria-hidden="true"></i></span>
                         </div>
 
 
-                      {{ form_widget(form.longitude, {'attr': {'class' : 'form-control modal-load-desktop__input hidden' }}) }}
-                         {{ form_errors(form.longitude) }}
+                        {{ form_widget(form.longitude, {'attr': {'class' : 'form-control modal-load-desktop__input hidden' }}) }}
+                        {{ form_errors(form.longitude) }}
 
                         {{ form_widget(form.latitude, {'attr': {'class' : 'form-control modal-load-desktop__input hidden' }}) }}
                         {{ form_errors(form.latitude) }}
+
+                        {{ form_widget(form.ville, {'attr': {'class' : 'form-control modal-load-desktop__input hidden' }}) }}
+                        {{ form_errors(form.ville) }}
                     </div>
                 </div>
             </div>
@@ -108,37 +111,66 @@
 </div>
 
 <script>
-    function initMap() {
-        var input = (document.getElementById('pac-input'));
-        var options = {
-            componentRestrictions: {country: 'fr'}
-        };
-        var autocomplete = new google.maps.places.Autocomplete(input, options);
+function initMap() {
+    var input = (document.getElementById('pac-input'));
+    var options = {
+        componentRestrictions: {country: 'fr'}
+    };
+    var autocomplete = new google.maps.places.Autocomplete(input, options);
 
-        autocomplete.addListener('place_changed', function() {
-            var place = autocomplete.getPlace();
-            if (!place.geometry) {
-                window.alert("{{ "Selectionnez un lieu dans la liste SVP"|trans }}");
-                return;
+    autocomplete.addListener('place_changed', function () {
+        var place = autocomplete.getPlace();
+        if (!place.geometry) {
+            window.alert("{{ "Selectionnez un lieu dans la liste SVP"|trans }}");
+            return;
+        }
+
+        var nbAdressComp = place.address_components.length;
+        for ($i = 0; $i < nbAdressComp; $i++) {
+            if (place.address_components[$i].types[0] == 'locality') {
+                var laVille = place.address_components[$i].short_name;
             }
-            $('#obs_form_longitude').val(place.geometry.location.lng().toFixed(10));
-            $('#obs_form_latitude').val(place.geometry.location.lat().toFixed(11));
-        });
-    }
+        }
+        if (!laVille) {
+            window.alert("{{ "Indiquez au moins une ville SVP"|trans }}");
+            return;
+        }
 
+        $('#obs_form_ville').val(laVille);
+        $('#obs_form_longitude').val(place.geometry.location.lng().toFixed(10));
+        $('#obs_form_latitude').val(place.geometry.location.lat().toFixed(11));
+    });
+
+}
+        function geocodeLatLng(geocoder) {
+            var latlng = {lat: parseFloat($('#obs_form_latitude').val()), lng:  parseFloat($('#obs_form_longitude').val())};
+            geocoder.geocode({'location': latlng}, function(results, status) {
+                if (status === google.maps.GeocoderStatus.OK) {
+                    if (results) {
+                        var laVille = results[0].address_components[2].short_name;
+                        $('#obs_form_ville').val(laVille);
+                    } else {
+                        window.alert('No results found');
+                    }
+                } else {
+                    window.alert('Geocoder failed due to: ' + status);
+                }
+            });
+        }
 
     function getLocation() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(showPosition);
         }
     }
+
     function showPosition(position) {
         $('#obs_form_longitude').val(position.coords.longitude);
         $('#obs_form_latitude').val(position.coords.latitude);
         $('#pac-input').val(position.coords.latitude + " " + position.coords.longitude);
+        var geocoder = new google.maps.Geocoder;
+        geocodeLatLng(geocoder);
     }
-
-
 
     $('#recherche').autocomplete({
         source : '{{ path('getListing') }}',
@@ -159,10 +191,11 @@
         },
     });
 
-
-
-    $('#location').click(function() {getLocation();});
+    $('#location').click(function() {
+        getLocation();
+    });
 
     $('#obs_form_taxon').append('<option value="" selected></option>')
 </script>
+
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACO55kGEkd8YeNffAaErhE02wa_UigduQ&libraries=places&callback=initMap" async defer></script>

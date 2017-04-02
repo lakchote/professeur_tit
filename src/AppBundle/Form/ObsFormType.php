@@ -36,6 +36,7 @@ class ObsFormType extends AbstractType
             ->add('latitude', NumberType::class, array(
                 'scale' => 11,
             ))
+            ->add('ville', TextType::class)
             ->add('date', DateTimeType::class, array (
                 'data' => new \DateTime(),
             ))

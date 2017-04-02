@@ -87,3 +87,8 @@ services:
     app.manage_obs:
         class: AppBundle\Service\ObsManage
         autowire: true
+
+    twig.extension.intl:
+        class: Twig_Extensions_Extension_Intl
+        tags:
+            - { name: twig.extension }

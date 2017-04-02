@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+
 
 class ObservationController extends Controller
 {
@@ -21,12 +21,8 @@ class ObservationController extends Controller
     public function indexAction(Request $request)
     {
         $user = $this->get('security.token_storage')->getToken()->getUser();
-
         $nbObservations = $this->get('app.profil_user')->getUserObservations($user);
-
         $mesObservations = $this->get('app.profil_user')->getUserObservationsFlow($user);
-        dump($user);
-        dump($mesObservations);
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
@@ -35,9 +31,6 @@ class ObservationController extends Controller
             10/*limit per page*/
         );
 
-
-        dump($pagination);
-
         return $this->render('default/obs.html.twig', [
             'mesObservations' => $mesObservations,
             'nbObservations' => $nbObservations,
@@ -45,29 +38,13 @@ class ObservationController extends Controller
         ]);
 
     }
-    public function listAction(Request $request)
-    {
-        $em    = $this->get('doctrine.orm.entity_manager');
-        $dql   = "SELECT a FROM AcmeMainBundle:Article a";
-        $query = $em->createQuery($dql);
 
-        $paginator  = $this->get('knp_paginator');
-        $pagination = $paginator->paginate(
-            $query, /* query NOT result */
-            $request->query->getInt('page', 1)/*page number*/,
-            10/*limit per page*/
-        );
-
-        // parameters to template
-        return $this->render('AcmeMainBundle:Article:list.html.twig', array('pagination' => $pagination));
-    }
     /**
      * @Route("/observation/delete/{observation}", name="obs_delete")
      *
      */
     public function obsDeleteAction(Request $request, observation $observation)
     {
-
         $this->get('app.manage_obs')->deleteObs($observation);
         return $this->render('default/obs.html.twig');
       }
@@ -90,7 +67,7 @@ class ObservationController extends Controller
     /**
      * @Route("/getListing", name="getListing")
      */
-    public function getLisitngAction(Request $request)
+    public function getListingAction(Request $request)
     {
             $listeTaxons = $this->get('app.createliste')->createList($_GET['term']);
             return  $this->json($listeTaxons);
@@ -112,11 +89,12 @@ class ObservationController extends Controller
                 $em->persist($observation);
                 $em->flush();
                 $this->addFlash(
-                    'notice',
-                    'Your changes were saved!'
+                    'success',
+                    'Your observation was added !'
                 );
 
-                return $this->render('default/obs.html.twig');
+                return $this->redirect( $this->generateUrl('observation'));
+               // return $this->render('default/obs.html.twig');
 
           /*      $response = new Response();
                 $response->setStatusCode(200)->setContent($this->renderView('default/obs.html.twig'));
@@ -124,12 +102,28 @@ class ObservationController extends Controller
                 return $response;*/
             } else {
 
-                return $this->render('modal/modal_add_obs_desktop.html.twig', ['form' => $modal->createView()]);
+                   $errors = array();
+                   foreach ($modal->all() as $key => $child) {
+                       if (!$child->isValid()) {
+                           foreach ($child->getErrors() as $error) {
+                               $errors[$key] = $error->getMessage();
+                           }
+                       }
+                   }
+                  dump($errors);
+                   $this->addFlash(
+                       'error',
+                       'Your observation was not added try again !'
+                   );
+                   return $this->redirect( $this->generateUrl('observation'));
+                 //  return $this->render('default/obs.html.twig');
 
-          /*      $response = new Response();
-                $response->setStatusCode(201)->setContent($this->renderView('modal/modal_add_obs_desktop.html.twig', ['form' => $modal->createView()]));
-                dump($response);
-                return $response;*/
+                   /*    return $this->render('modal/modal_add_obs_desktop.html.twig', ['form' => $modal->createView()]);
+
+               $response = new Response();
+                   $response->setStatusCode(201)->setContent($this->renderView('modal/modal_add_obs_desktop.html.twig', ['form' => $modal->createView()]));
+                   dump($response);
+                   return $response;*/
 
             }
 

@@ -24,18 +24,6 @@ class ObservationRepository extends \Doctrine\ORM\EntityRepository
             ->setParameter('id', $id)
             ->getQuery();
     }
-    /*
-    public function getUserObservationsFlow($id)
-    {
-        return $this->createQueryBuilder('obs')
-            ->select('obs')
-            ->leftJoin('obs.user', 'user')
-            ->andWhere('user.id = :id')
-            ->setParameter('id', $id)
-            ->getQuery()
-            ->getScalarResult();
-
-    }*/
 
     public function getUserValidatedObservations($id)
     {
