@@ -92,7 +92,7 @@
                 <label for="" class="col-xs-12 control-label modal-load-desktop__label">{{ "Ajoutez une photo à votre observation"|trans }}</label>
                {# {{ form_widget(form.photoPath) }}#}
                     <div id="modal-load-desktop__photo--button" class="col-xs-12 modal-load-desktop__image ">
-                        
+
                         {{ form_widget(form.image, { 'attr' : {'class' : 'modal-load-desktop__photo--button'}}) }}
                             {{ form_errors(form.image) }}
                     </div>
@@ -190,6 +190,8 @@ function initMap() {
             return false;
         },
     });
+
+
 
     $('#location').click(function() {
         getLocation();
