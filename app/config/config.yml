@@ -40,6 +40,8 @@ twig:
     strict_variables: "%kernel.debug%"
     form_themes:
         - bootstrap_3_layout.html.twig
+    globals:
+        page: '@app.listener.page'
 
 # Doctrine Configuration
 doctrine:

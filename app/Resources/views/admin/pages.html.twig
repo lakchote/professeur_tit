@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+     <div class="row">
+         <div class="col-xs-12 col-sm-10">
+             <h1>Pages</h1>
+             {% for page in pages %}
+                 <p><a href="{{ path('admin_pages_modify', {'titreRoute' : page.titreRoute}) }}">Route : {{ page.titreRoute }}</a></p>
+             {% endfor %}
+             <div class="margin-top">
+                 <a href="{{ path('admin_home') }}">&larr; Revenir à la page d'administration</a>
+             </div>
+         </div>
+     </div>
+{% endblock %}

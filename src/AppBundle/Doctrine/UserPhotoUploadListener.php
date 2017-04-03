@@ -43,6 +43,7 @@ class UserPhotoUploadListener
     public function postLoad(LifecycleEventArgs $args)
     {
         $entity = $args->getEntity();
+        if(!$entity instanceof User) return;
         $filename = $entity->getImage();
         if($filename != '') $entity->setImage(new File($this->targetPath . '/' . $filename));
     }

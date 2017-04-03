@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#98fb98">
     <meta name="keywords"
-          content="ornithologie, association, climat, urbanisation, agriculture, biodiversité, découvrir, application, oiseaux">
+          content="{{ page.seoData.keywords }}">
     <meta name="description"
-          content="Application participative gratuite visant à étudier les effets du climat, de l’urbanisation et de l’agriculture sur la biodiversité.">
+          content="{{ page.seoData.description }}">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@AssociationNAO">
     <meta name="twitter:creator" content="@OpenSpirit">
@@ -27,7 +27,7 @@
         {% endif %}
     {% endblock %}
     <link rel="icon" href="{{ asset('assets/img/favicon.ico') }}">
-    <title>{% block title %}{% endblock %}</title>
+    <title>{% block title %} {{ page.seoData.titrePage }}{% endblock %}</title>
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -59,10 +59,10 @@
                 <a href="{{ path('manage_profil_membre') }}"><img src="{{ asset('assets/img/user.png') }}" alt="Accéder à votre profil"
                                  class="pull-right visible-xs header__icons--mobile"></a>
             {% endif %}
-            <img class="hidden-xs" id="header__logo--desktop" src="{{ asset('assets/img/tit_logo.png') }}"
-                 alt="Professeur Tit">
-            <img class="visible-xs" id="header__logo--mobile" src="{{ asset('assets/img/tit_logo.png') }}"
-                 alt="Professeur Tit">
+            <a href="{{ path('home') }}"><img class="hidden-xs" id="header__logo--desktop" src="{{ asset('assets/img/tit_logo.png') }}"
+                 alt="Professeur Tit"></a>
+            <a href="{{ path('home') }}"><img class="visible-xs" id="header__logo--mobile" src="{{ asset('assets/img/tit_logo.png') }}"
+                                              alt="Professeur Tit"></a>
         </div>
         <div class="navbar-collapse collapse" id="header__rubriques">
             <ul class="nav navbar-nav">
@@ -176,7 +176,11 @@
                         </ul>
                     </div>
                     <div class="col-sm-3">
-                        <img src="{{ asset('assets/img/tit_blanc.png') }}" alt="" class="pull-right">
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a href="{{ path('admin_home') }}"><img src="{{ asset('assets/img/tit_blanc.png') }}" alt="" class="pull-right"></a>
+                        {% else %}
+                            <img src="{{ asset('assets/img/tit_blanc.png') }}" alt="" class="pull-right">
+                        {% endif %}
                     </div>
                 </div>
             </div>
