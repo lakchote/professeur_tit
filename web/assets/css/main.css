@@ -21,6 +21,16 @@ a, span, p, h1, h2 , h3
     background-color: #162135;
 }
 
+.color__red
+{
+    color: red;
+}
+
+.margin-top__greater
+{
+    margin-top: 30px;
+}
+
 .footer
 {
     position:absolute;

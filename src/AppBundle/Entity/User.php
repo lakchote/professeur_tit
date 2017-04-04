@@ -98,6 +98,18 @@ class User implements UserInterface, \Serializable
      */
     private $observations;
 
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $raisonBan;
+
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $dateBan;
+
     public function __construct()
     {
         $this->observations = new ArrayCollection();
@@ -342,5 +354,42 @@ class User implements UserInterface, \Serializable
     public function getImgPath()
     {
         return $this->img_path;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRaisonBan()
+    {
+        return $this->raisonBan;
+    }
+
+    /**
+     * @param mixed $raisonBan
+     */
+    public function setRaisonBan($raisonBan)
+    {
+        $this->raisonBan = $raisonBan;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDateBan()
+    {
+        return $this->dateBan;
+    }
+
+    /**
+     * @param mixed $dateBan
+     */
+    public function setDateBan($dateBan)
+    {
+        $this->dateBan = $dateBan;
+    }
+
+    public function resetRoles()
+    {
+        $this->roles = [];
     }
 }

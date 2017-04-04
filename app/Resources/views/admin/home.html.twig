@@ -4,7 +4,10 @@
     <div class="row">
         <div class="col-xs-12 col-sm-10">
             <h1>Administration</h1>
-            <a href="{{ path('admin_pages') }}">&rarr; Modifier le contenu SEO des pages</a>
+            {% if nbSignalements is not null %}
+                <p><a href="{{ path('admin_signalements_list') }}" class="color__red">&rarr; Nombre signalements : {{ nbSignalements }}</a></p>
+            {% endif %}
+            <p><a href="{{ path('admin_pages') }}">&rarr; Modifier le contenu SEO des pages</a></p>
         </div>
     </div>
 {% endblock %}

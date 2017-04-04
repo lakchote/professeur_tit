@@ -10,4 +10,24 @@ namespace AppBundle\Repository;
  */
 class UserRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function countFrozenUsers()
+    {
+        return $this
+            ->createQueryBuilder('u')
+            ->select('COUNT(u)')
+            ->where('u.roles = :frozen')
+            ->setParameter('frozen', '["ROLE_FROZEN"]')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    public function getFrozenUsers()
+    {
+        return $this
+            ->createQueryBuilder('u')
+            ->where('u.roles = :frozen')
+            ->setParameter('frozen', '["ROLE_FROZEN"]')
+            ->getQuery()
+            ->getResult();
+    }
 }

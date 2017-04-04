@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12 col-sm-10">
+            {% for user in signalements %}
+                <p><strong>Utilisateur :</strong> {{ user.username }}</p>
+                <p class="color__red"><strong>Banni depuis le {{ user.dateBan|date('d-m-Y') }}</strong></p>
+                <p class="small"><strong>Raison ban :</strong> {{ user.raisonBan }}</p>
+                <a class="btn btn-primary btn-xs" href="{{ path('admin_signalement_remove', {'id' : user.id }) }}"><span class="fa fa-check" aria-hidden="true"></span> Enlever signalement</a>
+                <a class="btn btn-danger btn-xs" href="{{ path('admin_user_remove', {'id' : user.id }) }}"><span class="fa fa-times" aria-hidden="true"></span> Supprimer utilisateur</a>
+                <div class="margin-top__greater"></div>
+            {% endfor %}
+            <a href="{{ path('admin_home') }}">&larr; Revenir à la page d'administration</a>
+        </div>
+    </div>
+{% endblock %}
