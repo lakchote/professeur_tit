@@ -26,6 +26,7 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
         return $this
             ->createQueryBuilder('u')
             ->where('u.roles = :frozen')
+            ->orderBy('u.dateBan', 'ASC')
             ->setParameter('frozen', '["ROLE_FROZEN"]')
             ->getQuery()
             ->getResult();

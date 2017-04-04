@@ -93,3 +93,8 @@ services:
     app.manager.user:
         class: AppBundle\Manager\UserManager
         autowire: true
+
+    app.twig.datediff:
+        class: AppBundle\Twig\DateDiff
+        tags:
+            - {name: twig.extension }
