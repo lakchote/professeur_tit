@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12 col-sm-10">
+            <h1>Données SEO par défaut</h1>
+            {{ form_start(form) }}
+                {{ form_row(form.titrePage) }}
+                {{ form_row(form.description) }}
+                {{ form_row(form.keywords) }}
+            <button type="submit" class="btn btn-primary" formnovalidate>Valider</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

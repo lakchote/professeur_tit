@@ -1,25 +1,23 @@
 <?php
 
 namespace AppBundle\Entity;
+
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="page")
+ * @ORM\Table(name="default_page")
  */
-class Page
+class DefaultPage
 {
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
      */
     private $id;
-
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $titreRoute;
 
     /**
      * @ORM\Column(type="string")
@@ -35,38 +33,6 @@ class Page
      * @ORM\Column(type="string")
      */
     private $keywords;
-
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param mixed $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTitreRoute()
-    {
-        return $this->titreRoute;
-    }
-
-    /**
-     * @param mixed $titreRoute
-     */
-    public function setTitreRoute($titreRoute)
-    {
-        $this->titreRoute = $titreRoute;
-    }
 
     /**
      * @return mixed
@@ -114,6 +80,14 @@ class Page
     public function setKeywords($keywords)
     {
         $this->keywords = $keywords;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
 }

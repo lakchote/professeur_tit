@@ -1,13 +1,49 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheet %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('assets/css/admin.css') }}">
+{% endblock %}
+
 {% block content %}
     <div class="row">
-        <div class="col-xs-12 col-sm-10">
-            <h1>Administration</h1>
-            {% if nbSignalements != 0 %}
-                <p><a href="{{ path('admin_signalements_list') }}" class="color__red">&rarr; Nombre signalements : {{ nbSignalements }}</a></p>
-            {% endif %}
-            <p><a href="{{ path('admin_pages') }}">&rarr; Modifier le contenu SEO des pages</a></p>
+        <div class="col-xs-12 col-sm-12">
+            <h1 class="margin-top__none">Administration</h1>
+            <div class="col-sm-4 margin-top__greater container__adminActions text-center">
+                <div class="container__adminActions--hidden">
+                        <p class="container__adminActions--hiddenText"><span class="fa fa-group"></span><a href="#" target="_blank"> Naturalistes en attente</a></p>
+                        <p class="container__adminActions--hiddenText"><span class="fa fa-flag"></span> <a href="#" target="_blank"> Signalements (<span class="color__red">{{ nbSignalements }}</span>)</a></p>
+                        <p class="container__adminActions--hiddenText"><span class="fa fa-list-ol"></span> <a href="#" target="_blank"> Listing utilisateurs</a></p>
+                </div>
+                <span class="container__adminActions--text">
+                    <span class="fa fa-user" aria-hidden="true"></span> <a href="#" class="toggleHiddenLinks">Utilisateurs</a>
+                </span>
+            </div>
+            <div class="col-sm-4 margin-top__greater container__adminActions text-center">
+                <div class="container__adminActions--hidden">
+                    <p class="container__adminActions--hiddenText"><span class="fa fa-list"></span><a href="#" target="_blank"> Liste observations</a></p>
+                    <p class="container__adminActions--hiddenText"><span class="fa fa-check color__green"></span> <a href="#" target="_blank"> Observations validées</a></p>
+                    <p class="container__adminActions--hiddenText"><span class="fa fa-times color__red"></span> <a href="#" target="_blank"> Observations refusées</a></p>
+                </div>
+                <span class="container__adminActions--text">
+                    <span class="fa fa-camera-retro" aria-hidden="true"></span> <a href="#" class="toggleHiddenLinks">Observations</a>
+                </span>
+            </div>
+            <div class="col-sm-4 margin-top__greater container__adminActions text-center">
+                <div class="container__adminActions--hidden">
+                    <p class="container__adminActions--hiddenText"><span class="fa fa-plus"></span><a href="#" target="_blank"> Ajouter nouvelle page SEO</a></p>
+                    <p class="container__adminActions--hiddenText"><span class="fa fa-pencil"></span> <a href="{{ path('admin_seo_pages_list') }}" target="_blank"> Modifier pages SEO</a></p>
+                    <p class="container__adminActions--hiddenText"><span class="fa fa-refresh"></span> <a href="{{ path('admin_seo_defaultData_modify') }}" target="_blank"> Changer balises SEO</a></p>
+                </div>
+                <span class="container__adminActions--text">
+                    <span class="fa fa-pencil" aria-hidden="true"></span> <a href="#" class="toggleHiddenLinks">Balises SEO</a>
+                </span>
+            </div>
         </div>
     </div>
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('assets/js/admin_home.js') }}"></script>
 {% endblock %}

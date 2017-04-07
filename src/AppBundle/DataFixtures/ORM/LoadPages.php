@@ -24,6 +24,9 @@ class LoadPages implements FixtureInterface
         {
             $page = new Page();
             $page->setTitreRoute($route);
+            $page->setTitrePage('Professeur Tit');
+            $page->setDescription('Application participative gratuite visant à étudier les effets du climat, de l’urbanisation et de l’agriculture sur la biodiversité.');
+            $page->setKeywords('ornithologie, association, climat, urbanisation, agriculture, biodiversité, découvrir, application, oiseaux');
             $manager->persist($page);
         }
         $manager->flush();

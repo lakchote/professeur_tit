@@ -16,6 +16,11 @@ a, span, p, h1, h2 , h3
     color:#234a81;
 }
 
+a:hover
+{
+    text-decoration: none;
+}
+
 .header, .footer
 {
     background-color: #162135;
@@ -23,12 +28,22 @@ a, span, p, h1, h2 , h3
 
 .color__red
 {
-    color: red;
+    color: red !important;
+}
+
+.color__green
+{
+    color: #70b78f !important;
 }
 
 .margin-top__greater
 {
     margin-top: 30px;
+}
+
+.margin-top__none
+{
+    margin-top: 0;
 }
 
 .footer
@@ -59,7 +74,7 @@ a, span, p, h1, h2 , h3
 {
     body
     {
-        margin-bottom: 50px;
+        margin-bottom: 90px;
     }
 
     .footer

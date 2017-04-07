@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheet %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('assets/css/admin.css') }}">
+{% endblock %}
+
+{% block content %}
+     <div class="row">
+         <div class="col-xs-12 col-sm-5">
+             <h1>Pages SEO</h1>
+             <div class="container__route">
+                 {% for page in pages %}
+                     <p>
+                         <span class="label label-primary"><span class="fa fa-link color__green" aria-hidden="true"></span> <a href="{{ path('admin_seo_page_modify', {'titreRoute' : page.titreRoute}) }}"> {{ page.titreRoute }}</a></span>
+                     </p>
+                 {% endfor %}
+             </div>
+         </div>
+     </div>
+{% endblock %}

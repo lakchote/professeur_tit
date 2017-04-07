@@ -36,19 +36,28 @@ class PageListener
         }
         else
         {
-            $this->setDefaultPageData();
+            $this->getDefaultSEOData();
         }
-    }
-
-    private function setDefaultPageData()
-    {
-        $this->seoData['titrePage'] = 'Professeur Tit';
-        $this->seoData['description'] = 'Application participative gratuite visant à étudier les effets du climat, de l’urbanisation et de l’agriculture sur la biodiversité.';
-        $this->seoData['keywords'] = 'ornithologie, association, climat, urbanisation, agriculture, biodiversité, découvrir, application, oiseaux';
     }
 
     public function getSeoData()
     {
         return $this->seoData;
+    }
+
+    public function getDefaultSEOData()
+    {
+        $defaultPage = $this->em->getRepository('AppBundle:DefaultPage')->findOneBy(['id' => 1]);
+        $this->seoData['titrePage'] = $defaultPage->getTitrePage();
+        $this->seoData['description'] = $defaultPage->getDescription();
+        $this->seoData['keywords'] = $defaultPage->getKeywords();
+    }
+
+    public function changeDefaultPageData($titrePage, $description, $keywords)
+    {
+        $defaultPage = $this->em->getRepository('AppBundle:DefaultPage')->findOneBy(['id' => 1]);
+        $defaultPage->setTitrePage($titrePage);
+        $defaultPage->setDescription($description);
+        $defaultPage->setKeywords($keywords);
     }
 }
