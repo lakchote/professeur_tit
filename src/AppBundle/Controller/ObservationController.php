@@ -13,10 +13,9 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ObservationController extends Controller
 {
-
     /**
      * @Security("is_granted('IS_AUTHENTICATED_REMEMBERED')")
-     * @Route("/observation", name="observation")
+     * @Route("/observation_flow_user", name="observation_flow_user")
      */
     public function indexAction(Request $request)
     {
@@ -73,6 +72,26 @@ class ObservationController extends Controller
             return  $this->json($listeTaxons);
     }
 
+
+    /**
+     * @Route("/validate", name="obs_validate")
+     */
+
+    public function obsValidateAction(Request $request) {
+        $observation = new Observation();
+        $modal= $this->createForm(ObsFormType::class ,$observation);
+        $modal->handleRequest($request);
+        if ($modal->isValid()) {
+            $response = new Response();
+            $response->setStatusCode(200);
+        }
+        else {
+            $response = new Response();
+            $response->setStatusCode(201)->setContent($this->renderView('modal/modal_add_obs_desktop.html.twig', ['form' => $modal->createView()]));
+        }
+        return $response;
+    }
+
     /**
      * @Route("/publish", name="obs_publish")
      */
@@ -92,41 +111,13 @@ class ObservationController extends Controller
                     'success',
                     'Your observation was added !'
                 );
-
-                return $this->redirect( $this->generateUrl('observation'));
-               // return $this->render('default/obs.html.twig');
-
-          /*      $response = new Response();
-                $response->setStatusCode(200)->setContent($this->renderView('default/obs.html.twig'));
-                dump($response);
-                return $response;*/
+                return $this->redirect( $this->generateUrl('observation_flow_user'));
             } else {
-
-                   $errors = array();
-                   foreach ($modal->all() as $key => $child) {
-                       if (!$child->isValid()) {
-                           foreach ($child->getErrors() as $error) {
-                               $errors[$key] = $error->getMessage();
-                           }
-                       }
-                   }
-                  dump($errors);
                    $this->addFlash(
                        'error',
                        'Your observation was not added try again !'
                    );
-                   return $this->redirect( $this->generateUrl('observation'));
-                 //  return $this->render('default/obs.html.twig');
-
-                   /*    return $this->render('modal/modal_add_obs_desktop.html.twig', ['form' => $modal->createView()]);
-
-               $response = new Response();
-                   $response->setStatusCode(201)->setContent($this->renderView('modal/modal_add_obs_desktop.html.twig', ['form' => $modal->createView()]));
-                   dump($response);
-                   return $response;*/
-
+                   return $this->redirect( $this->generateUrl('observation_flow_user'));
             }
-
-        return new Response('Type de requête invalide');
     }
 }

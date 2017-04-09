@@ -28,6 +28,7 @@ class ObsFormType extends AbstractType
                  'class' => 'AppBundle\Entity\Taxon',
                  'choice_label' => 'nomLatin',
                  'choice_value' => 'nomLatin',
+                 'placeholder' => '',
                  'multiple' => false,
              ))
              ->add('longitude', NumberType::class, array(

@@ -12,9 +12,15 @@ a, span, p, h1, h2, h3 {
 }
 .obs__container {}
 
+.add__obs {
+    background: #ffffff;
+    height: 112px;
+}
+
 .obs__photo-user {
     height: 112px;
 }
+
 .obs__photo {
     width: 100%;
 }

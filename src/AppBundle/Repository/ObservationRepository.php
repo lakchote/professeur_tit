@@ -22,6 +22,7 @@ class ObservationRepository extends \Doctrine\ORM\EntityRepository
             ->leftJoin('obs.user', 'user')
             ->andWhere('user.id = :id')
             ->setParameter('id', $id)
+            ->orderBy('obs.date', 'DESC')
             ->getQuery();
     }
     /*

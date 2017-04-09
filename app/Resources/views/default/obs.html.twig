@@ -8,22 +8,20 @@
 
 
 {% block content %}
-    <div id="flash">
-
-    </div>
     <div class="col-xs-offset-2 col-xs-10 padding-left--none">
-        <a href="" id="obs-load-desktop" class="modal-desktop" data-toggle="modal" data-target="#modal-login-desktop">Test</a>
+        <div class="add__obs">
+            <a href="" id="obs-load-desktop" class="modal-desktop" data-toggle="modal" data-target="#modal-login-desktop">
+                <img class="obs__details--icon" src="{{ asset('assets/img/add_obs.jpg') }}">
+                {{ "Ajouter une observation"|trans }}
+            </a>
+        </div>
     </div>
 
     <div class="row">
         {% if pagination is defined %}
         <div class="col-md-2">sidebar <br/> {{ pagination.getTotalItemCount }}</div>
 
-
-
-
                 {% include 'blocks/observation.html.twig' %}
-
 
         {# display navigation #}
         <div class="navigation">
@@ -33,8 +31,6 @@
     </div>
 
         </div>
-
-
 {% endblock %}
 
 
@@ -55,33 +51,5 @@
             });
         }());
     </script>
-
-        <script type="text/javascript">
-
-            {#
-            function initMap() {
-                {% if pagination is defined %}
-                    {% for monObservation in pagination %}
-                    var myOptions = {
-                        disableDefaultUI: true,
-                        scaleControl: false,
-                        zoom: 14,
-                        center: new google.maps.LatLng({{ monObservation.latitude|number_format(3, '.')  }}, {{ monObservation.longitude|number_format(3, '.')  }}),
-                        mapTypeId: google.maps.MapTypeId.ROADMAP,
-
-                    }
-                    map{{ monObservation.id }} = new google.maps.Map(document.getElementById("map{{ monObservation.id }}"), myOptions);
-                    {% endfor %}
-                {% endif %}
-            }
-#}
-
-        </script>
-
-
-
-
-
-
 
 {% endblock %}
