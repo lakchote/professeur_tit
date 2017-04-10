@@ -13,6 +13,7 @@
                  {% for page in pages %}
                      <p>
                          <span class="label label-primary"><span class="fa fa-link color__green" aria-hidden="true"></span> <a href="{{ path('admin_seo_page_modify', {'titreRoute' : page.titreRoute}) }}"> {{ page.titreRoute }}</a></span>
+                         <a class="container__route--delete color__red" href="{{ path('admin_seo_page_delete', {'titreRoute' : page.titreRoute }) }}"><span class="fa fa-times color__red" aria-hidden="true"></span> Supprimer</a>
                      </p>
                  {% endfor %}
              </div>

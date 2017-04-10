@@ -35,7 +35,12 @@
 .container__route
 {
     padding:5px;
-    font-size:1.2em;
+    font-size:1.4em;
+}
+
+.container__route--delete
+{
+    font-size: 0.6em;
 }
 
 .container__adminActions--hidden a,

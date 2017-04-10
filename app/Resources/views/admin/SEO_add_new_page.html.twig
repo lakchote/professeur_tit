@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12 col-sm-8">
+            {{ form_start(form) }}
+                {{ form_row(form.titreRoute) }}
+                {{ form_row(form.seo) }}
+                <button type="submit" class="btn btn-primary" formnovalidate>Valider</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

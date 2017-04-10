@@ -97,4 +97,14 @@ services:
     app.twig.datediff:
         class: AppBundle\Twig\DateDiff
         tags:
-            - {name: twig.extension }
+            - { name: twig.extension }
+
+    app.seo:
+        class: AppBundle\Service\SEO
+        autowire: true
+
+    app.form.type.add_new_page:
+        class: AppBundle\Form\Type\Admin\AddNewPageType
+        arguments: ['@app.seo']
+        tags:
+            - { name: form.type }
