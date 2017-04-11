@@ -43,6 +43,12 @@
     font-size: 0.6em;
 }
 
+.container__masks--hidden,
+.container__addNewMask--hidden
+{
+    display:none;
+}
+
 .container__adminActions--hidden a,
 .container__adminActions--hidden span,
 .container__adminActions--hidden p,

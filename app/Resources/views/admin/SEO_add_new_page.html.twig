@@ -1,13 +1,40 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheet %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('assets/css/admin.css') }}">
+{% endblock %}
+
 {% block content %}
     <div class="row">
         <div class="col-xs-12 col-sm-8">
             {{ form_start(form) }}
                 {{ form_row(form.titreRoute) }}
+            <div class="form-group">
+                <label class="control-label">Masques d'exclusion</label>
+                <a id="show_masks" href="#"><span class="fa fa-eye" aria-hidden="true"></span>Afficher</a>
+                <a id="add_mask" href="#"><span class="fa fa-plus" aria-hidden="true"></span>Ajouter</a>
+                <div class="container__masks--hidden">
+                    {% for mask in excludeMasks %}
+                        <p>{{ mask }} <a class="container__route--delete color__red small" href="{{ path('admin_seo_excludeMask_delete', {'mask' : mask }) }}"><span class="fa fa-times color__red" aria-hidden="true"></span> Supprimer</a></p>
+                    {% endfor %}
+                </div>
+                <div class="container__addNewMask--hidden">
+                    <div class="form-group">
+                        <label class="control-label" for="add_new_page_newMask">Nouveau masque</label>
+                        <input type="text" id="add_new_page_newMask" class="form-control" name="add_new_page[newMask]">
+                    </div>
+                    <button type="submit" id="container__addNewMask--submit" class="btn btn-primary" formaction="{{ path('admin_seo_excludeMask_add') }}" formnovalidate>Ajouter</button>
+                </div>
+            </div>
                 {{ form_row(form.seo) }}
                 <button type="submit" class="btn btn-primary" formnovalidate>Valider</button>
             {{ form_end(form) }}
         </div>
     </div>
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('assets/js/admin_seo_addNewPage.js') }}"></script>
 {% endblock %}

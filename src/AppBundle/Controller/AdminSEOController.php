@@ -78,6 +78,7 @@ class AdminSEOController extends Controller
     {
         $form = $this->createForm(AddNewPageType::class);
         $form->handleRequest($request);
+        $excludeMasks = $this->get('app.seo')->getExcludeMasks();
         if($form->isValid())
         {
             $this->get('app.seo')->addNewPage($form->getData());
@@ -85,7 +86,8 @@ class AdminSEOController extends Controller
             return new RedirectResponse($this->generateUrl('admin_seo_page_add'));
         }
         return $this->render('admin/SEO_add_new_page.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'excludeMasks' => $excludeMasks
         ]);
     }
 
@@ -97,5 +99,23 @@ class AdminSEOController extends Controller
         $this->get('app.seo')->deletePage($page);
         $this->addFlash('success', 'Les données SEO ont été supprimées');
         return new RedirectResponse($this->generateUrl('admin_seo_pages_list'));
+    }
+
+    /**
+     * @Route("/admin/seo/mask/delete/{mask}", name="admin_seo_excludeMask_delete")
+     */
+    public function deleteExcludeMaskAction($mask)
+    {
+        $this->get('app.seo')->deleteExcludeMask($mask) ? $this->addFlash('success', 'Le masque a été supprimé') : $this->addFlash('error', 'Le masque à supprimer n\'existe pas/plus');
+        return new RedirectResponse($this->generateUrl('admin_seo_page_add'));
+    }
+
+    /**
+     * @Route("/admin/seo/mask/add", name="admin_seo_excludeMask_add")
+     */
+    public function addExcludeMaskAction()
+    {
+        $this->get('app.seo')->addExcludeMask($_POST['add_new_page']['newMask']) ? $this->addFlash('success', 'Le masque a été ajouté') : $this->addFlash('error', 'Le masque ne peut pas être vide');
+        return new RedirectResponse($this->generateUrl('admin_seo_page_add'));
     }
 }

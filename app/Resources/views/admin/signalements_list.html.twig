@@ -7,8 +7,8 @@
                 <p><strong>Utilisateur :</strong> {{ user.username }}</p>
                 <p class="color__red"><strong>Banni depuis {{ dateDiffInDays(user.dateBan) }}</strong> ({{ user.dateBan|date('d-m-Y') }})</p>
                 <p class="small"><strong>Raison ban :</strong> {{ user.raisonBan }}</p>
-                <a class="btn btn-primary btn-xs" href="{{ path('admin_signalement_remove', {'id' : user.id }) }}"><span class="fa fa-check" aria-hidden="true"></span> Enlever signalement</a>
-                <a class="btn btn-danger btn-xs" href="{{ path('admin_user_remove', {'id' : user.id }) }}"><span class="fa fa-times" aria-hidden="true"></span> Supprimer utilisateur</a>
+                <a class="btn btn-primary btn-xs" href="{{ path('admin_signalement_delete', {'id' : user.id }) }}"><span class="fa fa-check" aria-hidden="true"></span> Enlever signalement</a>
+                <a class="btn btn-danger btn-xs" href="{{ path('admin_user_delete', {'id' : user.id }) }}"><span class="fa fa-times" aria-hidden="true"></span> Supprimer utilisateur</a>
                 <div class="margin-top__greater"></div>
             {% endfor %}
             <a href="{{ path('admin_home') }}">&larr; Revenir à la page d'administration</a>

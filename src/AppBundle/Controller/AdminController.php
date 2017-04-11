@@ -38,7 +38,7 @@ class AdminController extends Controller
     }
 
     /**
-     * @Route("/admin/signalement/remove/{id}", name="admin_signalement_remove")
+     * @Route("/admin/signalement/remove/{id}", name="admin_signalement_delete")
      */
     public function removeSignalementAction(User $id)
     {
@@ -48,7 +48,7 @@ class AdminController extends Controller
     }
 
     /**
-     * @Route("/admin/user/remove/{id}", name="admin_user_remove")
+     * @Route("/admin/user/remove/{id}", name="admin_user_delete")
      */
     public function removeUserAction(User $id)
     {
