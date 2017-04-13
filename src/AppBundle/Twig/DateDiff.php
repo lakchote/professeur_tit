@@ -15,7 +15,6 @@ class DateDiff extends \Twig_Extension
     {
         $today = new \DateTime();
         $interval = $today->diff($date);
-        if($interval->format('%a') > 1) return $interval->format('%a jours');
-        return $interval->format('%a jour');
+        return ($interval->format('%a') > 1) ? $interval->format('%a jours') : $interval->format('%a jour');
     }
 }

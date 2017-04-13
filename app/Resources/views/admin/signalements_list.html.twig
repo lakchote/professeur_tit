@@ -1,17 +1,65 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheet %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.datatables.net/v/bs/dt-1.10.13/af-2.1.3/b-1.2.4/r-2.1.1/sc-1.4.2/datatables.min.css"/>
+{% endblock %}
+
 {% block content %}
     <div class="row">
-        <div class="col-xs-12 col-sm-10">
-            {% for user in signalements %}
-                <p><strong>Utilisateur :</strong> {{ user.username }}</p>
-                <p class="color__red"><strong>Banni depuis {{ dateDiffInDays(user.dateBan) }}</strong> ({{ user.dateBan|date('d-m-Y') }})</p>
-                <p class="small"><strong>Raison ban :</strong> {{ user.raisonBan }}</p>
-                <a class="btn btn-primary btn-xs" href="{{ path('admin_signalement_delete', {'id' : user.id }) }}"><span class="fa fa-check" aria-hidden="true"></span> Enlever signalement</a>
-                <a class="btn btn-danger btn-xs" href="{{ path('admin_user_delete', {'id' : user.id }) }}"><span class="fa fa-times" aria-hidden="true"></span> Supprimer utilisateur</a>
-                <div class="margin-top__greater"></div>
-            {% endfor %}
-            <a href="{{ path('admin_home') }}">&larr; Revenir à la page d'administration</a>
+        <div class="col-xs-12 col-sm-12">
+            <h1>Liste des signalements</h1>
+            <div class="table-responsive">
+                <table class="table table-condensed" id="signalements__content">
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Prénom</th>
+                            <th>Jours bannis</th>
+                            <th>Date ban</th>
+                            <th>Raison ban</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in signalements %}
+                            <tr>
+                                <td>{{ user.nom }}</td>
+                                <td>{{ user.prenom }}</td>
+                                <td>{{ dateDiffInDays(user.dateBan) }}</td>
+                                <td>{{ user.dateBan|date('d-m-Y') }}</td>
+                                <td>{{ user.raisonBan }}</td>
+                                <td>
+                                    <a href="#" data-target="{{ path('admin_signalement_delete', {'id' : user.id }) }}" class="btn btn-xs btn-success user__unban"><span class="fa fa-check"
+                                                                                                                                                                         aria-hidden="true"></span> Débannir</a>
+                                    <a href="#" data-target="{{ path('admin_user_delete', {'id' : user.id }) }}" class="btn btn-xs btn-danger user__delete"><span class="fa fa-times"></span>
+                                        Supprimer</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+    <script type="text/javascript"
+            src="https://cdn.datatables.net/v/bs/dt-1.10.13/af-2.1.3/b-1.2.4/r-2.1.1/sc-1.4.2/datatables.min.js"></script>
+    <script type="text/javascript">
+        $(function ()
+        {
+            $('#signalements__content').DataTable
+            ({
+                "language":
+                    {
+                        "url": "//cdn.datatables.net/plug-ins/1.10.13/i18n/French.json"
+                    }
+            });
+        });
+    </script>
+    <script type="text/javascript" src="{{ asset('assets/js/admin_users_list.js') }}"></script>
 {% endblock %}

@@ -1,11 +1,4 @@
 $(function () {
-    $('#users__content').DataTable
-    ({
-        "language":
-            {
-            "url": "//cdn.datatables.net/plug-ins/1.10.13/i18n/French.json"
-            }
-    });
     $('.user__unban').click(function (e)
     {
         e.preventDefault();
