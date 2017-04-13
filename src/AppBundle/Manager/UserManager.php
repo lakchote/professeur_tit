@@ -32,4 +32,14 @@ class UserManager
         $this->em->remove($user);
         $this->em->flush();
     }
+
+    public function freezeUser(User $user)
+    {
+        $user->setRaisonBan($user->getRaisonBan());
+        $user->setDateBan(new \DateTime());
+        $user->resetRoles();
+        $user->setRoles("ROLE_FROZEN");
+        $this->em->persist($user);
+        $this->em->flush();
+    }
 }

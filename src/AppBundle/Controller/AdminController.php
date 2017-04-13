@@ -3,10 +3,13 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
+use AppBundle\Form\Type\Admin\ModalFreezeUserType;
+use AppBundle\Form\Type\Admin\ModalUserChangePasswordType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @Security("is_granted('ROLE_ADMIN')")
@@ -22,7 +25,7 @@ class AdminController extends Controller
         $nbSignalements = $em->getRepository('AppBundle:User')->countFrozenUsers();
         return $this->render('admin/home.html.twig', [
             'nbSignalements'  => $nbSignalements
-        ]);;
+        ]);
     }
 
     /**
@@ -38,22 +41,73 @@ class AdminController extends Controller
     }
 
     /**
-     * @Route("/admin/signalement/remove/{id}", name="admin_signalement_delete")
+     * @Route("/admin/signalement/delete/{id}", name="admin_signalement_delete")
      */
     public function removeSignalementAction(User $id)
     {
         $this->get('app.manager.user')->removeSignalement($id);
         $this->addFlash('success', 'Le signalement a été supprimé.');
-        return new RedirectResponse($this->generateUrl('admin_signalements_list'));
+        return new Response('', 200);
     }
 
     /**
-     * @Route("/admin/user/remove/{id}", name="admin_user_delete")
+     * @Route("/admin/user/delete/{id}", name="admin_user_delete")
      */
     public function removeUserAction(User $id)
     {
         $this->get('app.manager.user')->removeUser($id);
         $this->addFlash('success', 'L\'utilisateur a été supprimé.');
-        return new RedirectResponse($this->generateUrl('admin_signalements_list'));
+        return new Response('', 200);
+    }
+
+    /**
+     * @Route("/admin/user/freeze/{id}", name="admin_user_freeze")
+     */
+    public function freezeUserAction(User $user, Request $request)
+    {
+        $form = $this->createForm(ModalFreezeUserType::class, $user);
+        $form->handleRequest($request);
+        if($form->isValid())
+        {
+            $this->get('app.manager.user')->freezeUser($form->getData());
+            $this->addFlash('success', 'L\'utilisateur a été banni.');
+            return new Response('', 200);
+        }
+        return new Response($this->get('templating')->render('admin/modal/freeze_user.html.twig', [
+                'form' => $form->createView(),
+                'id' => $user->getId()
+            ]), 400);
+    }
+
+    /**
+     * @Route("/admin/users/list", name="admin_users_list")
+     */
+    public function usersListAction()
+    {
+        $users = $this->getDoctrine()->getRepository('AppBundle:User')->findBy(array(), array('date_inscription' => 'desc'));
+        return $this->render('admin/users_list.html.twig', [
+            'users' => $users
+        ]);
+    }
+
+    /**
+     * @Route("/admin/user/{id}/changePassword", name="admin_user_changePassword")
+     */
+    public function userChangePasswordAction(User $user, Request $request)
+    {
+        $form = $this->createForm(ModalUserChangePasswordType::class, $user);
+        $form->handleRequest($request);
+        if($form->isValid())
+        {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+            $this->addFlash('success', 'Le mot de passe a été modifié');
+            return new Response('', 200);
+        }
+        return new Response($this->get('templating')->render('admin/modal/change_password_user.html.twig', [
+            'form' => $form->createView(),
+            'id' => $user->getId()
+        ]), 400);
     }
 }
