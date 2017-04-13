@@ -23,8 +23,10 @@ class AdminController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $nbSignalements = $em->getRepository('AppBundle:User')->countFrozenUsers();
+        $nbNaturalistesEnAttente= $em->getRepository('AppBundle:User')->countNaturalistesEnAttente();
         return $this->render('admin/home.html.twig', [
-            'nbSignalements'  => $nbSignalements
+            'nbSignalements'  => $nbSignalements,
+            'nbNaturalistesEnAttente' => $nbNaturalistesEnAttente
         ]);
     }
 
@@ -109,5 +111,36 @@ class AdminController extends Controller
             'form' => $form->createView(),
             'id' => $user->getId()
         ]), 400);
+    }
+
+    /**
+     * @Route("/admin/naturalistes_en_attente/list", name="admin_naturalistes_attente_list")
+     */
+    public function naturalistesEnAttenteListAction()
+    {
+        $naturalistesEnAttente = $this->getDoctrine()->getRepository('AppBundle:User')->getNaturalistesEnAttente();
+        return $this->render('admin/naturalistes_attente.html.twig', [
+            'naturalistesEnAttente' => $naturalistesEnAttente
+        ]);
+    }
+
+    /**
+     * @Route("/admin/naturalistes_en_attente/valid/user/{id}", name="admin_naturaliste_attente_valid")
+     */
+    public function naturalisteEnAttenteValidAction(User $user)
+    {
+        $this->get('app.manager.user')->validNaturaliste($user);
+        $this->addFlash('success', 'Le naturaliste a été validé');
+        return new Response('', 200);
+    }
+
+    /**
+     * @Route("/admin/naturalistes_en_attente/invalid/user/{id}", name="admin_naturaliste_attente_invalid")
+     */
+    public function naturalisteEnAttenteInvalidAction(User $user)
+    {
+        $this->get('app.manager.user')->invalidNaturaliste($user);
+        $this->addFlash('success', 'Le naturaliste a été refusé');
+        return new Response('', 200);
     }
 }

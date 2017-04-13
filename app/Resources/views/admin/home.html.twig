@@ -11,7 +11,7 @@
             <h1 class="margin-top__none">Administration</h1>
             <div class="col-sm-4 margin-top__greater container__adminActions text-center">
                 <div class="container__adminActions--hidden">
-                        <p class="container__adminActions--hiddenText"><span class="fa fa-group"></span><a href="#" target="_blank"> Naturalistes en attente</a></p>
+                        <p class="container__adminActions--hiddenText"><span class="fa fa-group"></span><a href="{{ path('admin_naturalistes_attente_list') }}" target="_blank"> Naturalistes en attente (<span class="color__red">{{ nbNaturalistesEnAttente }}</span>)</a></p>
                         <p class="container__adminActions--hiddenText"><span class="fa fa-flag"></span> <a href="{{ path('admin_signalements_list') }}" target="_blank"> Signalements (<span class="color__red">{{ nbSignalements }}</span>)</a></p>
                         <p class="container__adminActions--hiddenText"><span class="fa fa-list-ol"></span> <a href="{{ path('admin_users_list') }}" target="_blank"> Listing utilisateurs</a></p>
                 </div>

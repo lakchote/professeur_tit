@@ -25,6 +25,32 @@ $(function () {
             location.reload();
         })
     });
+    $('.naturaliste__valid').click(function (e)
+    {
+        e.preventDefault();
+        var url = this.getAttribute('data-target');
+        $.ajax
+        ({
+            url : url,
+            method: 'GET'
+        }).done(function ()
+        {
+            location.reload();
+        })
+    });
+    $('.naturaliste__invalid').click(function (e)
+    {
+        e.preventDefault();
+        var url = this.getAttribute('data-target');
+        $.ajax
+        ({
+            url : url,
+            method: 'GET'
+        }).done(function ()
+        {
+            location.reload();
+        })
+    });
     $('.modal__ban--load').click(function(e)
     {
         e.preventDefault();

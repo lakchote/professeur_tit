@@ -42,4 +42,19 @@ class UserManager
         $this->em->persist($user);
         $this->em->flush();
     }
+
+    public function validNaturaliste(User $user)
+    {
+        $user->resetRoles();
+        $user->setRoles("ROLE_NATURALISTE");
+        $this->em->persist($user);
+        $this->em->flush();
+    }
+
+    public function invalidNaturaliste(User $user)
+    {
+        $user->resetRoles();
+        $this->em->persist($user);
+        $this->em->flush();
+    }
 }

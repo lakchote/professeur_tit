@@ -31,4 +31,25 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function countNaturalistesEnAttente()
+    {
+        return $this
+            ->createQueryBuilder('u')
+            ->select('COUNT(u)')
+            ->where('u.roles = :pending_naturaliste')
+            ->setParameter('pending_naturaliste', '["ROLE_PENDING_NATURALISTE"]')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    public function getNaturalistesEnAttente()
+    {
+        return $this
+            ->createQueryBuilder('u')
+            ->where('u.roles = :pending_naturaliste')
+            ->setParameter('pending_naturaliste', '["ROLE_PENDING_NATURALISTE"]')
+            ->getQuery()
+            ->getResult();
+    }
 }
