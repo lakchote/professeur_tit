@@ -19,4 +19,5 @@ parameters:
     secret:            ThisTokenIsNotSoSecretChangeIt
 
     user_photo_dir: '%kernel.root_dir%\..\web\uploads\user'
+    observations_directory: '%kernel.root_dir%\..\web\uploads\observations'
     contact_mail: your@email.com

@@ -64,6 +64,14 @@ class Observation
     /**
      * @var string
      *
+     * @ORM\Column(name="ville", type="string", length=255)
+     * @Assert\NotBlank(message="observation.error.villeNull")
+     */
+    private $ville;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="status", type="string", length=255)
      * @Assert\NotBlank(message="observation.error.statusNull")
      */
@@ -311,4 +319,28 @@ class Observation
         return $this->img_path;
     }
 
+
+    /**
+     * Set ville
+     *
+     * @param string $ville
+     *
+     * @return Observation
+     */
+    public function setVille($ville)
+    {
+        $this->ville = $ville;
+
+        return $this;
+    }
+
+    /**
+     * Get ville
+     *
+     * @return string
+     */
+    public function getVille()
+    {
+        return $this->ville;
+    }
 }

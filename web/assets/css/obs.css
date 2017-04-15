@@ -1,0 +1,61 @@
+[class*="col-"] {
+   /* background-color: lightgreen;*/
+   /* border: 1px solid black;*/
+}
+
+a, span, p, h1, h2, h3 {
+    color: #234a81;
+}
+.obs__general{
+    margin-top: 15px;
+    background-color: white;
+}
+.obs__container {}
+
+.add__obs {
+    background: #ffffff;
+    height: 112px;
+}
+
+.obs__photo-user {
+    height: 112px;
+}
+
+.obs__photo {
+    width: 100%;
+}
+.obs__photo--flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.obs__details{
+    height: 30px;
+}
+
+.obs__details--display{
+    margin-top: 30px;
+    height: 30px;
+}
+
+.obs__details--icon {
+    height: 100%;
+}
+.obs__photo-bird{
+    height: 448px;
+}
+
+.obs__description{
+    height: 114px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+.obs__map{
+       height: 284px;
+       /*background-color: grey;*/
+   }
+
+.obs__map--img{
+    width:100%;
+}
