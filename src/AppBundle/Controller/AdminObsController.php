@@ -68,7 +68,8 @@ class AdminObsController extends Controller
             return new Response('', 200);
         }
         return new Response($this->get('templating')->render('admin/modal/modify_obs.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'id' => $observation->getId()
         ]), 400);
     }
 
