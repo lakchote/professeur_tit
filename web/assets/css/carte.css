@@ -1,0 +1,16 @@
+[class*="col-"] {
+   /*background-color: lightgreen;*/
+     border: 1px solid black;
+}
+
+
+.carte__icon {
+     height: 25px;
+     width: auto;
+}
+
+#map {
+     height: 350px;
+}
+
+
