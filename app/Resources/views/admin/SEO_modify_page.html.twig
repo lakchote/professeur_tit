@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12 col-sm-10">
+            <h1>Route : {{ titreRoute }}</h1>
+            {{ form_start(form) }}
+                {{ form_row(form.titrePage) }}
+                {{ form_row(form.description) }}
+                {{ form_row(form.keywords) }}
+            <button type="submit" class="btn btn-primary" formnovalidate>Valider</button>
+            {{ form_end(form) }}
+            <div class="margin-top">
+                <a href="{{ path('admin_seo_pages_list') }}">&larr; Revenir au listing des pages SEO</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

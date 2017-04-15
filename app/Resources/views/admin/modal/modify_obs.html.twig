@@ -1,0 +1,32 @@
+{{ form_start(form, {'attr' : {'id' : 'modal__obs--form' }}) }}
+    {{ form_row(form.taxon) }}
+    {{ form_row(form.date) }}
+    {{ form_row(form.status) }}
+    {{ form_row(form.image) }}
+    <button type="button" id="modal__obs--submit" data-target="{{ path('admin_obs_modify', {'id' : id }) }}" class="btn btn-primary" formnovalidate>Valider</button>
+{{ form_end(form) }}
+
+<script type="text/javascript">
+    $('#modal__obs--submit').click(function ()
+    {
+        var form = $('#modal__obs--form')[0];
+        var data = new FormData(form);
+        var url = this.getAttribute('data-target');
+        $.ajax
+        ({
+            url: url,
+            method: 'POST',
+            data: data,
+            contentType: false,
+            processData: false,
+            statusCode: {
+                400: function (jqXHR) {
+                    $('#modal__obs--content').html(jqXHR.responseText);
+                },
+                200: function () {
+                    location.reload();
+                }
+            }
+        })
+    });
+</script>

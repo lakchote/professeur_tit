@@ -1,0 +1,67 @@
+.container__adminActions
+{
+    width:220px;
+    height:220px;
+    background-color: #234a81;
+    line-height: 220px;
+    border:1px solid black;
+    box-shadow: 2px 4px 4px #0f0f0f;
+    margin-right:5%;
+    position:relative;
+}
+
+.container__adminActions--hidden
+{
+    position:absolute;
+    top:0;
+    left:0;
+    line-height: normal;
+    width:220px;
+    height:220px;
+    border:1px solid black;
+    box-shadow: 2px 5px 5px #0f0f0f;
+    z-index: 1;
+    background-color: #162135;
+    display:none;
+}
+
+.container__adminActions--hidden p
+{
+    margin-top: 2%;
+    margin-bottom:33%;
+    padding:3px;
+}
+
+.container__route
+{
+    padding:5px;
+    font-size:1.4em;
+}
+
+.container__route--delete
+{
+    font-size: 0.6em;
+}
+
+.container__masks--hidden,
+.container__addNewMask--hidden
+{
+    display:none;
+}
+
+.container__adminActions--hidden a,
+.container__adminActions--hidden span,
+.container__adminActions--hidden p,
+.container__adminActions--text a,
+.container__route a,
+.container__adminActions--text span
+{
+    color:#fff;
+}
+
+.container__adminActions--text:hover > *,
+.container__adminActions--hiddenText:hover > *,
+.container__route a:hover
+{
+    color:#f1ea80;
+}

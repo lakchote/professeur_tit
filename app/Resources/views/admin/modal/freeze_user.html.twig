@@ -1,0 +1,30 @@
+{{ form_start(form, {'attr' : {'id' : 'modal__ban--form'}}) }}
+    {{ form_row(form.nom) }}
+    {{ form_row(form.prenom) }}
+    {{ form_row(form.raisonBan) }}
+    <button type="button" id="modal__ban--submit" class="btn btn-primary" data-target="{{ path('admin_user_freeze', {'id' : id}) }}" formnovalidate>Valider</button>
+{{ form_end(form) }}
+
+<script type="text/javascript">
+    $('#modal__ban--submit').click(function () {
+       var url = this.getAttribute('data-target');
+       var data = $('#modal__ban--form').serializeArray();
+       $.ajax
+       ({
+           url: url,
+           method: 'POST',
+           data: data,
+           statusCode:
+               {
+                   '400' : function(jqXHR)
+                   {
+                       $('#modal__ban--content').html(jqXHR.responseText);
+                   },
+                   '200' : function ()
+                   {
+                       location.reload();
+                   }
+               }
+       })
+    });
+</script>

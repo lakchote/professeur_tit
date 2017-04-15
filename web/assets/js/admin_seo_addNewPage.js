@@ -1,0 +1,20 @@
+$(function()
+{
+    $('#show_masks').click(function(e)
+    {
+        e.preventDefault();
+        $('.container__masks--hidden').toggle('slow');
+    });
+    $('#add_mask').click(function(e)
+    {
+       e.preventDefault();
+        $('.container__addNewMask--hidden').toggle('slow');
+    });
+    $('#container__addNewMask--submit').click(function(e)
+    {
+      if(!$('#add_new_page_newMask').val())
+      {
+        e.preventDefault();
+      }
+    });
+});

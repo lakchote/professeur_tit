@@ -83,6 +83,32 @@ services:
             tags:
                 - { name: doctrine.event_listener, event: prePersist }
                 - { name: doctrine.event_listener, event: preUpdate }
+                - { name: doctrine.event_listener, event: postLoad }
+
+    app.listener.page:
+        class: AppBundle\EventListener\PageListener
+        autowire: true
+        tags:
+            - { name: kernel.event_listener, event: kernel.request }
+
+    app.manager.user:
+        class: AppBundle\Manager\UserManager
+        autowire: true
+
+    app.twig.datediff:
+        class: AppBundle\Twig\DateDiff
+        tags:
+            - { name: twig.extension }
+
+    app.seo:
+        class: AppBundle\Service\SEO
+        autowire: true
+
+    app.form.type.add_new_page:
+        class: AppBundle\Form\Type\Admin\AddNewPageType
+        arguments: ['@app.seo']
+        tags:
+            - { name: form.type }
 
     app.manage_obs:
         class: AppBundle\Service\ObsManage
