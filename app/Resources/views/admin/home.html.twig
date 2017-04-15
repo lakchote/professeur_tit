@@ -21,9 +21,9 @@
             </div>
             <div class="col-sm-4 margin-top__greater container__adminActions text-center">
                 <div class="container__adminActions--hidden">
-                    <p class="container__adminActions--hiddenText"><span class="fa fa-list"></span><a href="#" target="_blank"> Liste observations</a></p>
-                    <p class="container__adminActions--hiddenText"><span class="fa fa-check color__green"></span> <a href="#" target="_blank"> Observations validées</a></p>
-                    <p class="container__adminActions--hiddenText"><span class="fa fa-times color__red"></span> <a href="#" target="_blank"> Observations refusées</a></p>
+                    <p class="container__adminActions--hiddenText"><span class="fa fa-list"></span><a href="{{ path('admin_obs_list') }}" target="_blank"> Liste observations</a></p>
+                    <p class="container__adminActions--hiddenText"><span class="fa fa-check color__green"></span> <a href="{{ path('admin_obs_validated_list') }}" target="_blank"> Observations validées</a></p>
+                    <p class="container__adminActions--hiddenText"><span class="fa fa-times color__red"></span> <a href="{{ path('admin_obs_refused_list') }}" target="_blank"> Observations refusées</a></p>
                 </div>
                 <span class="container__adminActions--text">
                     <span class="fa fa-camera-retro" aria-hidden="true"></span> <a href="#" class="toggleHiddenLinks">Observations</a>

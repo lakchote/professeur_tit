@@ -94,7 +94,6 @@ class User implements UserInterface, \Serializable
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Observation", mappedBy="user", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=true)
-     * @Assert\Valid()
      */
     private $observations;
 

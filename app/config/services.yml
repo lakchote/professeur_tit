@@ -83,6 +83,7 @@ services:
             tags:
                 - { name: doctrine.event_listener, event: prePersist }
                 - { name: doctrine.event_listener, event: preUpdate }
+                - { name: doctrine.event_listener, event: postLoad }
 
     app.listener.page:
         class: AppBundle\EventListener\PageListener

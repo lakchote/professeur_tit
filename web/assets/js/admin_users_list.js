@@ -55,6 +55,8 @@ $(function () {
     {
         e.preventDefault();
         var url = this.getAttribute('data-target');
+        $('#modal__ban').modal();
+        $('#modal__ban--content').html('Chargement...');
         $.ajax
         ({
             'url' : url,
@@ -62,7 +64,6 @@ $(function () {
         }).done(function(data)
         {
             $('#modal__ban--content').html(data);
-            $('#modal__ban').modal();
         }).error(function()
         {
             alert('Une erreur est survenue lors du chargement de la modale.')
@@ -72,6 +73,8 @@ $(function () {
     {
         e.preventDefault();
         var url = this.getAttribute('data-target');
+        $('#modal__changePassword').modal();
+        $('#modal__changePassword--content').html('Chargement...');
         $.ajax
         ({
             'url' : url,
@@ -79,7 +82,6 @@ $(function () {
         }).done(function(data)
         {
             $('#modal__changePassword--content').html(data);
-            $('#modal__changePassword').modal();
         }).error(function()
         {
             alert('Une erreur est survenue lors du chargement de la modale.')
