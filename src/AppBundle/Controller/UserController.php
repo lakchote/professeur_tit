@@ -122,7 +122,7 @@ class UserController extends Controller
 
     /**
      * @Route("/manage/profil", name="manage_profil_membre")
-     * @Security("is_granted('ROLE_MANAGE_PROFILE')")
+     * @Security("is_granted('ROLE_OBSERVATEUR')")
      */
     public function profilUserAction(Request $request)
     {
@@ -146,7 +146,7 @@ class UserController extends Controller
 
     /**
      * @Route("/user/delete/profil", name="user_delete")
-     * @Security("is_granted('ROLE_MANAGE_PROFILE')")
+     * @Security("is_granted('ROLE_OBSERVATEUR')")
      */
     public function userDeleteAccountAction()
     {
