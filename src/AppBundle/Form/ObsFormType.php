@@ -23,10 +23,12 @@ class ObsFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+           // ->setAction($this->generateUrl('obs_publish'))
              ->add('taxon', EntityType::class, array(
                  'class' => 'AppBundle\Entity\Taxon',
                  'choice_label' => 'nomLatin',
                  'choice_value' => 'nomLatin',
+                 'placeholder' => '',
                  'multiple' => false,
              ))
              ->add('longitude', NumberType::class, array(
@@ -35,6 +37,7 @@ class ObsFormType extends AbstractType
             ->add('latitude', NumberType::class, array(
                 'scale' => 11,
             ))
+            ->add('ville', TextType::class)
             ->add('date', DateTimeType::class, array (
                 'data' => new \DateTime(),
             ))

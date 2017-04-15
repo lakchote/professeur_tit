@@ -42,6 +42,9 @@ class UserPhotoUploadListener
 
     public function postLoad(LifecycleEventArgs $args)
     {
+        if (!$args->getEntity() instanceof User) {
+            return;
+        };
         $entity = $args->getEntity();
         if(!$entity instanceof User) return;
         $filename = $entity->getImage();
@@ -50,6 +53,7 @@ class UserPhotoUploadListener
 
     public function uploadFile($entity)
     {
+
         if(!$entity instanceof User)
         {
             return;
