@@ -17,6 +17,7 @@
                             <td>Nom vernaculaire (FR)</td>
                             <td>Nom vernaculaire (EN)</td>
                             <td>Date observation</td>
+                            <td>Ville</td>
                             <td>Image</td>
                             <td>Status</td>
                             <td>Utilisateur</td>
@@ -29,6 +30,7 @@
                                 <td> {{ observation.taxon.nomLatin }}</td>
                                 <td> {{ observation.taxon.nomVernaculaire }}</td>
                                 <td> {{ observation.taxon.nomVernaculaireEN}}</td>
+                                <td> {{ observation.ville }}</td>
                                 <td> {{  observation.date|date('d-m-Y')}} </td>
                                 <td>
                                     {% if observation.image != '' %}
