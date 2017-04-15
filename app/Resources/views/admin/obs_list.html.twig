@@ -31,8 +31,8 @@
                                 <td> {{ observation.taxon.nomLatin }}</td>
                                 <td> {{ observation.taxon.nomVernaculaire }}</td>
                                 <td> {{ observation.taxon.nomVernaculaireEN}}</td>
-                                <td> {{ observation.ville }}</td>
                                 <td> {{  observation.date|date('d-m-Y')}} </td>
+                                <td> {{ observation.ville }}</td>
                                 <td>
                                     {% if observation.image != '' %}
                                         <img src="{{ asset(observation.imgPath ~ observation.image.filename) }}" class="img-responsive img-rounded" alt="Image observation">
