@@ -25,18 +25,6 @@ class ObservationRepository extends \Doctrine\ORM\EntityRepository
             ->orderBy('obs.date', 'DESC')
             ->getQuery();
     }
-    /*
-    public function getUserObservationsFlow($id)
-    {
-        return $this->createQueryBuilder('obs')
-            ->select('obs')
-            ->leftJoin('obs.user', 'user')
-            ->andWhere('user.id = :id')
-            ->setParameter('id', $id)
-            ->getQuery()
-            ->getScalarResult();
-
-    }*/
 
     public function getUserValidatedObservations($id)
     {
@@ -51,5 +39,47 @@ class ObservationRepository extends \Doctrine\ORM\EntityRepository
             ->getSingleScalarResult();
     }
 
+    public function populateMyMapNoSpecie($date)
+    {
+        return $this->createQueryBuilder('obs')
+            ->select('obs')
+            ->andWhere('obs.date = :date')
+            ->andWhere('obs.status = :validated')
+            ->setParameter('date', $date)
+            ->setParameter('validated', 'validated')
+            ->getQuery();
+    }
 
+    public function populateMyMapNoDate($taxon)
+    {
+        return $this->createQueryBuilder('obs')
+            ->select('obs')
+            ->andWhere('obs.taxon = :taxon')
+            ->andWhere('obs.status = :validated')
+            ->setParameter('taxon', $taxon)
+            ->setParameter('validated', 'validated')
+            ->getQuery();
+    }
+
+    public function populateMyMapBothData($date, $taxon)
+    {
+        return $this->createQueryBuilder('obs')
+            ->select('obs')
+            ->andWhere('obs.date = :date')
+            ->andWhere('obs.taxon = :taxon')
+            ->andWhere('obs.status = :validated')
+            ->setParameter('date', $date)
+            ->setParameter('taxon', $taxon)
+            ->setParameter('validated', 'validated')
+            ->getQuery();
+    }
+
+    public function populateMyMapAllData()
+    {
+        return $this->createQueryBuilder('obs')
+            ->select('obs')
+            ->andWhere('obs.status = :validated')
+            ->setParameter('validated', 'validated')
+            ->getQuery();
+    }
 }

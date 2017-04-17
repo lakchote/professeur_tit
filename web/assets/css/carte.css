@@ -1,6 +1,6 @@
 [class*="col-"] {
    /*background-color: lightgreen;*/
-     border: 1px solid black;
+   /*  border: 1px solid black;*/
 }
 
 
@@ -9,8 +9,45 @@
      width: auto;
 }
 
+.fa {
+     color: #234a81;
+}
+
+#bodyContent {
+     display: flex;
+     align-items: center;
+}
+
+li
+{
+     color:#234a81;
+}
+
+
+.carte__popUp--photo {
+     width: 150px;
+     height: auto;
+}
+
+.input-group-addon {
+     background-color: white;
+}
+
+.carte__popUp--title {
+     font-weight: bold;
+     font-size: large;
+}
+
+.carte__popUp {
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+}
+
 #map {
-     height: 350px;
+     height: 425px;
+     margin-top: 15px;
 }
 
 

@@ -3,7 +3,6 @@
 {% block stylesheet %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('assets/css/carte.css') }}">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" rel="stylesheet">
 {% endblock %}
 
 {% block title %}
@@ -17,26 +16,35 @@
         </div>
     </div>
     <div class="row">
-        <form class="form-inline">
-            <div class="col-xs-12 col-sm-3 form-group">
-                <div class="input-group">
-                   <input id="espece" type="text" class="form-control input-lg" placeholder="{{ "Espece"|trans }}">
-                    <span class="input-group-addon"><img src="{{ asset('assets/img/search_blue.png') }}" alt="{{ "Qu'avez vous vu ?"|trans }}" class="carte__icon"></span>
-                </div>
+        {{ form_start(form, {'method': 'POST', 'class': 'form-inline'}) }}
+
+        <div class="col-xs-12 col-sm-3 form-group">
+            {{ form_widget(form.taxon, {'attr': {'class' : 'form-control input-lg hidden', 'placeholder': "Nom de l'espece"|trans}}) }}
+            <div class="input-group">
+                <span class="input-group-addon"><img src="{{ asset('assets/img/search_blue.png') }}" alt="{{ "Qu'avez vous vu ?"|trans }}" class="carte__icon"></span>
+                <input id="espece" type="text" class="form-control input-lg carte__input" placeholder="{{ "Espece"|trans }}">
+                <span id="deleteEspece" class="input-group-addon"><i class="fa fa-times fa-2x" aria-hidden="true"></i></span>
             </div>
-            <div class="col-xs-12 col-sm-3 form-group">
-                <div class="input-group">
-                    <input id="lieux" type="text" class="form-control input-lg" placeholder="{{ "Lieux"|trans }}">
-                    <span class="input-group-addon"><img src="{{ asset('assets/img/where.png') }}" alt="{{ "Où l'avez vous vu ?"|trans }}" class="carte__icon"></span>
-                </div>
+            {{ form_errors(form.taxon) }}
+        </div>
+        <div class="col-xs-12 col-sm-3 form-group">
+            <div class="input-group">
+                <span class="input-group-addon"><img src="{{ asset('assets/img/where.png') }}" alt="{{ "Où l'avez vous vu ?"|trans }}" class="carte__icon"></span>
+                {{ form_widget(form.ville, {'attr': {'class' : 'form-control input-lg carte__input' }}) }}
+                <span id="deleteVille" class="input-group-addon"><i class="fa fa-times fa-2x" aria-hidden="true"></i></span>
             </div>
-            <div class="col-xs-12 col-sm-3 form-group">
-                <div class="input-group">
-                    <input id="date" type="text" class="form-control input-lg" placeholder="{{ "Date"|trans }}">
-                    <span class="input-group-addon"><img src="{{ asset('assets/img/calendar.png') }}" alt="{{ "Quand l'avez vous vu ?"|trans }}" class="carte__icon"></span>
-                </div>
+            {{ form_errors(form.ville) }}
+        </div>
+        <div class="col-xs-12 col-sm-3 form-group">
+            <div class="input-group">
+                <span class="input-group-addon"><img src="{{ asset('assets/img/calendar.png') }}" alt="{{ "Quand l'avez vous vu ?"|trans }}" class="carte__icon"></span>
+                {{ form_widget(form.date, {'attr': {'class' : 'form-control input-lg carte__input' }}) }}
+                <span id="deleteDate" class="input-group-addon"><i class="fa fa-times fa-2x" aria-hidden="true"></i></span>
             </div>
-        </form>
+            {{ form_errors(form.date) }}
+        </div>
+        {{ form_end(form) }}
+
     </div>
     <div class="row">
         <div class="col-xs-12">
@@ -54,15 +62,10 @@
     {{ parent() }}
     <script>
         var pathListing = "{{ path('getListing') }}";
-        var lang = "{{ app.request.getLocale() }}";
+        var pathMap = "{{ path('carte_geoJson') }}";
+        var pathUser = "{{ path('profil_public', {'id': 'user_id'}) }}";
+        var $lang = "{{ app.request.getLocale() }}";
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
-
-    {% if app.request.getLocale() == "en" %}
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/locales/bootstrap-datepicker.{{ app.request.getLocale() }}-GB.min.js"></script>
-    {% else %}
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/locales/bootstrap-datepicker.{{ app.request.getLocale() }}.min.js"></script>
-    {% endif %}
     <script src="{{ asset('assets/js/carte.js') }}"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACO55kGEkd8YeNffAaErhE02wa_UigduQ&libraries=places&callback=initMap" async defer></script>
 {% endblock %}

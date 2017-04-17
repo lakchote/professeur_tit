@@ -37,7 +37,7 @@
 
         <div class="col-xs-6 obs__photo-bird obs__photo--flex">
             {% if monObservation.image != '' %}
-                <img class="obs__photo" src="../uploads/observations/{{ monObservation.image }}" alt="Observation"
+                <img class="obs__photo" src="../uploads/observations/{{ monObservation.image.filename }}" alt="Observation"
                      id="obs__photo">
             {% endif %}
         </div>
