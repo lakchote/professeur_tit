@@ -25,6 +25,8 @@ class ModalObsType extends AbstractType
             ->add('status', ChoiceType::class, [
                 'choices' =>
                     [
+                        'commencée' => Observation::OBS_STARTED,
+                        'modifiée' => Observation::OBS_MODIFIED,
                         'validée' => Observation::OBS_VALIDATED,
                         'refusée' => Observation::OBS_REFUSED
                     ]

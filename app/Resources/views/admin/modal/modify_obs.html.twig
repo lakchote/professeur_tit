@@ -4,6 +4,7 @@
     {{ form_row(form.status) }}
     {{ form_row(form.image) }}
     <button type="button" id="modal__obs--submit" data-target="{{ path('admin_obs_modify', {'id' : id }) }}" class="btn btn-primary" formnovalidate>Valider</button>
+    <button type="button" data-target="{{ path('admin_obs_delete', {'id' : id }) }}" class="btn btn-danger obs__delete"> Supprimer</button>
 {{ form_end(form) }}
 
 <script type="text/javascript">
@@ -28,5 +29,18 @@
                 }
             }
         })
+    });
+    $('.obs__delete').click(function (e)
+    {
+        e.preventDefault();
+        var url = this.getAttribute('data-target');
+        $.ajax
+        ({
+            url: url,
+            method: 'GET'
+        }).done(function ()
+        {
+            location.reload();
+        });
     });
 </script>
