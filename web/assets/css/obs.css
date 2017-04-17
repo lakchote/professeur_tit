@@ -22,7 +22,7 @@ a, span, p, h1, h2, h3 {
 }
 
 .obs__photo {
-    width: 100%;
+    max-width: 100%;
 }
 .obs__photo--flex {
     display: flex;

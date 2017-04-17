@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheet %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('assets/css/carte.css') }}">
+{% endblock %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12">
+            <h1>{{ "Carte interactive"|trans }}</h1>
+        </div>
+    </div>
+    <div class="row">
+        {{ form_start(form, {'method': 'POST', 'class': 'form-inline'}) }}
+
+        <div class="col-xs-12 col-sm-3 form-group">
+            {{ form_widget(form.taxon, {'attr': {'class' : 'form-control input-lg hidden', 'placeholder': "Nom de l'espece"|trans}}) }}
+            <div class="input-group">
+                <span class="input-group-addon"><img src="{{ asset('assets/img/search_blue.png') }}" alt="{{ "Qu'avez vous vu ?"|trans }}" class="carte__icon"></span>
+                <input id="espece" type="text" class="form-control input-lg carte__input" placeholder="{{ "Espece"|trans }}">
+                <span id="deleteEspece" class="input-group-addon"><i class="fa fa-times fa-2x" aria-hidden="true"></i></span>
+            </div>
+            {{ form_errors(form.taxon) }}
+        </div>
+        <div class="col-xs-12 col-sm-3 form-group">
+            <div class="input-group">
+                <span class="input-group-addon"><img src="{{ asset('assets/img/where.png') }}" alt="{{ "Où l'avez vous vu ?"|trans }}" class="carte__icon"></span>
+                {{ form_widget(form.ville, {'attr': {'class' : 'form-control input-lg carte__input' }}) }}
+                <span id="deleteVille" class="input-group-addon"><i class="fa fa-times fa-2x" aria-hidden="true"></i></span>
+            </div>
+            {{ form_errors(form.ville) }}
+        </div>
+        <div class="col-xs-12 col-sm-3 form-group">
+            <div class="input-group">
+                <span class="input-group-addon"><img src="{{ asset('assets/img/calendar.png') }}" alt="{{ "Quand l'avez vous vu ?"|trans }}" class="carte__icon"></span>
+                {{ form_widget(form.date, {'attr': {'class' : 'form-control input-lg carte__input' }}) }}
+                <span id="deleteDate" class="input-group-addon"><i class="fa fa-times fa-2x" aria-hidden="true"></i></span>
+            </div>
+            {{ form_errors(form.date) }}
+        </div>
+        {{ form_end(form) }}
+
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div id="map">
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+
+{% block javascript %}
+    {{ parent() }}
+    <script>
+        var pathListing = "{{ path('getListing') }}";
+        var pathMap = "{{ path('carte_geoJson') }}";
+        var pathUser = "{{ path('profil_public', {'id': 'user_id'}) }}";
+        var $lang = "{{ app.request.getLocale() }}";
+    </script>
+    <script src="{{ asset('assets/js/carte.js') }}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACO55kGEkd8YeNffAaErhE02wa_UigduQ&libraries=places&callback=initMap" async defer></script>
+{% endblock %}

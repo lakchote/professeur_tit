@@ -68,7 +68,7 @@
             <ul class="nav navbar-nav">
                 <li class="header__rubriques--name"><a href="{{ path('debuter_ornithologie') }}">Débuter l'ornithologie</a></li>
                 <li class="header__rubriques--name"><a href="#">Observations</a></li>
-                <li class="header__rubriques--name"><a href="#">Carte interactive</a></li>
+                <li class="header__rubriques--name"><a href="{{ path('carte') }}">Carte interactive</a></li>
                 <form class="navbar-form hidden-xs" action="" id="header__form">
                     <div class="form-group">
                         <div id="header__form--container">
@@ -106,19 +106,21 @@
 </nav>
 
 <div class="container">
-    <div class="col-xs-12 col-sm-8">
-        {% for msg in app.session.flashBag.get('success') %}
-            <div class="alert alert-success alert-dismissable fade in">
-                {{ msg }}
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            </div>
-        {% endfor %}
-        {% for msg in app.session.flashBag.get('error') %}
-            <div class="alert alert-danger alert-dismissable fade in">
-                {{ msg }}
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            </div>
-        {% endfor %}
+    <div class="row">
+        <div class="col-xs-12 col-sm-8">
+            {% for msg in app.session.flashBag.get('success') %}
+                <div class="alert alert-success alert-dismissable fade in">
+                    {{ msg }}
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                </div>
+            {% endfor %}
+            {% for msg in app.session.flashBag.get('error') %}
+                <div class="alert alert-danger alert-dismissable fade in">
+                    {{ msg }}
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 {% block content %}
 {% endblock %}
@@ -237,9 +239,9 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
-            integrity="sha384-Dziy8F2VlJQLMShA6FHWNul/veM9bCkRUaLqr199K94ntO5QUrLJBEbYegdSkkqX"
-            crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
+        integrity="sha384-Dziy8F2VlJQLMShA6FHWNul/veM9bCkRUaLqr199K94ntO5QUrLJBEbYegdSkkqX"
+        crossorigin="anonymous"></script>
 <script type="text/javascript">
     $(function () {
         $('#login-load-desktop').click(function () {

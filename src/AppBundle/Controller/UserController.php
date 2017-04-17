@@ -164,4 +164,16 @@ class UserController extends Controller
         $this->get('app.profil_user')->deleteUserImage($user);
         return new RedirectResponse($this->get('router')->generate('manage_profil_membre'));
     }
+
+    /**
+     * @Route("/user/profil/{id}", name="profil_public")
+     */
+    public function userPublicProfilAction(User $user)
+    {
+        $this->addFlash(
+            'success',
+            'Bientot on aura un social network de naturalistes !!! Patience...'
+        );
+        return new RedirectResponse($this->get('router')->generate('home'));
+    }
 }
