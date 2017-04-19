@@ -1,1 +1,74 @@
 {% extends 'base.html.twig' %}
+
+{% block stylesheet %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('assets/css/obs.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12 col-sm-10">
+            {% if app.user %}
+            <div class="obs__actions">
+                {% if app.user.image != '' %}
+                    <a href="{{ path('manage_profil_membre') }}"><img class="obs__container--userImage img-rounded pull-left" src="{{ asset(app.user.imgpath ~ app.user.image.filename) }}" alt="Votre photo de profil"></a>
+                {% endif %}
+                <div class="obs__actions--links">
+                    <p><a href="#">Mes observations</a></p>
+                    <p><a href="#">Ajouter une observation</a></p>
+                    {% if is_granted('ROLE_NATURALISTE') and obsAttente > 0 %}
+                        <p><a href="#"><strong>{{ obsAttente > 1 ? obsAttente ~ ' observations' : obsAttente ~ ' observation' }} en attente</strong></a></p>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            {% endif %}
+            {% for obs in obsValidees %}
+                <div class="obs__general">
+                    <img class="obs__container--userImage pull-left" src="{{ (obs.user.image != '') ? asset(obs.user.imgPath ~ obs.user.image.filename) : asset('assets/img/tit_logo.png') }}">
+                    <span class="obs__container--userImageText"><strong>{{ obs.user.username }}</strong> a effectué une observation</span>
+                    <p class="obs__details margin-top">
+                        <span><span class="fa fa-map-marker" aria-hidden="true"></span> {{ obs.ville }}</span>&nbsp;
+                        <span><span class="fa fa-calendar" aria-hidden="true"></span> {{ obs.date|localizeddate('medium', 'none', null, null, 'd LLLL yyyy')    }}</span>
+                        <span><span class="fa fa-clock-o" aria-hidden="true"></span> {{ obs.date|date('H:i') }}</span>
+                    </p>
+                    <div class="clearfix"></div>
+                    <img src="{{ asset(obs.imgPath ~ obs.image.filename) }}" class="obs__container--image img-responsive pull-left" alt="Photo observation">
+                    <div class="obs__container--description hidden-xs">
+                         <p><strong>Description</strong></p>
+                         <div class="obs__container--descriptionText">{{ obs.description }}</div>
+                    </div>
+                    <div class="clearfix visible-xs"></div>
+                    <div class="map" data-lng="{{ obs.longitude }}" data-lat="{{ obs.latitude }}"></div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACO55kGEkd8YeNffAaErhE02wa_UigduQ&libraries=places&callback=initMap"></script>
+    <script type="text/javascript">
+        function  initMap()
+        {
+            var map = document.querySelectorAll('.map');
+            for (var i = 0; i < map.length; i++)
+            {
+                var lng = parseFloat(map[i].getAttribute('data-lng'));
+                var lat = parseFloat(map[i].getAttribute('data-lat'));
+                var latLng = {lat: lat, lng: lng};
+                var loadMap = new google.maps.Map(map[i],
+                    {
+                       center: latLng,
+                       zoom: 15
+                    });
+                var setMarker = new google.maps.Marker(
+                    {
+                        position: latLng,
+                        map: loadMap
+                    });
+            }
+        }
+    </script>
+{% endblock %}

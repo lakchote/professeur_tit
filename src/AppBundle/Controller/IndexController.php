@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Observation;
 use AppBundle\Form\ContactType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -15,7 +16,15 @@ class IndexController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('default/index.html.twig');
+        /*
+         * TODO: pagination, liens fonctionnels différentes rubriques si ROLE_NATURALISTE ou ROLE_OBSERVATEUR
+         */
+        $observationsValidees = $this->getDoctrine()->getRepository('AppBundle:Observation')->findBy(['status' => Observation::OBS_VALIDATED], ['date' => 'DESC']);
+        $obsEnAttente = $this->getDoctrine()->getRepository('AppBundle:Observation')->countPendingObservations();
+        return $this->render('default/index.html.twig', [
+            'obsValidees' => $observationsValidees,
+            'obsAttente' => $obsEnAttente
+        ]);
     }
 
     /**
