@@ -78,7 +78,7 @@ class Observation
     private $status;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="string")
      * @Assert\File(mimeTypes={"image/jpeg", "image/png"})
      * @Assert\NotBlank(message="observation.error.imageNull", groups={"Observation"})
      */
