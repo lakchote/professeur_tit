@@ -45,13 +45,13 @@
                     <div class="map" data-lng="{{ obs.longitude }}" data-lat="{{ obs.latitude }}"></div>
                 </div>
             {% endfor %}
-            <span><strong>Pages </strong></span>{{ knp_pagination_render(obsValidees) }}
+            <span><strong>{% if knp_pagination_render(obsValidees) %} Pages {% endif %} </strong></span>{{ knp_pagination_render(obsValidees) }}
         </div>
     </div>
 {% endblock %}
 
 {% block javascript %}
     {{ parent() }}
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACO55kGEkd8YeNffAaErhE02wa_UigduQ&libraries=places&callback=initMap"></script>
     <script type="text/javascript" src="{{ asset('assets/js/home.js') }}"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACO55kGEkd8YeNffAaErhE02wa_UigduQ&libraries=places&callback=initMap"></script>
 {% endblock %}
