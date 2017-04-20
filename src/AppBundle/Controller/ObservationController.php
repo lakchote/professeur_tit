@@ -130,6 +130,7 @@ class ObservationController extends Controller
         if(!$request->isXmlHttpRequest()) return new Response('', 400);
         $em = $this->getDoctrine()->getManager();
         $obs->setStatus(Observation::OBS_REFUSED);
+        $obs->setImage($obs->getImage()->getFilename());
         $em->persist($obs);
         $em->flush();
         $this->addFlash('success', 'L\'observation a été refusée');
@@ -145,6 +146,7 @@ class ObservationController extends Controller
         if(!$request->isXmlHttpRequest()) return new Response('', 400);
         $em = $this->getDoctrine()->getManager();
         $obs->setStatus(Observation::OBS_VALIDATED);
+        $obs->setImage($obs->getImage()->getFilename());
         $em->persist($obs);
         $em->flush();
         $this->addFlash('success', 'L\'observation a été validée');
