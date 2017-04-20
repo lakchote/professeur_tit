@@ -90,9 +90,21 @@ class ObservationRepository extends \Doctrine\ORM\EntityRepository
         return $this
             ->createQueryBuilder('obs')
             ->select('COUNT(obs)')
-            ->where('obs.status = :started')
+            ->where('obs.status = :started OR obs.status = :modified')
             ->setParameter('started', Observation::OBS_STARTED)
+            ->setParameter('modified', Observation::OBS_MODIFIED)
             ->getQuery()
             ->getSingleScalarResult();
+    }
+
+    public function getPendingObservations()
+    {
+        return $this
+            ->createQueryBuilder('obs')
+            ->where('obs.status = :started OR obs.status = :modified')
+            ->setParameter('started', Observation::OBS_STARTED)
+            ->setParameter('modified', Observation::OBS_MODIFIED)
+            ->getQuery()
+            ->getResult();
     }
 }

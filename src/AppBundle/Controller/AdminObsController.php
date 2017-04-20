@@ -85,32 +85,4 @@ class AdminObsController extends Controller
         $this->addFlash('success', 'L\'observation a été supprimée');
         return new Response('',200);
     }
-
-    /**
-     * @Route("/admin/obs/invalid/{id}", name="admin_obs_invalid")
-     */
-    public function obsInvalidAction(Observation $obs, Request $request)
-    {
-        if(!$request->isXmlHttpRequest()) return new Response('', 400);
-        $em = $this->getDoctrine()->getManager();
-        $obs->setStatus(Observation::OBS_REFUSED);
-        $em->persist($obs);
-        $em->flush();
-        $this->addFlash('success', 'L\'observation a été refusée');
-        return new Response('',200);
-    }
-
-    /**
-     * @Route("/admin/obs/valid/{id}", name="admin_obs_valid")
-     */
-    public function obsValidAction(Observation $obs, Request $request)
-    {
-        if(!$request->isXmlHttpRequest()) return new Response('', 400);
-        $em = $this->getDoctrine()->getManager();
-        $obs->setStatus(Observation::OBS_VALIDATED);
-        $em->persist($obs);
-        $em->flush();
-        $this->addFlash('success', 'L\'observation a été validée');
-        return new Response('',200);
-    }
 }

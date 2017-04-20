@@ -80,7 +80,7 @@ class Observation
     /**
      * @ORM\Column(type="string", nullable=true)
      * @Assert\File(mimeTypes={"image/jpeg", "image/png"})
-     * @Assert\NotBlank(message="observation.error.imageNull")
+     * @Assert\NotBlank(message="observation.error.imageNull", groups={"Observation"})
      */
     private $image;
 

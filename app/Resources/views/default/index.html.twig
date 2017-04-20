@@ -20,7 +20,7 @@
                     <p><a href="{{ path('observation_flow_user') }}">Mes observations</a></p>
                     <p><a href="#" id="obs-load-desktop" data-toggle="modal" data-target="#modal-login-desktop" data-url="{{ path('modal_add_observation') }}">Ajouter une observation</a></p>
                     {% if is_granted('ROLE_NATURALISTE') and obsAttente > 0 %}
-                        <p><a href="#"><strong>{{ obsAttente > 1 ? obsAttente ~ ' observations' : obsAttente ~ ' observation' }} en attente</strong></a></p>
+                        <p><a href="{{ path('obs_en_attente') }}"><strong>{{ obsAttente > 1 ? obsAttente ~ ' observations' : obsAttente ~ ' observation' }} en attente</strong></a></p>
                     {% endif %}
                 </div>
             </div>
