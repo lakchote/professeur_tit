@@ -14,15 +14,17 @@ class IndexController extends Controller
     /**
      * @Route("/", name="home")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
-        /*
-         * TODO: pagination, liens fonctionnels différentes rubriques si ROLE_NATURALISTE ou ROLE_OBSERVATEUR
-         */
         $observationsValidees = $this->getDoctrine()->getRepository('AppBundle:Observation')->findBy(['status' => Observation::OBS_VALIDATED], ['date' => 'DESC']);
         $obsEnAttente = $this->getDoctrine()->getRepository('AppBundle:Observation')->countPendingObservations();
+        $paginationObsValidees = $this->get('knp_paginator')->paginate(
+            $observationsValidees,
+            $request->query->get('page', 1),
+            5
+        );
         return $this->render('default/index.html.twig', [
-            'obsValidees' => $observationsValidees,
+            'obsValidees' => $paginationObsValidees,
             'obsAttente' => $obsEnAttente
         ]);
     }
