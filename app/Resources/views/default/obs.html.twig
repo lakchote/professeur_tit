@@ -44,9 +44,7 @@
                     url: "{{ path('modal_add_observation') }}",
                     method: "GET"
                 }).done(function (msg) {
-                    var titre = '';
                     $('#modal-load-desktop').html(msg);
-                    $('#modal-title-desktop').html(titre);
                 });
             });
         }());
