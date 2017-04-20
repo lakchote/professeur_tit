@@ -31,13 +31,13 @@
                             <td> {{ observation.taxon.nomVernaculaireEN}}</td>
                             <td> {{  observation.date|date('d-m-Y')}} </td>
                             <td>
-                                {% if observation.image is not null %}
+                                {% if observation.image != '' %}
                                     <img src="{{ asset(observation.imgPath ~ observation.image.filename) }}" class="img-responsive img-rounded" alt="Image observation">
                                 {% endif %}
                             </td>
                             <td> {{ observation.user.username }} </td>
                             <td>
-                                <a href="#" data-target="{{ path('admin_obs_valid', {'id' : observation.id }) }}" class="btn btn-xs btn-warning obs__invalid"><span class="fa fa-check" aria-hidden="true"></span> Valider</a>
+                                <a href="#" data-target="{{ path('obs_valid', {'id' : observation.id }) }}" class="btn btn-xs btn-warning obs__invalid"><span class="fa fa-check" aria-hidden="true"></span> Valider</a>
                                 <a href="#" data-target="{{ path('admin_obs_delete', {'id' : observation.id }) }}" class="btn btn-xs btn-danger obs__delete"><span class="fa fa-times" aria-hidden="true"></span> Supprimer</a>
                             </td>
                         </tr>

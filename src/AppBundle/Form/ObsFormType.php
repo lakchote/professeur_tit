@@ -23,7 +23,6 @@ class ObsFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-           // ->setAction($this->generateUrl('obs_publish'))
              ->add('taxon', EntityType::class, array(
                  'class' => 'AppBundle\Entity\Taxon',
                  'choice_label' => 'nomLatin',
@@ -52,7 +51,8 @@ class ObsFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Observation'
+            'data_class' => 'AppBundle\Entity\Observation',
+            'validation_groups' => ['Observation', 'Default']
         ));
     }
 }

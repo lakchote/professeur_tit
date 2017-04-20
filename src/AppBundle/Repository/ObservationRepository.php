@@ -2,6 +2,8 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Observation;
+
 class ObservationRepository extends \Doctrine\ORM\EntityRepository
 {
     public function getUserObservations($id)
@@ -81,5 +83,28 @@ class ObservationRepository extends \Doctrine\ORM\EntityRepository
             ->andWhere('obs.status = :validated')
             ->setParameter('validated', 'validated')
             ->getQuery();
+    }
+
+    public function countPendingObservations()
+    {
+        return $this
+            ->createQueryBuilder('obs')
+            ->select('COUNT(obs)')
+            ->where('obs.status = :started OR obs.status = :modified')
+            ->setParameter('started', Observation::OBS_STARTED)
+            ->setParameter('modified', Observation::OBS_MODIFIED)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    public function getPendingObservations()
+    {
+        return $this
+            ->createQueryBuilder('obs')
+            ->where('obs.status = :started OR obs.status = :modified')
+            ->setParameter('started', Observation::OBS_STARTED)
+            ->setParameter('modified', Observation::OBS_MODIFIED)
+            ->getQuery()
+            ->getResult();
     }
 }

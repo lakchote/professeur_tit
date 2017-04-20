@@ -120,4 +120,46 @@ class ObservationController extends Controller
                    return $this->redirect( $this->generateUrl('observation_flow_user'));
             }
     }
+
+    /**
+     * @Route("/obs/invalid/{id}", name="obs_invalid")
+     * @Security("is_granted('ROLE_NATURALISTE')")
+     */
+    public function obsInvalidAction(Observation $obs, Request $request)
+    {
+        if(!$request->isXmlHttpRequest()) return new Response('', 400);
+        $em = $this->getDoctrine()->getManager();
+        $obs->setStatus(Observation::OBS_REFUSED);
+        $em->persist($obs);
+        $em->flush();
+        $this->addFlash('success', 'L\'observation a été refusée');
+        return new Response('',200);
+    }
+
+    /**
+     * @Route("/obs/valid/{id}", name="obs_valid")
+     * @Security("is_granted('ROLE_NATURALISTE')")
+     */
+    public function obsValidAction(Observation $obs, Request $request)
+    {
+        if(!$request->isXmlHttpRequest()) return new Response('', 400);
+        $em = $this->getDoctrine()->getManager();
+        $obs->setStatus(Observation::OBS_VALIDATED);
+        $em->persist($obs);
+        $em->flush();
+        $this->addFlash('success', 'L\'observation a été validée');
+        return new Response('',200);
+    }
+
+    /**
+     * @Route("/obs/en_attente", name="obs_en_attente")
+     * @Security("is_granted('ROLE_NATURALISTE')")
+     */
+    public function pendingObsListAction()
+    {
+        $pendingObsList = $this->getDoctrine()->getRepository('AppBundle:Observation')->getPendingObservations();
+        return $this->render('default/obs_en_attente.html.twig',[
+            'observations' => $pendingObsList
+        ]);
+    }
 }
