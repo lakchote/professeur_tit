@@ -23,9 +23,11 @@ class IndexController extends Controller
             $request->query->get('page', 1),
             5
         );
+        $paginationData = $paginationObsValidees->getPaginationData();
         return $this->render('default/index.html.twig', [
             'obsValidees' => $paginationObsValidees,
-            'obsAttente' => $obsEnAttente
+            'obsAttente' => $obsEnAttente,
+            'dernierePage' => $paginationData['endPage']
         ]);
     }
 
