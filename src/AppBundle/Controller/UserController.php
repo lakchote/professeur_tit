@@ -136,11 +136,16 @@ class UserController extends Controller
         }
         $nbObservations = $this->get('app.profil_user')->getUserObservations($user);
         $observationsValidees = $this->get('app.profil_user')->getUserValidatedObservations($user);
-        return $this->render('user/manage_profil.html.twig', [
+        return $this->get('app.profil_user')->checkIfMobile($request) ? $this->render('user/manage_profil_mobile.html.twig', [
             'registerDate' => $registerDate,
             'form' => $form->createView(),
             'nbObservations' => $nbObservations,
             'obsValidees' => $observationsValidees
+        ]) : $this->render('user/manage_profil.html.twig', [
+                'registerDate' => $registerDate,
+                'form' => $form->createView(),
+                'nbObservations' => $nbObservations,
+                'obsValidees' => $observationsValidees
         ]);
     }
 

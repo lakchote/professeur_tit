@@ -8,28 +8,27 @@
 
 {% block content %}
     <div class="row">
-        <div class="col-xs-offset-2 col-xs-10 padding-left--none">
+        <div class="col-xs-12 text-center" id="user-observations--mobile">
+            <img src="{{ asset('assets/img/observation.png') }}" class="user-info__stats"
+                 alt="Mes observations" style="margin:0 10px 0 0;">
+            <a href="{{ path('observation_flow_user') }}" class=" user-info__stats--text text--bold"
+               style="display:inline-block;">Mes observations</a>
+        </div>
+        <div class="col-xs-12 text-center">
             <h1>Mon profil</h1>
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm-2">
-            <div id="user-observations" class="text-center">
-                <a href="{{ path('observation_flow_user') }}" class="text--bold">Mes observations</a>
-            </div>
-        </div>
-        <div class="col-sm-10 user-info">
-            <div class="col-sm-12">
-                <p id="user-info__username" class="text--bold">{{ app.user.username }}</p>
-            </div>
-            <div class="col-sm-12">
+    <div class="row visible-xs">
+        <div class="col-xs-12 user-info">
+            <p id="user-info__username" class="text--bold text-center">{{ app.user.username }}</p>
+            <div class="col-xs-12">
                 {{ form_start(form) }}
-                <div id="user-info__photo" class="pull-left">
+                <div id="user-info__photo">
                     <div id="user-info__photo--button">
                         {% if app.user.image != '' %}
                             <img src="{{ (app.user.image.filename) is defined ? asset(app.user.imgpath ~ app.user.image.filename) :  asset(app.user.imgpath ~ app.user.image) }}"
                                  alt="Votre photo de profil"
-                                 id="user-info__photo--load">
+                                 class="img-responsive">
                         {% endif %}
                         {{ form_widget(form.image, { 'attr' : {'class' : 'user-info__photo--file'} }) }}
                         {% if app.user.image == '' %} Ajouter une photo {% endif %}
@@ -40,24 +39,24 @@
                                     alt="Supprimer la photo"></a>
                     {% endif %}
                 </div>
+                <div class="margin-top"></div>
                 <img src="{{ asset('assets/img/calendar.png') }}" class="pull-left" id="user-info__calendar"
                      alt="Date d'inscription">
-                <p id="user-info__dateinscription">Inscrit depuis le {{ registerDate }}
-                    <button type="button" class="button pull-right"><a
-                                href="{{ path('user_delete') }}">Supprimer mon profil</a>
-                    </button>
-                </p>
+                <p id="user-info__dateinscription">Inscrit depuis le {{ registerDate }}</p>
                 {{ form_label(form.description) }}<br/>
                 {{ form_widget(form.description) }}
-                <button type="submit" class="button pull-right" formnovalidate>Modifier</button>
-                <br/>
                 {{ form_label(form.email) }}<br/>
                 <img src="{{ asset('assets/img/mail.png') }}" class="pull-left" id="user-info__mail"
                      alt="Votre email">{{ form_widget(form.email, { 'attr' : {'class' : 'user-info__mail--input'}}) }}
                 <br/>
                 <span style="color:red;">{{ form_errors(form.email) }}</span>
                 {{ form_row(form.isEmailVisible) }}
+                <button type="submit" class="button" formnovalidate>Modifier</button>
+                <button type="button" class="button"><a
+                            href="{{ path('user_delete') }}">Supprimer mon profil</a>
+                </button>
                 {{ form_end(form) }}
+                <div class="margin-top"></div>
                 <img src="{{ asset('assets/img/observation.png') }}" class="user-info__stats pull-left"
                      alt="Votre nombre d'observations">
                 <p class="user-info__stats--text">Vous avez effectué<strong>

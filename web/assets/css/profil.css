@@ -138,3 +138,31 @@ label, textarea, .user-info__mail--input {
 .button:hover {
     box-shadow: 10px 10px 10px 0 rgba(255, 210, 219, .15) inset;
 }
+
+/*
+    Mobile XS Devices
+ */
+@media screen and (max-width:768px)
+{
+    #user-info__photo
+    {
+        margin:0 auto;
+    }
+
+    .checkbox label
+    {
+        padding-left:35px;
+    }
+
+    .user-info
+    {
+        height:auto;
+        padding-bottom:10px;
+    }
+
+    .button
+    {
+        height:40px;
+        width:145px;
+    }
+}
