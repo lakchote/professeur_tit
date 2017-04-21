@@ -324,7 +324,7 @@ class User implements UserInterface, \Serializable
      */
     public function setImage($image)
     {
-        $this->image = $image;
+        if($image !== null) $this->image = $image;
     }
 
     public function serialize()
