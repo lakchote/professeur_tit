@@ -16,8 +16,9 @@
                     <tr>
                         <td>Taxon</td>
                         <td>Nom vernaculaire (FR)</td>
-                        <td>Nom vernaculaire (EN)</td>
+                        <td>Description</td>
                         <td>Date observation</td>
+                        <td>Ville</td>
                         <td>Image</td>
                         <td>Utilisateur</td>
                         <td>Actions</td>
@@ -28,8 +29,9 @@
                         <tr>
                             <td> {{ observation.taxon.nomLatin }}</td>
                             <td> {{ observation.taxon.nomVernaculaire }}</td>
-                            <td> {{ observation.taxon.nomVernaculaireEN}}</td>
-                            <td> {{  observation.date|date('d-m-Y')}} </td>
+                            <td> {{ observation.description }}</td>
+                            <td> {{  observation.date|date('d-m-Y') }} </td>
+                            <td> {{ observation.ville }}</td>
                             <td>
                                 {% if observation.image != '' %}
                                     <img src="{{ asset(observation.imgPath ~ observation.image.filename) }}" class="img-responsive img-rounded" alt="Image observation">
