@@ -74,25 +74,6 @@ class ObservationController extends Controller
 
 
     /**
-     * @Route("/validate", name="obs_validate")
-     */
-
-    public function obsValidateAction(Request $request) {
-        $observation = new Observation();
-        $modal= $this->createForm(ObsFormType::class ,$observation);
-        $modal->handleRequest($request);
-        if ($modal->isValid()) {
-            $response = new Response();
-            $response->setStatusCode(200);
-        }
-        else {
-            $response = new Response();
-            $response->setStatusCode(201)->setContent($this->renderView('modal/modal_add_obs_desktop.html.twig', ['form' => $modal->createView()]));
-        }
-        return $response;
-    }
-
-    /**
      * @Route("/publish", name="obs_publish")
      */
 
@@ -111,14 +92,13 @@ class ObservationController extends Controller
                     'success',
                     'Your observation was added !'
                 );
-                return $this->redirect( $this->generateUrl('observation_flow_user'));
-            } else {
-                   $this->addFlash(
-                       'error',
-                       'Your observation was not added try again !'
-                   );
-                   return $this->redirect( $this->generateUrl('observation_flow_user'));
-            }
+                   $response = new Response();
+                   $response->setStatusCode(200);
+               } else {
+                   $response = new Response();
+                   $response->setStatusCode(201)->setContent($this->renderView('modal/modal_add_obs_desktop.html.twig', ['form' => $modal->createView()]));
+               }
+        return $response;
     }
 
     /**

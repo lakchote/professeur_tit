@@ -1,55 +1,70 @@
-{% for monObservation in pagination %}
-
 <div class="col-xs-12 col-md-offset-2 col-md-10 obs__general">
-
         <div class="col-xs-12 obs__container">
-            <div class="col-xs-3 obs__photo-user obs__photo--flex">
-                <img class="obs__photo-user" src="{{ (app.user.image.filename) is defined ? asset(app.user.imgpath ~ app.user.image.filename) :  asset(app.user.imgpath ~ app.user.image) }}" alt="Votre photo de profil"
-                     id="user-info__photo--load">
-            </div>
-            <div class="col-xs-6 obs__details">
-                auteur
-            </div>
-            <div class="col-xs-3 obs__details">
-                {% if is_granted('ROLE_NATURALISTE') %}
-                    <img src="{{ asset('assets/img/naturaliste.png') }}" alt="{{ "Vous êtes naturaliste"|trans }}" class="obs__details--icon"  >
-                    <img src="{{ asset('assets/img/trash.png') }}" alt="{{ "Supprimer l'observation"|trans }}" class="obs__details--icon">
-                {% elseif is_granted('ROLE_PENDING_NATURALISTE') %}
-                    <p class="user-info__stats--text">Vous êtes un naturaliste en attente de validation.</p>
+            <div class="row">
+                {% if flowType != 'mine' %}
+                <div class="col-xs-2 obs__photo-user obs__photo--flex">
+                    <img class="obs__photo-user img-responsive" src="{{ (obs.user.image != '') ? asset(obs.user.imgPath ~ obs.user.image.filename) : asset('assets/img/tit_logo.png') }}" alt="Photo de profil"
+                         id="user-info__photo--load">
+                </div>
+                <div class="col-xs-9 col-md-5 obs__details">
+                        <span><strong>{{ obs.user.username }}</strong> {{ "a effectué une observation"|trans }}</span>
+                </div>
+                <div class="hidden-xs col-md-5 obs__details">
+                </div>
                 {% else %}
-                    <p class="user-info__stats--text">Vous êtes observateur.</p>
+                    <div class="hidden-xs col-md-2 obs__photo-user obs__photo--flex">
+                    </div>
+                    <div class="col-xs-9 col-md-4 obs__details">
+                        <span><strong>{{ "Vous"|trans }}</strong> {{ "avez effectué une observation"|trans }}</span>
+                    </div>
+                    <div class="col-xs-3 col-md-5 obs__details">
+                        {% if obs.status == "started" %}
+                            <span class="obs__details--status color__red">{{ "Enregistrée"|trans }}</span>
+                        {% elseif obs.status == "validated" %}
+                            <span class="obs__details--status color__green">{{ "Publiée"|trans }}</span>
+                        {% elseif obs.status == "refused" %}
+                            <span class="obs__details--status color__green">{{ "Refusée"|trans }}</span>
+                        {% endif %}
+                        {# {% if is_granted('ROLE_NATURALISTE') %}
+                              <img src="{{ asset('assets/img/naturaliste.png') }}" alt="{{ "Vous êtes naturaliste"|trans }}" class="obs__details--icon"  >
+                              <img src="{{ asset('assets/img/trash.png') }}" alt="{{ "Supprimer l'observation"|trans }}" class="obs__details--icon">
+                          {% elseif is_granted('ROLE_PENDING_NATURALISTE') %}
+                              <p class="user-info__stats--text">Vous êtes un naturaliste en attente de validation.</p>
+                          {% else %}
+                              <p class="user-info__stats--text">Vous êtes observateur.</p>
+                          {% endif %}
+                          #}
+                    </div>
                 {% endif %}
-            </div>
-            <div class=" col-xs-3 obs__details obs__details--display">
-                <img src="{{ asset('assets/img/where.png') }}" alt="{{ "Où l'avez vous vu ?"|trans }}" class="obs__details--icon">
-                {{ monObservation.ville }}
 
-            </div>
-            <div class="col-xs-3 obs__details obs__details--display">
-                <img src="{{ asset('assets/img/calendar.png') }}" alt="{{ "Quand l'avez vous vu ?"|trans }}" class="obs__details--icon">
-                {{ monObservation.date|localizeddate('none','none', '', null, 'd MMMM') }}
-            </div>
-            <div class="col-xs-3 obs__details obs__details--display">
-                <img src="{{ asset('assets/img/when.png') }}" alt="{{ "Quand l'avez vous vu ?"|trans }}" class="obs__details--icon">
-                {{ monObservation.date|date('H:i', 'Europe/Paris') }}
-            </div>
+                <div class="col-xs-12 col-md-4 obs__details obs__details--display">
+                    <img src="{{ asset('assets/img/where.png') }}" alt="{{ "Où l'avez vous vu ?"|trans }}" class="obs__details--icon">
+                    {{ obs.ville }}
+                </div>
+                <div class="col-xs-6 col-md-3 obs__details obs__details--display">
+                    <img src="{{ asset('assets/img/calendar.png') }}" alt="{{ "Quand l'avez vous vu ?"|trans }}" class="obs__details--icon">
+                    {{ obs.date|localizeddate('none','none', '', null, 'd MMMM') }}
+                </div>
+                <div class="col-xs-6 col-md-3 obs__details obs__details--display">
+                    <img src="{{ asset('assets/img/when.png') }}" alt="{{ "Quand l'avez vous vu ?"|trans }}" class="obs__details--icon">
+                    {{ obs.date|date('H:i', 'Europe/Paris') }}
+                </div>
+    </div>
         </div>
 
-        <div class="col-xs-6 obs__photo-bird obs__photo--flex">
-            {% if monObservation.image != '' %}
-                <img class="obs__photo" src="../uploads/observations/{{ monObservation.image.filename }}" alt="Observation"
+        <div class="col-xs-12 col-md-6 obs__photo-bird obs__photo--flex">
+                <img class="img-responsive" src="{{ asset(obs.imgPath ~ obs.image.filename) }}" alt="Observation"
                      id="obs__photo">
-            {% endif %}
         </div>
-        <div class="col-xs-6 obs__description--title">
-            Description
+        <div class="hidden-xs col-md-6 obs__description--title">
+            <span><strong>{{ "Description"|trans }}</strong></span>
         </div>
-        <div class="col-xs-6 obs__description">
-            {{ monObservation.description }}
+        <div class="hidden-xs col-md-6 obs__description">
+            {{ obs.description }}
         </div>
-        <div id="map{{ monObservation.id }}" class="col-xs-6 obs__map">
-            <img src="https://maps.googleapis.com/maps/api/staticmap?center={{ monObservation.latitude|number_format(3, '.')  }},{{ monObservation.longitude|number_format(3, '.')  }}&zoom=14&size=450x285&maptype=roadmap&key=AIzaSyACO55kGEkd8YeNffAaErhE02wa_UigduQ" class="obs__map--img">
+
+        <div id="map{{ obs.id }}" class="col-xs-12 col-md-6 obs__map">
+            <img src="https://maps.googleapis.com/maps/api/staticmap?center={{ obs.latitude|number_format(3, '.')  }},{{ obs.longitude|number_format(3, '.')  }}&zoom=15&size=550x285&maptype=roadmap&markers=color:red%7C{{ obs.latitude|number_format(3, '.')  }},{{ obs.longitude|number_format(3, '.')  }}&key=AIzaSyACO55kGEkd8YeNffAaErhE02wa_UigduQ" class="obs__map--img">
         </div>
 
     </div>
-{% endfor %}

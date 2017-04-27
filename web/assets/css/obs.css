@@ -1,20 +1,24 @@
 [class*="col-"] {
-   /* background-color: lightgreen;*/
-   /* border: 1px solid black;*/
+    /* background-color: lightgreen;*/
+    /*border: 1px solid black;*/
 }
 
 a, span, p, h1, h2, h3 {
     color: #234a81;
 }
+
 .obs__general{
     margin-top: 15px;
+}
+
+.lulu {
     height:420px;
 }
 
 .obs__general,
 .obs__actions
 {
-    padding:10px;
+   padding:10px;
     background-color: #fff;
 }
 
@@ -55,12 +59,14 @@ a, span, p, h1, h2, h3 {
 }
 
 .obs__photo-user {
-    height: 112px;
+    max-height: 112px;
+    min-height: 40px;
+    min-width: 40px;
 }
 
 .obs__photo {
-    max-width: 100%;
 }
+
 .obs__photo--flex {
     display: flex;
     align-items: center;
@@ -78,8 +84,13 @@ a, span, p, h1, h2, h3 {
 .obs__details--icon {
     height: 100%;
 }
+
+.obs__details--status {
+    float: right;
+}
+
 .obs__photo-bird{
-    height: 448px;
+    height: 349px;
 }
 
 .obs__description{
@@ -89,12 +100,15 @@ a, span, p, h1, h2, h3 {
 }
 
 .obs__map{
-       height: 284px;
+  /*     height: 284px;*/
        /*background-color: grey;*/
    }
 
 .obs__map--img{
-    width:100%;
+  /*  width:100%;*/
+    max-height: 100%;
+    max-width: 100%;
+    /*height: 100%;*/
 }
 
 .map
@@ -132,4 +146,37 @@ a, span, p, h1, h2, h3 {
     {
         margin-right:15px;
     }
+
+    .obs__details--display{
+        margin-top: 5px;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    .obs__photo-bird, .obs__map{
+        height: auto;
+    }
+    .obs__description{
+        margin-bottom: 0px;
+        margin-top: 0px;
+        overflow-y: scroll;
+    }
+    .obs__photo-bird {
+        margin-top: 10px;
+    }
+    .add__obs {
+        background: #ffffff;
+        height: 45px;
+    }
+    .obs__map {
+        margin-top: 10px;
+    }
+
+    .modal-load-desktop__icon {
+        height: 30px !important;
+    }
+
+    .modal-load-desktop__image {
+        height: auto;
+    }
 }
+

@@ -84,21 +84,43 @@ $('#location').click(function() {
     getLocation();
 });
 
+$('#obs_form_image').on('change', function (e) {
+    var files = $(this)[0].files;
+    if (files.length > 0) {
+        var file = files[0];
+        $('#preview').removeClass('hidden');
+        $('#theFile').attr('src', window.URL.createObjectURL(file));
+    }
+});
+
+$('#removeImage').on('click', function (e) {
+    e.preventDefault();
+    $('#obs_form_image').val('');
+    $('#preview').addClass('hidden');
+});
+
+
 $('#btn-publish').click(function(e) {
     e.preventDefault();
-    var $formData = $('form').serializeArray();
+    var $form = $('form[name="obs_form"]');
+    var $recup = $('form').serializeArray();
+    var $formdata = (window.FormData) ? new FormData($form[0]) : null;
+    var $data = ($formdata !== null) ? $formdata : $form.serialize();
+
     $.ajax({
-        url: pathValidate,
-        method: "POST",
-        data: $formData,
+        url: $form.attr('action'),
+        method: $form.attr('method'),
+        contentType: false, // obligatoire pour de l'upload
+        processData: false, // obligatoire pour de l'upload
+        data: $data,
         statusCode: {
             201: function (msg) {
                 $('#modal-load-desktop').html(msg);
-                $('#recherche').val($formData[3].value);
+                $('#recherche').val($recup[0].value);
                 $('#pac-input').val($('#obs_form_ville').val());
             },
             200: function () {
-                $('form').submit();
+                window.location.replace(pathRedirect);
             }
         }
     });

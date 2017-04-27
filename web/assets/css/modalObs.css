@@ -1,12 +1,12 @@
 /*
 MODALE NOUVELLE OBS
  */
-/*
+
 [class*="col-"] {
-    background-color: lightgreen;
-    border: 1px solid black;
+   /* background-color: lightgreen;*/
+  /*  border: 1px solid black;*/
 }
-*/
+
 #location {
     background-color: transparent;
     color: rgb(35,74,129);
@@ -129,7 +129,7 @@ MODALE NOUVELLE OBS
 .modal-load-desktop__photo--button
 {
     position:relative;
-    line-height: 255px;
+  /*  line-height: 255px;*/
     text-align: center;
 }
 
@@ -142,8 +142,6 @@ MODALE NOUVELLE OBS
     height: inherit;
     width: inherit;
 }
-
-
 
 /*
 MODULE GOOGLE POUR AFFICHAGE DU LIEU D'OBSERVATION
@@ -165,4 +163,19 @@ AUTOCOMPLETE JQUERY UI
 
 .ui-autocomplete {
     z-index: 1500;
+}
+
+/** SM Devices **/
+@media screen and (max-width:768px)
+{
+    .modal-load-desktop__icon {
+        height: 30px !important;
+    }
+
+    .modal-load-desktop__image, .modal-load-desktop__photo--button {
+        height: auto;
+        line-height: normal;
+    }
+
+
 }

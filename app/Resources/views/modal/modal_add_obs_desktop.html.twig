@@ -1,7 +1,7 @@
 <div class="modal-header">
     <div class="row">
         <div class="col-sm-12">
-            <h4 class="modal-title text-bold" id="modal-label-desktop">Ajout d'une nouvelle observation
+            <h4 class="modal-title text-bold" id="modal-label-desktop">{{ "Ajout d'une nouvelle observation"|trans }}
                 <span data-dismiss="modal" aria-label="close" class="pull-right" style="cursor:pointer;">
                         <span aria-hidden="true">
                             &times;
@@ -12,7 +12,7 @@
     </div>
 </div>
 <div class="modal-body">
-    {{ form_start(form, {'action': path('obs_publish'), 'method': 'POST'}) }}
+    {{ form_start(form, {'action': path('obs_publish'), 'method': 'POST', 'enctype':'multipart/form-data'}) }}
     <div class="row form-group">
     <div class="col-xs-12">
         <div class="col-xs-12 col-md-6">
@@ -72,7 +72,7 @@
                     <div class="col-xs-2">
                         <img src="{{ asset('assets/img/logo-droite.png') }}" alt="{{ "Professeur TIT"|trans }}" class="modal-load-desktop__icon--logo">
                     </div>
-                    <div class="col-xs-10  modal-load-desktop__bubble">
+                    <div class="col-xs-offset-2 col-xs-8 col-md-offset-0 col-md-8 modal-load-desktop__bubble">
                         <p>{{ "Info du professeur TIT"|trans }}</p>
                     </div>
                 </div>
@@ -83,8 +83,6 @@
                 </div>
             </div>
 
-
-
         </div>
         <div class="col-xs-12 col-md-6">
             <div class="col-xs-12 modal-load-desktop__row">
@@ -92,11 +90,17 @@
                     <div id="modal-load-desktop__photo--button" class="col-xs-12 modal-load-desktop__image ">
                         {{ form_widget(form.image, { 'attr' : {'class' : 'modal-load-desktop__photo--button'}}) }}
                         {{ form_errors(form.image) }}
+                        <div id="lImage" class="col-xs-12 ">
+                            <div id="preview" class="hidden">
+                                <img id="theFile" src="http://placehold.it/5" alt="" class="img-responsive">
+                                <span><img id="removeImage" src="{{ asset('assets/img/trash.png') }}" alt="{{ "Supprimer photo"|trans }}" class="modal-load-desktop__icon--small"></span>
+                            </div>
+                        </div>
                     </div>
-                <img src="{{ asset('assets/img/trash.png') }}" alt="{{ "Supprimer photo"|trans }}" class="modal-load-desktop__icon--small">
+
             </div>
             <div class="col-md-offset-6 col-xs-6 modal-load-desktop__row">
-                <button type="button" class="btn-block modal-load-desktop__btn modal-load-desktop__btn--red">{{ "Supprimer"|trans }}</button>
+                <button type="button" data-dismiss="modal" class="btn-block modal-load-desktop__btn modal-load-desktop__btn--red">{{ "Supprimer"|trans }}</button>
             </div>
             <div class="col-md-offset-6 col-xs-6 modal-load-desktop__row">
                 <button id="btn-publish" type="submit" class="btn-block modal-load-desktop__btn modal-load-desktop__btn--blue">{{ "Publier"|trans }}</button>
@@ -111,7 +115,7 @@
     var alert1 = "{{ "Selectionnez un lieu dans la liste SVP"|trans }}";
     var alert2 = "{{ "Indiquez au moins une ville SVP"|trans }}";
     var pathListing = "{{ path('getListing') }}";
-    var pathValidate = "{{ path('obs_validate') }}";
+    var pathRedirect = "{{ path('observation_flow_user') }}";
 </script>
 <script src="{{ asset('assets/js/modal_obs.js') }}"></script>
 
