@@ -10,54 +10,53 @@
 
 {% block content %}
     <div class="row">
-        <div class="col-xs-12 col-sm-10">
+        <div class="col-xs-12 col-sm-offset-2 col-sm-10">
+            <h1>{{ "Observations"|trans }}</h1>
+        </div>
+
             {% if app.user %}
-            <div class="obs__actions">
-                {% if app.user.image != '' %}
-                    <a href="{{ path('manage_profil_membre') }}"><img class="obs__container--userImage img-rounded pull-left" src="{{ asset(app.user.imgpath ~ app.user.image.filename) }}" alt="Votre photo de profil"></a>
+            <div class="hidden-xs col-sm-2 background--white">
+                <p><a href="{{ path('observation_flow_user') }}"> <strong>{{ "Mes observations"|trans }}</strong></a></p>
+                {% if is_granted('ROLE_NATURALISTE') and obsAttente > 0 %}
+                    <p><a href="{{ path('obs_en_attente') }}"><strong>{{ obsAttente > 1 ? obsAttente ~ ' observations' : obsAttente ~ ' observation' }} en attente</strong></a></p>
                 {% endif %}
-                <div class="obs__actions--links">
-                    <p><a href="{{ path('observation_flow_user') }}">Mes observations</a></p>
-                    <p><a href="#" id="obs-load-desktop" data-toggle="modal" data-target="#modal-login-desktop" data-url="{{ path('modal_add_observation') }}">Ajouter une observation</a></p>
-                    {% if is_granted('ROLE_NATURALISTE') and obsAttente > 0 %}
-                        <p><a href="{{ path('obs_en_attente') }}"><strong>{{ obsAttente > 1 ? obsAttente ~ ' observations' : obsAttente ~ ' observation' }} en attente</strong></a></p>
-                    {% endif %}
-                </div>
             </div>
-            <div class="clearfix"></div>
+            <div class="col-xs-12 col-sm-10">
+                <div class="add__obs">
+                    <a href="" id="obs-load-desktop" class="modal-desktop" data-toggle="modal" data-target="#modal-login-desktop">
+                        <img class="obs__details--icon" src="{{ asset('assets/img/add_obs.jpg') }}">
+                        <strong>{{ "Ajouter une observation"|trans }}</strong>
+                    </a>
+                </div>
+            {% else %}
+                <div class="hidden-xs col-sm-2 background--white">
+                    <a href="#" id="login-load-desktop--sidebar" class="hidden-sm" data-toggle="modal" data-target="#modal-login-desktop">
+                        {{ "Se connecter/S'inscrire"|trans }}
+                    </a>
+                </div>
+                <div class="col-xs-12 col-sm-10">
+                    <div class="add__obs">
+                        <a href="{{ path('debuter_ornithologie') }}">
+                            <img class="obs__details--icon" src="{{ asset('/assets/img/debuter_ornithologie/debuter_ornitho.png') }}">
+                            <strong>{{ "Débuter l'ornithologie"|trans }}</strong>
+                        </a>
+                    </div>
             {% endif %}
 
             {% for obs in obsValidees %}
 
                 {% include 'blocks/observation.html.twig' with {'flowType': 'general'}  %}
 
-               {# <div class="obs__general lulu">
-                <img class="obs__container--userImage pull-left" src="{{ (obs.user.image != '') ? asset(obs.user.imgPath ~ obs.user.image.filename) : asset('assets/img/tit_logo.png') }}">
-                <span class="obs__container--userImageText"><strong>{{ obs.user.username }}</strong> a effectué une observation</span>
-                <p class="obs__details margin-top">
-                    <span><span class="fa fa-map-marker" aria-hidden="true"></span> {{ obs.ville }}</span>&nbsp;
-                    <span><span class="fa fa-calendar" aria-hidden="true"></span> {{ obs.date|localizeddate('medium', 'none', null, null, 'd LLLL yyyy')    }}</span>
-                    <span><span class="fa fa-clock-o" aria-hidden="true"></span> {{ obs.date|date('H:i') }}</span>
-                </p>
-                <div class="clearfix"></div>
-                <img src="{{ asset(obs.imgPath ~ obs.image.filename) }}" class="obs__container--image img-responsive pull-left" alt="Photo observation">
-                <div class="obs__container--description hidden-xs">
-                    <p><strong>Description</strong></p>
-                    <div class="obs__container--descriptionText">{{ obs.description }}</div>
-                </div>
-                <div class="clearfix visible-xs"></div>
-                <div class="map" data-lng="{{ obs.longitude }}" data-lat="{{ obs.latitude }}"></div>
-            </div>#}
-
             {% endfor %}
 
             <span><strong>{% if dernierePage > 1 %}Pages {% endif %}</strong></span>{{ knp_pagination_render(obsValidees) }}
         </div>
     </div>
+</div>
 {% endblock %}
 
 {% block javascript %}
     {{ parent() }}
     <script type="text/javascript" src="{{ asset('assets/js/home.js') }}"></script>
-   {# <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACO55kGEkd8YeNffAaErhE02wa_UigduQ&libraries=places&callback=initMap"></script>#}
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACO55kGEkd8YeNffAaErhE02wa_UigduQ&libraries=places&callback=initMap"></script>
 {% endblock %}

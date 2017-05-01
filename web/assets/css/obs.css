@@ -1,6 +1,6 @@
 [class*="col-"] {
     /* background-color: lightgreen;*/
-    /*border: 1px solid black;*/
+   /*border: 1px solid black;*/
 }
 
 a, span, p, h1, h2, h3 {
@@ -58,10 +58,16 @@ a, span, p, h1, h2, h3 {
     height: 112px;
 }
 
-.obs__photo-user {
+.obs__photo-user, .index__actions--image {
     max-height: 112px;
     min-height: 40px;
     min-width: 40px;
+}
+
+.index__actions {
+    padding: 10px;
+    background-color: #fff;
+    max-height: 142px;
 }
 
 .obs__photo {

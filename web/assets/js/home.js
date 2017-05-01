@@ -1,4 +1,4 @@
-/*function initMap()
+function initMap()
 {
     var map = document.querySelectorAll('.map');
     for (var i = 0; i < map.length; i++) {
@@ -7,6 +7,9 @@
         var latLng = {lat: lat, lng: lng};
         var loadMap = new google.maps.Map(map[i],
             {
+                scrollwheel: false,
+                scaleControl: true,
+                mapTypeControl: false,
                 center: latLng,
                 zoom: 15
             });
@@ -16,7 +19,7 @@
                 map: loadMap
             });
     }
-}*/
+}
 $('#obs-load-desktop').click(function (e)
 {
     if ($(window).width() <= 768) {

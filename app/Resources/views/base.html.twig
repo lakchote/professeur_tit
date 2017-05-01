@@ -107,7 +107,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-xs-12 col-sm-8">
+        <div class="col-xs-12 col-sm-offset-2 col-sm-8">
             {% for msg in app.session.flashBag.get('success') %}
                 <div class="alert alert-success alert-dismissable fade in">
                     {{ msg }}
@@ -244,7 +244,7 @@
         crossorigin="anonymous"></script>
 <script type="text/javascript">
     $(function () {
-        $('#login-load-desktop').click(function () {
+        $('#login-load-desktop, #login-load-desktop--sidebar').click(function () {
             $.ajax({
                 url: "{{ path('modal_form_desktop') }}",
                 method: "GET"
