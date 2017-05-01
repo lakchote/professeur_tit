@@ -33,5 +33,14 @@ class TaxonList {
         return $tags;
     }
 
+    public function createSearchResults($term)
+    {
+        $repository = $this->em->getRepository('AppBundle:Taxon');
+        $listeTaxons = $repository->populateMySearchList($term);
+        $listeTaxons = $listeTaxons->getResult();
+        return $listeTaxons;
+    }
+
+
 }
 

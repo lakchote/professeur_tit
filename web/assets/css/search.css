@@ -1,0 +1,20 @@
+.search__line {
+    background: #ffffff;
+    height: 112px;
+   margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.search__details--icon {
+    height: 100%;
+    padding-right: 30px;
+}
+
+/** SM Devices **/
+@media screen and (max-width:768px) {
+
+    .search__line{
+        font-size: 0.9em;
+    }
+}

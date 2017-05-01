@@ -18,4 +18,13 @@ class TaxonRepository extends EntityRepository
         $results = $query->getResult();
         return $results;
     }
+
+    public function populateMySearchList($term)
+    {
+        return $this->createQueryBuilder('taxon')
+            ->select('taxon')
+            ->Where('taxon.nomVernaculaire LIKE :term OR taxon.nomLatin LIKE :term')
+            ->setParameter('term', '%'. $term . '%')
+            ->getQuery();
+    }
 }

@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheet %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('assets/css/obs.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/search.css') }}">
+{% endblock %}
+
+
+{% block content %}
+    <div class="col-xs-12 col-sm-offset-2 col-sm-10">
+        <h1>{{ "Recherche"|trans }}</h1>
+    </div>
+    <div class="col-xs-12 col-md-offset-2 col-md-10 padding-left--none">
+        <div class="search__line">
+            {% if pagination is defined %}
+                <p>{{ pagination|length }}{{ " réponses correnspondent à \""|trans }}{{ terme }}{{ "\""|trans }}</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="row">
+    {% if pagination is defined %}
+        {% for taxon in pagination %}
+
+            <div class="col-xs-12 col-md-offset-2 col-md-10 padding-left--none">
+                <div class="search__line">
+                    {% if taxon.observations|length %}
+                        {% set obs = taxon.observations|first %}
+                        <img class="search__details--icon" src="{{ asset(obs.imgPath ~ obs.image.filename) }}" alt="Observation"
+                             id="obs__photo">
+                        {% else %}
+                            <img class="search__details--icon" src="{{ asset('assets/img/tit_logo.png') }}" alt="Observation"
+                                 id="obs__photo">
+                    {% endif %}
+                    <span><strong> {{ taxon.nomVernaculaire }}, {{ taxon.nomLatin }}</strong></span>
+                </div>
+        </div>
+
+
+
+        {% endfor %}
+        </div>
+        {# display navigation #}
+        <div class="navigation">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+
+    {% endif %}
+    </div>
+
+    </div>
+
+{% endblock %}
+
+
+
+{% block javascript %}
+    {{ parent() }}
+
+{% endblock %}
