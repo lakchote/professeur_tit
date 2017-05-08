@@ -171,14 +171,16 @@ class UserController extends Controller
     }
 
     /**
-     * @Route("/user/profil/{id}", name="profil_public")
+     * @Route("/user/profil/{id}", name="user_public_profile")
      */
     public function userPublicProfilAction(User $user)
     {
-        $this->addFlash(
-            'success',
-            'Bientot on aura un social network de naturalistes !!! Patience...'
-        );
-        return new RedirectResponse($this->get('router')->generate('home'));
+        $nbObservations = $this->get('app.profil_user')->getUserObservations($user);
+        $observationsValidees = $this->get('app.profil_user')->getUserValidatedObservations($user);
+        return $this->render('user/public_profile.html.twig', [
+            'user' => $user,
+            'nbObservations' => $nbObservations,
+            'obsValidees' => $observationsValidees
+        ]);
     }
 }

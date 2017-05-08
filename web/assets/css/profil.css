@@ -92,18 +92,18 @@
 .user-info__stats {
     height: 50px;
     width: 50px;
-    margin-right: 15px;
+    margin-right: 10px;
 }
 
 .user-info__stats, .user-info__stats--text {
     margin-top: 5px;
 }
 
-.user-info__stats--text {
+.user-info__stats--text, .user-info__statsPublic--text {
     line-height: 50px;
 }
 
-textarea {
+textarea, .user-info__description  {
     border: 0;
     width: 300px;
     height: 100px;
@@ -146,7 +146,16 @@ label, textarea, .user-info__mail--input {
 {
     #user-info__photo
     {
-        margin:0 auto;
+        width:100%;
+        height:auto;
+        margin-bottom:5px;
+    }
+
+    .user-info__description
+    {
+        height:auto;
+        margin-bottom: 10px;
+        overflow-y: hidden;
     }
 
     .checkbox label
@@ -164,5 +173,10 @@ label, textarea, .user-info__mail--input {
     {
         height:40px;
         width:145px;
+    }
+
+    .user-info__statsPublic--text
+    {
+        font-size: 0.9em;
     }
 }

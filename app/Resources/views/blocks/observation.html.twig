@@ -3,8 +3,8 @@
             <div class="row">
                 {% if flowType != 'mine' %}
                 <div class="col-xs-2 obs__photo-user obs__photo--flex">
-                    <img class="obs__photo-user img-responsive" src="{{ (obs.user.image != '') ? asset(obs.user.imgPath ~ obs.user.image.filename) : asset('assets/img/tit_logo.png') }}" alt="Photo de profil"
-                         id="user-info__photo--load">
+                    <a href="{{ path('user_public_profile', {'id' : obs.user.id}) }}" target="_blank"><img class="obs__photo-user img-responsive" src="{{ (obs.user.image != '') ? asset(obs.user.imgPath ~ obs.user.image.filename) : asset('assets/img/tit_logo.png') }}" alt="Photo de profil"
+                         id="user-info__photo--load"></a>
                 </div>
                 <div class="col-xs-9 col-md-5 obs__details">
                         <span><strong>{{ obs.user.username }}</strong> {{ "a effectué une observation"|trans }}</span>

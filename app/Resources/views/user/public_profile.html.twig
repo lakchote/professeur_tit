@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheet %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('assets/css/profil.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12">
+            <h1>Profil de {{ user.username }}</h1>
+        </div>
+        <div class="col-xs-12 col-sm-12 user-info">
+            <h2>{{ user.username }}</h2>
+            <div id="user-info__photo" class="pull-left">
+                {% if app.user.image != '' %}
+                    <img src="{{ asset(app.user.imgpath ~ app.user.image.filename) }}"
+                         alt="Photo de profil" class="img-responsive">
+                {% endif %}
+            </div>
+            <img src="{{ asset('assets/img/calendar.png') }}" class="pull-left" id="user-info__calendar"
+                 alt="Date d'inscription">
+            <p id="user-info__dateinscription">Inscrit depuis
+                le {{ user.dateInscription|localizeddate('none', 'none', null, null, 'd MMMM YYYY') }}</p>
+            <p class="text--bold">Description</p>
+            <div class="user-info__description">{{ user.description }}</div>
+            {% if user.isEmailVisible %}
+                <p class="text--bold">Où me joindre</p>
+                <img src="{{ asset('assets/img/mail.png') }}" class="pull-left" id="user-info__mail"
+                     alt="Votre email"> <div class="user-info__mail--input">&nbsp; {{ user.email }}</div>
+            {% endif %}
+            <div class="clearfix"></div>
+            <div class="margin-top"></div>
+            <img src="{{ asset('assets/img/observation.png') }}" class="user-info__stats pull-left"
+                 alt="Nombre d'observations">
+            <p class="user-info__stats--text">a effectué<strong>
+                    {{ nbObservations }} {{ nbObservations > 1 ? 'observations' : 'observation' }}</strong>
+            </p>
+            <img src="{{ asset('assets/img/observation_valide.png') }}" class="user-info__stats pull-left"
+                 alt="Nombre d'observations validées">
+            <p class="user-info__stats--text">
+                <strong>{{ obsValidees }}</strong>&nbsp;{{ obsValidees < 2 ? 'observation a été validée' : 'de ses observations ont été validées' }}
+            </p>
+            {% if is_granted('ROLE_NATURALISTE') %}
+                <img src="{{ asset('assets/img/naturaliste.png') }}" class="user-info__stats pull-left"
+                     alt="Statut naturaliste">
+                <p class="user-info__statsPublic--text">{{ user.username }} est certifié(e) naturaliste par NAO</p>
+            {% elseif is_granted('ROLE_PENDING_NATURALISTE') %}
+                <p class="user-info__statsPublic--text">{{ user.username }} est un naturaliste en attente de validation.</p>
+            {% else %}
+                <p class="user-info__statsPublic--text">{{ user.username }} est observateur.</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
