@@ -25,7 +25,6 @@ function initMap() {
             map: map,
             title: titre,
         });
-        console.log(marker);
         var image = data[i]['image'];
         if (image != "") {
             image = "/professeur_tit/web/uploads/observations/" + image;

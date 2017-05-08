@@ -26,12 +26,15 @@
                         </div>
                         <div class="col-xs-12 vcenter show__img">
                             <div class="col-xs-4 show__img">
-                                {% if taxon.observations|length %}
-                                    {% set obs = taxon.observations|first %}
-                                    <img class="search__details--icon" src="{{ asset(obs.imgPath ~ obs.image.filename) }}" alt="L'espece">
+                                {% set run = 0 %}
+                                {% for obs in taxon.observations if obs.status =="validated" and run < 1 %}
+                                    {% set run = 1 %}
+                                    <img class="search__details--icon" src="{{ asset(obs.imgPath ~ obs.image.filename) }}" alt="Observation"
+                                         id="obs__photo">
                                 {% else %}
-                                    <img class="search__details--icon" src="{{ asset('assets/img/tit_logo.png') }}" alt="Observation">
-                                {% endif %}
+                                    <img class="search__details--icon" src="{{ asset('assets/img/tit_logo.png') }}" alt="Observation"
+                                         id="obs__photo">
+                                {% endfor %}
                             </div>
                             <div class="col-xs-8">
                                 <ul>
@@ -69,7 +72,7 @@
                                     {% if taxon.urlINPN %}
                                         <li><strong>{{ "Fiche INPN"|trans }}</strong> : <a href="{{ url_INPN ~ taxon.cdNom }}" target="_blank"> {{ "Cliquez ici"|trans }}</a></li>
                                     {% endif %}
-                                    <li><strong>{{ "Nombre d'observations"|trans }}</strong> : {{ taxon.observations|length }}  </li>
+                                    <li><strong>{{ "Nombre d'observations"|trans }}</strong> : {{ observations|length }}  </li>
                                 </ul>
                             </div>
                         </div>
@@ -93,7 +96,6 @@
     {{ parent() }}
     <script>
         var data = {{ observations|json_encode|raw }};
-        console.log(data);
         var $lang = "{{ app.request.getLocale() }}";
         var pathUser = "{{ path('profil_public', {'id': 'user_id'}) }}";
     </script>
