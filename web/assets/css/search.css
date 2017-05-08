@@ -1,0 +1,59 @@
+[class*="col-"] {
+    /* background-color: lightgreen;*/
+   /*border: 1px solid black;*/
+}
+
+.search__line {
+    background: #ffffff;
+    height: 60px;
+   margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.search__presentation {
+    background: #ffffff;
+    margin-left: 15px;
+}
+
+.search__details--icon {
+    max-width: 100%;
+    max-height: 100%;
+    padding-right: 30px;
+}
+
+.vcenter {
+    display: flex;
+    align-items: center;
+}
+#map {
+    height: 425px;
+    margin-top: 15px;
+}
+
+/** SM Devices **/
+@media screen and (max-width:768px) {
+
+    .search__line{
+        font-size: 0.9em;
+    }
+    .back_results{
+        margin: 10px;
+    }
+
+    .show__img {
+        padding: 0;
+    }
+
+    .search__presentation {
+        background: #ffffff;
+        margin-left: 0px;
+        font-size: 0.7em;
+    }
+
+    .search__details--icon {
+     /*   width: 100%;*/
+        max-height: 100%;
+        padding-right: 0px;
+    }
+}

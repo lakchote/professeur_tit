@@ -37,7 +37,7 @@
 
 <nav class="navbar navbar-default header">
     <div class="container">
-          <form action="" class="" id="header_form--hidden">
+          <form action="{{ path('search') }}" class="" id="header_form--hidden">
               <div class="form-group">
                   <input type="text" name="srch-term" class="form-control border__radius--none"
                          placeholder="Rechercher une espèce...">
@@ -69,7 +69,7 @@
                   <li class="header__rubriques--name"><a href="{{ path('debuter_ornithologie') }}">Débuter l'ornithologie</a></li>
                   <li class="header__rubriques--name"><a href="#">Observations</a></li>
                   <li class="header__rubriques--name"><a href="{{ path('carte') }}">Carte interactive</a></li>
-                 <form class="navbar-form hidden-xs" action="" id="header__form">
+                 <form class="navbar-form hidden-xs" action="{{ path('search') }}" id="header__form">
                       <div class="form-group">
                           <div id="header__form--container">
                               <input type="text" name="srch-term" id="header__form--input" class="form-control"
@@ -161,7 +161,7 @@
                     </div>
                     <div class="col-sm-3">
                         <ul>
-                            <li><a href="#">Carte interactive</a></li>
+                            <li><a href="{{ path('carte') }}">Carte interactive</a></li>
                         </ul>
                     </div>
                     <div class="col-sm-3">
@@ -269,7 +269,7 @@
         });
 
 
-    $('#header__form--input').autocomplete({
+{#   $('#header__form--input').autocomplete({
         source : '{{ path('getListing') }}',
         minLength: 3,
         create: function () {
@@ -281,7 +281,7 @@
             $("#header__form--input").val(ui.item.value + ' / ' + ui.item.label);
             return false;
         },
-    });
+    });#}
     }());
 </script>
 {% endblock %}

@@ -1,0 +1,102 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheet %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('assets/css/obs.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/search.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/carte.css') }}">
+{% endblock %}
+
+
+{% block content %}
+    <div class="col-xs-12 col-sm-offset-2 col-sm-10">
+        <h1>{{ "Recherche"|trans }}</h1>
+    </div>
+
+    <div class="row">
+            <div class="col-xs-11 col-sm-2 background--white back_results">
+                <p><strong><a href="#" id="" onClick="history.go(-1);return true;">
+                    {{ "Retour aux résultats"|trans }}
+                </a></strong></p>
+            </div>
+            <div class="col-xs-12 col-sm-10">
+                    <div class="row search__presentation ">
+                        <div class="col-xs-12">
+                            <p><strong>{{ "Fiche Espèce"|trans }}</strong></p>
+                        </div>
+                        <div class="col-xs-12 vcenter show__img">
+                            <div class="col-xs-4 show__img">
+                                {% if taxon.observations|length %}
+                                    {% set obs = taxon.observations|first %}
+                                    <img class="search__details--icon" src="{{ asset(obs.imgPath ~ obs.image.filename) }}" alt="L'espece">
+                                {% else %}
+                                    <img class="search__details--icon" src="{{ asset('assets/img/tit_logo.png') }}" alt="Observation">
+                                {% endif %}
+                            </div>
+                            <div class="col-xs-8">
+                                <ul>
+                                    {% if taxon.ordre %}
+                                        <li><strong>{{ "Ordre"|trans }}</strong> : {{ taxon.ordre.name }}</li>
+                                    {% endif %}
+                                    {% if taxon.famille %}
+                                        <li><strong>{{ "Famille"|trans }}</strong> : {{ taxon.famille.name }}</li>
+                                    {% endif %}
+                                    {% if taxon.rang %}
+                                        <li><strong>{{ "Rang"|trans }}</strong> : {{ taxon.rang.name }}</li>
+                                    {% endif %}
+                                    {% if taxon.habitat %}
+                                        <li><strong>{{ "Habitat"|trans }}</strong> : {{ taxon.habitat.name }}</li>
+                                    {% endif %}
+                                    {% if taxon.nomVernaculaire %}
+                                        <li><strong>{{ "Nom Vernaculaire"|trans }} : </strong>{{ taxon.nomVernaculaire }}</li>
+                                    {% endif %}
+                                    {% if taxon.nomLatin %}
+                                        <li><strong>{{ "Nom Latin"|trans }}</strong> : {{ taxon.nomLatin }}</li>
+                                    {% endif %}
+                                    {% if taxon.annee %}
+                                        <li><strong>{{ "Année"|trans }}</strong> : {{ taxon.annee }}</li>
+                                    {% endif %}
+                                    {% if taxon.auteurs|length %}
+                                    <li><strong>{{ "Auteurs"|trans }}</strong> :</li>
+                                    <ul>
+                                        {% for auteur in taxon.auteurs %}
+                                        <li>
+                                            {{ auteur.name }}
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                    {% endif %}
+                                    {% if taxon.urlINPN %}
+                                        <li><strong>{{ "Fiche INPN"|trans }}</strong> : <a href="{{ url_INPN ~ taxon.cdNom }}" target="_blank"> {{ "Cliquez ici"|trans }}</a></li>
+                                    {% endif %}
+                                    <li><strong>{{ "Nombre d'observations"|trans }}</strong> : {{ taxon.observations|length }}  </li>
+                                </ul>
+                            </div>
+                        </div>
+                     </div>
+                </div>
+            </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-offset-2 col-sm-10">
+            <div id="map">
+
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+
+
+{% block javascript %}
+    {{ parent() }}
+    <script>
+        var data = {{ observations|json_encode|raw }};
+        console.log(data);
+        var $lang = "{{ app.request.getLocale() }}";
+        var pathUser = "{{ path('profil_public', {'id': 'user_id'}) }}";
+    </script>
+    <script src="{{ asset('assets/js/show.js') }}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACO55kGEkd8YeNffAaErhE02wa_UigduQ&libraries=places&callback=initMap" async defer></script>
+{% endblock %}
