@@ -28,6 +28,14 @@ li
      width: 150px;
      height: auto;
 }
+/** SM Devices **/
+@media screen and (max-width:768px)
+{
+     .carte__popUp--photo {
+          width: 75px;
+          height: auto;
+     }
+}
 
 .input-group-addon {
      background-color: white;

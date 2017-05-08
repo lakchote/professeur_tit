@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 
+use AppBundle\Entity\Taxon;
 use AppBundle\Form\ObsFormType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Response;
@@ -33,4 +34,19 @@ class TaxonController extends Controller
             'pagination' => $pagination
         ]);
     }
+
+    /**
+     * @Route("/taxon/show/{taxon}", name="show")
+     */
+    public function showAction(Request $request, Taxon $taxon)
+    {
+        $lesObservations = $this->get('app.obs_list')->createList("", $taxon);
+        /*$lesObservations = json_encode($lesObservations);*/
+        dump($lesObservations);
+        return $this->render('default/show.html.twig', [
+            'taxon' => $taxon,
+            'observations' => $lesObservations,
+        ]);
+    }
+
 }

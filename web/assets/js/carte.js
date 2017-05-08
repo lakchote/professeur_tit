@@ -158,33 +158,33 @@ function getMarkers() {
                         title: titre,
                     });
                     var image = data[i]['image'];
-                    if (image != "") {
-                        image = "../uploads/observations/" + image;
-                    }
-                    else {
-                        image = "../assets/img/tit_logo.png";
-                    }
-
-                    var date = new Date(data[i]['date']['date']);
-                    var options = {weekday: "long", year: "numeric", month: "long", day: "numeric"};
-                    var date = date.toLocaleDateString($lang, options);
-
-                    var windowContent = '<div class="carte__popUp">' +
-                        '<div id="siteNotice">' +
-                        '<p class="carte__popUp--title">'+titre +'</p>' +
-                        '</div>'+
-                        '<div id="bodyContent">' +
-                        '<img src="'+ image +'" class="carte__popUp--photo img-rounded img-responsive">'+
-                        '<ul>'+
-                        '<li><b>Auteur : </b><a href="'+ pathUser.replace('user_id', data[i]['userId']) +'">' + data[i]['auteur'] +'</a></li>'+
-                        '<li><b>Date : </b>' + date +'</li>'+
-                        '</ul>'+
-                        '</div>'+
-                        '</div>';
-
-                    makeInfoWindowEvent(map, infowindow, windowContent, marker);
-                    markers.push(marker);
+                if (image != "") {
+                    image = "../uploads/observations/" + image;
                 }
+                else {
+                    image = "../assets/img/tit_logo.png";
+                }
+
+                var date = new Date(data[i]['date']['date']);
+                var options = {weekday: "long", year: "numeric", month: "long", day: "numeric"};
+                var date = date.toLocaleDateString($lang, options);
+
+                var windowContent = '<div class="carte__popUp">' +
+                    '<div id="siteNotice">' +
+                    '<p class="carte__popUp--title">'+titre +'</p>' +
+                    '</div>'+
+                    '<div id="bodyContent">' +
+                    '<img src="'+ image +'" class="carte__popUp--photo img-rounded img-responsive">'+
+                    '<ul>'+
+                    '<li><b>Auteur : </b><a href="'+ pathUser.replace('user_id', data[i]['userId']) +'">' + data[i]['auteur'] +'</a></li>'+
+                    '<li><b>Date : </b>' + date +'</li>'+
+                    '</ul>'+
+                    '</div>'+
+                    '</div>';
+
+                makeInfoWindowEvent(map, infowindow, windowContent, marker);
+                markers.push(marker);
+            }
 
             }
         }
