@@ -106,6 +106,11 @@ a, span, p, h1, h2, h3 {
     margin-top: 15px;
 }
 
+.obs__description--title
+{
+    margin-top: 6px;
+}
+
 .obs__map{
   /*     height: 284px;*/
        /*background-color: grey;*/
@@ -121,7 +126,7 @@ a, span, p, h1, h2, h3 {
 .map
 {
     height:170px;
-    margin-top: 6%;
+    margin-top: 4.6%;
 }
 
 /** SM Devices **/
