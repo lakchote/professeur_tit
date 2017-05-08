@@ -52,9 +52,8 @@
     </div>
         </div>
 
-        <div class="col-xs-12 col-md-6 obs__photo-bird obs__photo--flex">
-                <img class="img-responsive" src="{{ asset(obs.imgPath ~ obs.image.filename) }}" alt="Observation"
-                     id="obs__photo">
+        <div class="col-xs-12 col-md-6 obs__photo--flex">
+            <img class="img-responsive obs__photo-bird" src="{{ asset(obs.imgPath ~ obs.image.filename) }}" alt="Observation">
         </div>
         <div class="hidden-xs col-md-6 obs__description--title">
             <span><strong>{{ "Description"|trans }}</strong></span>

@@ -97,6 +97,7 @@ a, span, p, h1, h2, h3 {
 
 .obs__photo-bird{
     height: 349px;
+    margin-top: 10px;
 }
 
 .obs__description{
