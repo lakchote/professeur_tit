@@ -24,14 +24,15 @@
         {% for taxon in pagination %}
             <div class="col-xs-12 col-md-offset-2 col-md-10 padding-left--none">
                 <div class="search__line">
-                    {% if taxon.observations|length %}
-                        {% set obs = taxon.observations|first %}
+                    {% set run = 0 %}
+                    {% for obs in taxon.observations if obs.status =="validated" and run < 1 %}
+                        {% set run = 1 %}
                         <img class="search__details--icon" src="{{ asset(obs.imgPath ~ obs.image.filename) }}" alt="Observation"
                              id="obs__photo">
-                        {% else %}
-                            <img class="search__details--icon" src="{{ asset('assets/img/tit_logo.png') }}" alt="Observation"
-                                 id="obs__photo">
-                    {% endif %}
+                    {% else %}
+                        <img class="search__details--icon" src="{{ asset('assets/img/tit_logo.png') }}" alt="Observation"
+                             id="obs__photo">
+                    {% endfor %}
                     <span><strong>  <a href="{{ path('show', {'taxon' : taxon.id}) }}">{{ taxon.nomVernaculaire }}, {{ taxon.nomLatin }}</a></strong></span>
                 </div>
              </div>
