@@ -121,6 +121,7 @@ a, span, p, h1, h2, h3 {
 .map
 {
     height:170px;
+    margin-top: 6%;
 }
 
 /** SM Devices **/
@@ -184,6 +185,10 @@ a, span, p, h1, h2, h3 {
 
     .modal-load-desktop__image {
         height: auto;
+    }
+
+    .map {
+        margin-top: 0;
     }
 }
 
