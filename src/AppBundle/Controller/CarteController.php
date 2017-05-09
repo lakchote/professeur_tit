@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 class CarteController extends Controller
 {
     /**
-     * @Route("/carte", name="carte")
+     * @Route("/carte", name="carte", options={"sitemap" = true})
      */
     public function carteAction()
     {

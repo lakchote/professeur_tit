@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 class IndexController extends Controller
 {
     /**
-     * @Route("/", name="home")
+     * @Route("/", name="home", options={"sitemap" = true})
      */
     public function indexAction(Request $request)
     {
@@ -32,7 +32,7 @@ class IndexController extends Controller
     }
 
     /**
-     * @Route("/debuter_ornithologie", name="debuter_ornithologie")
+     * @Route("/debuter_ornithologie", name="debuter_ornithologie", options={"sitemap" = true})
      */
     public function debuterOrnithologieAction()
     {
@@ -40,7 +40,7 @@ class IndexController extends Controller
     }
 
     /**
-     * @Route("/mentions_legales", name="mentions_legales")
+     * @Route("/mentions_legales", name="mentions_legales", options={"sitemap" = true})
      */
     public function mentionsLegalesAction()
     {
@@ -48,7 +48,7 @@ class IndexController extends Controller
     }
 
     /**
-     * @Route("/contact", name="contact")
+     * @Route("/contact", name="contact", options={"sitemap" = true})
      */
     public function contactAction(Request $request)
     {
@@ -64,5 +64,13 @@ class IndexController extends Controller
         return $this->render('default/contact.html.twig', [
             'form' => $form->createView()
         ]);
+    }
+
+    /**
+     * @Route("/sitemap", name="sitemap")
+     */
+    public function siteMapAction()
+    {
+        return $this->redirect('/sitemap.default.xml');
     }
 }
