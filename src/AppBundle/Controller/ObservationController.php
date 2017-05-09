@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 class ObservationController extends Controller
 {
     /**
-     * @Security("is_granted('IS_AUTHENTICATED_REMEMBERED')")
+     * @Security("is_granted('ROLE_OBSERVATEUR')")
      * @Route("/observation_flow_user", name="observation_flow_user")
      */
     public function indexAction(Request $request)
@@ -37,17 +37,7 @@ class ObservationController extends Controller
         ]);
 
     }
-
-    /**
-     * @Route("/observation/delete/{observation}", name="obs_delete")
-     *
-     */
-    public function obsDeleteAction(Request $request, observation $observation)
-    {
-        $this->get('app.manage_obs')->deleteObs($observation);
-        return $this->render('default/obs.html.twig');
-      }
-
+    
     /**
      * @Route("/modal/observation", name="modal_add_observation")
      */

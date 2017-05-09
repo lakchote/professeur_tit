@@ -59,5 +59,29 @@
             });
         }());
     </script>
-
+   <script type="text/javascript">
+       function initMap()
+       {
+           var map = document.querySelectorAll('.map');
+           for (var i = 0; i < map.length; i++) {
+               var lng = parseFloat(map[i].getAttribute('data-lng'));
+               var lat = parseFloat(map[i].getAttribute('data-lat'));
+               var latLng = {lat: lat, lng: lng};
+               var loadMap = new google.maps.Map(map[i],
+                   {
+                       scrollwheel: false,
+                       scaleControl: true,
+                       mapTypeControl: false,
+                       center: latLng,
+                       zoom: 15
+                   });
+               var setMarker = new google.maps.Marker(
+                   {
+                       position: latLng,
+                       map: loadMap
+                   });
+           }
+       }
+   </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACO55kGEkd8YeNffAaErhE02wa_UigduQ&libraries=places&callback=initMap"></script>
 {% endblock %}

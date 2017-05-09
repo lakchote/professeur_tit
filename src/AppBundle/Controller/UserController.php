@@ -162,6 +162,7 @@ class UserController extends Controller
 
     /**
      * @Route("/user/delete/image", name="user_delete_image")
+     * @Security("is_granted('ROLE_OBSERVATEUR')")
      */
     public function userDeleteImgAction()
     {
