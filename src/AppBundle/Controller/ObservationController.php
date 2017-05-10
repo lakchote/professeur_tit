@@ -80,7 +80,7 @@ class ObservationController extends Controller
                 $em->flush();
                 $this->addFlash(
                     'success',
-                    'Your observation was added !'
+                    'Votre observation a été ajoutée !'
                 );
                    $response = new Response();
                    $response->setStatusCode(200);

@@ -13,8 +13,8 @@
         <div class="col-xs-12 col-sm-12 user-info">
             <h2>{{ user.username }}</h2>
             <div id="user-info__photo" class="pull-left">
-                {% if app.user.image != '' %}
-                    <img src="{{ asset(app.user.imgpath ~ app.user.image.filename) }}"
+                {% if user.image is not null %}
+                    <img src="{{ asset(user.imgpath ~ user.image.filename) }}"
                          alt="Photo de profil" class="img-responsive">
                 {% endif %}
             </div>
@@ -41,11 +41,11 @@
             <p class="user-info__stats--text">
                 <strong>{{ obsValidees }}</strong>&nbsp;{{ obsValidees < 2 ? 'observation a été validée' : 'de ses observations ont été validées' }}
             </p>
-            {% if is_granted('ROLE_NATURALISTE') %}
+            {% if 'ROLE_NATURALISTE' in user.roles %}
                 <img src="{{ asset('assets/img/naturaliste.png') }}" class="user-info__stats pull-left"
                      alt="Statut naturaliste">
                 <p class="user-info__statsPublic--text">{{ user.username }} est certifié(e) naturaliste par NAO</p>
-            {% elseif is_granted('ROLE_PENDING_NATURALISTE') %}
+            {% elseif 'ROLE_PENDING_NATURALISTE' in user.roles  %}
                 <p class="user-info__statsPublic--text">{{ user.username }} est un naturaliste en attente de validation.</p>
             {% else %}
                 <p class="user-info__statsPublic--text">{{ user.username }} est observateur.</p>

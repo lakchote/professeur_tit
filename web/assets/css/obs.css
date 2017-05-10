@@ -73,11 +73,7 @@ a, span, p, h1, h2, h3 {
 .obs__photo {
 }
 
-.obs__photo--flex {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+
 .obs__details{
     height: 30px;
 }
@@ -162,9 +158,8 @@ a, span, p, h1, h2, h3 {
 
     .obs__details--display{
         margin-top: 5px;
-        padding-left: 0px;
-        padding-right: 0px;
     }
+
     .obs__photo-bird, .obs__map{
         height: auto;
     }
