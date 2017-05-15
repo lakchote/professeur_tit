@@ -11,7 +11,7 @@
                                     id="user-info__photo--load"></a>
                     </div>
                     <div class="col-xs-9 col-md-5 obs__details">
-                        <span><strong>{{ obs.user.username }}</strong> {{ "a effectué une observation"|trans }}</span>
+                        <a href="{{ path('user_public_profile', {'id' : obs.user.id}) }}" target="_blank"><strong>{{ obs.user.username }}</strong></a> {{ "a effectué une observation"|trans }}</span>
                     </div>
                     <div class="hidden-xs col-md-5 obs__details">
                     </div>
