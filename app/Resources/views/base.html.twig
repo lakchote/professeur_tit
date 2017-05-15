@@ -19,8 +19,8 @@
 
                                       de l’urbanisation et de l’agriculture sur la biodiversité.">
     {% block stylesheet %}
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <link href="https://opensource.keycdn.com/fontawesome/4.7.0/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.min.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
         {% if not app.user %}
             <link rel="stylesheet" href="{{ asset('assets/css/modalLogin.css') }}">
