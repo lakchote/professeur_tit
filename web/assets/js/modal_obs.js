@@ -4,7 +4,7 @@
 
 let isLocalStorage = false;
 let fileReader = new FileReader();
-let imageObs = undefined;
+let imageObs, recupRechercheOffline = undefined;
 
 function initMap() {
     var input = (document.getElementById('pac-input'));
@@ -75,13 +75,17 @@ function dataURLtoFile(url, name, type) {
 
 (function checkLocalStorageData() {
     let imageStored = localStorage.getItem('obs_form[image]');
-    if (!imageStored) return false;
+    if (!imageStored)
+    {
+        localStorage.clear();
+        return false;
+    }
     dataURLtoFile(imageStored, 'file.jpeg', 'image/jpeg').then(function (file) {
         imageObs = file;
     });
     let ville = localStorage.getItem('localisation');
     localStorage.setItem('obs_form[ville]', ville);
-    let recherche = localStorage.getItem('recherche');
+    recupRechercheOffline = localStorage.getItem('recherche');
     let description = localStorage.getItem('obs_form[description]');
     if (ville && !(localStorage.getItem('obs_form[longitude]')) && navigator.onLine) {
         fetch('https://maps.googleapis.com/maps/api/geocode/json?address=' + ville + '&key=AIzaSyACO55kGEkd8YeNffAaErhE02wa_UigduQ')
@@ -92,21 +96,21 @@ function dataURLtoFile(url, name, type) {
             });
     }
     $('#pac-input').val(ville);
-    $('#recherche').val(recherche);
+    $('#recherche').val(recupRechercheOffline);
     $('#obs_form_description').val(description);
-    isLocalStorage = true;
     fetch(imageStored)
         .then(response => response.blob())
         .then(blob => {
             $('#preview').removeClass('hidden');
             $('#theFile').attr('src', URL.createObjectURL(blob));
         });
+    isLocalStorage = true;
 })();
 
 function checkOnlineStatus(data) {
     if (!navigator.onLine) {
         for (let pair of data.entries()) {
-            if (pair[1] instanceof File) {
+            if (pair[1] instanceof File && pair[1].size > 0) {
                 let key = pair[0];
                 fileReader.readAsDataURL(pair[1]);
                 fileReader.onload = function () {
@@ -127,7 +131,6 @@ function getOfflineFormData() {
         (localStorage.key([i]) === 'obs_form[image]') ? formData.append(localStorage.key([i]), imageObs) : formData.append(localStorage.key([i]), localStorage.getItem(localStorage.key([i])));
     }
     localStorage.clear();
-    isLocalStorage = false;
     return formData;
 }
 
@@ -170,7 +173,7 @@ $('#removeImage').on('click', function (e) {
 $('#btn-publish').click(function (e) {
     e.preventDefault();
     var $form = $('form[name="obs_form"]');
-    var $recup = $('form').serializeArray();
+    var recupRechercheOnline = $('#recherche').val();
     var $formdata = new FormData($form[0]);
     if (!checkOnlineStatus($formdata)) return false;
     var $data = (isLocalStorage === false) ? $formdata : getOfflineFormData();
@@ -184,7 +187,7 @@ $('#btn-publish').click(function (e) {
         statusCode: {
             201: function (msg) {
                 $('#modal-load-desktop').html(msg);
-                (isLocalStorage === false) ? $('#recherche').val($recup[0].value) : $('#recherche').val(localStorage.getItem('recherche'));
+                (isLocalStorage === false) ? $('#recherche').val(recupRechercheOnline) : $('#recherche').val(recupRechercheOffline);
                 $('#pac-input').val($('#obs_form_ville').val());
             },
             200: function () {
