@@ -44,11 +44,11 @@
             {% if 'ROLE_NATURALISTE' in user.roles %}
                 <img src="{{ asset('assets/img/naturaliste.png') }}" class="user-info__stats pull-left"
                      alt="Statut naturaliste">
-                <p class="user-info__statsPublic--text">{{ user.username }} est certifié(e) naturaliste par NAO</p>
+                <p class="user-info__stats--text">{{ user.username }} est certifié(e) naturaliste par NAO</p>
             {% elseif 'ROLE_PENDING_NATURALISTE' in user.roles  %}
-                <p class="user-info__statsPublic--text">{{ user.username }} est un naturaliste en attente de validation.</p>
+                <p class="user-info__stats--text">{{ user.username }} est un naturaliste en attente de validation.</p>
             {% else %}
-                <p class="user-info__statsPublic--text">{{ user.username }} est observateur.</p>
+                <p class="user-info__stats--text">{{ user.username }} est observateur.</p>
             {% endif %}
         </div>
     </div>

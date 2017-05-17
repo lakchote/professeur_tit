@@ -175,8 +175,21 @@ label, textarea, .user-info__mail--input {
         width:145px;
     }
 
-    .user-info__statsPublic--text
+    .user-info__stats--text
     {
         font-size: 0.9em;
+        line-height: normal;
+        margin-bottom: 50px;
+        padding-top:20px;
+    }
+
+    .user-info__description
+    {
+        margin-bottom: 0;
+    }
+
+    .user-info__stats
+    {
+        margin-right: 5px;
     }
 }
