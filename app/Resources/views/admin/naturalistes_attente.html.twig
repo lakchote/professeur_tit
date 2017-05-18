@@ -8,7 +8,8 @@
 
 {% block content %}
     <div class="row">
-        <div class="col-xs-12 col-sm-12">
+        {% include 'blocks/admin_menu.html.twig' %}
+        <div class="col-xs-12 col-sm-10">
             <div class="table-responsive">
                 <table id="naturalistesAttente__content" class="table table-condensed">
                     <thead>
