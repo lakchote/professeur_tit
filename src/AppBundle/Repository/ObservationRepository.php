@@ -43,11 +43,13 @@ class ObservationRepository extends \Doctrine\ORM\EntityRepository
 
     public function populateMyMapNoSpecie($date)
     {
+        $dateBuffer = clone($date);
         return $this->createQueryBuilder('obs')
             ->select('obs')
-            ->andWhere('obs.date = :date')
+            ->andWhere('obs.date BETWEEN :date and :dateP1D')
             ->andWhere('obs.status = :validated')
-            ->setParameter('date', $date)
+            ->setParameter('date', $dateBuffer)
+            ->setParameter('dateP1D', $date->add(new \DateInterval('P1D')))
             ->setParameter('validated', 'validated')
             ->getQuery();
     }
@@ -65,12 +67,14 @@ class ObservationRepository extends \Doctrine\ORM\EntityRepository
 
     public function populateMyMapBothData($date, $taxon)
     {
+        $dateBuffer = clone($date);
         return $this->createQueryBuilder('obs')
             ->select('obs')
-            ->andWhere('obs.date = :date')
+            ->andWhere('obs.date BETWEEN :date and :dateP1D')
             ->andWhere('obs.taxon = :taxon')
             ->andWhere('obs.status = :validated')
-            ->setParameter('date', $date)
+            ->setParameter('date', $dateBuffer)
+            ->setParameter('dateP1D', $date->add(new \DateInterval('P1D')))
             ->setParameter('taxon', $taxon)
             ->setParameter('validated', 'validated')
             ->getQuery();

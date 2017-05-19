@@ -11,6 +11,7 @@ namespace AppBundle\Security;
 use AppBundle\Form\ModalFormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
+use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
@@ -57,6 +58,10 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
         $password = $credentials['_password'];
         if($credentials['_password'] == null) return false;
         else if ($this->container->get('security.password_encoder')->isPasswordValid($user, $password)) {
+            if(in_array('ROLE_FROZEN', $user->getRoles()))
+            {
+                throw new CustomUserMessageAuthenticationException('Vous avez été banni pour la raison suivante : ' . $user->getRaisonBan());
+            }
             return true;
         }
         return false;
@@ -94,5 +99,4 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
     {
         return $this->container->get('router')->generate('home');
     }
-
 }

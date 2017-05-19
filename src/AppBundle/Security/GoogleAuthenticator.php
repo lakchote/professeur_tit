@@ -10,6 +10,7 @@ namespace AppBundle\Security;
 
 
 use AppBundle\Entity\User;
+use AppBundle\Form\ModalFormType;
 use League\OAuth2\Client\Provider\GoogleUser;
 use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -17,7 +18,6 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
-use Symfony\Component\Security\Core\Exception\BadCredentialsException;
 use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
@@ -35,6 +35,9 @@ class GoogleAuthenticator extends AbstractGuardAuthenticator
 
     public function getCredentials(Request $request)
     {
+        $form = $this->container->get('form.factory')->create(ModalFormType::class);
+        $form->handleRequest($request);
+        $this->media = $form['media']->getData();
         if($request->getPathInfo() !== '/connect/google-check') {
             return null;
         }
@@ -77,15 +80,16 @@ class GoogleAuthenticator extends AbstractGuardAuthenticator
 
     public function checkCredentials($credentials, UserInterface $user)
     {
-        $plainPassword = $user->getPlainPassword();
-        if(!$this->container->get('security.password_encoder')->isPasswordValid($user, $plainPassword)) {
-            throw new BadCredentialsException();
+        if(in_array('ROLE_FROZEN', $user->getRoles()))
+        {
+            throw new CustomUserMessageAuthenticationException('Vous avez été banni pour la raison suivante : ' . $user->getRaisonBan());
         }
         return true;
     }
 
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception)
     {
+        $this->container->get('session')->getFlashBag()->add('error', $exception->getMessage());
         return new RedirectResponse($this->container->get('router')->generate('home'));
     }
 

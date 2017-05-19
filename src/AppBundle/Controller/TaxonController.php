@@ -19,7 +19,7 @@ class TaxonController extends Controller
      */
     public function searchAction(Request $request)
     {
-       $listeTaxons = $this->get('app.createliste')->createSearchResults($_GET['srch-term']);
+       $listeTaxons = $this->get('app.createliste')->createSearchResults($request->get('srch-term'));
 
        $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
@@ -29,7 +29,7 @@ class TaxonController extends Controller
         );
 
         return $this->render('default/search.html.twig', [
-            'terme' => $_GET['srch-term'],
+            'terme' => $request->get('srch-term'),
             'listeTaxons' => $listeTaxons,
             'pagination' => $pagination
         ]);
