@@ -3,11 +3,12 @@
 namespace AppBundle\DataFixtures\ORM;
 
 
+use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Encoder\CsvEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Doctrine\Common\Persistence\ObjectManager;
-use Doctrine\Common\DataFixtures\FixtureInterface;
 
 
 use AppBundle\Entity\Ordre;
@@ -18,7 +19,7 @@ use AppBundle\Entity\Auteur;
 use AppBundle\Entity\Taxon;
 
 
-class LoadTaxref implements FixtureInterface
+class LoadTaxref extends AbstractFixture implements OrderedFixtureInterface
 {
 
     public function load(ObjectManager $manager)
@@ -185,7 +186,14 @@ class LoadTaxref implements FixtureInterface
 
             $manager->persist($taxon);
             $manager->flush();
+            $this->setReference('unTaxon', $taxon);
         }
 
    }
+
+    public function getOrder()
+    {
+        return 1;
+    }
+
 }
