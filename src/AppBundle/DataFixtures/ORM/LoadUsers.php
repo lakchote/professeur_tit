@@ -23,15 +23,19 @@ class LoadUsers extends AbstractFixture implements OrderedFixtureInterface
         $naturaliste->setPrenom('Naturaliste');
         $naturaliste->setDateInscription(new \DateTime());
 
-        $obsNaturalisteValidated = new Observation();
-        $obsNaturalisteValidated->setLongitude('0.34037500');
-        $obsNaturalisteValidated->setLatitude('46.58022400');
-        $obsNaturalisteValidated->setDate(new \DateTime());
-        $obsNaturalisteValidated->setStatus('validated');
-        $obsNaturalisteValidated->setImage('poussin.jpg');
-        $obsNaturalisteValidated->setDescription('Superbe poussin');
-        $obsNaturalisteValidated->setTaxon($taxon);
-        $obsNaturalisteValidated->setVille('Poitiers');
+        for($i = 0; $i < 6; ++$i)
+        {
+            $obsNaturalisteValidated = new Observation();
+            $obsNaturalisteValidated->setLongitude('0.34037500');
+            $obsNaturalisteValidated->setLatitude('46.58022400');
+            $obsNaturalisteValidated->setDate(new \DateTime());
+            $obsNaturalisteValidated->setStatus('validated');
+            $obsNaturalisteValidated->setImage('poussin.jpg');
+            $obsNaturalisteValidated->setDescription('Superbe poussin');
+            $obsNaturalisteValidated->setTaxon($taxon);
+            $obsNaturalisteValidated->setVille('Poitiers');
+            $naturaliste->addObservations($obsNaturalisteValidated);
+        }
 
         $obsNaturalisteRefused = new Observation();
         $obsNaturalisteRefused->setLongitude('0.34037500');
@@ -53,7 +57,6 @@ class LoadUsers extends AbstractFixture implements OrderedFixtureInterface
         $obsNaturalisteStarted->setTaxon($taxon);
         $obsNaturalisteStarted->setVille('Poitiers');
 
-        $naturaliste->addObservations($obsNaturalisteValidated);
         $naturaliste->addObservations($obsNaturalisteRefused);
         $naturaliste->addObservations($obsNaturalisteStarted);
 
@@ -63,6 +66,7 @@ class LoadUsers extends AbstractFixture implements OrderedFixtureInterface
         $frozen->setPlainPassword('f1x7ur3');
         $frozen->setNom('Tit');
         $frozen->setPrenom('Frozen');
+        $frozen->setRaisonBan('Comportement ne respectant pas la charte de bonne conduite.');
         $frozen->setDateInscription(new \DateTime());
 
         $naturalisteEnAttente = new User();
