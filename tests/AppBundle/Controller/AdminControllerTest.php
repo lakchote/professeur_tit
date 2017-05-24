@@ -18,7 +18,7 @@ class AdminControllerTest extends WebTestCase
     public function testAdminHomeWhenNotLoggedIn()
     {
         $this->client->request('GET', '/admin/home');
-        $this->assertContains('Redirecting to <a href="/">/</a>.', $this->client->getResponse()->getContent());
+        $this->assertTrue($this->client->getResponse()->isRedirect());
     }
 
     public function testAdminHomeWhenLoggedIn()

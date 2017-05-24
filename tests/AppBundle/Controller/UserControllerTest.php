@@ -20,7 +20,7 @@ class UserControllerTest extends WebTestCase
     public function testManageProfilePageWhenNotLoggedIn()
     {
         $this->client->request('GET', '/manage/profil');
-        $this->assertContains('Redirecting to <a href="/">/</a>.', $this->client->getResponse()->getContent());
+        $this->assertTrue($this->client->getResponse()->isRedirect());
     }
 
     public function testManageProfilePageDataWhenLoggedIn()
