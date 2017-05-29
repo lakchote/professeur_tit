@@ -29,7 +29,7 @@ class LoadUsers extends AbstractFixture implements OrderedFixtureInterface
             $obsNaturalisteValidated->setLongitude('0.34037500');
             $obsNaturalisteValidated->setLatitude('46.58022400');
             $obsNaturalisteValidated->setDate(new \DateTime());
-            $obsNaturalisteValidated->setStatus('validated');
+            $obsNaturalisteValidated->setStatus(Observation::OBS_VALIDATED);
             $obsNaturalisteValidated->setImage('poussin.jpg');
             $obsNaturalisteValidated->setDescription('Superbe poussin');
             $obsNaturalisteValidated->setTaxon($taxon);
@@ -41,7 +41,7 @@ class LoadUsers extends AbstractFixture implements OrderedFixtureInterface
         $obsNaturalisteRefused->setLongitude('0.34037500');
         $obsNaturalisteRefused->setLatitude('46.58022400');
         $obsNaturalisteRefused->setDate(new \DateTime());
-        $obsNaturalisteRefused->setStatus('refused');
+        $obsNaturalisteRefused->setStatus(Observation::OBS_REFUSED);
         $obsNaturalisteRefused->setImage('poussin.jpg');
         $obsNaturalisteRefused->setDescription('Observation refusée');
         $obsNaturalisteRefused->setTaxon($taxon);
@@ -51,7 +51,7 @@ class LoadUsers extends AbstractFixture implements OrderedFixtureInterface
         $obsNaturalisteStarted->setLongitude('0.34037500');
         $obsNaturalisteStarted->setLatitude('46.58022400');
         $obsNaturalisteStarted->setDate(new \DateTime());
-        $obsNaturalisteStarted->setStatus('started');
+        $obsNaturalisteStarted->setStatus(Observation::OBS_STARTED);
         $obsNaturalisteStarted->setImage('poussin.jpg');
         $obsNaturalisteStarted->setDescription('Observation commencée');
         $obsNaturalisteStarted->setTaxon($taxon);
@@ -66,6 +66,7 @@ class LoadUsers extends AbstractFixture implements OrderedFixtureInterface
         $frozen->setPlainPassword('f1x7ur3');
         $frozen->setNom('Tit');
         $frozen->setPrenom('Frozen');
+        $frozen->setDateBan(new \DateTime('29-05-2017'));
         $frozen->setRaisonBan('Comportement ne respectant pas la charte de bonne conduite.');
         $frozen->setDateInscription(new \DateTime());
 
