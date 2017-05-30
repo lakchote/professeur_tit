@@ -11,7 +11,7 @@
                                     id="user-info__photo--load"></a>
                     </div>
                     <div class="col-xs-9 col-md-5 obs__details">
-                        <a href="{{ path('user_public_profile', {'id' : obs.user.id}) }}" target="_blank"><strong>{{ obs.user.username }}</strong></a> {{ "a effectué une observation"|trans }}</span>
+                        <a href="{{ path('user_public_profile', {'id' : obs.user.id}) }}" target="_blank"><strong>{{ obs.user.username }}</strong></a> {{ "a effectué une observation"|trans }}
                     </div>
                     <div class="hidden-xs col-md-5 obs__details">
                     </div>
@@ -29,15 +29,6 @@
                         {% elseif obs.status == "refused" %}
                             <span class="obs__details--status color__green">{{ "Refusée"|trans }}</span>
                         {% endif %}
-                        {# {% if is_granted('ROLE_NATURALISTE') %}
-                              <img src="{{ asset('assets/img/naturaliste.png') }}" alt="{{ "Vous êtes naturaliste"|trans }}" class="obs__details--icon"  >
-                              <img src="{{ asset('assets/img/trash.png') }}" alt="{{ "Supprimer l'observation"|trans }}" class="obs__details--icon">
-                          {% elseif is_granted('ROLE_PENDING_NATURALISTE') %}
-                              <p class="user-info__stats--text">Vous êtes un naturaliste en attente de validation.</p>
-                          {% else %}
-                              <p class="user-info__stats--text">Vous êtes observateur.</p>
-                          {% endif %}
-                          #}
                     </div>
                 {% endif %}
 
@@ -72,7 +63,6 @@
 
         <div id="map{{ obs.id }}" class="col-xs-12 col-md-6 obs__map">
             <div class="map" data-lng="{{ obs.longitude }}" data-lat="{{ obs.latitude }}"></div>
-            {#<img src="https://maps.googleapis.com/maps/api/staticmap?center={{ obs.latitude|number_format(3, '.')  }},{{ obs.longitude|number_format(3, '.')  }}&zoom=15&size=550x285&maptype=roadmap&markers=color:red%7C{{ obs.latitude|number_format(3, '.')  }},{{ obs.longitude|number_format(3, '.')  }}&key=AIzaSyACO55kGEkd8YeNffAaErhE02wa_UigduQ" class="obs__map--img">#}
         </div>
     </div>
 </div>

@@ -13,3 +13,12 @@ ordre:
 rang:
   error:
     minName: "Le nom du rang doit comporter 2 caractères minimum"
+observation:
+    error:
+        mindate: "L'observation doit dater de moins de 2 ans."
+        maxdate: "La date de l'observation ne peut être supérieure à (maintenant + 1h)."
+        geoBlank: "Aucune géolocalisation disponible pour la ville mentionnée."
+        villeNull: "Vous devez spécifier la ville."
+        statusNull: "Le statut de l'observation doit être indiqué."
+        imageNull: "Vous devez spécifier une image pour l'observation."
+        taxonNull: "Vous devez rentrer un nom d'espèce."
