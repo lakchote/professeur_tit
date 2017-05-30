@@ -16,6 +16,8 @@
                 {% if user.image is not null %}
                     <img src="{{ asset(user.imgpath ~ user.image.filename) }}"
                          alt="Photo de profil" class="img-responsive">
+                {% else %}
+                    <img src="{{ asset('assets/img/tit_logo.png') }}" alt="Photo de profil par défaut" class="img-responsive">
                 {% endif %}
             </div>
             <img src="{{ asset('assets/img/calendar.png') }}" class="pull-left" id="user-info__calendar"

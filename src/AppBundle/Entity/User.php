@@ -77,7 +77,7 @@ class User implements UserInterface, \Serializable
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private $description = 'Vous n\'avez pas encore de description.';
+    private $description = 'Pas de description renseignée pour l\'instant.';
 
 
     /**
