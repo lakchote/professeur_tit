@@ -117,6 +117,8 @@
     var pathListing = "{{ path('getListing') }}";
     var pathRedirect = "{{ path('observation_flow_user') }}";
 </script>
+<script type="text/javascript" src="{{ asset('assets/vendor/promise-polyfill/promise.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('assets/vendor/fetch/fetch.js') }}"></script>
 <script src="{{ asset('assets/js/modal_obs.js') }}"></script>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACO55kGEkd8YeNffAaErhE02wa_UigduQ&libraries=places&callback=initMap" async defer></script>
