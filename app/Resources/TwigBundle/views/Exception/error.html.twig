@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12 col-sm-10">
+            <h1>Erreur</h1>
+            <div class="background--white">
+                <p><span class="fa fa-exclamation" aria-hidden="true"></span> Une erreur s'est produite.</p>
+            </div>
+            <div class="margin-top">
+                <a href="{{ path('home') }}">&rarr; Retourner à l'accueil</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
