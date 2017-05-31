@@ -133,6 +133,7 @@ class UserController extends Controller
         if ($form->isValid()) {
             $this->getDoctrine()->getManager()->persist($user);
             $this->getDoctrine()->getManager()->flush();
+            $this->addFlash('success', 'Vos modifications ont été enregistrées');
         }
         $nbObservations = $this->get('app.profil_user')->getUserObservations($user);
         $observationsValidees = $this->get('app.profil_user')->getUserValidatedObservations($user);

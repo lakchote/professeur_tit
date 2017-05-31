@@ -172,7 +172,8 @@ label, textarea, .user-info__mail--input {
     .button
     {
         height:40px;
-        width:145px;
+        width:40%;
+        margin-right: 10px;
     }
 
     .user-info__stats--text
