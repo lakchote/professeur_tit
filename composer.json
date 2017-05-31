@@ -35,7 +35,8 @@
         "league/oauth2-google": "^2.0",
         "knplabs/knp-paginator-bundle": "^2.5",
         "twig/extensions": "^1.4",
-        "presta/sitemap-bundle": "^1.5"
+        "presta/sitemap-bundle": "^1.5",
+        "stof/doctrine-extensions-bundle": "^1.2"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

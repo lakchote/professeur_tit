@@ -2,12 +2,12 @@
 
 namespace AppBundle\Entity;
 
-use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 
 /**
@@ -108,6 +108,12 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateBan;
+
+    /**
+     * @Gedmo\Slug(fields={"prenom", "nom"})
+     * @ORM\Column(type="string")
+     */
+    private $slug;
 
     public function __construct()
     {
@@ -391,4 +397,10 @@ class User implements UserInterface, \Serializable
     {
         $this->roles = [];
     }
+
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
 }

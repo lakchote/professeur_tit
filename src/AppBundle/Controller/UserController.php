@@ -173,7 +173,7 @@ class UserController extends Controller
     }
 
     /**
-     * @Route("/user/profil/{id}", name="user_public_profile")
+     * @Route("/user/profil/{slug}", name="user_public_profile")
      */
     public function userPublicProfilAction(User $user)
     {

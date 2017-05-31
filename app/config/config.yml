@@ -86,3 +86,9 @@ knp_paginator:
 
 presta_sitemap:
     timetolive: 3600
+
+stof_doctrine_extensions:
+    default_locale: "%locale"
+    orm:
+        default:
+            sluggable: true
