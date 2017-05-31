@@ -1,5 +1,6 @@
 let isLocalStorage = false;
 let urlCSV = '/assets/csv/taxrefv2.csv';
+let apiKey = $('#modal-obs-js').data('api-key');
 let csvOfflineData = [];
 let fileReader = new FileReader();
 let imageObs = undefined;
@@ -102,7 +103,7 @@ function dataURLtoFile(url, name, type) {
     });
     let ville = localStorage.getItem('localisation');
     if (ville && !(localStorage.getItem('obs_form[longitude]')) && (getOnlineStatus())) {
-        fetch('https://maps.googleapis.com/maps/api/geocode/json?address=' + ville + '&key=AIzaSyACO55kGEkd8YeNffAaErhE02wa_UigduQ')
+        fetch('https://maps.googleapis.com/maps/api/geocode/json?address=' + ville + '&key=' + apiKey)
             .then(response => response.json())
             .then(data =>
             {

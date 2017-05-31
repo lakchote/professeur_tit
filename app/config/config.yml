@@ -43,6 +43,7 @@ twig:
     globals:
         page: '@app.listener.page'
         url_INPN: '%url_INPN%'
+        api_google_maps: '%api_google_maps%'
 
 # Doctrine Configuration
 doctrine:
