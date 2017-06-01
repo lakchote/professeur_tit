@@ -58,7 +58,7 @@ class ObservationController extends Controller
      */
     public function getListingAction(Request $request)
     {
-            $listeTaxons = $this->get('app.createliste')->createList($_GET['term']);
+            $listeTaxons = $this->get('app.createliste')->createList($request->query->get('term'));
             return  $this->json($listeTaxons);
     }
 

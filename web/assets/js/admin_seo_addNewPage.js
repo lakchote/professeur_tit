@@ -12,7 +12,7 @@ $(function()
     });
     $('#container__addNewMask--submit').click(function(e)
     {
-      if(!$('#add_new_page_newMask').val())
+      if(!$('#newMask').val())
       {
         e.preventDefault();
       }

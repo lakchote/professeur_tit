@@ -113,9 +113,9 @@ class AdminSEOController extends Controller
     /**
      * @Route("/admin/seo/mask/add", name="admin_seo_excludeMask_add")
      */
-    public function addExcludeMaskAction()
+    public function addExcludeMaskAction(Request $request)
     {
-        $this->get('app.seo')->addExcludeMask($_POST['add_new_page']['newMask']) ? $this->addFlash('success', 'Le masque a été ajouté') : $this->addFlash('error', 'Le masque ne peut pas être vide');
+        $this->get('app.seo')->addExcludeMask($request->request->get('newMask')) ? $this->addFlash('success', 'Le masque a été ajouté') : $this->addFlash('error', 'Le masque ne peut pas être vide');
         return new RedirectResponse($this->generateUrl('admin_seo_page_add'));
     }
 }

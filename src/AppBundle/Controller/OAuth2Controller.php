@@ -20,7 +20,7 @@ class OAuth2Controller extends Controller
     /**
      * @Route("/connect/google-check", name="connect_google_check")
      */
-    public function connectGoogleCheck()
+    public function connectGoogleCheckAction()
     {
     }
 
@@ -40,7 +40,7 @@ class OAuth2Controller extends Controller
     /**
      * @Route("/connect/facebook-check", name="connect_facebook_check")
      */
-    public function connectFacebookActionCheck()
+    public function connectFacebookActionCheckAction()
     {
     }
 }

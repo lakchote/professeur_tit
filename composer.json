@@ -1,10 +1,11 @@
 {
-    "name": "greg/.checkout",
-    "license": "proprietary",
+    "name": "lakchote/professeur_tit",
+    "license": "MIT",
     "type": "project",
+    "description" : "Application visant à étudier l'impact du climat, de l'agriculture et de l'urbanisation sur la biodiversité",
     "autoload": {
         "psr-4": {
-            "": "src/"
+            "AppBundle\\": "src/AppBundle"
         },
         "classmap": [
             "app/AppKernel.php",
