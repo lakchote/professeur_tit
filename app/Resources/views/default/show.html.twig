@@ -95,7 +95,8 @@
 {% block javascript %}
     {{ parent() }}
     <script>
-        var data = {{ observations|json_encode|raw }};
+        var data = {{ observations|json_encode|safeRawOutput }};
+        console.log(data);
         var $lang = "{{ app.request.getLocale() }}";
         var pathUser = "{{ path('user_public_profile', {'slug': 'user_slug'}) }}";
     </script>
