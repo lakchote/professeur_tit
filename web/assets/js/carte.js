@@ -158,12 +158,7 @@ function getMarkers() {
                         title: titre,
                     });
                     var image = data[i]['image'];
-                if (image != "") {
                     image = "../uploads/observations/" + image;
-                }
-                else {
-                    image = "../assets/img/tit_logo.png";
-                }
 
                 var date = new Date(data[i]['date']['date']);
                 var options = {weekday: "long", year: "numeric", month: "long", day: "numeric"};
@@ -176,7 +171,7 @@ function getMarkers() {
                     '<div id="bodyContent">' +
                     '<img src="'+ image +'" class="carte__popUp--photo img-rounded img-responsive">'+
                     '<ul>'+
-                    '<li><b>Auteur : </b><a href="'+ pathUser.replace('user_id', data[i]['userId']) +'">' + data[i]['auteur'] +'</a></li>'+
+                    '<li><b>Auteur : </b><a href="'+ pathUser.replace('user_slug', data[i]['userSlug']) +'">' + data[i]['auteur'] +'</a></li>'+
                     '<li><b>Date : </b>' + date +'</li>'+
                     '</ul>'+
                     '</div>'+

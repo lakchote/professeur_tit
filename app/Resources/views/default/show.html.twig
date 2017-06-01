@@ -97,7 +97,7 @@
     <script>
         var data = {{ observations|json_encode|raw }};
         var $lang = "{{ app.request.getLocale() }}";
-        var pathUser = "{{ path('user_public_profile', {'id': 'user_id'}) }}";
+        var pathUser = "{{ path('user_public_profile', {'slug': 'user_slug'}) }}";
     </script>
     <script src="{{ asset('assets/js/show.js') }}"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACO55kGEkd8YeNffAaErhE02wa_UigduQ&libraries=places&callback=initMap" async defer></script>

@@ -1,16 +1,18 @@
 <?php
 
-namespace AppBundle\Form;
-
+namespace AppBundle\Form\Type;
 
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class MapFormType extends AbstractType
+class ObsFormType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -26,11 +28,18 @@ class MapFormType extends AbstractType
                  'placeholder' => '',
                  'multiple' => false,
              ))
-            ->add('ville', TextType::class)
-            ->add('date', DateType::class, array (
-                'widget' => 'single_text',
-                'html5' => true,
+             ->add('longitude', NumberType::class, array(
+                'scale' => 10,
             ))
+            ->add('latitude', NumberType::class, array(
+                'scale' => 11,
+            ))
+            ->add('ville', TextType::class)
+            ->add('date', DateTimeType::class, array (
+                'data' => new \DateTime(),
+            ))
+            ->add('description', TextareaType::class)
+            ->add('image', FileType::class)
         ;
     }
 
@@ -40,7 +49,8 @@ class MapFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Observation'
+            'data_class' => 'AppBundle\Entity\Observation',
+            'validation_groups' => ['Observation', 'Default']
         ));
     }
 }

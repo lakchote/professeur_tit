@@ -3,8 +3,8 @@
 namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use AppBundle\Form\ForgottenPasswordFormType;
-use AppBundle\Form\ModalFormType;
+use AppBundle\Form\Type\ForgottenPasswordFormType;
+use AppBundle\Form\Type\ModalFormType;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;

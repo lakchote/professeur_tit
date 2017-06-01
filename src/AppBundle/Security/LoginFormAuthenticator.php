@@ -8,7 +8,7 @@
 
 namespace AppBundle\Security;
 
-use AppBundle\Form\ModalFormType;
+use AppBundle\Form\Type\ModalFormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;

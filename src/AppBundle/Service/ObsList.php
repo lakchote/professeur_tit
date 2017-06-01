@@ -52,7 +52,7 @@ class ObsList {
                 'date' => $row->getDate(),
                 'image' => $image,
                 'taxon' => $row->getTaxon()->getNomVernaculaire(),
-                'userId' => $row->getUser()->getId(),
+                'userSlug' => $row->getUser()->getSlug(),
                 'auteur' => $auteur
             );
         }, $tags);

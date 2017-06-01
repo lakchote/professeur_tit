@@ -3,10 +3,10 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
-use AppBundle\Form\ForgottenPasswordFormType;
-use AppBundle\Form\ModalFormType;
-use AppBundle\Form\NewPasswordFormType;
-use AppBundle\Form\ProfilFormType;
+use AppBundle\Form\Type\ForgottenPasswordFormType;
+use AppBundle\Form\Type\ModalFormType;
+use AppBundle\Form\Type\NewPasswordFormType;
+use AppBundle\Form\Type\ProfilFormType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\RedirectResponse;

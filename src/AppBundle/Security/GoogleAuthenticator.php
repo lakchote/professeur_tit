@@ -10,7 +10,7 @@ namespace AppBundle\Security;
 
 
 use AppBundle\Entity\User;
-use AppBundle\Form\ModalFormType;
+use AppBundle\Form\Type\ModalFormType;
 use League\OAuth2\Client\Provider\GoogleUser;
 use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 use Symfony\Component\DependencyInjection\ContainerInterface;

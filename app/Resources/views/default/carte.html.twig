@@ -63,7 +63,7 @@
     <script>
         var pathListing = "{{ path('getListing') }}";
         var pathMap = "{{ path('carte_geoJson') }}";
-        var pathUser = "{{ path('user_public_profile', {'id': 'user_id'}) }}";
+        var pathUser = "{{ path('user_public_profile', {'slug': 'user_slug'}) }}";
         var $lang = "{{ app.request.getLocale() }}";
     </script>
     <script src="{{ asset('assets/js/carte.js') }}"></script>
