@@ -26,52 +26,11 @@
                         </div>
                         <div class="col-xs-12 vcenter show__img">
                             <div class="col-xs-4 show__img">
-                                {% set run = 0 %}
-                                {% for obs in taxon.observations if obs.status =="validated" and run < 1 %}
-                                    {% set run = 1 %}
-                                    <img class="search__details--icon" src="{{ asset(obs.imgPath ~ obs.image.filename) }}" alt="Observation"
-                                         id="obs__photo">
-                                {% else %}
-                                    <img class="search__details--icon" src="{{ asset('assets/img/tit_logo.png') }}" alt="Observation"
-                                         id="obs__photo">
-                                {% endfor %}
+                                {% include 'blocks/taxon_display_obs.html.twig' %}
                             </div>
                             <div class="col-xs-8">
                                 <ul>
-                                    {% if taxon.ordre %}
-                                        <li><strong>{{ "Ordre"|trans }}</strong> : {{ taxon.ordre.name }}</li>
-                                    {% endif %}
-                                    {% if taxon.famille %}
-                                        <li><strong>{{ "Famille"|trans }}</strong> : {{ taxon.famille.name }}</li>
-                                    {% endif %}
-                                    {% if taxon.rang %}
-                                        <li><strong>{{ "Rang"|trans }}</strong> : {{ taxon.rang.name }}</li>
-                                    {% endif %}
-                                    {% if taxon.habitat %}
-                                        <li><strong>{{ "Habitat"|trans }}</strong> : {{ taxon.habitat.name }}</li>
-                                    {% endif %}
-                                    {% if taxon.nomVernaculaire %}
-                                        <li><strong>{{ "Nom Vernaculaire"|trans }} : </strong>{{ taxon.nomVernaculaire }}</li>
-                                    {% endif %}
-                                    {% if taxon.nomLatin %}
-                                        <li><strong>{{ "Nom Latin"|trans }}</strong> : {{ taxon.nomLatin }}</li>
-                                    {% endif %}
-                                    {% if taxon.annee %}
-                                        <li><strong>{{ "Année"|trans }}</strong> : {{ taxon.annee }}</li>
-                                    {% endif %}
-                                    {% if taxon.auteurs|length %}
-                                    <li><strong>{{ "Auteurs"|trans }}</strong> :</li>
-                                    <ul>
-                                        {% for auteur in taxon.auteurs %}
-                                        <li>
-                                            {{ auteur.name }}
-                                        </li>
-                                        {% endfor %}
-                                    </ul>
-                                    {% endif %}
-                                    {% if taxon.urlINPN %}
-                                        <li><strong>{{ "Fiche INPN"|trans }}</strong> : <a href="{{ url_INPN ~ taxon.cdNom }}" target="_blank"> {{ "Cliquez ici"|trans }}</a></li>
-                                    {% endif %}
+                                    {% include 'blocks/taxon_display_info.html.twig' %}
                                     <li><strong>{{ "Nombre d'observations"|trans }}</strong> : {{ observations|length }}  </li>
                                 </ul>
                             </div>

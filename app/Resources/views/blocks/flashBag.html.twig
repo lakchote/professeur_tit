@@ -1,0 +1,16 @@
+<div class="row">
+    <div class="col-xs-12 col-sm-offset-2 col-sm-8">
+        {% for msg in app.session.flashBag.get('success') %}
+            <div class="alert alert-success alert-dismissable fade in">
+                {{ msg }}
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            </div>
+        {% endfor %}
+        {% for msg in app.session.flashBag.get('error') %}
+            <div class="alert alert-danger alert-dismissable fade in">
+                {{ msg }}
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            </div>
+        {% endfor %}
+    </div>
+</div>

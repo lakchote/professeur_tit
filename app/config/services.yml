@@ -100,8 +100,13 @@ services:
         tags:
             - { name: twig.extension }
 
-    app.safe_raw_output:
+    app.twig.safe_raw_output:
         class: AppBundle\Twig\SafeRawOutput
+        tags:
+            - { name: twig.extension }
+
+    app.twig.display_taxon_info:
+        class: AppBundle\Twig\DisplayTaxonInfo
         tags:
             - { name: twig.extension }
     app.seo:

@@ -1,0 +1,20 @@
+<li><strong>{{ "Ordre"|trans }}</strong> : {{ taxon.ordre.name|displayTaxonInfo }}</li>
+<li><strong>{{ "Famille"|trans }}</strong> : {{ taxon.famille.name|displayTaxonInfo }}</li>
+<li><strong>{{ "Rang"|trans }}</strong> : {{ taxon.rang.name|displayTaxonInfo }}</li>
+<li><strong>{{ "Habitat"|trans }}</strong> : {{ taxon.habitat.name|displayTaxonInfo }}</li>
+<li><strong>{{ "Nom Vernaculaire"|trans }}: </strong>{{ taxon.nomVernaculaire|displayTaxonInfo }}</li>
+<li><strong>{{ "Nom Latin"|trans }}</strong> : {{ taxon.nomLatin|displayTaxonInfo }}</li>
+<li><strong>{{ "Année"|trans }}</strong> : {{ taxon.annee|displayTaxonInfo }}</li>
+{% if taxon.auteurs|length %}
+    <li><strong>{{ "Auteurs"|trans }}</strong> :</li>
+    <ul>
+        {% for auteur in taxon.auteurs %}
+            <li>
+                {{ auteur.name }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+{% if taxon.urlINPN %}
+    <li><strong>{{ "Fiche INPN"|trans }}</strong> : <a href="{{ url_INPN ~ taxon.cdNom }}" target="_blank"> {{ "Cliquez ici"|trans }}</a></li>
+{% endif %}

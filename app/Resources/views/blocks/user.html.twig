@@ -1,0 +1,22 @@
+{% if app.user %}
+    <a href="{{ path('manage_profil_membre') }}"><img
+                src="{{ asset('assets/img/user.png') }}" alt="Accéder à votre profil"
+                id="header__icon--user" class="hidden-xs"></a>
+    <li class="header__rubriques--name pull-right hidden-xs"><a href="{{ path('logout') }}">Déconnexion</a></li>
+    <li class="header__rubriques--name visible-xs"><a href="{{ path('logout') }}">Déconnexion</a></li>
+{% else %}
+    <li class="header__rubriques--name pull-right hidden-xs">
+        <a href="#" id="login-load-desktop" class="hidden-sm" data-toggle="modal" data-target="#modal-login-desktop">
+            <div class="header__rubriques--posRelative">S'inscrire
+                <div class="header__rubriques--posAbsolute">Se connecter</div>
+            </div>
+        </a>
+        <a href="#" class="visible-sm login-load-mobile" data-toggle="modal" data-target="#modal-login-mobile">
+            <div class="header__rubriques--posRelative">S'inscrire
+                <div class="header__rubriques--posAbsolute">Se connecter</div>
+            </div>
+        </a>
+    </li>
+    <li class="header__rubriques--name visible-xs"><a href="#" class="login-load-mobile" data-toggle="modal" data-target="#modal-login-mobile">S'inscrire / Se
+            connecter</a></li>
+{% endif %}

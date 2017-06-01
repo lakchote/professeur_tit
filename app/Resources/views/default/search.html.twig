@@ -14,40 +14,27 @@
     <div class="col-xs-12 col-md-offset-2 col-md-10 padding-left--none">
         <div class="search__line">
             {% if pagination is defined %}
-                <p>{{ listeTaxons|length }}{{ " réponses correspondent à \""|trans }}{{ terme }}{{ "\""|trans }}</p>
+                <p>{{ listeTaxons|length }}  {{ "  réponses correspondent à \""|trans }}{{ terme }}{{ "\""|trans }}</p>
             {% endif %}
         </div>
     </div>
 
     <div class="row">
-    {% if pagination is defined %}
-        {% for taxon in pagination %}
-            <div class="col-xs-12 col-md-offset-2 col-md-10 padding-left--none">
-                <div class="search__line">
-                    {% set run = 0 %}
-                    {% for obs in taxon.observations if obs.status =="validated" and run < 1 %}
-                        {% set run = 1 %}
-                        <img class="search__details--icon" src="{{ asset(obs.imgPath ~ obs.image.filename) }}" alt="Observation"
-                             id="obs__photo">
-                    {% else %}
-                        <img class="search__details--icon" src="{{ asset('assets/img/tit_logo.png') }}" alt="Observation"
-                             id="obs__photo">
-                    {% endfor %}
-                    <span><strong>  <a href="{{ path('show', {'taxon' : taxon.id}) }}">{{ taxon.nomVernaculaire }}, {{ taxon.nomLatin }}</a></strong></span>
+        {% if pagination is defined %}
+            {% for taxon in pagination %}
+                <div class="col-xs-12 col-md-offset-2 col-md-10 padding-left--none">
+                    <div class="search__line">
+                        {% include 'blocks/taxon_display_obs.html.twig' %}
+                        <span><strong>  <a href="{{ path('show', {'taxon' : taxon.id}) }}">
+                                    {{ (taxon.nomVernaculaire|length > 0) ? taxon.nomVernaculaire ~ ',' : ' ' }} {{ taxon.nomLatin }}</a></strong></span>
+                    </div>
                 </div>
-             </div>
-        {% endfor %}
-        {# display navigation #}
+            {% endfor %}
             <div class="col-xs-12 col-md-offset-2 col-md-10 navigation">
                 {{ knp_pagination_render(pagination) }}
             </div>
-        </div>
-
-    {% endif %}
+        {% endif %}
     </div>
-
-    </div>
-
 {% endblock %}
 
 
