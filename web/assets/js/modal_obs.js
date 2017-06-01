@@ -95,6 +95,12 @@ function dataURLtoFile(url, name, type) {
         });
 })();
 
+function getCorrectCityNameFormat(str)
+{
+    let strToLowerCase = str.toLowerCase();
+    return strToLowerCase.charAt(0).toUpperCase() + strToLowerCase.slice(1);
+}
+
 (function checkLocalStorageData() {
     let imageStored = localStorage.getItem('obs_form[image]');
     if (!imageStored) return false;
@@ -116,6 +122,7 @@ function dataURLtoFile(url, name, type) {
                 localStorage.setItem('obs_form[latitude]', data.results[0].geometry.location.lat.toFixed(11));
             });
     }
+    ville = getCorrectCityNameFormat(ville);
     localStorage.setItem('obs_form[ville]', ville);
     $('#pac-input').val(ville);
     $('#recherche').val(localStorage.getItem('recherche'));
