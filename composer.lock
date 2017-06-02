@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ac4e6156e78c08252591f3b53b8d67d9",
-    "content-hash": "a2e1b781a920d529a9fea3ce4ecb1aeb",
+    "hash": "9c8b072992a2a5e53e9d54c8e06f19c5",
+    "content-hash": "67dadef27dac6073f16ffa3ef178bdc1",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -2979,6 +2979,60 @@
                 "shim"
             ],
             "time": "2016-11-14 01:06:16"
+        },
+        {
+            "name": "symfony/proxy-manager-bridge",
+            "version": "v3.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/proxy-manager-bridge.git",
+                "reference": "bf998071bf4b457d185ba4deb3add9cb982f1e48"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/proxy-manager-bridge/zipball/bf998071bf4b457d185ba4deb3add9cb982f1e48",
+                "reference": "bf998071bf4b457d185ba4deb3add9cb982f1e48",
+                "shasum": ""
+            },
+            "require": {
+                "ocramius/proxy-manager": "~0.4|~1.0|~2.0",
+                "php": ">=5.5.9",
+                "symfony/dependency-injection": "~2.8|~3.0"
+            },
+            "require-dev": {
+                "symfony/config": "~2.8|~3.0"
+            },
+            "type": "symfony-bridge",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Bridge\\ProxyManager\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony ProxyManager Bridge",
+            "homepage": "https://symfony.com",
+            "time": "2017-05-24 16:13:59"
         },
         {
             "name": "symfony/swiftmailer-bundle",

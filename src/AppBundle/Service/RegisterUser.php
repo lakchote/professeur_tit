@@ -9,27 +9,47 @@
 namespace AppBundle\Service;
 
 use AppBundle\Entity\User;
+use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\ORM\EntityManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 use Symfony\Component\Security\Guard\Token\PostAuthenticationGuardToken;
 use Symfony\Component\Security\Http\RememberMe\TokenBasedRememberMeServices;
 use Symfony\Bridge\Doctrine\Security\User\EntityUserProvider;
 
 class RegisterUser
 {
-    private $container;
 
-    public function __construct(ContainerInterface $container)
+    /**
+     * @var EntityManager $em
+     */
+    private $em;
+
+    /**
+     * @var ManagerRegistry $managerRegistry
+     */
+    private  $managerRegistry;
+
+    /**
+     * @var TokenStorage $tokenStorage
+     */
+    private $tokenStorage;
+    private $secret;
+
+    public function __construct(EntityManager $em, ManagerRegistry $managerRegistry, TokenStorage $tokenStorage, $secret)
     {
-        $this->container = $container;
+        $this->em = $em;
+        $this->managerRegistry = $managerRegistry;
+        $this->tokenStorage = $tokenStorage;
+        $this->secret = $secret;
     }
 
     public function registerUser(Form $form)
     {
             $user = new User();
-            $em = $this->container->get('doctrine.orm.default_entity_manager');
             $user->setNom($form['register']['nom']->getData());
             $user->setPrenom($form['register']['prenom']->getData());
             $user->setEmail($form['register']['email']->getData());
@@ -42,18 +62,17 @@ class RegisterUser
                 $this->subscribeToMailChimp($form['register']['email']->getData());
             }
 
-            $em->persist($user);
-            $em->flush();
+            $this->em->persist($user);
+            $this->em->flush();
             return $user;
     }
 
     public function rememberMe(User $user, Request $request)
     {
-        $secretKey = $this->container->getParameter('secret');
         $token = new PostAuthenticationGuardToken($user, 'main', $user->getRoles());
-        $this->container->get('security.token_storage')->setToken($token);
-        $userProvider = new EntityUserProvider($this->container->get('doctrine'), User::class, 'email');
-        $rememberMeService = new TokenBasedRememberMeServices(array($userProvider), $secretKey, 'main', [
+        $this->tokenStorage->setToken($token);
+        $userProvider = new EntityUserProvider($this->managerRegistry, User::class, 'email');
+        $rememberMeService = new TokenBasedRememberMeServices(array($userProvider), $this->secret, 'main', [
             'name' => 'MYREMEMBERME',
             'lifetime' => 604800,
             'path' => '/',
@@ -77,13 +96,12 @@ class RegisterUser
 
     public function registerUserOAuth2(User $user, $email, $nom, $prenom)
     {
-        $em = $this->container->get('doctrine.orm.default_entity_manager');
         $user->setEmail($email);
         $user->setNom($nom);
         $user->setPrenom($prenom);
         $user->setDateInscription(new \DateTime());
-        $em->persist($user);
-        $em->flush();
+        $this->em->persist($user);
+        $this->em->flush();
         return true;
     }
 

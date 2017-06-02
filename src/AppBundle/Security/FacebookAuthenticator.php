@@ -1,39 +1,26 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: BRANDON HEAT
- * Date: 31/01/2017
- * Time: 22:56
- */
 
 namespace AppBundle\Security;
 
 
-use AppBundle\Entity\User;
-use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
-use League\OAuth2\Client\Provider\FacebookUser;
-use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\HttpFoundation\RedirectResponse;
+use AppBundle\Service\RegisterUser;
+use Doctrine\ORM\EntityManager;
+use League\OAuth2\Client\Provider\Facebook;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
-use Symfony\Component\Security\Core\Exception\AuthenticationException;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\Routing\Router;
 use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
-use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Security\Core\User\UserProviderInterface;
-use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
 
-class FacebookAuthenticator extends AbstractGuardAuthenticator
+class FacebookAuthenticator extends AbstractOAuth2
 {
-    private $container;
 
-    public function __construct(ContainerInterface $container)
+    public function __construct(Facebook $provider, RegisterUser $registerUser, Session $session, Router $router, EntityManager $em)
     {
-        $this->container = $container;
-    }
-
-    public function start(Request $request, AuthenticationException $authException = null)
-    {
-
+        $this->provider = $provider;
+        $this->registerUser = $registerUser;
+        $this->session = $session;
+        $this->router = $router;
+        $this->em = $em;
     }
 
     public function getCredentials(Request $request)
@@ -47,60 +34,6 @@ class FacebookAuthenticator extends AbstractGuardAuthenticator
         }
 
         throw new CustomUserMessageAuthenticationException('Impossible d\'avoir accès à Facebook');
-    }
-
-    public function getUser($credentials, UserProviderInterface $userProvider)
-    {
-        $facebookProvider = $this->container->get('app.facebook_provider');
-        try {
-            $accessToken = $facebookProvider->getAccessToken(
-                'authorization_code',
-                ['code' => $credentials]
-            );
-        }
-        catch (IdentityProviderException $e) {
-            $response = $e->getResponseBody();
-            $errorCode = $response['error']['code'];
-            $message = $response['error']['message'];
-
-            throw new CustomUserMessageAuthenticationException('Il y a eu un problème lors de la connexion au compte : ' . $errorCode);
-        }
-
-        /** @var FacebookUser $facebookUser */
-        $facebookUser = $facebookProvider->getResourceOwner($accessToken);
-        $email = $facebookUser->getEmail();
-        $prenom = $facebookUser->getFirstName();
-        $nom = $facebookUser->getLastName();
-
-        if(!$user = $this->container->get('doctrine')->getRepository('AppBundle:User')->findOneBy(['email' => $email])) {
-            $user = new User();
-            $this->container->get('app.register_user')->registerUserOAuth2($user, $email,$nom,$prenom);
-        }
-        return $user;
-    }
-
-    public function checkCredentials($credentials, UserInterface $user)
-    {
-        if(in_array('ROLE_FROZEN', $user->getRoles()))
-        {
-            throw new CustomUserMessageAuthenticationException('Vous avez été banni pour la raison suivante : ' . $user->getRaisonBan());
-        }
-        return true;
-    }
-
-    public function onAuthenticationFailure(Request $request, AuthenticationException $exception)
-    {
-        $this->container->get('session')->getFlashBag()->add('error', $exception->getMessage());
-        return new RedirectResponse($this->container->get('router')->generate('home'));
-    }
-
-    public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
-    {
-        return new RedirectResponse($this->container->get('router')->generate('home'));
-    }
-
-    public function supportsRememberMe()
-    {
     }
 
 }
