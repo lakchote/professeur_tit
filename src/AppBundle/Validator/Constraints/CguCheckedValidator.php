@@ -16,7 +16,7 @@ class CguCheckedValidator extends ConstraintValidator
 {
     public function validate($value, Constraint $constraint)
     {
-        if($value == null) {
+        if($value == '') {
             $this->context
                 ->buildViolation($constraint->message)
                 ->addViolation();

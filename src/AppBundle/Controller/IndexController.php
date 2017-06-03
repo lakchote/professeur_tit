@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Observation;
 use AppBundle\Form\Type\ContactType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -13,6 +14,7 @@ class IndexController extends Controller
 {
     /**
      * @Route("/", name="home", options={"sitemap" = true})
+     * @Method("GET")
      */
     public function indexAction(Request $request)
     {
@@ -33,6 +35,7 @@ class IndexController extends Controller
 
     /**
      * @Route("/debuter_ornithologie", name="debuter_ornithologie", options={"sitemap" = true})
+     * @Method("GET")
      */
     public function debuterOrnithologieAction()
     {
@@ -41,6 +44,7 @@ class IndexController extends Controller
 
     /**
      * @Route("/mentions_legales", name="mentions_legales", options={"sitemap" = true})
+     * @Method("GET")
      */
     public function mentionsLegalesAction()
     {
@@ -49,6 +53,7 @@ class IndexController extends Controller
 
     /**
      * @Route("/contact", name="contact", options={"sitemap" = true})
+     * @Method("GET")
      */
     public function contactAction(Request $request)
     {
@@ -68,6 +73,7 @@ class IndexController extends Controller
 
     /**
      * @Route("/sitemap", name="sitemap")
+     * @Method("GET")
      */
     public function siteMapAction()
     {

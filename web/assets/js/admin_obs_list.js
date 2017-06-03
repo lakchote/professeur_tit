@@ -30,7 +30,7 @@ $(function () {
         $.ajax
         ({
             url: url,
-            method: 'GET'
+            method: 'PATCH'
         }).done(function ()
         {
             location.reload();
@@ -43,7 +43,7 @@ $(function () {
         $.ajax
         ({
             url: url,
-            method: 'GET'
+            method: 'PATCH'
         }).done(function ()
         {
             location.reload();

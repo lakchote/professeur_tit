@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Form\Type\MapFormType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\Observation;
@@ -13,6 +14,7 @@ class CarteController extends Controller
 {
     /**
      * @Route("/carte", name="carte", options={"sitemap" = true})
+     * @Method("GET")
      */
     public function carteAction()
     {
@@ -24,6 +26,7 @@ class CarteController extends Controller
 
     /**
      * @Route("/carte_geoJson", name="carte_geoJson")
+     * @Method("POST")
      */
     public function carteGeoJsonAction(Request $request)
     {

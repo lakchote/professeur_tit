@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Observation;
 use AppBundle\Form\Type\ObsFormType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -16,6 +17,7 @@ class ObservationController extends Controller
     /**
      * @Security("is_granted('ROLE_OBSERVATEUR')")
      * @Route("/observation_flow_user", name="observation_flow_user")
+     * @Method("GET")
      */
     public function indexAction(Request $request)
     {
@@ -40,6 +42,7 @@ class ObservationController extends Controller
     
     /**
      * @Route("/modal/observation", name="modal_add_observation")
+     * @Method("GET")
      */
     public function getModalDesktopAction(Request $request)
     {
@@ -55,6 +58,7 @@ class ObservationController extends Controller
 
     /**
      * @Route("/getListing", name="getListing")
+     * @Method("GET")
      */
     public function getListingAction(Request $request)
     {
@@ -65,6 +69,7 @@ class ObservationController extends Controller
 
     /**
      * @Route("/publish", name="obs_publish")
+     * @Method("POST")
      */
 
     public function obsPublishAction(Request $request)
@@ -93,6 +98,7 @@ class ObservationController extends Controller
 
     /**
      * @Route("/obs/invalid/{id}", name="obs_invalid")
+     * @Method("PATCH")
      * @Security("is_granted('ROLE_NATURALISTE')")
      */
     public function obsInvalidAction(Observation $obs, Request $request)
@@ -109,6 +115,7 @@ class ObservationController extends Controller
 
     /**
      * @Route("/obs/valid/{id}", name="obs_valid")
+     * @Method("PATCH")
      * @Security("is_granted('ROLE_NATURALISTE')")
      */
     public function obsValidAction(Observation $obs, Request $request)
@@ -125,6 +132,7 @@ class ObservationController extends Controller
 
     /**
      * @Route("/obs/en_attente", name="obs_en_attente")
+     * @Method("GET")
      * @Security("is_granted('ROLE_NATURALISTE')")
      */
     public function pendingObsListAction()

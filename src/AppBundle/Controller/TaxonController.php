@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 
 use AppBundle\Entity\Taxon;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,6 +14,7 @@ class TaxonController extends Controller
 {
     /**
      * @Route("/taxon/search", name="search")
+     * @Method("GET")
      */
     public function searchAction(Request $request)
     {
@@ -34,6 +36,7 @@ class TaxonController extends Controller
 
     /**
      * @Route("/taxon/show/{taxon}", name="show")
+     * @Method("GET")
      */
     public function showAction(Request $request, Taxon $taxon)
     {

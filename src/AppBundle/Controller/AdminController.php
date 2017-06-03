@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\User;
 use AppBundle\Form\Type\Admin\ModalFreezeUserType;
 use AppBundle\Form\Type\Admin\ModalUserChangePasswordType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -18,6 +19,7 @@ class AdminController extends Controller
 {
     /**
      * @Route("/admin/home", name="admin_home")
+     * @Method("GET")
      */
     public function homeAction()
     {
@@ -32,6 +34,7 @@ class AdminController extends Controller
 
     /**
      * @Route("/admin/signalements/list", name="admin_signalements_list")
+     * @Method("GET")
      */
     public function listSignalementsAction()
     {
@@ -44,6 +47,7 @@ class AdminController extends Controller
 
     /**
      * @Route("/admin/signalement/delete/{id}", name="admin_signalement_delete")
+     * @Method("GET")
      */
     public function removeSignalementAction(User $id)
     {
@@ -54,6 +58,7 @@ class AdminController extends Controller
 
     /**
      * @Route("/admin/user/delete/{id}", name="admin_user_delete")
+     * @Method("GET")
      */
     public function removeUserAction(User $id)
     {
@@ -64,6 +69,7 @@ class AdminController extends Controller
 
     /**
      * @Route("/admin/user/freeze/{id}", name="admin_user_freeze")
+     * @Method("POST")
      */
     public function freezeUserAction(User $user, Request $request)
     {
@@ -83,6 +89,7 @@ class AdminController extends Controller
 
     /**
      * @Route("/admin/users/list", name="admin_users_list")
+     * @Method("GET")
      */
     public function usersListAction()
     {
@@ -94,6 +101,7 @@ class AdminController extends Controller
 
     /**
      * @Route("/admin/user/{id}/changePassword", name="admin_user_changePassword")
+     * @Method("POST")
      */
     public function userChangePasswordAction(User $user, Request $request)
     {
@@ -115,6 +123,7 @@ class AdminController extends Controller
 
     /**
      * @Route("/admin/naturalistes_en_attente/list", name="admin_naturalistes_attente_list")
+     * @Method("GET")
      */
     public function naturalistesEnAttenteListAction()
     {
@@ -126,6 +135,7 @@ class AdminController extends Controller
 
     /**
      * @Route("/admin/naturalistes_en_attente/valid/user/{id}", name="admin_naturaliste_attente_valid")
+     * @Method("GET")
      */
     public function naturalisteEnAttenteValidAction(User $user)
     {
@@ -136,6 +146,7 @@ class AdminController extends Controller
 
     /**
      * @Route("/admin/naturalistes_en_attente/invalid/user/{id}", name="admin_naturaliste_attente_invalid")
+     * @Method("GET")
      */
     public function naturalisteEnAttenteInvalidAction(User $user)
     {

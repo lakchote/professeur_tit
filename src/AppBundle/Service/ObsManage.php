@@ -8,7 +8,6 @@
 
 namespace AppBundle\Service;
 
-use AppBundle\Entity\Observation;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 

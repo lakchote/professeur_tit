@@ -26,7 +26,7 @@
                 le {{ user.dateInscription|localizeddate('none', 'none', null, null, 'd MMMM YYYY') }}</p>
             <p class="text--bold">Description</p>
             <div class="user-info__description">{{ user.description }}</div>
-            {% if user.isEmailVisible %}
+            {% if user.emailVisible %}
                 <p class="text--bold">Où me joindre</p>
                 <img src="{{ asset('assets/img/mail.png') }}" class="pull-left" id="user-info__mail"
                      alt="Votre email"> <div class="user-info__mail--input">&nbsp; {{ user.email }}</div>

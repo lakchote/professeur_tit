@@ -33,7 +33,7 @@ class HashPasswordListener implements EventSubscriber
             return;
         }
 
-        else if($entity->getPlainPassword() == null) {
+        else if($entity->getPlainPassword() === null) {
             return;
         }
 

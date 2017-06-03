@@ -31,5 +31,4 @@ class UsernameExistsValidator extends ConstraintValidator
                 ->addViolation();
         }
     }
-
 }

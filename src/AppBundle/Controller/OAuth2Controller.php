@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
@@ -9,6 +10,7 @@ class OAuth2Controller extends Controller
 {
     /**
      * @Route("/connect/google", name="connect_google")
+     * @Method("GET")
      */
     public function connectGoogleAction()
     {
@@ -19,6 +21,7 @@ class OAuth2Controller extends Controller
 
     /**
      * @Route("/connect/google-check", name="connect_google_check")
+     * @Method("GET")
      */
     public function connectGoogleCheckAction()
     {
@@ -26,6 +29,7 @@ class OAuth2Controller extends Controller
 
     /**
      * @Route("/connect/facebook", name="connect_facebook")
+     * @Method("GET")
      */
     public function connectFacebookAction()
     {
@@ -39,6 +43,7 @@ class OAuth2Controller extends Controller
 
     /**
      * @Route("/connect/facebook-check", name="connect_facebook_check")
+     * @Method("GET")
      */
     public function connectFacebookActionCheckAction()
     {

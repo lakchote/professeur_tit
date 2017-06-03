@@ -21,7 +21,7 @@ class ProfilFormType extends AbstractType
                 'label' => 'Où me joindre'
             ])
             ->add('image', FileType::class)
-            ->add('isEmailVisible', CheckboxType::class, [
+            ->add('emailVisible', CheckboxType::class, [
                 'label' => 'Faire apparaître mon mail'
             ]);
     }

@@ -7,6 +7,7 @@ use AppBundle\Form\Type\ForgottenPasswordFormType;
 use AppBundle\Form\Type\ModalFormType;
 use AppBundle\Form\Type\NewPasswordFormType;
 use AppBundle\Form\Type\ProfilFormType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -21,6 +22,7 @@ class UserController extends Controller
 
     /**
      * @Route("/register", name="register")
+     * @Method("POST")
      */
     public function registerAction(Request $request)
     {
@@ -29,7 +31,7 @@ class UserController extends Controller
             $form->handleRequest($request);
             if ($form->isValid()) {
                 $user = $this->get('app.register_user')->registerUser($form);
-                ($form['remember_me']->getData() == null) ?
+                ($form['remember_me']->getData() === null) ?
                     $response = $this->get('security.authentication.guard_handler')->authenticateUserAndHandleSuccess($user, $request, $this->get('app.security.login_form_authenticator'), 'main') :
                     $response = $this->get('app.register_user')->rememberMe($user, $request);
                 return $response;
@@ -47,6 +49,7 @@ class UserController extends Controller
 
     /**
      * @Route("/reset/password", name="reset_password")
+     * @Method({"GET", "POST"})
      */
     public function resetPasswordAction(Request $request)
     {
@@ -69,6 +72,7 @@ class UserController extends Controller
 
     /**
      * @Route("/reset/new_password", name="reset_new_password_form")
+     * @Method({"GET", "POST"})
      */
     public function resetNewPasswordAction(Request $request)
     {
@@ -98,6 +102,7 @@ class UserController extends Controller
 
     /**
      * @Route("/login/desktop", name="login_desktop")
+     * @Method("POST")
      */
     public function loginDesktopAction()
     {
@@ -106,6 +111,7 @@ class UserController extends Controller
 
     /**
      * @Route("/login/mobile", name="login_mobile")
+     * @Method("POST")
      */
     public function loginMobileAction()
     {
@@ -114,6 +120,7 @@ class UserController extends Controller
 
     /**
      * @Route("/logout", name="logout")
+     * @Method("GET")
      */
     public function logoutAction()
     {
@@ -122,6 +129,7 @@ class UserController extends Controller
 
     /**
      * @Route("/manage/profil", name="manage_profil_membre")
+     * @Method({"GET", "POST"})
      * @Security("is_granted('ROLE_OBSERVATEUR')")
      */
     public function profilUserAction(Request $request)
@@ -152,6 +160,7 @@ class UserController extends Controller
 
     /**
      * @Route("/user/delete/profil", name="user_delete")
+     * @Method("GET")
      * @Security("is_granted('ROLE_OBSERVATEUR')")
      */
     public function userDeleteAccountAction()
@@ -163,6 +172,7 @@ class UserController extends Controller
 
     /**
      * @Route("/user/delete/image", name="user_delete_image")
+     * @Method("GET")
      * @Security("is_granted('ROLE_OBSERVATEUR')")
      */
     public function userDeleteImgAction()
@@ -174,6 +184,7 @@ class UserController extends Controller
 
     /**
      * @Route("/user/profil/{slug}", name="user_public_profile")
+     * @Method("GET")
      */
     public function userPublicProfilAction(User $user)
     {

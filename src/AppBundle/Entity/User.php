@@ -89,7 +89,7 @@ class User implements UserInterface, \Serializable
     /**
      * @ORM\Column(type="boolean")
      */
-    private $is_email_visible = false;
+    private $emailVisible = false;
 
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Observation", mappedBy="user", cascade={"persist", "remove"})
@@ -296,17 +296,17 @@ class User implements UserInterface, \Serializable
     /**
      * @return mixed
      */
-    public function getIsEmailVisible()
+    public function getEmailVisible()
     {
-        return $this->is_email_visible;
+        return $this->emailVisible;
     }
 
     /**
-     * @param mixed $is_email_visible
+     * @param mixed $emailVisible
      */
-    public function setIsEmailVisible($is_email_visible)
+    public function setEmailVisible($emailVisible)
     {
-        $this->is_email_visible = $is_email_visible;
+        $this->emailVisible = $emailVisible;
     }
 
     /**

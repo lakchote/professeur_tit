@@ -8,9 +8,6 @@
 
 namespace AppBundle\Doctrine;
 
-
-use AppBundle\Entity\Observation;
-use AppBundle\Entity\Taxon;
 use AppBundle\Entity\User;
 use AppBundle\Service\FileUploader;
 use Doctrine\ORM\Event\LifecycleEventArgs;

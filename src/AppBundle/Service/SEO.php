@@ -115,7 +115,7 @@ class SEO
 
     public function addExcludeMask($mask)
     {
-        if($mask == null) return false;
+        if($mask === null) return false;
         $newExcludeMask = new SEOExcludeMask();
         $newExcludeMask->setMasque($mask);
         $this->em->persist($newExcludeMask);

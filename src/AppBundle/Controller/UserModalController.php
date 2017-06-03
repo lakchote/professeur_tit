@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AppBundle\Form\Type\ForgottenPasswordFormType;
 use AppBundle\Form\Type\ModalFormType;
@@ -14,6 +15,7 @@ class UserModalController extends Controller
 
     /**
      * @Route("/modal/login/form-desktop", name="modal_form_desktop")
+     * @Method("GET")
      */
     public function getModalDesktopAction(Request $request)
     {
@@ -28,6 +30,7 @@ class UserModalController extends Controller
 
     /**
      * @Route("/modal/login/form-mobile", name="modal_form_mobile")
+     * @Method("GET")
      */
     public function getModalMobileAction(Request $request)
     {
@@ -42,6 +45,7 @@ class UserModalController extends Controller
 
     /**
      * @Route("/modal/reset_password", name="modal_reset_password")
+     * @Method("GET")
      */
     public function getModalResetPasswordAction(Request $request)
     {

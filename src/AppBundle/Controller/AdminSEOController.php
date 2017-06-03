@@ -6,6 +6,7 @@ use AppBundle\Entity\Page;
 use AppBundle\Form\Type\Admin\AddNewPageType;
 use AppBundle\Form\Type\Admin\ChangeDefaultSEODataType;
 use AppBundle\Form\Type\Admin\ModifyPageType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -19,6 +20,7 @@ class AdminSEOController extends Controller
 {
     /**
      * @Route("/admin/seo/pages/list", name="admin_seo_pages_list")
+     * @Method("GET")
      */
     public function pagesListAction()
     {
@@ -30,6 +32,7 @@ class AdminSEOController extends Controller
 
     /**
      * @Route("/admin/seo/pages/modify/{titreRoute}", name="admin_seo_page_modify")
+     * @Method({"GET", "POST"})
      */
     public function modifyPageAction(Page $page, Request $request)
     {
@@ -51,6 +54,7 @@ class AdminSEOController extends Controller
 
     /**
      * @Route("/admin/seo/defaultData/modify", name="admin_seo_defaultData_modify")
+     * @Method({"GET", "POST"})
      */
     public function modifyDefaultSEODataAction(Request $request)
     {
@@ -73,6 +77,7 @@ class AdminSEOController extends Controller
 
     /**
      * @Route("/admin/seo/pages/add", name="admin_seo_page_add")
+     * @Method({"GET", "POST"})
      */
     public function addPageAction(Request $request)
     {
@@ -93,6 +98,7 @@ class AdminSEOController extends Controller
 
     /**
      * @Route("/admin/seo/page/delete/{titreRoute}", name="admin_seo_page_delete")
+     * @Method("GET")
      */
     public function deletePageAction(Page $page)
     {
@@ -103,6 +109,7 @@ class AdminSEOController extends Controller
 
     /**
      * @Route("/admin/seo/mask/delete/{mask}", name="admin_seo_excludeMask_delete")
+     * @Method("GET")
      */
     public function deleteExcludeMaskAction($mask)
     {
@@ -112,6 +119,7 @@ class AdminSEOController extends Controller
 
     /**
      * @Route("/admin/seo/mask/add", name="admin_seo_excludeMask_add")
+     * @Method("GET")
      */
     public function addExcludeMaskAction(Request $request)
     {

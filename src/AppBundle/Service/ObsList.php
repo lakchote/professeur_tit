@@ -8,6 +8,7 @@
 
 namespace AppBundle\Service;
 
+use AppBundle\Entity\Observation;
 use Doctrine\ORM\EntityManager;
 
 class ObsList {
@@ -37,7 +38,7 @@ class ObsList {
 
         $tags = $tags->getResult();
 
-        $tags = array_map(function($row) {
+        $tags = array_map(function(Observation $row) {
             $auteur = $row->getUser()->getNom() . ' '  . $row->getUser()->getPrenom();
             if ($row->getImage()) {
                 $image = $row->getImage()->getFileName();

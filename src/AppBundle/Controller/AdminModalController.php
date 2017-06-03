@@ -7,6 +7,7 @@ use AppBundle\Entity\User;
 use AppBundle\Form\Type\Admin\ModalFreezeUserType;
 use AppBundle\Form\Type\Admin\ModalObsType;
 use AppBundle\Form\Type\Admin\ModalUserChangePasswordType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -20,6 +21,7 @@ class AdminModalController extends Controller
 {
     /**
      * @Route("/admin/modal/user/freeze/{id}", name="admin_modal_user_freeze")
+     * @Method("GET")
      */
     public function modalUserFreezeAction(User $user, Request $request)
     {
@@ -36,6 +38,7 @@ class AdminModalController extends Controller
 
     /**
      * @Route("/admin/modal/user/{id}/changePassword", name="admin_modal_user_changePassword")
+     * @Method("GET")
      */
     public function modalUserChangePasswordAction(User $user, Request $request)
     {
@@ -52,6 +55,7 @@ class AdminModalController extends Controller
 
     /**
      * @Route("/admin/modal/obs/{id}", name="admin_modal_obs")
+     * @Method("GET")
      */
     public function modalObsAction(Observation $obs, Request $request)
     {

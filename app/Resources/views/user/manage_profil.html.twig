@@ -56,7 +56,7 @@
                      alt="Votre email">{{ form_widget(form.email, { 'attr' : {'class' : 'user-info__mail--input'}}) }}
                 <br/>
                 <span style="color:red;">{{ form_errors(form.email) }}</span>
-                {{ form_row(form.isEmailVisible) }}
+                {{ form_row(form.emailVisible) }}
                 {{ form_end(form) }}
                 <img src="{{ asset('assets/img/observation.png') }}" class="user-info__stats pull-left"
                      alt="Votre nombre d'observations">

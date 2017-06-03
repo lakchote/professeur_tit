@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Observation;
 use AppBundle\Form\Type\Admin\ModalObsType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -18,6 +19,7 @@ class AdminObsController extends Controller
 {
     /**
      * @Route("/admin/obs/list", name="admin_obs_list")
+     * @Method("GET")
      */
     public function obsListAction()
     {
@@ -29,6 +31,7 @@ class AdminObsController extends Controller
 
     /**
      * @Route("/admin/obs/validated/list", name="admin_obs_validated_list")
+     * @Method("GET")
      */
     public function obsValidatedListAction()
     {
@@ -40,6 +43,7 @@ class AdminObsController extends Controller
 
     /**
      * @Route("/admin/obs/refused/list", name="admin_obs_refused_list")
+     * @Method("GET")
      */
     public function obsRefusedAction()
     {
@@ -51,6 +55,7 @@ class AdminObsController extends Controller
 
     /**
      * @Route("/admin/obs/modify/{id}", name="admin_obs_modify")
+     * @Method("POST")
      */
     public function obsModifyAction(Observation $observation, Request $request)
     {
@@ -60,7 +65,7 @@ class AdminObsController extends Controller
         $form->handleRequest($request);
         if($form->isValid())
         {
-            ($form['image']->getData() == null) ? $observation->setImage($image) : $observation->setImage($form['image']->getData());
+            ($form['image']->getData() === null) ? $observation->setImage($image) : $observation->setImage($form['image']->getData());
             $em = $this->getDoctrine()->getManager();
             $em->persist($observation);
             $em->flush();
@@ -75,6 +80,7 @@ class AdminObsController extends Controller
 
     /**
      * @Route("/admin/obs/delete/{id}", name="admin_obs_delete")
+     * @Method("DELETE")
      */
     public function obsDeleteAction(Observation $obs, Request $request)
     {

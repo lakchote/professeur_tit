@@ -50,7 +50,7 @@
                      alt="Votre email">{{ form_widget(form.email, { 'attr' : {'class' : 'user-info__mail--input'}}) }}
                 <br/>
                 <span style="color:red;">{{ form_errors(form.email) }}</span>
-                {{ form_row(form.isEmailVisible) }}
+                {{ form_row(form.emailVisible) }}
                 <button type="submit" class="button pull-left" formnovalidate>Modifier</button>
                 <button type="button" class="button"><a
                             href="{{ path('user_delete') }}">Supprimer mon profil</a>
