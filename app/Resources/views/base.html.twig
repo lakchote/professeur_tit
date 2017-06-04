@@ -32,6 +32,28 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+    <script>
+        window.addEventListener("load", function(){
+            window.cookieconsent.initialise({
+                "palette": {
+                    "popup": {
+                        "background": "#eaf7f7",
+                        "text": "#5c7291"
+                    },
+                    "button": {
+                        "background": "#56cbdb",
+                        "text": "#ffffff"
+                    }
+                },
+                "content": {
+                    "message": "Ce site internet utilise des cookies pour vous fournir la meilleure expérience utilisateur possible.",
+                    "dismiss": "J'ai compris !",
+                    "link": "En savoir plus"
+                }
+            })});
+    </script>
 </head>
 <body>
 
