@@ -14,6 +14,25 @@ class LoadUsers extends AbstractFixture implements OrderedFixtureInterface
     public function load(ObjectManager $manager)
     {
         $taxon = $this->getReference('unTaxon');
+        $villes = [];
+        $villes[0]['ville'] = 'Poitiers';
+        $villes[0]['lng'] = 0.34037500;
+        $villes[0]['lat'] = 46.58022400;
+        $villes[1]['ville'] = 'Paris';
+        $villes[1]['lng'] = 2.28759200;
+        $villes[1]['lat'] = 48.86272500;
+        $villes[2]['ville'] = 'Marseille';
+        $villes[2]['lng'] = 5.36977999;
+        $villes[2]['lat'] = 43.29648200;
+        $villes[3]['ville'] = 'Strasbourg';
+        $villes[3]['lng'] = 7.75211130;
+        $villes[3]['lat'] = 48.57340529;
+        $villes[4]['ville'] = 'Montpellier';
+        $villes[4]['lng'] = 3.87671599;
+        $villes[4]['lat'] = 43.61076900;
+        $villes[5]['ville'] = 'Biarritz';
+        $villes[5]['lng'] = -1.55862600;
+        $villes[5]['lat'] = 43.48315190;
 
         $naturaliste = new User();
         $naturaliste->setEmail('naturaliste@proftit.com');
@@ -26,14 +45,14 @@ class LoadUsers extends AbstractFixture implements OrderedFixtureInterface
         for($i = 0; $i < 6; ++$i)
         {
             $obsNaturalisteValidated = new Observation();
-            $obsNaturalisteValidated->setLongitude('0.34037500');
-            $obsNaturalisteValidated->setLatitude('46.58022400');
+            $obsNaturalisteValidated->setLongitude($villes[$i]['lng']);
+            $obsNaturalisteValidated->setLatitude($villes[$i]['lat']);
             $obsNaturalisteValidated->setDate(new \DateTime());
             $obsNaturalisteValidated->setStatus(Observation::OBS_VALIDATED);
             $obsNaturalisteValidated->setImage('poussin.jpg');
             $obsNaturalisteValidated->setDescription('Superbe poussin');
             $obsNaturalisteValidated->setTaxon($taxon);
-            $obsNaturalisteValidated->setVille('Poitiers');
+            $obsNaturalisteValidated->setVille($villes[$i]['ville']);
             $naturaliste->addObservations($obsNaturalisteValidated);
         }
 
