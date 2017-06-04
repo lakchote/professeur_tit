@@ -1,8 +1,3 @@
-[class*="col-"] {
-    /* background-color: lightgreen;*/
-   /*border: 1px solid black;*/
-}
-
 a, span, p, h1, h2, h3 {
     color: #234a81;
 }
@@ -11,8 +6,10 @@ a, span, p, h1, h2, h3 {
     margin-top: 15px;
 }
 
-.lulu {
-    height:420px;
+.obs__en-attente
+{
+    height:116px;
+    width:160px;
 }
 
 .obs__general,

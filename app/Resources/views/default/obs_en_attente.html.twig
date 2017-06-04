@@ -5,6 +5,7 @@
     <link rel="stylesheet" type="text/css"
           href="https://cdn.datatables.net/v/bs/dt-1.10.13/af-2.1.3/b-1.2.4/r-2.1.1/sc-1.4.2/datatables.min.css"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/lightbox.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/obs.css') }}">
 {% endblock %}
 
 {% block content %}
@@ -36,7 +37,7 @@
                             <td> {{ observation.ville }}</td>
                             <td>
                                 {% if observation.image != '' %}
-                                    <a href="{{ asset(observation.imgPath ~ observation.image.filename) }}" data-lightbox="image-{{ observation.id }}"><img src="{{ asset(observation.imgPath ~ observation.image.filename) }}" class="img-responsive img-rounded" alt="Image observation"></a>
+                                    <a href="{{ asset(observation.imgPath ~ observation.image.filename) }}" data-lightbox="image-{{ observation.id }}"><img src="{{ asset(observation.imgPath ~ observation.image.filename) }}" class="img-responsive img-rounded obs__en-attente" alt="Image observation"></a>
                                 {% endif %}
                             </td>
                             <td> {{ observation.status }} </td>
