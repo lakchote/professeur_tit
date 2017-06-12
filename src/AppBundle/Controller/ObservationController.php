@@ -91,7 +91,7 @@ class ObservationController extends Controller
                    $response->setStatusCode(200);
                } else {
                    $response = new Response();
-                   $response->setStatusCode(201)->setContent($this->renderView('modal/modal_add_obs_desktop.html.twig', ['form' => $modal->createView()]));
+                   $response->setStatusCode(400)->setContent($this->renderView('modal/modal_add_obs_desktop.html.twig', ['form' => $modal->createView()]));
                }
         return $response;
     }

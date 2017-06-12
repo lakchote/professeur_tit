@@ -228,8 +228,8 @@ $('#btn-publish').click(function (e) {
         processData: false, // obligatoire pour de l'upload
         data: $data,
         statusCode: {
-            201: function (msg) {
-                $('#modal-load-desktop').html(msg);
+            400: function (jqXHR) {
+                $('#modal-load-desktop').html(jqXHR.responseText);
                 $('#recherche').val(recupRecherche);
                 $('#pac-input').val($('#obs_form_ville').val());
             },
