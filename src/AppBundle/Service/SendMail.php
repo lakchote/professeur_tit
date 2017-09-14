@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: BRANDON HEAT
- * Date: 06/02/2017
- * Time: 14:06
- */
 
 namespace AppBundle\Service;
 
@@ -36,8 +30,8 @@ class SendMail
         $user->setResetPassword($resetString);
         $this->em->persist($user);
         $this->em->flush();
-        $message = new \Swift_Message();
-        $message->setSubject('Réinitialisation de votre mot de passe ProfesseurTit')
+        $message = \Swift_Message::newInstance()
+                ->setSubject('Réinitialisation de votre mot de passe ProfesseurTit')
                 ->setFrom('prof@professeurtit.com')
                 ->setTo($email)
                 ->setBody($this->twig->render('mail/reset_password.html.twig', [
@@ -49,8 +43,7 @@ class SendMail
 
     public function sendContactMail($data)
     {
-        $message = new \Swift_Message();
-        $message
+        $message = \Swift_Message::newInstance()
             ->setSubject($data['sujet'])
             ->setFrom($data['email'])
             ->setTo($this->contactMail)
