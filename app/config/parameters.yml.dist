@@ -21,8 +21,8 @@ parameters:
     # A secret key that's used to generate certain security-related tokens
     secret:            ProfesseurTitRocks
 
-    user_photo_dir: '%kernel.root_dir%\..\web\uploads\user'
-    observations_directory: '%kernel.root_dir%\..\web\uploads\observations'
+    user_photo_dir: '%kernel.root_dir%/../web/uploads/user'
+    observations_directory: '%kernel.root_dir%/../web/uploads/observations'
     contact_mail: your@email.com
     url_INPN: 'https://inpn.mnhn.fr/espece/cd_nom/'
     api_google_maps: ~
