@@ -16,5 +16,5 @@
     </ul>
 {% endif %}
 {% if taxon.urlINPN %}
-    <li><strong>{{ "Fiche INPN"|trans }}</strong> : <a href="{{ url_INPN ~ taxon.cdNom }}" target="_blank"> {{ "Cliquez ici"|trans }}</a></li>
+    <li><strong>{{ "Fiche INPN"|trans }}</strong> : <a href="{{ url_INPN ~ taxon.cdNom }}" target="_blank" rel="noreferrer"> {{ "Cliquez ici"|trans }}</a></li>
 {% endif %}
