@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#98fb98">
+    <meta name="theme-color" content="#fffadb">
     <meta name="keywords"
           content="{{ page.seoData.keywords }}">
     <meta name="description"
@@ -89,7 +89,7 @@
           <div class="navbar-collapse collapse" id="header__rubriques">
               <ul class="nav navbar-nav">
                   <li class="header__rubriques--name"><a href="{{ path('debuter_ornithologie') }}">Débuter l'ornithologie</a></li>
-                  <li class="header__rubriques--name"><a href="#">Observations</a></li>
+                  <li class="header__rubriques--name"><a href="{{ path('home') }}">Observations</a></li>
                   <li class="header__rubriques--name"><a href="{{ path('carte') }}">Carte interactive</a></li>
                  <form class="navbar-form hidden-xs" action="{{ path('search') }}" id="header__form">
                       <div class="form-group">

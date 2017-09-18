@@ -104,16 +104,9 @@ a, span, p, h1, h2, h3 {
     margin-top: 6px;
 }
 
-.obs__map{
-  /*     height: 284px;*/
-       /*background-color: grey;*/
-   }
-
 .obs__map--img{
-  /*  width:100%;*/
     max-height: 100%;
     max-width: 100%;
-    /*height: 100%;*/
 }
 
 .map
@@ -146,6 +139,7 @@ a, span, p, h1, h2, h3 {
     .obs__details
     {
         font-size: 0.9em;
+        padding-top: 10px;
     }
 
     .obs__actions .obs__container--userImage

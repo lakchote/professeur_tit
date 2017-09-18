@@ -36,3 +36,5 @@ security:
             remember_me:
                 secret: "%secret%"
                 lifetime: 604800
+    access_control:
+        - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
