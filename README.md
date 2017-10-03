@@ -1,4 +1,4 @@
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/2d47a010-78a1-43a1-a9af-b863d06b50a1/mini.png)](https://insight.sensiolabs.com/projects/2d47a010-78a1-43a1-a9af-b863d06b50a1)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/2d47a010-78a1-43a1-a9af-b863d06b50a1/small.png)](https://insight.sensiolabs.com/projects/2d47a010-78a1-43a1-a9af-b863d06b50a1)
 # professeur_tit
 
 Le professeur_tit est le nom d'un projet en équipe d'**OpenClassroom**.
